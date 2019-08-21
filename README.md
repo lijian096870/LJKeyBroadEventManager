@@ -1,0 +1,2 @@
+# LJKeyBroadEventManager
+键盘弹出遮挡输入框解决方案
