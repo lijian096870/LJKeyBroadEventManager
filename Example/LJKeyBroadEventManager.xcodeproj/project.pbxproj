@@ -1,0 +1,434 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		30FB4F1F2306787700D23ED0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FB4F1E2306787700D23ED0 /* AppDelegate.m */; };
+		30FB4F252306787700D23ED0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30FB4F232306787700D23ED0 /* Main.storyboard */; };
+		30FB4F272306787900D23ED0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30FB4F262306787900D23ED0 /* Assets.xcassets */; };
+		30FB4F2A2306787900D23ED0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30FB4F282306787900D23ED0 /* LaunchScreen.storyboard */; };
+		30FB4F2D2306787900D23ED0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FB4F2C2306787900D23ED0 /* main.m */; };
+		30FB4F36230679AD00D23ED0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FB4F34230679AD00D23ED0 /* ViewController.m */; };
+		30FB4F3B230679C900D23ED0 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FB4F39230679C900D23ED0 /* TestViewController.m */; };
+		30FB4F3C230679C900D23ED0 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30FB4F3A230679C900D23ED0 /* TestViewController.xib */; };
+		30FB4F4023067A4A00D23ED0 /* TestTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FB4F3E23067A4A00D23ED0 /* TestTableViewCell.m */; };
+		30FB4F4123067A4A00D23ED0 /* TestTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30FB4F3F23067A4A00D23ED0 /* TestTableViewCell.xib */; };
+		A4751177299FECA80878A863 /* libPods-LJKeyBroadEventManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8247F0B78A3996CB5A7EDDFB /* libPods-LJKeyBroadEventManager.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1835CB1CFAB393E0877B801F /* Pods-LJKeyBroadEventManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LJKeyBroadEventManager.debug.xcconfig"; path = "Target Support Files/Pods-LJKeyBroadEventManager/Pods-LJKeyBroadEventManager.debug.xcconfig"; sourceTree = "<group>"; };
+		30FB4F1A2306787700D23ED0 /* LJKeyBroadEventManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LJKeyBroadEventManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		30FB4F1D2306787700D23ED0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		30FB4F1E2306787700D23ED0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		30FB4F242306787700D23ED0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		30FB4F262306787900D23ED0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		30FB4F292306787900D23ED0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		30FB4F2B2306787900D23ED0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30FB4F2C2306787900D23ED0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		30FB4F33230679AD00D23ED0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		30FB4F34230679AD00D23ED0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		30FB4F38230679C900D23ED0 /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		30FB4F39230679C900D23ED0 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		30FB4F3A230679C900D23ED0 /* TestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		30FB4F3D23067A4A00D23ED0 /* TestTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestTableViewCell.h; sourceTree = "<group>"; };
+		30FB4F3E23067A4A00D23ED0 /* TestTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTableViewCell.m; sourceTree = "<group>"; };
+		30FB4F3F23067A4A00D23ED0 /* TestTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestTableViewCell.xib; sourceTree = "<group>"; };
+		61C718A4F5885FE918F71C5B /* Pods-LJKeyBroadEventManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LJKeyBroadEventManager.release.xcconfig"; path = "Target Support Files/Pods-LJKeyBroadEventManager/Pods-LJKeyBroadEventManager.release.xcconfig"; sourceTree = "<group>"; };
+		8247F0B78A3996CB5A7EDDFB /* libPods-LJKeyBroadEventManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LJKeyBroadEventManager.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		30FB4F172306787700D23ED0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4751177299FECA80878A863 /* libPods-LJKeyBroadEventManager.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		30FB4F112306787700D23ED0 = {
+			isa = PBXGroup;
+			children = (
+				30FB4F1C2306787700D23ED0 /* LJKeyBroadEventManager */,
+				30FB4F1B2306787700D23ED0 /* Products */,
+				956F9E37F610CA54BF7A1707 /* Pods */,
+				A9C726B7A6CE02E3884F0319 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		30FB4F1B2306787700D23ED0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				30FB4F1A2306787700D23ED0 /* LJKeyBroadEventManager.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		30FB4F1C2306787700D23ED0 /* LJKeyBroadEventManager */ = {
+			isa = PBXGroup;
+			children = (
+				30FB4F1D2306787700D23ED0 /* AppDelegate.h */,
+				30FB4F1E2306787700D23ED0 /* AppDelegate.m */,
+				30FB4F232306787700D23ED0 /* Main.storyboard */,
+				30FB4F262306787900D23ED0 /* Assets.xcassets */,
+				30FB4F282306787900D23ED0 /* LaunchScreen.storyboard */,
+				30FB4F2B2306787900D23ED0 /* Info.plist */,
+				30FB4F2C2306787900D23ED0 /* main.m */,
+				30FB4F33230679AD00D23ED0 /* ViewController.h */,
+				30FB4F34230679AD00D23ED0 /* ViewController.m */,
+				30FB4F38230679C900D23ED0 /* TestViewController.h */,
+				30FB4F39230679C900D23ED0 /* TestViewController.m */,
+				30FB4F3A230679C900D23ED0 /* TestViewController.xib */,
+				30FB4F3D23067A4A00D23ED0 /* TestTableViewCell.h */,
+				30FB4F3E23067A4A00D23ED0 /* TestTableViewCell.m */,
+				30FB4F3F23067A4A00D23ED0 /* TestTableViewCell.xib */,
+			);
+			path = LJKeyBroadEventManager;
+			sourceTree = "<group>";
+		};
+		956F9E37F610CA54BF7A1707 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1835CB1CFAB393E0877B801F /* Pods-LJKeyBroadEventManager.debug.xcconfig */,
+				61C718A4F5885FE918F71C5B /* Pods-LJKeyBroadEventManager.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A9C726B7A6CE02E3884F0319 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8247F0B78A3996CB5A7EDDFB /* libPods-LJKeyBroadEventManager.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		30FB4F192306787700D23ED0 /* LJKeyBroadEventManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30FB4F302306787900D23ED0 /* Build configuration list for PBXNativeTarget "LJKeyBroadEventManager" */;
+			buildPhases = (
+				29D18C1481619B80693E8736 /* [CP] Check Pods Manifest.lock */,
+				30FB4F162306787700D23ED0 /* Sources */,
+				30FB4F172306787700D23ED0 /* Frameworks */,
+				30FB4F182306787700D23ED0 /* Resources */,
+				80329CC25096BE4703AF8F90 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LJKeyBroadEventManager;
+			productName = LJKeyBroadEventManager;
+			productReference = 30FB4F1A2306787700D23ED0 /* LJKeyBroadEventManager.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		30FB4F122306787700D23ED0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "李健";
+				TargetAttributes = {
+					30FB4F192306787700D23ED0 = {
+						CreatedOnToolsVersion = 10.2;
+					};
+				};
+			};
+			buildConfigurationList = 30FB4F152306787700D23ED0 /* Build configuration list for PBXProject "LJKeyBroadEventManager" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 30FB4F112306787700D23ED0;
+			productRefGroup = 30FB4F1B2306787700D23ED0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				30FB4F192306787700D23ED0 /* LJKeyBroadEventManager */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		30FB4F182306787700D23ED0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30FB4F2A2306787900D23ED0 /* LaunchScreen.storyboard in Resources */,
+				30FB4F272306787900D23ED0 /* Assets.xcassets in Resources */,
+				30FB4F3C230679C900D23ED0 /* TestViewController.xib in Resources */,
+				30FB4F4123067A4A00D23ED0 /* TestTableViewCell.xib in Resources */,
+				30FB4F252306787700D23ED0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		29D18C1481619B80693E8736 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LJKeyBroadEventManager-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		80329CC25096BE4703AF8F90 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LJKeyBroadEventManager/Pods-LJKeyBroadEventManager-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LJKeyBroadEventManager/Pods-LJKeyBroadEventManager-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LJKeyBroadEventManager/Pods-LJKeyBroadEventManager-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		30FB4F162306787700D23ED0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30FB4F36230679AD00D23ED0 /* ViewController.m in Sources */,
+				30FB4F4023067A4A00D23ED0 /* TestTableViewCell.m in Sources */,
+				30FB4F2D2306787900D23ED0 /* main.m in Sources */,
+				30FB4F3B230679C900D23ED0 /* TestViewController.m in Sources */,
+				30FB4F1F2306787700D23ED0 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		30FB4F232306787700D23ED0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30FB4F242306787700D23ED0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		30FB4F282306787900D23ED0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30FB4F292306787900D23ED0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		30FB4F2E2306787900D23ED0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		30FB4F2F2306787900D23ED0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		30FB4F312306787900D23ED0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1835CB1CFAB393E0877B801F /* Pods-LJKeyBroadEventManager.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9G4EP95MHN;
+				INFOPLIST_FILE = LJKeyBroadEventManager/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = LJ.LJKeyBroadEventManager;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		30FB4F322306787900D23ED0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61C718A4F5885FE918F71C5B /* Pods-LJKeyBroadEventManager.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9G4EP95MHN;
+				INFOPLIST_FILE = LJKeyBroadEventManager/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = LJ.LJKeyBroadEventManager;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		30FB4F152306787700D23ED0 /* Build configuration list for PBXProject "LJKeyBroadEventManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30FB4F2E2306787900D23ED0 /* Debug */,
+				30FB4F2F2306787900D23ED0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30FB4F302306787900D23ED0 /* Build configuration list for PBXNativeTarget "LJKeyBroadEventManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30FB4F312306787900D23ED0 /* Debug */,
+				30FB4F322306787900D23ED0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 30FB4F122306787700D23ED0 /* Project object */;
+}
