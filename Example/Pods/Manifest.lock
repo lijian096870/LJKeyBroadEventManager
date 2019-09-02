@@ -1,5 +1,5 @@
 PODS:
-  - LJKeyBroadEventManager (2.2.7)
+  - LJKeyBroadEventManager (2.6.1)
 
 DEPENDENCIES:
   - LJKeyBroadEventManager (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LJKeyBroadEventManager: 52c5f0c1d85a6999e9a8e311b76b037a5ecf9219
+  LJKeyBroadEventManager: a67b1a06faf1a5085039719d56e5e32c3c0eaa7f
 
 PODFILE CHECKSUM: cde36076e35b366cb599fecb9f16ccf54b3b8eea
 

@@ -11,6 +11,12 @@
 
 @interface LJKeyBroadRespoderModel : NSObject
 
+
+@property(nonatomic,assign)CGFloat aheadDis;
+
+@property(nonatomic,assign)CGFloat nextDis;
+
+
 @property(nonatomic,assign)CGRect windowBounds;
 
 @property(nonatomic,assign)CGRect responderLocation;

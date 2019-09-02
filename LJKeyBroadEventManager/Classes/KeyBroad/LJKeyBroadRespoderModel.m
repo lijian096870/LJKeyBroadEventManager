@@ -16,14 +16,51 @@
 
 @property (nonatomic, strong)NSNumber *showExtensionToolBar_temp;
 
-
 @property (nonatomic,strong)NSNumber *ExtensionToolBarHeight_temp;
+
+@property(nonatomic,strong)NSNumber *aheadDis_temp;
+
+@property(nonatomic,strong)NSNumber *nextDis_temp;
+
 
 @end
 
 @implementation LJKeyBroadRespoderModel
 
 
+-(void)setNextDis:(CGFloat)nextDis{
+    self.nextDis_temp = [NSNumber numberWithFloat:nextDis];
+}
+
+-(void)setAheadDis:(CGFloat)aheadDis{
+    self.aheadDis_temp = [NSNumber numberWithFloat:aheadDis];
+}
+
+-(CGFloat)nextDis{
+    return [self.nextDis_temp floatValue];
+}
+
+-(CGFloat)aheadDis{
+    return [self.aheadDis_temp floatValue];
+}
+
+-(NSNumber*)nextDis_temp{
+    
+    if(_nextDis_temp==nil){
+        _nextDis_temp = [NSNumber numberWithFloat:0];
+    }
+    return _nextDis_temp;
+    
+}
+
+-(NSNumber*)aheadDis_temp{
+    
+    if(_aheadDis_temp==nil){
+        _aheadDis_temp  = [NSNumber numberWithFloat:0];
+    }
+    return _aheadDis_temp;
+    
+}
 
 -(CGFloat)calculate:(CGFloat)keyBroadHeight{
     
