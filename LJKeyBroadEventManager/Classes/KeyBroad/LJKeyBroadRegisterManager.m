@@ -12,6 +12,7 @@
 #import "LJKeyBroadEventManager.h"
 #import "LJkeyBroadConfig.h"
 #import "UIResponder+becomeFirstResponderCallBack.h"
+#import "LJViewControllerManager.h"
 @interface LJKeyBroadRegisterManager ()
 
 @property(nonatomic,strong)NSMutableSet *set;

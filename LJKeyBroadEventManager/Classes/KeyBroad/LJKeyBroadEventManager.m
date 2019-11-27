@@ -52,23 +52,3 @@ void configShowExtensionToolBar(BOOL show){
 }
 
 
-
-
-BOOL viewIsControllerView(UIView *view){
-    return view.isControllerView_viewController_info;
-}
-
-
-UIViewController* viewGetSuperController(UIView *view){
-    
-    return view.ViewController_viewController_info;
-}
-
-
-UIViewController* viewGetAPPCurrentController(UIWindow *window){
-    if([window isKindOfClass:[UIWindow class]]){
-        return [window viewGetCurrentController_viewController_info];
-    }else{
-        return nil;
-    }
-}

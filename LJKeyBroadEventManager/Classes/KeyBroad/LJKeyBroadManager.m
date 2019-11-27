@@ -13,7 +13,7 @@
 #import "LJKeyBroadEventManager.h"
 #import "UIViewController+KeyBoradManager.h"
 #import "LJResponderArrayUtil.h"
-
+#import "LJViewControllerManager.h"
 static NSString * const kAlertSheetTextFieldClass = @"UIAlertSheetTextField";
 static NSString * const kAlertControllerTextFieldClass = @"_UIAlertControllerTextField";
 static NSString * const kSearchBarTextFieldClass = @"UISearchBarTextField";

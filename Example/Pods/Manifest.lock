@@ -1,15 +1,22 @@
 PODS:
-  - LJKeyBroadEventManager (2.6.1)
+  - LJKeyBroadEventManager (2.6.2):
+    - LJViewController (~> 0.1.0)
+  - LJViewController (0.1.0)
 
 DEPENDENCIES:
   - LJKeyBroadEventManager (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - LJViewController
 
 EXTERNAL SOURCES:
   LJKeyBroadEventManager:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LJKeyBroadEventManager: a67b1a06faf1a5085039719d56e5e32c3c0eaa7f
+  LJKeyBroadEventManager: cb7dd300ea56aaa6abb516859130ab9a321d8301
+  LJViewController: d8bceefdeb35987cd5451d9100d0729fd38e732a
 
 PODFILE CHECKSUM: cde36076e35b366cb599fecb9f16ccf54b3b8eea
 

@@ -124,10 +124,3 @@ FOUNDATION_EXTERN void addresignResponderCallBackBlock(becomeFirstResponderCallB
 
 
 
-//控制器
-FOUNDATION_EXTERN BOOL viewIsControllerView(UIView *view);
-
-FOUNDATION_EXTERN UIViewController* viewGetSuperController(UIView *view);
-
-FOUNDATION_EXTERN UIViewController* viewGetAPPCurrentController(UIWindow *window);
-
