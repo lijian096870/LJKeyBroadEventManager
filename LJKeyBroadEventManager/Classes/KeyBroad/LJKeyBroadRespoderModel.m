@@ -64,37 +64,29 @@
 
 -(CGFloat)calculate:(CGFloat)keyBroadHeight{
     
-    CGFloat windowsHeight = CGRectGetMaxY(self.windowBounds);
+        
+    CGFloat windowsHeight = self.windowBounds.origin.y + self.windowBounds.size.height;
     
-    CGFloat locationHeight = CGRectGetMaxY(self.responderLocation);
-
-  
+    CGFloat locationHeight = self.responderLocation.size.height + self.responderLocation.origin.y;
+    
     
     CGFloat belowHeight = windowsHeight - locationHeight;
-   
     
     
-    CGFloat keyH = [self KeyBroadRealHeight:keyBroadHeight and:belowHeight];
+    CGFloat keyH = self.topSpacingToFirstResponder + keyBroadHeight ;
+    
 
+    
     if(belowHeight>keyH){
+        
         return 0.0;
+        
     }else{
         
         return keyH - belowHeight;
     }
 }
 
--(CGFloat)KeyBroadRealHeight:(CGFloat)key and:(CGFloat)belowHieght{
-
-    
-    CGFloat result = key;
-    
-    result = MIN(self.topSpacingToFirstResponder,belowHieght) + result;
-   
-    return result;
-    
-    
-}
 
 -(BOOL)showExtensionToolBar{
     return [self.showExtensionToolBar_temp boolValue];

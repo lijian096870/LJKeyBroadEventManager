@@ -210,7 +210,7 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
 }
 - (void)didClickedLeftArrowButton{
     
-     if(self.responderModel&&[self.responderModel.view isKindOfClass:[UIView class]]){
+    if(self.responderModel&&[self.responderModel.view isKindOfClass:[UIView class]]){
         [self _didClickedLeftArrowButton:self.responderModel and:self.responderModel.view.window];
     }
     
@@ -248,7 +248,7 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
             }
             
             
-          
+            
         }
     }
 }
@@ -258,7 +258,7 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
     if(index<self.ResponderArray.count&&index>=0){
         
         LJKeyBroadRespoderModel *model = [self.ResponderArray objectAtIndex:index];
-
+        
         if([model.view isKindOfClass:[UIView class]]&&[self canBeFirstResponder:model.view]){
             
             UIViewController *viewController = viewGetSuperController(currentModel.view);
@@ -278,7 +278,7 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
             }
             
             
-           
+            
         }
     }
     return false;
@@ -298,7 +298,7 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
         
         if([model.view isKindOfClass:[UIView class]]&&[self canBeFirstResponder:model.view]){
             
-              UIViewController *viewController = viewGetSuperController(currentModel.view);
+            UIViewController *viewController = viewGetSuperController(currentModel.view);
             
             if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
                 if([viewController canBecomeFirstResponder:model.view]){
@@ -315,11 +315,11 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
             }
             
             
-           
+            
         }
         
     }
-     return false;
+    return false;
 }
 - (void)_didClickedRightArrowButton:(LJKeyBroadRespoderModel *)currentModel and:(UIView*)window{
     
@@ -352,7 +352,7 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
             }
             
             
-           
+            
         }
     }
 }
@@ -540,21 +540,26 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
 
 -(void)loopSubView:(NSMutableArray*)array and:(UIView*)view andWindow:(UIView*)window{
     
-    if([self canBeFirstResponder:view]){
+    
+    if([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]){
         
-        LJKeyBroadRespoderModel *model = [[LJKeyBroadRespoderModel alloc]init];
-        CGRect loaction = [view convertRect:view.bounds toView:window];
-        
-        if(CGRectContainsPoint(window.bounds, loaction.origin)||CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y+loaction.size.height))||CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y))||CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x, loaction.origin.y+loaction.size.height))||CGRectContainsRect(window.bounds, loaction)){
-            model.responderLocation = loaction;
-            model.windowBounds = window.bounds;
-            model.view = view;
-            [array addObject:model];
+        if([self canBeFirstResponder:view]){
+            
+            LJKeyBroadRespoderModel *model = [[LJKeyBroadRespoderModel alloc]init];
+            CGRect loaction = [view convertRect:view.bounds toView:window];
+            
+            if(CGRectContainsPoint(window.bounds, loaction.origin)||CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y+loaction.size.height))||CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y))||CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x, loaction.origin.y+loaction.size.height))||CGRectContainsRect(window.bounds, loaction)){
+                
+                
+                model.responderLocation = loaction;
+                model.windowBounds = window.bounds;
+                model.view = view;
+                [array addObject:model];
+            }
+            
+            
         }
-        
-        
     }else{
-        
         for (UIView *subView in view.subviews) {
             
             [self loopSubView:array and:subView andWindow:window];
@@ -570,9 +575,9 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
     
     BOOL enable = ([view canBecomeFirstResponder]&& view.userInteractionEnabled && !view.isHidden && view.alpha > 0.01 && [self EffectiveFirstResponderClass:view]);
     if (enable) {
-        if ([self isKindOfClass:[UITextView class]]) {
+        if ([view isKindOfClass:[UITextView class]]) {
             enable = [(UITextView *)view isEditable];
-        } else if ([self isKindOfClass:[UITextField class]]) {
+        } else if ([view isKindOfClass:[UITextField class]]) {
             enable = [(UITextField *)view isEnabled];
         }
     }

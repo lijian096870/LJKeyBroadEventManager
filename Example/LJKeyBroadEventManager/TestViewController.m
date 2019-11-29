@@ -74,7 +74,7 @@
 }
 -(CGFloat)TopSpacingToFirstResponder:(UIView*)Responder{
     
-    return 20.0;
+    return 0.0;
 }
 
 -(BOOL)ShowExtensionToolBar:(UIView*)Responder{
