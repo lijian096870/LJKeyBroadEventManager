@@ -11,11 +11,16 @@
 @interface LJKeyBroadManager : NSObject
 
 
+-(void)ShowKeyBroad:(UIView*)view;
+
+-(void)ShowKeyBroadAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
+
+-(void)keyBroadFrameChange:(UIView*)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
+
+-(void)HiddenKeyBroad:(UIView*)view;
+-(void)HiddenBroadAnimation:(UIView *)view;
+
 -(void)configDestroyBlock:(dispatch_block_t)dellocBlock;
-
--(void)EventAction:(UIView*)view;
-
--(void)CancelEventAction:(UIView*)view;
 
 @end
 

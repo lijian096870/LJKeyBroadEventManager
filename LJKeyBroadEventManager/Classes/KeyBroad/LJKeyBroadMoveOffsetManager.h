@@ -5,12 +5,14 @@
 //  Created by lijian on 2019/12/1.
 //
 
-#import <Foundation/Foundation.h>
-
-NS_ASSUME_NONNULL_BEGIN
+#import <UIKit/UIKit.h>
 
 @interface LJKeyBroadMoveOffsetManager : NSObject
 
+- (instancetype)initWithMaster_object_keyBroad:(UIViewController*)object;
+
+
+-(void)moveOffset:(CGFloat)offset Responder:(UIView*)Responder;
 @end
 
-NS_ASSUME_NONNULL_END
+

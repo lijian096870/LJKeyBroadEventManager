@@ -14,32 +14,12 @@
 #import "UIViewController+KeyBoradManager.h"
 #import "LJResponderArrayUtil.h"
 #import "LJViewControllerManager.h"
-static NSString * const kAlertSheetTextFieldClass = @"UIAlertSheetTextField";
-static NSString * const kAlertControllerTextFieldClass = @"_UIAlertControllerTextField";
-static NSString * const kSearchBarTextFieldClass = @"UISearchBarTextField";
+#import "LJKeyBroadResponderArray.h"
+#import "LJKeyBroadMoveOffsetManager.h"
 
-@interface UIViewController ()
+@interface UIViewController ()<LJKeyboardManagerDelegate>
 
-
--(void)keyBroadOffset:(CGFloat)offset Responder:(UIView*)Responder;
-
-
--(void)keyBroadScrollOffset:(CGFloat)offset Responder:(UIView*)Responder;
-
-
--(void)keyBroadOffset:(CGFloat)offset;
-
--(CGFloat)TopSpacingToFirstResponder:(UIView*)Responder;
-
--(BOOL)ShowExtensionToolBar:(UIView*)Responder;
-
--(BOOL)canBecomeFirstResponder:(UIView*)Responder;
 @end
-
-typedef NS_ENUM(NSUInteger, KeyBroadstate) {
-    keyBroadNone  = 0,
-    keyBroadShow,
-};
 
 @interface LJKeyBroadManager ()
 
@@ -47,8 +27,7 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
 
 @property(nonatomic,copy)dispatch_block_t dellocBlock;
 
-
-@property(nonatomic,strong)NSNumber *currentNumber;
+@property(nonatomic,strong)LJKeyBroadMoveOffsetManager *moveOffsetManager;
 
 @property(nonatomic,strong)LJKeyBroadRespoderModel *responderModel;
 
@@ -58,52 +37,14 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
 
 @property(nonatomic,assign)CGFloat KeyBroadHeight;
 
-
-
 @end
 
 @implementation LJKeyBroadManager
 
--(void)configDestroyBlock:(dispatch_block_t)dellocBlock{
-    self.dellocBlock = dellocBlock;
+
+-(void)ShowKeyBroad:(UIView*)view{
     
-}
-
-- (instancetype)initWithMaster_object_keyBroad:(UIViewController*)object
-{
-    self = [super init];
-    if (self) {
-        self.object_keyBroad = object;
-        self.KeyBroadHeight = 0.0;
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(keyboardWillShow:)
-                                                     name:UIKeyboardWillShowNotification
-                                                   object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(keyboardWillHide:)
-                                                     name:UIKeyboardWillHideNotification
-                                                   object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(keyboardWillChange:)
-                                                     name:UIKeyboardWillChangeFrameNotification
-                                                   object:nil];
-    }
-    return self;
-}
-
-
--(void)CancelEventAction:(UIView*)view{
-    
-    if(self.responderModel.view == view){
-        self.cancel_responderModel = self.responderModel;
-        [self.ResponderArray removeAllObjects];
-        self.responderModel = nil;
-        self.KeyBroadHeight = 0.0;
-        
-    }
-}
-
--(void)EventAction:(UIView*)view{
+    NSLog(@"1111111,%@",view);
     
     if(self.responderModel.view == view){
         
@@ -112,7 +53,7 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
             
             UIView *window = [self getSuperWindows:self.object_keyBroad.view];
             
-            self.ResponderArray = [self ResponderArrayBy:self.object_keyBroad andWindow:window];
+            self.ResponderArray = [self ResponderArrayBy:self.object_keyBroad andWindow:window AndDontMove:view];
             
             LJKeyBroadRespoderModel *model = [self GetResponder:self.ResponderArray and:view];
             
@@ -129,7 +70,6 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
                     model.showExtensionToolBar = [LJkeyBroadConfig sharedInstance].showExtensionToolBar;
                 }
                 if(model.showExtensionToolBar){
-                    
                     
                     if([view isKindOfClass:[UITextField class]]){
                         UITextField *textView = ((UITextField*)view);
@@ -180,6 +120,66 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
     
     
 }
+-(void)ShowKeyBroadAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight{
+    
+    
+    NSLog(@"2222222,%@",view);
+    
+    if([self.responderModel isKindOfClass:LJKeyBroadRespoderModel.class]){
+        
+        self.KeyBroadHeight = keyBroadHeight;
+        
+        [self.moveOffsetManager moveOffset:[self.responderModel calculate:keyBroadHeight] Responder:self.responderModel.view];
+    }
+}
+
+-(void)keyBroadFrameChange:(UIView*)view andkeyBroadHeight:(CGFloat)keyBroadHeight{
+    
+    if([self.responderModel isKindOfClass:LJKeyBroadRespoderModel.class]){
+        
+        self.KeyBroadHeight = keyBroadHeight;
+        [self.moveOffsetManager moveOffset:[self.responderModel calculate:keyBroadHeight] Responder:self.responderModel.view];
+    }
+}
+-(void)HiddenKeyBroad:(UIView*)view{
+    
+    NSLog(@"333333,%@",view);
+    
+    if(self.responderModel.view == view){
+        self.cancel_responderModel = self.responderModel;
+        [self.ResponderArray removeAllObjects];
+        self.responderModel = nil;
+        self.KeyBroadHeight = 0.0;
+    }
+    
+}
+-(void)HiddenBroadAnimation:(UIView *)view{
+    
+    NSLog(@"4444444,%@",view);
+    
+    
+    if([self.cancel_responderModel isKindOfClass:LJKeyBroadRespoderModel.class]){
+        [self.moveOffsetManager moveOffset:0.0 Responder:self.cancel_responderModel.view];
+        self.cancel_responderModel = nil;
+        
+    }
+}
+
+-(void)configDestroyBlock:(dispatch_block_t)dellocBlock{
+    self.dellocBlock = dellocBlock;
+    
+}
+
+- (instancetype)initWithMaster_object_keyBroad:(UIViewController*)object
+{
+    self = [super init];
+    if (self) {
+        self.object_keyBroad = object;
+        self.KeyBroadHeight = 0.0;
+    }
+    return self;
+}
+
 -(LJKeyboardToolBar*)reloadLJKeyboardToolBar:(LJKeyboardToolBar*)bar and:(LJKeyBroadRespoderModel*)model  and:(UIView*)window{
     
     
@@ -224,7 +224,8 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
         
         LJKeyBroadRespoderModel *model = [self.ResponderArray objectAtIndex:index];
         
-        if([model.view isKindOfClass:[UIView class]]&&[self canBeFirstResponder:model.view]&&[LJResponderArrayUtil confimDisCorrect:model andNext:currentModel and:window]){
+        
+        if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray canBeFirstResponder:model.view]&&[LJResponderArrayUtil confimDisCorrect:model andNext:currentModel and:window]){
             
             UIViewController *viewController = viewGetSuperController(currentModel.view);
             
@@ -235,6 +236,7 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
                         
                         [model.view becomeFirstResponder];
                         
+                        
                     });
                 }
                 
@@ -242,7 +244,6 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
                     [model.view becomeFirstResponder];
-                    
                 });
                 
             }
@@ -259,7 +260,7 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
         
         LJKeyBroadRespoderModel *model = [self.ResponderArray objectAtIndex:index];
         
-        if([model.view isKindOfClass:[UIView class]]&&[self canBeFirstResponder:model.view]){
+        if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray canBeFirstResponder:model.view]){
             
             UIViewController *viewController = viewGetSuperController(currentModel.view);
             
@@ -296,7 +297,8 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
         
         LJKeyBroadRespoderModel *model = [self.ResponderArray objectAtIndex:index];
         
-        if([model.view isKindOfClass:[UIView class]]&&[self canBeFirstResponder:model.view]){
+        
+        if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray canBeFirstResponder:model.view]){
             
             UIViewController *viewController = viewGetSuperController(currentModel.view);
             
@@ -328,7 +330,7 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
         
         LJKeyBroadRespoderModel *model = [self.ResponderArray objectAtIndex:index];
         
-        if([model.view isKindOfClass:[UIView class]]&&[self canBeFirstResponder:model.view]&&[LJResponderArrayUtil confimDisCorrect:currentModel andNext:model and:window]){
+        if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray canBeFirstResponder:model.view]&&[LJResponderArrayUtil confimDisCorrect:currentModel andNext:model and:window]){
             
             UIViewController *viewController = viewGetSuperController(currentModel.view);
             
@@ -339,14 +341,12 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
                         
                         [model.view becomeFirstResponder];
                         
-                        
                     });
                 }
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
                     [model.view becomeFirstResponder];
-                    
                     
                 });
             }
@@ -361,35 +361,6 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
     
 }
-- (void)keyboardWillShow:(NSNotification *)aNotification
-{
-    
-    if([self.responderModel isKindOfClass:LJKeyBroadRespoderModel.class]){
-        //获取键盘的高度
-        
-        NSDictionary *userInfo = [aNotification userInfo];
-        NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-        CGRect keyboardRect = [aValue CGRectValue];
-        CGFloat height = keyboardRect.size.height;
-        self.KeyBroadHeight = height;
-        
-        
-        [self moveOffset:[self.responderModel calculate:height] Responder:self.responderModel.view];
-        
-        
-    }
-}
-- (void)keyboardWillHide:(NSNotification *)aNotification
-{
-    if([self.cancel_responderModel isKindOfClass:LJKeyBroadRespoderModel.class]){
-        [self moveOffset:0.0 Responder:self.cancel_responderModel.view];
-        self.cancel_responderModel = nil;
-        
-    }
-    
-}
-
-
 
 -(void)customerKeyBroadChange{
     
@@ -397,7 +368,8 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
         
         [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             
-            [self moveOffset:[self.responderModel calculate:self.KeyBroadHeight] Responder:self.responderModel.view];
+            
+            [self.moveOffsetManager moveOffset:[self.responderModel calculate:self.KeyBroadHeight] Responder:self.responderModel.view];
             
         } completion:^(BOOL finished) {
             
@@ -406,88 +378,6 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
     
     
     
-}
-
-- (void)keyboardWillChange:(NSNotification *)aNotification
-{
-    
-    if([self.responderModel isKindOfClass:LJKeyBroadRespoderModel.class]){
-        //获取键盘的高度
-        NSDictionary *userInfo = [aNotification userInfo];
-        NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-        CGRect keyboardRect = [aValue CGRectValue];
-        CGFloat height = keyboardRect.size.height;
-        self.KeyBroadHeight = height;
-        [self moveOffset:[self.responderModel calculate:height] Responder:self.responderModel.view];
-    }
-    
-    
-    
-    
-    
-}
--(void)moveOffset:(CGFloat)offset Responder:(UIView*)Responder{
-    
-    
-    if([self.currentNumber isKindOfClass:[NSNumber class]]){
-        
-        if([self.currentNumber floatValue] == offset){
-            
-        }else{
-            self.currentNumber = [NSNumber numberWithFloat:offset];
-            
-            if([self.object_keyBroad isKindOfClass:[UIViewController class]]){
-                
-                
-                if([self.object_keyBroad respondsToSelector:@selector(keyBroadOffset:)]){
-                    
-                    [self.object_keyBroad keyBroadOffset:-offset];
-                    
-                }
-                
-                if([self.object_keyBroad respondsToSelector:@selector(keyBroadOffset:Responder:)]){
-                    
-                    [self.object_keyBroad keyBroadOffset:-offset Responder:Responder];
-                }
-                CGFloat scrollOffsect = [self.object_keyBroad claculateScrollerViewOffset:-offset];
-                if([self.object_keyBroad respondsToSelector:@selector(keyBroadScrollOffset:Responder:)]){
-                    [self.object_keyBroad keyBroadScrollOffset:-scrollOffsect Responder:Responder];
-                }
-                
-                
-            }
-            
-            
-        }
-        
-    }else{
-        
-        if(offset == 0.0){
-            
-            
-        }else{
-            self.currentNumber = [NSNumber numberWithFloat:offset];
-            if([self.object_keyBroad isKindOfClass:[UIViewController class]]){
-                if([self.object_keyBroad respondsToSelector:@selector(keyBroadOffset:)]){
-                    
-                    [self.object_keyBroad keyBroadOffset:-offset];
-                    
-                }
-                if([self.object_keyBroad respondsToSelector:@selector(keyBroadOffset:Responder:)]){
-                    
-                    [self.object_keyBroad keyBroadOffset:-offset Responder:Responder];
-                }
-                
-                CGFloat scrollOffsect = [self.object_keyBroad claculateScrollerViewOffset:-offset];
-                if([self.object_keyBroad respondsToSelector:@selector(keyBroadScrollOffset:Responder:)]){
-                    [self.object_keyBroad keyBroadScrollOffset:-scrollOffsect Responder:Responder];
-                }
-                
-                
-            }
-        }
-        
-    }
 }
 
 -(UIView*)getSuperWindows:(UIView*)view{
@@ -515,7 +405,7 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
     
 }
 
--(NSMutableArray*)ResponderArrayBy:(UIViewController*)viewController andWindow:(UIView*)window{
+-(NSMutableArray*)ResponderArrayBy:(UIViewController*)viewController andWindow:(UIView*)window AndDontMove:(UIView*)DonMoveView{
     
     
     if(self.ResponderArray.count>0){
@@ -524,7 +414,7 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
         NSMutableArray *result= [NSMutableArray array];
         if(viewController.isViewLoaded){
             
-            [self loopSubView:result and:viewController.view andWindow:window];
+            [LJKeyBroadResponderArray loopSubView:result and:viewController.view andWindow:window AndDontMove:DonMoveView];
             
         }
         
@@ -535,56 +425,13 @@ typedef NS_ENUM(NSUInteger, KeyBroadstate) {
     }
 }
 
-
-
-
--(void)loopSubView:(NSMutableArray*)array and:(UIView*)view andWindow:(UIView*)window{
+-(LJKeyBroadMoveOffsetManager*)moveOffsetManager{
     
-    
-    if([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]){
-        
-        if([self canBeFirstResponder:view]){
-            
-            LJKeyBroadRespoderModel *model = [[LJKeyBroadRespoderModel alloc]init];
-            CGRect loaction = [view convertRect:view.bounds toView:window];
-            
-            if(CGRectContainsPoint(window.bounds, loaction.origin)||CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y+loaction.size.height))||CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y))||CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x, loaction.origin.y+loaction.size.height))||CGRectContainsRect(window.bounds, loaction)){
-                
-                
-                model.responderLocation = loaction;
-                model.windowBounds = window.bounds;
-                model.view = view;
-                [array addObject:model];
-            }
-            
-            
-        }
-    }else{
-        for (UIView *subView in view.subviews) {
-            
-            [self loopSubView:array and:subView andWindow:window];
-            
-        }
+    if(_moveOffsetManager==nil){
+        _moveOffsetManager = [[LJKeyBroadMoveOffsetManager alloc]initWithMaster_object_keyBroad:self.object_keyBroad];
     }
+    return _moveOffsetManager;
     
-}
-
-
-
-- (BOOL)canBeFirstResponder:(UIView *)view {
-    
-    BOOL enable = ([view canBecomeFirstResponder]&& view.userInteractionEnabled && !view.isHidden && view.alpha > 0.01 && [self EffectiveFirstResponderClass:view]);
-    if (enable) {
-        if ([view isKindOfClass:[UITextView class]]) {
-            enable = [(UITextView *)view isEditable];
-        } else if ([view isKindOfClass:[UITextField class]]) {
-            enable = [(UITextField *)view isEnabled];
-        }
-    }
-    return enable;
-}
-- (BOOL)EffectiveFirstResponderClass:(UIView *)view {
-    return !([view isKindOfClass:NSClassFromString(kSearchBarTextFieldClass)] || [view isKindOfClass:[UISearchBar class]] || [view isKindOfClass:NSClassFromString(kAlertControllerTextFieldClass)] || [view isKindOfClass:NSClassFromString(kAlertSheetTextFieldClass)]);
 }
 
 - (void)dealloc

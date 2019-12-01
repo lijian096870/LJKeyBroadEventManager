@@ -20,7 +20,6 @@
             
         }else if(obj1.responderLocation.origin.y<obj2.responderLocation.origin.y){
             
-            
             return NSOrderedAscending;
             
             
@@ -53,8 +52,6 @@
             
         }
         model = current;
-        
-        
     }
     
 }
@@ -65,10 +62,10 @@
     if(ahead.nextDis == dis && Next.aheadDis == dis){
         return YES;
     }else{
-        return false;
+        return NO;
     }
     
-
+    
     
 }
 +(CGFloat)dis:(UIView*)view1 and:(UIView*)view2 and:(UIView*)window{

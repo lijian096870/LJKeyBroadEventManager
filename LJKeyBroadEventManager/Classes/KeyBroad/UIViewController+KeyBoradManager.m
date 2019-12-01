@@ -54,8 +54,6 @@
     [self rwordscrollerViewOffset:offset];
     
     return result;
-    
-    
 }
 -(void)rwordscrollerViewOffset:(CGFloat)offset{
     objc_setAssociatedObject(self, @selector(ReadrwordscrollerViewOffset), [NSNumber numberWithFloat:offset], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
