@@ -12,7 +12,6 @@
 #import "LJKeyboardToolBar.h"
 #import "LJKeyBroadEventManager.h"
 #import "UIViewController+KeyBoradManager.h"
-#import "LJResponderArrayUtil.h"
 #import "LJViewControllerManager.h"
 #import "LJKeyBroadResponderArray.h"
 #import "LJKeyBroadMoveOffsetManager.h"
@@ -225,7 +224,7 @@
         LJKeyBroadRespoderModel *model = [self.ResponderArray objectAtIndex:index];
         
         
-        if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray canBeFirstResponder:model.view]&&[LJResponderArrayUtil confimDisCorrect:model andNext:currentModel and:window]){
+        if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray canBeFirstResponder:model.view]&&[LJKeyBroadResponderArray confimDisCorrect:model andNext:currentModel and:window]){
             
             UIViewController *viewController = viewGetSuperController(currentModel.view);
             
@@ -267,13 +266,13 @@
             if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
                 if([viewController canBecomeFirstResponder:model.view]){
                     
-                    if([LJResponderArrayUtil confimDisCorrect:model andNext:currentModel and:window]){
+                    if([LJKeyBroadResponderArray confimDisCorrect:model andNext:currentModel and:window]){
                         return true;
                     }
                 }
                 
             }else{
-                if([LJResponderArrayUtil confimDisCorrect:model andNext:currentModel and:window]){
+                if([LJKeyBroadResponderArray confimDisCorrect:model andNext:currentModel and:window]){
                     return true;
                 }
             }
@@ -305,13 +304,13 @@
             if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
                 if([viewController canBecomeFirstResponder:model.view]){
                     
-                    if([LJResponderArrayUtil confimDisCorrect:currentModel andNext:model and:window]){
+                    if([LJKeyBroadResponderArray confimDisCorrect:currentModel andNext:model and:window]){
                         return true;
                     }
                 }
                 
             }else{
-                if([LJResponderArrayUtil confimDisCorrect:currentModel andNext:model and:window]){
+                if([LJKeyBroadResponderArray confimDisCorrect:currentModel andNext:model and:window]){
                     return true;
                 }
             }
@@ -330,7 +329,7 @@
         
         LJKeyBroadRespoderModel *model = [self.ResponderArray objectAtIndex:index];
         
-        if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray canBeFirstResponder:model.view]&&[LJResponderArrayUtil confimDisCorrect:currentModel andNext:model and:window]){
+        if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray canBeFirstResponder:model.view]&&[LJKeyBroadResponderArray confimDisCorrect:currentModel andNext:model and:window]){
             
             UIViewController *viewController = viewGetSuperController(currentModel.view);
             
@@ -417,10 +416,6 @@
             [LJKeyBroadResponderArray loopSubView:result and:viewController.view andWindow:window AndDontMove:DonMoveView];
             
         }
-        
-        [LJResponderArrayUtil sortArray:result];
-        
-        [LJResponderArrayUtil confidDistanceInfo:result andWindow:window];
         return result;
     }
 }
