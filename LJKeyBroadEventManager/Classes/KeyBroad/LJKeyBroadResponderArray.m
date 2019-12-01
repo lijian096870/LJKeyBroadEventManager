@@ -335,7 +335,7 @@ static NSString * const kSearchBarTextFieldClass = @"UISearchBarTextField";
     
     CGFloat dis = [self dis:ahead.view and:Next.view and:window];
     
-    if(ahead.nextDis == dis && Next.aheadDis == dis){
+    if((ahead.nextDis == dis) && (Next.aheadDis == dis)){
         
         CGRect loaction = [Next.view convertRect:Next.view.bounds toView:window];
         
@@ -348,7 +348,7 @@ static NSString * const kSearchBarTextFieldClass = @"UISearchBarTextField";
             return NO;
         }
     }else{
-
+        NSLog(@"%f,%f,%f,%f,%p,%p,%d,%d",ahead.nextDis,dis,Next.aheadDis,dis,ahead,Next,ahead.nextDis == dis , Next.aheadDis == dis);
         
         return NO;
     }
