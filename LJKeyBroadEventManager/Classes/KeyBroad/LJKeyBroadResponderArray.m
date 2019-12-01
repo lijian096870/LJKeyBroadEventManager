@@ -21,11 +21,16 @@ static NSString * const kSearchBarTextFieldClass = @"UISearchBarTextField";
     @autoreleasepool {
         [self NotLocationloopSubView:array and:view andWindow:window];
         
+        NSLog(@"++++%d",[self responderArrayContainView:array and:DonMoveView]);
+        
         NSLog(@"======%ld",array.count);
+        
         
         [self removeOutLocation:array and:window AndDontMove:DonMoveView];
         
+        
         [self removeRepeatLocation:array AndWindow:window AndDontMove:DonMoveView];
+        
         
         [self responderArray:array MustHaveView:DonMoveView andWindow:window];
         
@@ -93,8 +98,10 @@ static NSString * const kSearchBarTextFieldClass = @"UISearchBarTextField";
 
 +(void)removeRepeatLocation:(NSMutableArray*)array AndWindow:(UIView*)window Model:(LJKeyBroadRespoderModel*)temp AndDontMove:(UIView*)DonMoveView{
     
-    for (int i = 0; i<array.count; i++) {
-        LJKeyBroadRespoderModel *model = [array objectAtIndex:i];
+    NSArray *tempArray = [NSArray arrayWithArray:array];
+    
+    for (int i = 0; i<tempArray.count; i++) {
+        LJKeyBroadRespoderModel *model = [tempArray objectAtIndex:i];
         
         if(model == temp){
             
@@ -108,6 +115,7 @@ static NSString * const kSearchBarTextFieldClass = @"UISearchBarTextField";
                     
                     if(model.view == DonMoveView){
                         [array removeObject:temp];
+                        
                     }else if(temp.view == DonMoveView) {
                         [array removeObject:model];
                     }else{
@@ -116,17 +124,10 @@ static NSString * const kSearchBarTextFieldClass = @"UISearchBarTextField";
                     }
                     
                 }else{
-                    [array removeObjectAtIndex:i];
+                    [array removeObject:model];
                 }
                 
-                [self removeRepeatLocation:array AndWindow:window Model:temp AndDontMove:DonMoveView];
-                
-                return;
-                
-                
             }
-            
-            
         }
     }
     
@@ -212,6 +213,7 @@ static NSString * const kSearchBarTextFieldClass = @"UISearchBarTextField";
 +(BOOL)isOutLocation:(UIView*)view and:(UIView*)window AndinputView:(UIView*)inputView{
     if([view isKindOfClass:UIView.class]){
         UIView *superView = view.superview;
+        
         if([superView isKindOfClass:UIView.class]){
             
             CGRect loaction = [inputView convertRect:inputView.bounds toView:window];
@@ -346,15 +348,15 @@ static NSString * const kSearchBarTextFieldClass = @"UISearchBarTextField";
             return NO;
         }
     }else{
+
+        
         return NO;
     }
 }
 +(CGFloat)dis:(UIView*)view1 and:(UIView*)view2 and:(UIView*)window{
     
-    
     CGRect loaction1 = [view1 convertRect:view1.bounds toView:window];
     CGRect loaction2 = [view2 convertRect:view2.bounds toView:window];
-    
     
     return fabs(loaction1.origin.y-loaction2.origin.y);
     
