@@ -48,7 +48,7 @@
                         if(model.Showblock){
                             model.Showblock(view);
                         }
-
+                        
                     }
                 }break;
                 case KeyBroadEventCancel:{
@@ -93,7 +93,7 @@
     dispatch_once(&onceToken, ^{
         
         [self.keyBroadNotManager addKeyBroadNotificationFrameChangeBlock:^(UIView *view, CGFloat keyBroadHeight) {
-           
+            
             for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
                 
                 if(model.frameChangeBlock){
@@ -102,7 +102,7 @@
                 }
                 
             }
-
+            
         }];
         
         [self.keyBroadNotManager addKeyBroadNotificationShowBlock:^(UIView *view, CGFloat keyBroadHeight) {
@@ -118,10 +118,10 @@
             
             
         }];
-    
+        
         
         [self.keyBroadNotManager addKeyBroadNotificationHideBlock:^(UIView *view, CGFloat keyBroadHeight) {
-           
+            
             for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
                 
                 if(model.animationHidenBlock){
@@ -130,7 +130,7 @@
                 }
                 
             }
-
+            
         }];
     });
     
