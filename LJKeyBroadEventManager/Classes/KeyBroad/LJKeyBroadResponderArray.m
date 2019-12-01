@@ -295,13 +295,20 @@ static NSString * const kSearchBarTextFieldClass = @"UISearchBarTextField";
     CGFloat dis = [self dis:ahead.view and:Next.view and:window];
     
     if(ahead.nextDis == dis && Next.aheadDis == dis){
-        return YES;
+        
+        CGRect loaction = [Next.view convertRect:Next.view.bounds toView:window];
+        
+        if(CGRectContainsPoint(window.bounds, loaction.origin)&&CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y+loaction.size.height))&&CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y))&&CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x, loaction.origin.y+loaction.size.height))&&CGRectContainsRect(window.bounds, loaction)){
+            
+            return YES;
+            
+        }else{
+            
+            return NO;
+        }
     }else{
         return NO;
     }
-    
-    
-    
 }
 +(CGFloat)dis:(UIView*)view1 and:(UIView*)view2 and:(UIView*)window{
     
