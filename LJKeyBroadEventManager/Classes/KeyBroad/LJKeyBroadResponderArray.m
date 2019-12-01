@@ -27,6 +27,7 @@ static NSString * const kSearchBarTextFieldClass = @"UISearchBarTextField";
         
         [self removeRepeatLocation:array AndWindow:window AndDontMove:DonMoveView];
         
+        [self responderArray:array MustHaveView:DonMoveView andWindow:window];
         
         NSLog(@"======%ld",array.count);
         
@@ -36,7 +37,46 @@ static NSString * const kSearchBarTextFieldClass = @"UISearchBarTextField";
         
         
     }
- 
+    
+}
+
+
++(void)responderArray:(NSMutableArray*)array MustHaveView:(UIView*)view andWindow:(UIView*)window{
+    
+    if([self responderArrayContainView:array and:view]){
+        
+    }else{
+        [array removeAllObjects];
+        LJKeyBroadRespoderModel *model = [[LJKeyBroadRespoderModel alloc]init];
+        CGRect loaction = [view convertRect:view.bounds toView:window];
+        
+        model.responderLocation = loaction;
+        model.windowBounds = window.bounds;
+        model.view = view;
+        [array addObject:model];
+        
+    }
+    
+}
+
++(BOOL)responderArrayContainView:(NSArray*)array and:(UIView*)view{
+    
+    if ([view isKindOfClass:UIView.class]) {
+        
+        for (int i = 0; i < array.count; i++) {
+            LJKeyBroadRespoderModel *model = [array objectAtIndex:i];
+            if(model.view == view){
+                return YES;
+            }
+        }
+        return NO;
+        
+    }else{
+        
+        return YES;
+    }
+    
+    
 }
 
 +(void)removeRepeatLocation:(NSMutableArray*)array AndWindow:(UIView*)window AndDontMove:(UIView*)DonMoveView{
@@ -78,7 +118,7 @@ static NSString * const kSearchBarTextFieldClass = @"UISearchBarTextField";
                 }else{
                     [array removeObjectAtIndex:i];
                 }
-
+                
                 [self removeRepeatLocation:array AndWindow:window Model:temp AndDontMove:DonMoveView];
                 
                 return;
@@ -199,7 +239,6 @@ static NSString * const kSearchBarTextFieldClass = @"UISearchBarTextField";
         
     }
 }
-
 
 +(void)NotLocationloopSubView:(NSMutableArray*)array and:(UIView*)view andWindow:(UIView*)window{
     
