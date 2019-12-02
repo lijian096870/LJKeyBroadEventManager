@@ -126,8 +126,6 @@ static __weak UIResponder *lj_currentBecomeFirstResponderIng;
             
             if(canBecomeFirstResponder((UIView*)self)){
                 
-                NSLog(@"ttttttttttt,%d:%@",(self.keyBroad_FirstResponder_info.isFirstResponder),self);
-                
                 if(self.keyBroad_FirstResponder_info.isFirstResponder){
                     
                     lj_currentBecomeFirstResponderIng = self;
@@ -136,9 +134,7 @@ static __weak UIResponder *lj_currentBecomeFirstResponderIng;
                     return result;
                     
                 }else{
-                    
-                    
-                    
+
                     BOOL canBeFirst = YES;
                     for (becomeFirstResponderCallBackBlock block in becomeFirstResponderCallBackBlockArray) {
                         canBeFirst = block((UIView*)self) && canBeFirst;

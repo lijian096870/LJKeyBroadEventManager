@@ -76,7 +76,6 @@
     CGFloat keyH = self.topSpacingToFirstResponder + keyBroadHeight ;
     
 
-    
     if(belowHeight>keyH){
         
         return 0.0;
