@@ -18,11 +18,20 @@ typedef BOOL(^canBecomeFirstResponderCallBackBlock)(UIView *view);
 
 typedef void(^KeyBroadEventCallBlock)(UIView *view,KeyBroadEventStyle style);
 
+
+
+
+typedef void(^KeyBroadEventResponderCallBack)(UIView *view);
+
+typedef void(^KeyBroadEventNotificationViewAnimationBlock)(UIView *view,CGFloat keyBroadHeight);
+
+typedef BOOL(^KeyBroadEventNotificationHiddenCallBack)(UIView *view);
+
 @interface LJKeyBroadEvent : NSObject
 
 -(void)configCanBecomeFirstResponderCallBackBlock:(canBecomeFirstResponderCallBackBlock)block;
 
--(void)registerKeyBroadEvent:(KeyBroadEventCallBlock)block;
+-(void)registerKeyBroadEventShowEvent:(KeyBroadEventResponderCallBack)Showblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationShowBlock AndFrameChangeBlock:(KeyBroadEventNotificationViewAnimationBlock)frameChangeBlock HidenEvent:(KeyBroadEventResponderCallBack)Hidenblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationHidenBlock;
 
 + (instancetype)sharedInstance;
 @end

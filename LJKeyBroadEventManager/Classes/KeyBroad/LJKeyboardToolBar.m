@@ -98,17 +98,26 @@
 
 
 -(void)leftArrow{
+    
+    NSLog(@"==================================================");
+    
     if(self.leftBtnBlock){
         self.leftBtnBlock(self);
     }
 }
 
 -(void)rightArrow{
+    
+      NSLog(@"==================================================");
+    
     if(self.rightBtnBlock){
         self.rightBtnBlock(self);
     }
 }
 -(void)done{
+    
+      NSLog(@"==================================================");
+    
     if(self.doneBtnBlock){
         self.doneBtnBlock(self);
     }

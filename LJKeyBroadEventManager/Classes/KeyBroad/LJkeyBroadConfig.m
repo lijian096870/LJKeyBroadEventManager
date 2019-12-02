@@ -26,7 +26,7 @@
 }
 
 -(BOOL)isShowExtensionToolBar{
-      return [self.showExtensionToolBar_temp boolValue];
+    return [self.showExtensionToolBar_temp boolValue];
 }
 -(NSNumber*)showExtensionToolBar_temp{
     if(_showExtensionToolBar_temp == nil){

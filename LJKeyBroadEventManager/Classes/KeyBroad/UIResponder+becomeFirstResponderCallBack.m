@@ -12,17 +12,49 @@
 static NSMutableArray *becomeFirstResponderCallBackBlockArray;
 static NSMutableArray *resignFirstResponderCallBackBlockArray;
 
-static canBecomeFirstResponderCallBackBlock canBecomeFirstResponder;
+static canBecomeFirstResponderCallBackBlock canBecomeFirstResponder = nil;
+
+static __weak UIResponder *lj_currentFirstResponder;
+static __weak UIResponder *lj_currentBecomeFirstResponderIng;
 
 @implementation UIResponder (becomeFirstResponderCallBack)
 
+
++(UIResponder*)lj_currentBecomeFirstResponderIng{
+    
+    return lj_currentBecomeFirstResponderIng;
+}
+
++ (UIResponder *)lj_currentFirstResponder{
+    
+    lj_currentFirstResponder = nil;
+    
+    [[UIApplication sharedApplication] sendAction:@selector(LJ_findFirstResponder:)
+                                               to:nil
+                                             from:nil
+                                         forEvent:nil];
+    
+    
+    return lj_currentFirstResponder;
+}
+- (void)LJ_findFirstResponder:(id)sender {
+    
+    lj_currentFirstResponder = self;
+}
+
+
+
 +(void)configCanBecomeFirstResponderCallBackBlock:(canBecomeFirstResponderCallBackBlock)block{
+    
+    [UIResponder becomeFirstResponderCallBackMethodExchange];
     
     canBecomeFirstResponder = block;
     
 }
 
 +(void)configbecomeFirstResponderCallBackBlock:(becomeFirstResponderCallBackBlock)block{
+    
+    [UIResponder becomeFirstResponderCallBackMethodExchange];
     
     if(becomeFirstResponderCallBackBlockArray==nil){
         becomeFirstResponderCallBackBlockArray = [NSMutableArray array];
@@ -35,6 +67,9 @@ static canBecomeFirstResponderCallBackBlock canBecomeFirstResponder;
     
 }
 +(void)configresignFirstResponderCallBackBlock:(becomeFirstResponderCallBackBlock)block{
+    
+    [UIResponder becomeFirstResponderCallBackMethodExchange];
+    
     if(resignFirstResponderCallBackBlockArray == nil){
         resignFirstResponderCallBackBlockArray = [NSMutableArray array];
     }
@@ -82,23 +117,29 @@ static canBecomeFirstResponderCallBackBlock canBecomeFirstResponder;
 
 - (BOOL)Customer_becomeFirstResponder{
     
-    
     if([self isKindOfClass:[UITextView class]]||[self isKindOfClass:[UITextField class]]){
+        
         if(canBecomeFirstResponder){
+            
             if(canBecomeFirstResponder((UIView*)self)){
                 
                 if(self.keyBroad_FirstResponder_info.isFirstResponder){
                     
                 }else{
+                    
                     self.keyBroad_FirstResponder_info.isFirstResponder = true;
                     for (becomeFirstResponderCallBackBlock block in becomeFirstResponderCallBackBlockArray) {
                         block((UIView*)self);
                     }
                 }
                 
-                return [self Customer_becomeFirstResponder];
+                lj_currentBecomeFirstResponderIng = self;
+                BOOL result = [self Customer_becomeFirstResponder];
+                lj_currentBecomeFirstResponderIng = nil;
+                return result;
             }else{
-                return true;
+                
+                return false;
             }
             
         }else{
@@ -111,21 +152,22 @@ static canBecomeFirstResponderCallBackBlock canBecomeFirstResponder;
                     block((UIView*)self);
                 }
             }
-            
-            return [self Customer_becomeFirstResponder];
+            lj_currentBecomeFirstResponderIng = self;
+            BOOL result = [self Customer_becomeFirstResponder];
+            lj_currentBecomeFirstResponderIng = nil;
+            return result;
         }
     }else{
+        
         return [self Customer_becomeFirstResponder];
     }
-    
-    
- 
     
 }
 
 - (BOOL)Customer_resignFirstResponder{
     
     if([self isKindOfClass:[UITextView class]]||[self isKindOfClass: UITextField.class]){
+        
         if(self.keyBroad_FirstResponder_info.isFirstResponder){
             self.keyBroad_FirstResponder_info.isFirstResponder = false;
             for (becomeFirstResponderCallBackBlock block in resignFirstResponderCallBackBlockArray) {
@@ -134,15 +176,13 @@ static canBecomeFirstResponderCallBackBlock canBecomeFirstResponder;
         }
     }
     
-  
-    
     return [self Customer_resignFirstResponder];
 }
 
 
 - (FirstResponderModel *)keyBroad_FirstResponder_info
 {
-    FirstResponderModel* obj=objc_getAssociatedObject(self, @selector(keyBroad_FirstResponder_info));
+    FirstResponderModel* obj = objc_getAssociatedObject(self, @selector(keyBroad_FirstResponder_info));
     if([obj isKindOfClass:[FirstResponderModel class]]){
         return obj;
     }else{
@@ -151,7 +191,6 @@ static canBecomeFirstResponderCallBackBlock canBecomeFirstResponder;
         return mess;
     }
 }
-
 
 
 

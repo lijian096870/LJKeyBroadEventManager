@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD
 		24B50A83239113380084B535 /* LJClassAllocCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B50A82239113380084B535 /* LJClassAllocCallback.m */; };
 		24B50A8C2391232A0084B535 /* UIView+AllocBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B50A8B2391232A0084B535 /* UIView+AllocBack.m */; };
 		24B50A94239127BF0084B535 /* UIView+LJView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B50A91239127BE0084B535 /* UIView+LJView.m */; };
 		24B50A95239127BF0084B535 /* LJViewKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B50A92239127BE0084B535 /* LJViewKit.m */; };
 		24B50A96239127BF0084B535 /* LJViewUtilMathod.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B50A93239127BE0084B535 /* LJViewUtilMathod.m */; };
+=======
+		30D946622392A86A006720AD /* LJTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D946612392A86A006720AD /* LJTextField.m */; };
+>>>>>>> 2b73d2c9b0566a4d33ef62638967c0ec967f2bd0
 		30FB4F1F2306787700D23ED0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FB4F1E2306787700D23ED0 /* AppDelegate.m */; };
 		30FB4F252306787700D23ED0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30FB4F232306787700D23ED0 /* Main.storyboard */; };
 		30FB4F272306787900D23ED0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30FB4F262306787900D23ED0 /* Assets.xcassets */; };
@@ -27,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		1835CB1CFAB393E0877B801F /* Pods-LJKeyBroadEventManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LJKeyBroadEventManager.debug.xcconfig"; path = "Target Support Files/Pods-LJKeyBroadEventManager/Pods-LJKeyBroadEventManager.debug.xcconfig"; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		24B50A81239113380084B535 /* LJClassAllocCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJClassAllocCallback.h; sourceTree = "<group>"; };
 		24B50A82239113380084B535 /* LJClassAllocCallback.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJClassAllocCallback.m; sourceTree = "<group>"; };
 		24B50A8A2391232A0084B535 /* UIView+AllocBack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+AllocBack.h"; sourceTree = "<group>"; };
@@ -37,6 +42,10 @@
 		24B50A91239127BE0084B535 /* UIView+LJView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LJView.m"; sourceTree = "<group>"; };
 		24B50A92239127BE0084B535 /* LJViewKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJViewKit.m; sourceTree = "<group>"; };
 		24B50A93239127BE0084B535 /* LJViewUtilMathod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJViewUtilMathod.m; sourceTree = "<group>"; };
+=======
+		30D946602392A86A006720AD /* LJTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJTextField.h; sourceTree = "<group>"; };
+		30D946612392A86A006720AD /* LJTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJTextField.m; sourceTree = "<group>"; };
+>>>>>>> 2b73d2c9b0566a4d33ef62638967c0ec967f2bd0
 		30FB4F1A2306787700D23ED0 /* LJKeyBroadEventManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LJKeyBroadEventManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB4F1D2306787700D23ED0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		30FB4F1E2306787700D23ED0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -119,10 +128,15 @@
 				30FB4F3D23067A4A00D23ED0 /* TestTableViewCell.h */,
 				30FB4F3E23067A4A00D23ED0 /* TestTableViewCell.m */,
 				30FB4F3F23067A4A00D23ED0 /* TestTableViewCell.xib */,
+<<<<<<< HEAD
 				24B50A81239113380084B535 /* LJClassAllocCallback.h */,
 				24B50A82239113380084B535 /* LJClassAllocCallback.m */,
 				24B50A8A2391232A0084B535 /* UIView+AllocBack.h */,
 				24B50A8B2391232A0084B535 /* UIView+AllocBack.m */,
+=======
+				30D946602392A86A006720AD /* LJTextField.h */,
+				30D946612392A86A006720AD /* LJTextField.m */,
+>>>>>>> 2b73d2c9b0566a4d33ef62638967c0ec967f2bd0
 			);
 			path = LJKeyBroadEventManager;
 			sourceTree = "<group>";
@@ -264,6 +278,7 @@
 				24B50A83239113380084B535 /* LJClassAllocCallback.m in Sources */,
 				30FB4F4023067A4A00D23ED0 /* TestTableViewCell.m in Sources */,
 				30FB4F2D2306787900D23ED0 /* main.m in Sources */,
+				30D946622392A86A006720AD /* LJTextField.m in Sources */,
 				30FB4F3B230679C900D23ED0 /* TestViewController.m in Sources */,
 				24B50A95239127BF0084B535 /* LJViewKit.m in Sources */,
 				24B50A8C2391232A0084B535 /* UIView+AllocBack.m in Sources */,

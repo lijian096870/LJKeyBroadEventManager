@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TestTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @end
 

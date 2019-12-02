@@ -13,6 +13,8 @@
 #import "LJkeyBroadConfig.h"
 #import "UIResponder+becomeFirstResponderCallBack.h"
 #import "LJViewControllerManager.h"
+
+
 @interface LJKeyBroadRegisterManager ()
 
 @property(nonatomic,strong)NSMutableSet *set;
@@ -37,8 +39,6 @@
 
 -(void)registerKeyBroadResponder:(UIViewController<LJKeyboardManagerDelegate> *)keyBroadResponder{
     
-    [UIView becomeFirstResponderCallBackMethodExchange];
-    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
@@ -57,35 +57,67 @@
             }
         }];
         
-        [[LJKeyBroadEvent sharedInstance] registerKeyBroadEvent:^(UIView *view, KeyBroadEventStyle style) {
+        
+        [[LJKeyBroadEvent sharedInstance] registerKeyBroadEventShowEvent:^(UIView *view) {
+            
             UIViewController *viewController = viewGetSuperController(view);
             if([viewController isKindOfClass:[UIViewController class]]){
                 if([self isRegister:viewController.keyBroad_mess_uniqueID]){
                     
-                    switch (style) {
-                        case KeyBroadEventSelect:
-                            [viewController.NSObject_KeyBoradManager_info EventAction:view];
-                            break;
-                        case KeyBroadEventCancel:
-                            [viewController.NSObject_KeyBoradManager_info CancelEventAction:view];
-                            break;
-                    }
-                    
+                    [viewController.NSObject_KeyBoradManager_info ShowKeyBroad:view];
                     
                 }
-                
-                
             }
+        } AndViewAnimationBlock:^(UIView *view, CGFloat keyBroadHeight) {
+            
+            UIViewController *viewController = viewGetSuperController(view);
+            if([viewController isKindOfClass:[UIViewController class]]){
+                if([self isRegister:viewController.keyBroad_mess_uniqueID]){
+                    
+                    [viewController.NSObject_KeyBoradManager_info ShowKeyBroadAnimation:view andkeyBroadHeight:keyBroadHeight];
+                    
+                }
+            }
+            
+        } AndFrameChangeBlock:^(UIView *view, CGFloat keyBroadHeight) {
+            
+            UIViewController *viewController = viewGetSuperController(view);
+            if([viewController isKindOfClass:[UIViewController class]]){
+                if([self isRegister:viewController.keyBroad_mess_uniqueID]){
+                    
+                    [viewController.NSObject_KeyBoradManager_info keyBroadFrameChange:view andkeyBroadHeight:keyBroadHeight];
+                    
+                }
+            }
+            
+        } HidenEvent:^(UIView *view) {
+            
+            UIViewController *viewController = viewGetSuperController(view);
+            if([viewController isKindOfClass:[UIViewController class]]){
+                if([self isRegister:viewController.keyBroad_mess_uniqueID]){
+                    
+                    [viewController.NSObject_KeyBoradManager_info HiddenKeyBroad:view];
+                    
+                }
+            }
+            
+        } AndViewAnimationBlock:^(UIView *view, CGFloat keyBroadHeight) {
+            UIViewController *viewController = viewGetSuperController(view);
+            if([viewController isKindOfClass:[UIViewController class]]){
+                if([self isRegister:viewController.keyBroad_mess_uniqueID]){
+                    
+                    [viewController.NSObject_KeyBoradManager_info HiddenBroadAnimation:view];
+                    
+                }
+            }
+            
         }];
-        
-        
-        
     });
+    
     if([keyBroadResponder isKindOfClass:[UIViewController class]]){
         
         NSString *ID = keyBroadResponder.keyBroad_mess_uniqueID;
         [self.set addObject:ID];
-        
         
         [keyBroadResponder.NSObject_KeyBoradManager_info configDestroyBlock:^{
             [self.set removeObject:ID];
@@ -93,9 +125,6 @@
         
     }
 }
-
-
-
 
 -(BOOL)isRegister:(NSString*)key{
     for (NSString *object in self.set) {
