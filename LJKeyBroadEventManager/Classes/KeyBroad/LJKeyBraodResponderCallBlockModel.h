@@ -9,7 +9,7 @@
 #import "LJKeyBroadEvent.h"
 @interface LJKeyBraodResponderCallBlockModel : NSObject
 
-@property(nonatomic,copy)KeyBroadEventResponderCallBack Showblock;
+@property(nonatomic,copy)KeyBroadEventBecomeFirstCallBlock Showblock;
 
 @property(nonatomic,copy)KeyBroadEventNotificationViewAnimationBlock animationShowBlock;
 
@@ -17,11 +17,11 @@
 @property(nonatomic,copy)KeyBroadEventNotificationViewAnimationBlock frameChangeBlock;
 
 
-@property(nonatomic,copy)KeyBroadEventResponderCallBack Hidenblock;
+@property(nonatomic,copy)KeyBroadEventreginFirstCallBlock Hidenblock;
 
 @property(nonatomic,copy)KeyBroadEventNotificationViewAnimationBlock animationHidenBlock;
 
-- (instancetype)initWithBroadEventShowEvent:(KeyBroadEventResponderCallBack)Showblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationShowBlock AndFrameChangeBlock:(KeyBroadEventNotificationViewAnimationBlock)frameChangeBlock HidenEvent:(KeyBroadEventResponderCallBack)Hidenblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationHidenBlock;
+- (instancetype)initWithBroadEventShowEvent:(KeyBroadEventBecomeFirstCallBlock)Showblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationShowBlock AndFrameChangeBlock:(KeyBroadEventNotificationViewAnimationBlock)frameChangeBlock HidenEvent:(KeyBroadEventreginFirstCallBlock)Hidenblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationHidenBlock;
 
 
 @end

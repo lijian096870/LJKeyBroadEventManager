@@ -12,9 +12,11 @@
 #import "UIResponder+becomeFirstResponderCallBack.h"
 #import "LJKeyBraodResponderCallBlockModel.h"
 
+
 @interface LJKeyBroadEvent ()
 
-@property(nonatomic,strong)NSMutableSet *set;
+@property(nonatomic,strong)NSMutableSet *becomeFirstSet;
+@property(nonatomic,strong)NSMutableSet *reginFirstSet;
 
 @property(nonatomic,copy)canBecomeFirstResponderCallBackBlock canBecomeFirstResponder;
 
@@ -28,7 +30,7 @@
 @implementation LJKeyBroadEvent
 
 
--(void)registerKeyBroadEventShowEvent:(KeyBroadEventResponderCallBack)Showblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationShowBlock AndFrameChangeBlock:(KeyBroadEventNotificationViewAnimationBlock)frameChangeBlock HidenEvent:(KeyBroadEventResponderCallBack)Hidenblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationHidenBlock{
+-(void)registerKeyBroadEventShowEvent:(KeyBroadEventBecomeFirstCallBlock)Showblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationShowBlock AndFrameChangeBlock:(KeyBroadEventNotificationViewAnimationBlock)frameChangeBlock HidenEvent:(KeyBroadEventreginFirstCallBlock)Hidenblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationHidenBlock{
     
     [self blingNotEvent];
     
@@ -37,34 +39,32 @@
     
     [self.responderSet addObject:model];
     
-    [self registerKeyBroadEvent:^(UIView *view, KeyBroadEventStyle style) {
+    
+    [self registerKeyBroadEventBecomeFirst:^BOOL(UIView *view) {
         
-        if([view isKindOfClass:UIView.class]){
-            switch (style) {
-                case KeyBroadEventSelect:{
-                    
-                    for (LJKeyBraodResponderCallBlockModel *model in self.responderSet) {
-                        
-                        if(model.Showblock){
-                            model.Showblock(view);
-                        }
-                        
-                    }
-                }break;
-                case KeyBroadEventCancel:{
-                    
-                    for (LJKeyBraodResponderCallBlockModel *model in self.responderSet) {
-                        if(model.Hidenblock){
-                            model.Hidenblock(view);
-                        }
-                    }
-                    
-                }break;
+        BOOL result = YES;
+        
+        for (LJKeyBraodResponderCallBlockModel *model in self.responderSet) {
+            
+            if(model.Showblock){
+                result =  model.Showblock(view) && result;
             }
             
         }
+        
+        return result;
+        
     }];
     
+    [self registerKeyBroadEventReginsFirst:^(UIView *view) {
+        
+        for (LJKeyBraodResponderCallBlockModel *model in self.responderSet) {
+            if(model.Hidenblock){
+                model.Hidenblock(view);
+            }
+        }
+        
+    }];
 }
 
 -(void)configCanBecomeFirstResponderCallBackBlock:(canBecomeFirstResponderCallBackBlock)block{
@@ -72,21 +72,23 @@
     self.canBecomeFirstResponder = block;
 }
 
--(void)registerKeyBroadEvent:(KeyBroadEventCallBlock)block{
+-(void)registerKeyBroadEventBecomeFirst:(KeyBroadEventBecomeFirstCallBlock)block{
     
     [self blingEvent];
     
     if(block){
-        [self.set addObject:block];
+        [self.becomeFirstSet addObject:block];
+    }
+}
+-(void)registerKeyBroadEventReginsFirst:(KeyBroadEventreginFirstCallBlock)block{
+    
+    [self blingEvent];
+    
+    if(block){
+        [self.reginFirstSet addObject:block];
     }
 }
 
--(void)runBlock:(UIView *)view and:(KeyBroadEventStyle)style{
-    
-    for (KeyBroadEventCallBlock block in self.set) {
-        block(view,style);
-    }
-}
 -(void)blingNotEvent{
     
     static dispatch_once_t onceToken;
@@ -115,11 +117,7 @@
                 }
                 
             }
-            
-            
         }];
-        
-        
         [self.keyBroadNotManager addKeyBroadNotificationHideBlock:^(UIView *view, CGFloat keyBroadHeight) {
             
             for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
@@ -135,8 +133,6 @@
     });
     
 }
-
-
 -(void)blingEvent{
     
     static dispatch_once_t onceToken;
@@ -157,26 +153,32 @@
             }
         }];
         
-        
-        [UIResponder configbecomeFirstResponderCallBackBlock:^(UIView * _Nonnull view) {
+        [UIResponder configbecomeFirstResponderCallBackBlock:^BOOL(UIView * _Nonnull view) {
             
             if([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]){
                 
-                [self runBlock:view and:KeyBroadEventSelect];
+                BOOL result = YES;
                 
+                for (KeyBroadEventBecomeFirstCallBlock block in self.becomeFirstSet) {
+                    result = block(view) && result;
+                }
+            
+                return result;
+                
+            }else{
+                return YES;
             }
             
         }];
         [UIResponder configresignFirstResponderCallBackBlock:^(UIView * _Nonnull view) {
             if([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]){
                 
-                [self runBlock:view and:KeyBroadEventCancel];
+                for (KeyBroadEventreginFirstCallBlock Block in self.reginFirstSet) {
+                    Block(view);
+                }
                 
             }
         }];
-        
-        
-        
     });
     
 }
@@ -198,15 +200,24 @@
     
 }
 
--(NSMutableSet*)set{
+-(NSMutableSet*)reginFirstSet{
     
-    if(_set==nil){
-        _set = [NSMutableSet set];
+    if(_reginFirstSet==nil){
+        _reginFirstSet = [NSMutableSet set];
     }
-    return _set;
-    
+    return _reginFirstSet;
     
 }
+
+-(NSMutableSet*)becomeFirstSet{
+    
+    if(_becomeFirstSet==nil){
+        _becomeFirstSet = [NSMutableSet set];
+    }
+    return _becomeFirstSet;
+    
+}
+
 
 static id _instace;
 + (id)allocWithZone:(struct _NSZone *)zone

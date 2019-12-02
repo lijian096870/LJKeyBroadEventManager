@@ -8,16 +8,18 @@
 #import <UIKit/UIKit.h>
 
 
-typedef void(^becomeFirstResponderCallBackBlock)(UIView *view);
+typedef BOOL(^becomeFirstResponderCallBackBlock)(UIView *view);
+typedef void(^resignFirstResponderCallBackBlock)(UIView *view);
 typedef BOOL(^canBecomeFirstResponderCallBackBlock)(UIView *view);
 
 @interface UIResponder (becomeFirstResponderCallBack)
 
 +(void)configCanBecomeFirstResponderCallBackBlock:(canBecomeFirstResponderCallBackBlock)block;
 
+
 +(void)configbecomeFirstResponderCallBackBlock:(becomeFirstResponderCallBackBlock)block;
 
-+(void)configresignFirstResponderCallBackBlock:(becomeFirstResponderCallBackBlock)block;
++(void)configresignFirstResponderCallBackBlock:(resignFirstResponderCallBackBlock)block;
 
 
 + (UIResponder *)lj_currentFirstResponder;

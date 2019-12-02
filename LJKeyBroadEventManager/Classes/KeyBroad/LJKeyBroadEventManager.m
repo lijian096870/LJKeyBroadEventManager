@@ -14,10 +14,17 @@
 #import "UIView+ReateViewController.h"
 
 void addbecomeFirstResponderCallBackBlock(becomeFirstResponderCallBackBlock block){
-    [UIView configbecomeFirstResponderCallBackBlock:block];
+    [UIResponder configbecomeFirstResponderCallBackBlock:^BOOL(UIView *view) {
+        
+        if(block){
+            block(view);
+        }
+        return YES;
+        
+    }];
 }
-void addresignResponderCallBackBlock(becomeFirstResponderCallBackBlock block){
-    [UIView configresignFirstResponderCallBackBlock:block];
+void addresignResponderCallBackBlock(resignFirstResponderCallBackBlock block){
+    [UIResponder configresignFirstResponderCallBackBlock:block];
 }
 
 void registerKeyBroadResponder(UIViewController<LJKeyboardManagerDelegate> *keyBroadResponder){

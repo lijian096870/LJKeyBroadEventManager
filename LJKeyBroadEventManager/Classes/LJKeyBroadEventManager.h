@@ -103,8 +103,8 @@ FOUNDATION_EXTERN void configShowExtensionToolBar(BOOL show);
 
 
 
-typedef void(^becomeFirstResponderCallBackBlock)(UIView *view);
-
+typedef BOOL(^becomeFirstResponderCallBackBlock)(UIView *view);
+typedef void(^resignFirstResponderCallBackBlock)(UIView *view);
 
 /**
  配置成为第一响应回调Block
@@ -119,7 +119,7 @@ FOUNDATION_EXTERN void addbecomeFirstResponderCallBackBlock(becomeFirstResponder
 
  @param block 回调Block
  */
-FOUNDATION_EXTERN void addresignResponderCallBackBlock(becomeFirstResponderCallBackBlock block);
+FOUNDATION_EXTERN void addresignResponderCallBackBlock(resignFirstResponderCallBackBlock block);
 
 
 

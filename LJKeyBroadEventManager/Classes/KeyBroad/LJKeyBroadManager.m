@@ -41,7 +41,9 @@
 @implementation LJKeyBroadManager
 
 
--(void)ShowKeyBroad:(UIView*)view{
+-(BOOL)ShowKeyBroad:(UIView*)view{
+    
+    return NO;
     
     NSLog(@"1111111,%@",view);
     
@@ -181,14 +183,35 @@
 
 -(LJKeyboardToolBar*)reloadLJKeyboardToolBar:(LJKeyboardToolBar*)bar and:(LJKeyBroadRespoderModel*)model  and:(UIView*)window{
     
-    
-    bar.leftbtn.enabled = [self CanLeftArrowButton:model and:window];
-    bar.rightbtn.enabled = [self CanRightArrowButton:model and:window];
+    if(self.object_keyBroad.isViewLoaded){
+        
+        LJKeyBroadRespoderModel *leftModel = [LJKeyBroadResponderArray CanLeftArrowButton:model and:window AndResponderArray:self.ResponderArray andRootView:self.object_keyBroad.view];
+        
+        if([leftModel isKindOfClass:LJKeyBroadRespoderModel.class]){
+            
+            bar.leftbtn.enabled = YES;
+        }else{
+            bar.leftbtn.enabled = NO;
+        }
+        
+        LJKeyBroadRespoderModel *rightModel = [LJKeyBroadResponderArray CanRightArrowButton:model and:window AndResponderArray:self.ResponderArray andRootView:self.object_keyBroad.view];
+        
+        if([rightModel isKindOfClass:LJKeyBroadRespoderModel.class]){
+            bar.rightbtn.enabled = YES;
+        }else{
+            bar.rightbtn.enabled = NO;
+        }
+        
+    }else{
+        
+        bar.leftbtn.enabled = NO;
+        bar.rightbtn.enabled = NO;
+        
+    }
     return bar;
 }
 
 - (LJKeyboardToolBar *)MadeToolBar:(CGRect)frame{
-    
     
     __weak LJKeyBroadManager *weakself = self;
     return [[LJKeyboardToolBar alloc]initWithFrame:frame leftBtnBlock:^(LJKeyboardToolBar *bar) {
@@ -210,148 +233,36 @@
 - (void)didClickedLeftArrowButton{
     
     if(self.responderModel&&[self.responderModel.view isKindOfClass:[UIView class]]){
-        [self _didClickedLeftArrowButton:self.responderModel and:self.responderModel.view.window];
-    }
-    
-    
-    
-}
-- (void)_didClickedLeftArrowButton:(LJKeyBroadRespoderModel *)currentModel and:(UIView*)window{
-    
-    NSUInteger index = [self.ResponderArray indexOfObject:currentModel] -1;
-    if(index<self.ResponderArray.count&&index>=0){
         
-        LJKeyBroadRespoderModel *model = [self.ResponderArray objectAtIndex:index];
-        
-        
-        if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray canBeFirstResponder:model.view]&&[LJKeyBroadResponderArray confimDisCorrect:model andNext:currentModel and:window]){
+        if(self.object_keyBroad.isViewLoaded){
             
-            UIViewController *viewController = viewGetSuperController(currentModel.view);
+            LJKeyBroadRespoderModel *model = [LJKeyBroadResponderArray CanLeftArrowButton:self.responderModel and:[self getSuperWindows:self.object_keyBroad.view] AndResponderArray:self.ResponderArray andRootView:self.object_keyBroad.view];
             
-            if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
-                if([viewController canBecomeFirstResponder:model.view]){
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        
-                        [model.view becomeFirstResponder];
-                        
-                        
-                    });
-                }
-                
-            }else{
+            if([model isKindOfClass:LJKeyBroadRespoderModel.class]&&[model.view isKindOfClass:UIView.class]){
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    
                     [model.view becomeFirstResponder];
                 });
-                
             }
-            
-            
-            
         }
     }
 }
-- (BOOL)CanLeftArrowButton:(LJKeyBroadRespoderModel *)currentModel and:(UIView*)window{
-    
-    NSUInteger index = [self.ResponderArray indexOfObject:currentModel] -1;
-    if(index<self.ResponderArray.count&&index>=0){
-        
-        LJKeyBroadRespoderModel *model = [self.ResponderArray objectAtIndex:index];
-        
-        if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray canBeFirstResponder:model.view]){
-            
-            UIViewController *viewController = viewGetSuperController(currentModel.view);
-            
-            if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
-                if([viewController canBecomeFirstResponder:model.view]){
-                    
-                    if([LJKeyBroadResponderArray confimDisCorrect:model andNext:currentModel and:window]){
-                        return true;
-                    }
-                }
-                
-            }else{
-                if([LJKeyBroadResponderArray confimDisCorrect:model andNext:currentModel and:window]){
-                    return true;
-                }
-            }
-            
-            
-            
-        }
-    }
-    return false;
-}
+
+
 - (void)didClickedRightArrowButton{
+    
     if(self.responderModel&&[self.responderModel.view isKindOfClass:[UIView class]]){
-        [self _didClickedRightArrowButton:self.responderModel and:self.responderModel.view.window];
-    }
-    
-}
-- (BOOL)CanRightArrowButton:(LJKeyBroadRespoderModel *)currentModel and:(UIView*)window{
-    
-    NSUInteger index = [self.ResponderArray indexOfObject:currentModel] +1;
-    if(index<self.ResponderArray.count&&index>=0){
         
-        LJKeyBroadRespoderModel *model = [self.ResponderArray objectAtIndex:index];
-        
-        
-        if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray canBeFirstResponder:model.view]){
+        if(self.object_keyBroad.isViewLoaded){
             
-            UIViewController *viewController = viewGetSuperController(currentModel.view);
+            LJKeyBroadRespoderModel *model = [LJKeyBroadResponderArray CanRightArrowButton:self.responderModel and:[self getSuperWindows:self.object_keyBroad.view] AndResponderArray:self.ResponderArray andRootView:self.object_keyBroad.view];
             
-            if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
-                if([viewController canBecomeFirstResponder:model.view]){
-                    
-                    if([LJKeyBroadResponderArray confimDisCorrect:currentModel andNext:model and:window]){
-                        return true;
-                    }
-                }
-                
-            }else{
-                if([LJKeyBroadResponderArray confimDisCorrect:currentModel andNext:model and:window]){
-                    return true;
-                }
-            }
-            
-            
-            
-        }
-        
-    }
-    return false;
-}
-- (void)_didClickedRightArrowButton:(LJKeyBroadRespoderModel *)currentModel and:(UIView*)window{
-    
-    NSUInteger index = [self.ResponderArray indexOfObject:currentModel] +1;
-    if(index<self.ResponderArray.count&&index>=0){
-        
-        LJKeyBroadRespoderModel *model = [self.ResponderArray objectAtIndex:index];
-        
-        if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray canBeFirstResponder:model.view]&&[LJKeyBroadResponderArray confimDisCorrect:currentModel andNext:model and:window]){
-            
-            UIViewController *viewController = viewGetSuperController(currentModel.view);
-            
-            
-            if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
-                if([viewController canBecomeFirstResponder:model.view]){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        
-                        [model.view becomeFirstResponder];
-                        
-                    });
-                }
-            }else{
+            if([model isKindOfClass:LJKeyBroadRespoderModel.class]&&[model.view isKindOfClass:UIView.class]){
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
                     [model.view becomeFirstResponder];
                     
                 });
             }
-            
-            
-            
         }
     }
 }
@@ -367,16 +278,12 @@
         
         [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             
-            
             [self.moveOffsetManager moveOffset:[self.responderModel calculate:self.KeyBroadHeight] Responder:self.responderModel.view];
             
         } completion:^(BOOL finished) {
             
         }];
     }
-    
-    
-    
 }
 
 -(UIView*)getSuperWindows:(UIView*)view{
@@ -388,8 +295,6 @@
     }else{
         return view;
     }
-    
-    
 }
 
 
@@ -434,7 +339,6 @@
     if(self.dellocBlock){
         self.dellocBlock();
     }
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 @end
 

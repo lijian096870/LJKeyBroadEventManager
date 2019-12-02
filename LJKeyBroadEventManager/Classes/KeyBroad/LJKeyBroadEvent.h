@@ -16,12 +16,12 @@ typedef NS_OPTIONS(NSUInteger, KeyBroadEventStyle) {
 
 typedef BOOL(^canBecomeFirstResponderCallBackBlock)(UIView *view);
 
-typedef void(^KeyBroadEventCallBlock)(UIView *view,KeyBroadEventStyle style);
 
 
 
+typedef BOOL(^KeyBroadEventBecomeFirstCallBlock)(UIView *view);
 
-typedef void(^KeyBroadEventResponderCallBack)(UIView *view);
+typedef void(^KeyBroadEventreginFirstCallBlock)(UIView *view);
 
 typedef void(^KeyBroadEventNotificationViewAnimationBlock)(UIView *view,CGFloat keyBroadHeight);
 
@@ -31,7 +31,7 @@ typedef BOOL(^KeyBroadEventNotificationHiddenCallBack)(UIView *view);
 
 -(void)configCanBecomeFirstResponderCallBackBlock:(canBecomeFirstResponderCallBackBlock)block;
 
--(void)registerKeyBroadEventShowEvent:(KeyBroadEventResponderCallBack)Showblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationShowBlock AndFrameChangeBlock:(KeyBroadEventNotificationViewAnimationBlock)frameChangeBlock HidenEvent:(KeyBroadEventResponderCallBack)Hidenblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationHidenBlock;
+-(void)registerKeyBroadEventShowEvent:(KeyBroadEventBecomeFirstCallBlock)Showblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationShowBlock AndFrameChangeBlock:(KeyBroadEventNotificationViewAnimationBlock)frameChangeBlock HidenEvent:(KeyBroadEventreginFirstCallBlock)Hidenblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationHidenBlock;
 
 + (instancetype)sharedInstance;
 @end

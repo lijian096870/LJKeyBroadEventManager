@@ -16,6 +16,9 @@
 
 @property(nonatomic,assign)CGFloat nextDis;
 
+@property(nonatomic,weak)UIView *nextView;
+@property(nonatomic,weak)UIView *aheadView;
+
 
 @property(nonatomic,assign)CGRect windowBounds;
 

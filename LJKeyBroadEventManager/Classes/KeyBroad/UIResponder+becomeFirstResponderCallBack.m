@@ -66,7 +66,7 @@ static __weak UIResponder *lj_currentBecomeFirstResponderIng;
     
     
 }
-+(void)configresignFirstResponderCallBackBlock:(becomeFirstResponderCallBackBlock)block{
++(void)configresignFirstResponderCallBackBlock:(resignFirstResponderCallBackBlock)block{
     
     [UIResponder becomeFirstResponderCallBackMethodExchange];
     
@@ -117,26 +117,47 @@ static __weak UIResponder *lj_currentBecomeFirstResponderIng;
 
 - (BOOL)Customer_becomeFirstResponder{
     
+    
+    
+    
     if([self isKindOfClass:[UITextView class]]||[self isKindOfClass:[UITextField class]]){
         
         if(canBecomeFirstResponder){
             
             if(canBecomeFirstResponder((UIView*)self)){
                 
+                NSLog(@"ttttttttttt,%d:%@",(self.keyBroad_FirstResponder_info.isFirstResponder),self);
+                
                 if(self.keyBroad_FirstResponder_info.isFirstResponder){
+                    
+                    lj_currentBecomeFirstResponderIng = self;
+                    BOOL result = [self Customer_becomeFirstResponder];
+                    lj_currentBecomeFirstResponderIng = nil;
+                    return result;
                     
                 }else{
                     
-                    self.keyBroad_FirstResponder_info.isFirstResponder = true;
+                    
+                    
+                    BOOL canBeFirst = YES;
                     for (becomeFirstResponderCallBackBlock block in becomeFirstResponderCallBackBlockArray) {
-                        block((UIView*)self);
+                        canBeFirst = block((UIView*)self) && canBeFirst;
+                    }
+                    
+                    if(canBeFirst){
+                        
+                        self.keyBroad_FirstResponder_info.isFirstResponder = true;
+                        
+                        lj_currentBecomeFirstResponderIng = self;
+                        BOOL result = [self Customer_becomeFirstResponder];
+                        lj_currentBecomeFirstResponderIng = nil;
+                        
+                        return result;
+                    }else{
+                        return false;
                     }
                 }
                 
-                lj_currentBecomeFirstResponderIng = self;
-                BOOL result = [self Customer_becomeFirstResponder];
-                lj_currentBecomeFirstResponderIng = nil;
-                return result;
             }else{
                 
                 return false;
@@ -146,16 +167,31 @@ static __weak UIResponder *lj_currentBecomeFirstResponderIng;
             
             if(self.keyBroad_FirstResponder_info.isFirstResponder){
                 
+                lj_currentBecomeFirstResponderIng = self;
+                BOOL result = [self Customer_becomeFirstResponder];
+                lj_currentBecomeFirstResponderIng = nil;
+                return result;
+                
             }else{
-                self.keyBroad_FirstResponder_info.isFirstResponder = true;
+                
+
+                BOOL canBeFirst = YES;
                 for (becomeFirstResponderCallBackBlock block in becomeFirstResponderCallBackBlockArray) {
-                    block((UIView*)self);
+                    canBeFirst = block((UIView*)self) && canBeFirst;
                 }
+                if(canBeFirst){
+                    
+                    self.keyBroad_FirstResponder_info.isFirstResponder = true;
+                    
+                    lj_currentBecomeFirstResponderIng = self;
+                    BOOL result = [self Customer_becomeFirstResponder];
+                    lj_currentBecomeFirstResponderIng = nil;
+                    return result;
+                }else{
+                    return false;
+                }
+                
             }
-            lj_currentBecomeFirstResponderIng = self;
-            BOOL result = [self Customer_becomeFirstResponder];
-            lj_currentBecomeFirstResponderIng = nil;
-            return result;
         }
     }else{
         
@@ -170,7 +206,7 @@ static __weak UIResponder *lj_currentBecomeFirstResponderIng;
         
         if(self.keyBroad_FirstResponder_info.isFirstResponder){
             self.keyBroad_FirstResponder_info.isFirstResponder = false;
-            for (becomeFirstResponderCallBackBlock block in resignFirstResponderCallBackBlockArray) {
+            for (resignFirstResponderCallBackBlock block in resignFirstResponderCallBackBlockArray) {
                 block((UIView*)self);
             }
         }

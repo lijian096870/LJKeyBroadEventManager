@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface FirstResponderModel : NSObject
 
 @property(nonatomic,assign)BOOL isFirstResponder;

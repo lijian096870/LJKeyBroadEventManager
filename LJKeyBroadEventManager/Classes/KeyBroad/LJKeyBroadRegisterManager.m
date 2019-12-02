@@ -58,16 +58,19 @@
         }];
         
         
-        [[LJKeyBroadEvent sharedInstance] registerKeyBroadEventShowEvent:^(UIView *view) {
+        [[LJKeyBroadEvent sharedInstance] registerKeyBroadEventShowEvent:^BOOL(UIView *view) {
             
             UIViewController *viewController = viewGetSuperController(view);
             if([viewController isKindOfClass:[UIViewController class]]){
                 if([self isRegister:viewController.keyBroad_mess_uniqueID]){
                     
-                    [viewController.NSObject_KeyBoradManager_info ShowKeyBroad:view];
+                  return [viewController.NSObject_KeyBoradManager_info ShowKeyBroad:view];
                     
                 }
             }
+            
+            return YES;
+            
         } AndViewAnimationBlock:^(UIView *view, CGFloat keyBroadHeight) {
             
             UIViewController *viewController = viewGetSuperController(view);

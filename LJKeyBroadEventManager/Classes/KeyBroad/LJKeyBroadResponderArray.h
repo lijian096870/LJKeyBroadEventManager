@@ -12,14 +12,13 @@
 
 +(void)loopSubView:(NSMutableArray*)array and:(UIView*)view andWindow:(UIView*)window AndDontMove:(UIView*)DonMoveView;
 
-+ (BOOL)canBeFirstResponder:(UIView *)view;
+
++(BOOL)confimDisCorrect:(LJKeyBroadRespoderModel*)ahead andNext:(LJKeyBroadRespoderModel*)Next and:(UIView*)window andRootView:(UIView*)rootView;
 
 
++ (LJKeyBroadRespoderModel*)CanLeftArrowButton:(LJKeyBroadRespoderModel *)currentModel and:(UIView*)window AndResponderArray:(NSArray*)array andRootView:(UIView*)rootView;
 
-
-
-+(BOOL)confimDisCorrect:(LJKeyBroadRespoderModel*)ahead andNext:(LJKeyBroadRespoderModel*)Next and:(UIView*)window;
-
++ (LJKeyBroadRespoderModel*)CanRightArrowButton:(LJKeyBroadRespoderModel *)currentModel and:(UIView*)window AndResponderArray:(NSArray*)array andRootView:(UIView*)rootView;
 
 @end
 
