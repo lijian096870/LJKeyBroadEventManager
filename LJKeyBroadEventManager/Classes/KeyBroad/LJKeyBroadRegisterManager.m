@@ -22,9 +22,7 @@
 
 @end
 
-@interface UIViewController ()
-
--(BOOL)canBecomeFirstResponder:(UIView*)Responder;
+@interface UIViewController ()<LJKeyboardManagerDelegate>
 
 @end
 
@@ -34,7 +32,6 @@
     if([keyBroadResponder isKindOfClass:[UIViewController class]]){
         [self.set removeObject:keyBroadResponder.keyBroad_mess_uniqueID];
     }
-    
 }
 
 -(void)registerKeyBroadResponder:(UIViewController<LJKeyboardManagerDelegate> *)keyBroadResponder{
@@ -45,10 +42,15 @@
         [[LJKeyBroadEvent sharedInstance] configCanBecomeFirstResponderCallBackBlock:^BOOL(UIView *view) {
             UIViewController *viewController = viewGetSuperController(view);
             if([viewController isKindOfClass:[UIViewController class]]){
-                
-                if([viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
-                    return [viewController canBecomeFirstResponder:view];
+                if([self isRegister:viewController.keyBroad_mess_uniqueID]){
+                    
+                    if([viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
+                        return [viewController canBecomeFirstResponder:view];
+                    }else{
+                        return true;
+                    }
                 }else{
+                    
                     return true;
                 }
                 
@@ -64,7 +66,7 @@
             if([viewController isKindOfClass:[UIViewController class]]){
                 if([self isRegister:viewController.keyBroad_mess_uniqueID]){
                     
-                  return [viewController.NSObject_KeyBoradManager_info ShowKeyBroad:view];
+                    return [viewController.NSObject_KeyBoradManager_info ShowKeyBroad:view];
                     
                 }
             }

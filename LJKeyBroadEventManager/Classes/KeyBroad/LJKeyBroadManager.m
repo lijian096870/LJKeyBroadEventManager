@@ -43,11 +43,10 @@
 
 -(BOOL)ShowKeyBroad:(UIView*)view{
     
-    return NO;
-    
-    NSLog(@"1111111,%@",view);
     
     if(self.responderModel.view == view){
+        
+        return YES;
         
     }else{
         if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&[viewGetSuperController(view).keyBroad_mess_uniqueID isEqualToString:self.object_keyBroad.keyBroad_mess_uniqueID]){
@@ -60,66 +59,24 @@
             
             if([model isKindOfClass:LJKeyBroadRespoderModel.class]){
                 
-                if([self.object_keyBroad respondsToSelector:@selector(TopSpacingToFirstResponder:)]){
-                    model.topSpacingToFirstResponder = [self.object_keyBroad TopSpacingToFirstResponder:view];
-                }else{
-                    model.topSpacingToFirstResponder = [LJkeyBroadConfig sharedInstance].topSpacingToFirstResponder;
-                }
-                if([self.object_keyBroad respondsToSelector:@selector(ShowExtensionToolBar:)]){
-                    model.showExtensionToolBar = [self.object_keyBroad ShowExtensionToolBar:view];
-                }else{
-                    model.showExtensionToolBar = [LJkeyBroadConfig sharedInstance].showExtensionToolBar;
-                }
-                if(model.showExtensionToolBar){
-                    
-                    if([view isKindOfClass:[UITextField class]]){
-                        UITextField *textView = ((UITextField*)view);
-                        if(textView.inputAccessoryView == nil){
-                            
-                            textView.inputAccessoryView = [self reloadLJKeyboardToolBar:[self MadeToolBar:CGRectMake(0, 0, window.bounds.size.width, 40)] and:model and:window];
-                            
-                            model.ExtensionToolBarHeight = 40;
-                        }else{
-                            
-                            if([textView.inputAccessoryView isKindOfClass:[LJKeyboardToolBar class]]){
-                                
-                                textView.inputAccessoryView = [self reloadLJKeyboardToolBar:[self MadeToolBar:CGRectMake(0, 0, window.bounds.size.width, 40)] and:model and:window];
-                                model.ExtensionToolBarHeight = 40;
-                                
-                            }else{
-                                model.ExtensionToolBarHeight = textView.inputAccessoryView.bounds.size.height;
-                            }
-                            
-                        }
-                    }
-                    if([view isKindOfClass:[UITextView class]]){
-                        UITextView *textView = ((UITextView*)view);
-                        if(textView.inputAccessoryView == nil){
-                            
-                            textView.inputAccessoryView = [self reloadLJKeyboardToolBar:[self MadeToolBar:CGRectMake(0, 0, window.bounds.size.width, 40)] and:model and:window];
-                            
-                            model.ExtensionToolBarHeight = 40;
-                        }else{
-                            
-                            if([textView.inputAccessoryView isKindOfClass:[LJKeyboardToolBar class]]){
-                                
-                                textView.inputAccessoryView = [self reloadLJKeyboardToolBar:[self MadeToolBar:CGRectMake(0, 0, window.bounds.size.width, 40)] and:model and:window];
-                                model.ExtensionToolBarHeight = 40;
-                                
-                            }else{
-                                model.ExtensionToolBarHeight = textView.inputAccessoryView.bounds.size.height;
-                            }
-                            
-                        }
-                    }
-                }
+                [self configLJKeyboardToolBar:model andWindow:window];
+                
                 self.responderModel = model;
+                
                 [self customerKeyBroadChange];
+                
+                return YES;
+            }else{
+                
+                return NO;
+                
             }
+        }else{
+            
+            return NO;
+            
         }
     }
-    
-    
 }
 -(void)ShowKeyBroadAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight{
     
@@ -179,6 +136,65 @@
         self.KeyBroadHeight = 0.0;
     }
     return self;
+}
+
+-(void)configLJKeyboardToolBar:(LJKeyBroadRespoderModel*)model andWindow:(UIView*)window{
+    
+    
+    if([self.object_keyBroad respondsToSelector:@selector(TopSpacingToFirstResponder:)]){
+        model.topSpacingToFirstResponder = [self.object_keyBroad TopSpacingToFirstResponder:model.view];
+    }else{
+        model.topSpacingToFirstResponder = [LJkeyBroadConfig sharedInstance].topSpacingToFirstResponder;
+    }
+    if([self.object_keyBroad respondsToSelector:@selector(ShowExtensionToolBar:)]){
+        model.showExtensionToolBar = [self.object_keyBroad ShowExtensionToolBar:model.view];
+    }else{
+        model.showExtensionToolBar = [LJkeyBroadConfig sharedInstance].showExtensionToolBar;
+    }
+    if(model.showExtensionToolBar){
+        
+        if([model.view isKindOfClass:[UITextField class]]){
+            UITextField *textView = ((UITextField*)model.view);
+            if(textView.inputAccessoryView == nil){
+                
+                textView.inputAccessoryView = [self reloadLJKeyboardToolBar:[self MadeToolBar:CGRectMake(0, 0, window.bounds.size.width, 40)] and:model and:window];
+                
+                model.ExtensionToolBarHeight = 40;
+            }else{
+                
+                if([textView.inputAccessoryView isKindOfClass:[LJKeyboardToolBar class]]){
+                    
+                    textView.inputAccessoryView = [self reloadLJKeyboardToolBar:[self MadeToolBar:CGRectMake(0, 0, window.bounds.size.width, 40)] and:model and:window];
+                    model.ExtensionToolBarHeight = 40;
+                    
+                }else{
+                    model.ExtensionToolBarHeight = textView.inputAccessoryView.bounds.size.height;
+                }
+                
+            }
+        }
+        if([model.view isKindOfClass:[UITextView class]]){
+            UITextView *textView = ((UITextView*)model.view);
+            if(textView.inputAccessoryView == nil){
+                
+                textView.inputAccessoryView = [self reloadLJKeyboardToolBar:[self MadeToolBar:CGRectMake(0, 0, window.bounds.size.width, 40)] and:model and:window];
+                
+                model.ExtensionToolBarHeight = 40;
+            }else{
+                
+                if([textView.inputAccessoryView isKindOfClass:[LJKeyboardToolBar class]]){
+                    
+                    textView.inputAccessoryView = [self reloadLJKeyboardToolBar:[self MadeToolBar:CGRectMake(0, 0, window.bounds.size.width, 40)] and:model and:window];
+                    model.ExtensionToolBarHeight = 40;
+                    
+                }else{
+                    model.ExtensionToolBarHeight = textView.inputAccessoryView.bounds.size.height;
+                }
+                
+            }
+        }
+    }
+    
 }
 
 -(LJKeyboardToolBar*)reloadLJKeyboardToolBar:(LJKeyboardToolBar*)bar and:(LJKeyBroadRespoderModel*)model  and:(UIView*)window{

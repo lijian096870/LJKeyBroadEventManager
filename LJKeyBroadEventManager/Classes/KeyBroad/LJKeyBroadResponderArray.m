@@ -226,7 +226,7 @@
                         
                         CGRect tempViewframe = [temp convertRect:temp.bounds toView:window];
                         
-                        if(CGRectContainsPoint(tempViewframe, loaction.origin)||CGRectContainsPoint(tempViewframe, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y+loaction.size.height))||CGRectContainsPoint(tempViewframe, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y))||CGRectContainsPoint(tempViewframe, CGPointMake(loaction.origin.x, loaction.origin.y+loaction.size.height))||CGRectContainsRect(tempViewframe, loaction)){
+                        if(CGRectContainsPoint(tempViewframe, loaction.origin)&&CGRectContainsPoint(tempViewframe, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y+loaction.size.height))&&CGRectContainsPoint(tempViewframe, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y))&&CGRectContainsPoint(tempViewframe, CGPointMake(loaction.origin.x, loaction.origin.y+loaction.size.height))&&CGRectContainsRect(tempViewframe, loaction)){
                             
                             return YES;
                             
@@ -281,7 +281,7 @@
                 
                 CGRect superViewframe = [superView convertRect:superView.bounds toView:window];
                 
-                if(CGRectContainsPoint(superViewframe, loaction.origin)||CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y+loaction.size.height))||CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y))||CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x, loaction.origin.y+loaction.size.height))||CGRectContainsRect(superViewframe, loaction)){
+                if(CGRectContainsPoint(superViewframe, loaction.origin)&&CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y+loaction.size.height))&&CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y))&&CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x, loaction.origin.y+loaction.size.height))&&CGRectContainsRect(superViewframe, loaction)){
                     
                     return [self isOutLocationLoop:superView and:window AndinputView:inputView andRootView:rootView];
                     
