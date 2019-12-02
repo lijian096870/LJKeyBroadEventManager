@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "TestViewController.h"
+#import "LJClassAllocCallback.h"
+#import "LJViewKit.h"
 
 @interface AppDelegate ()
 
@@ -19,6 +21,16 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window.rootViewController = [[TestViewController alloc]init];
+    
+    [[LJClassAllocCallback  sharedInstance]ReplaceAllocMethod:NSClassFromString(@"UIRemoteKeyboardWindow") And:^(UIView *view) {
+        
+        viewAddFrameChangeBlock(view, ^(UIView *view, CGRect oldFrame, CGRect newFrame) {
+           
+            NSLog(@"%@",NSStringFromCGRect(newFrame));
+            
+        });
+        
+    }];
     return YES;
 }
 
