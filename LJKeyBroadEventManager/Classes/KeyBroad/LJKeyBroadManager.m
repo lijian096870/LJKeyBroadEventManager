@@ -15,7 +15,7 @@
 #import "LJViewControllerManager.h"
 #import "LJKeyBroadResponderArray.h"
 #import "LJKeyBroadMoveOffsetManager.h"
-
+#import "LJKeyboardReloadToolBar.h"
 @interface UIViewController ()<LJKeyboardManagerDelegate>
 
 @end
@@ -24,13 +24,13 @@
 
 @property(nonatomic,weak)UIViewController *object_keyBroad;
 
-@property(nonatomic,copy)dispatch_block_t dellocBlock;
+
 
 @property(nonatomic,strong)LJKeyBroadMoveOffsetManager *moveOffsetManager;
 
 @property(nonatomic,strong)LJKeyBroadRespoderModel *responderModel;
 
-@property(nonatomic,strong)LJKeyBroadRespoderModel *cancel_responderModel;
+@property(nonatomic,strong)LJKeyboardReloadToolBar *reloadTooBarUtil;
 
 @property(nonatomic,strong)NSMutableArray *ResponderArray;
 
@@ -42,7 +42,6 @@
 
 -(BOOL)ShowKeyBroad:(UIView*)view{
     
-    
     if(self.responderModel.view == view){
         
         return YES;
@@ -50,52 +49,27 @@
     }else{
         if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&[self.object_keyBroad isViewLoaded]&&[viewGetSuperController(view).keyBroad_mess_uniqueID isEqualToString:self.object_keyBroad.keyBroad_mess_uniqueID]){
             
-            if([self.responderModel isKindOfClass:LJKeyBroadRespoderModel.class]){
+            UIView *window = [self getSuperWindows:self.object_keyBroad.view];
+            
+            self.ResponderArray = [self ResponderArrayBy:self.object_keyBroad andWindow:window AndDontMove:view];
+            
+            LJKeyBroadRespoderModel *model = [self GetResponder:self.ResponderArray and:view];
+            
+            if([model isKindOfClass:LJKeyBroadRespoderModel.class]){
                 
-                UIView *window = [self getSuperWindows:self.object_keyBroad.view];
+                [self configLJKeyboardToolBar:model AndResponderArray:self.ResponderArray];
                 
-                self.ResponderArray = [self ResponderArrayBy:self.object_keyBroad andWindow:window AndDontMove:view];
+                self.responderModel = model;
                 
-                LJKeyBroadRespoderModel *model = [self GetResponder:self.ResponderArray and:view];
+                [self customerKeyBroadChange];
                 
-                if([model isKindOfClass:LJKeyBroadRespoderModel.class]){
-                    
-                    [self configLJKeyboardToolBar:model andWindow:window];
-                    
-                    self.responderModel = model;
-                    
-                    [self customerKeyBroadChange];
-                    
-                    return YES;
-                }else{
-                    
-                    return NO;
-                }
-                
+                return YES;
             }else{
                 
-                UIView *window = [self getSuperWindows:self.object_keyBroad.view];
-                
-                self.ResponderArray = [self ResponderArrayBy:self.object_keyBroad andWindow:window AndDontMove:view];
-                
-                LJKeyBroadRespoderModel *model = [self GetResponder:self.ResponderArray and:view];
-                
-                if([model isKindOfClass:LJKeyBroadRespoderModel.class]){
-                    
-                    [self configLJKeyboardToolBar:model andWindow:window];
-                    
-                    self.responderModel = model;
-                    
-                    [self customerKeyBroadChange];
-                    
-                    return YES;
-                }else{
-                    
-                    return NO;
-                    
-                }
+                return NO;
                 
             }
+            
         }else{
             
             return NO;
@@ -106,10 +80,15 @@
 -(void)ShowKeyBroadAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight{
     
     
-    NSLog(@"2222222,%@",view);
-    
     if([self.responderModel isKindOfClass:LJKeyBroadRespoderModel.class]){
         
+        if([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]]&&self.object_keyBroad.isViewLoaded){
+            
+            [LJKeyBroadResponderArray responderArrayRenewResponderLocation:self.ResponderArray AndDontMove:self.responderModel andRootView:self.object_keyBroad.view];
+            
+            [self.reloadTooBarUtil reloadLJKeyboardToolBarAndResponderModel:self.responderModel AndResponderArray:self.ResponderArray];
+        }
+
         [self.moveOffsetManager moveOffsetKeyBroadHeight:keyBroadHeight ResponderModel:self.responderModel];
         
     }
@@ -117,7 +96,7 @@
 
 -(void)keyBroadFrameChange:(UIView*)view andkeyBroadHeight:(CGFloat)keyBroadHeight{
     
-    if([self.responderModel isKindOfClass:LJKeyBroadRespoderModel.class]){
+    if([self.responderModel isKindOfClass:LJKeyBroadRespoderModel.class]&&self.responderModel.view == view){
         
         [self.moveOffsetManager moveOffsetKeyBroadHeight:keyBroadHeight ResponderModel:self.responderModel];
         
@@ -127,29 +106,24 @@
     
     NSLog(@"333333,%@",view);
     
-    if(self.responderModel.view == view){
-        self.cancel_responderModel = self.responderModel;
+    if([self.responderModel isKindOfClass:LJKeyBroadRespoderModel.class]&&self.responderModel.view == view){
         [self.ResponderArray removeAllObjects];
-        self.responderModel = nil;
     }
-    
 }
 -(void)HiddenBroadAnimation:(UIView *)view{
     
     NSLog(@"4444444,%@",view);
     
-    
-    if([self.cancel_responderModel isKindOfClass:LJKeyBroadRespoderModel.class]){
-        [self.moveOffsetManager endEditResponderModel:self.cancel_responderModel];
-        self.cancel_responderModel = nil;
+    if([self.responderModel isKindOfClass:LJKeyBroadRespoderModel.class]&&self.responderModel.view == view){
         
+        LJKeyBroadRespoderModel *model = self.responderModel;
+        
+        self.responderModel = nil;
+        
+        [self.moveOffsetManager endEditResponderModel:model];
     }
 }
 
--(void)configDestroyBlock:(dispatch_block_t)dellocBlock{
-    self.dellocBlock = dellocBlock;
-    
-}
 
 - (instancetype)initWithMaster_object_keyBroad:(UIViewController*)object
 {
@@ -160,121 +134,18 @@
     return self;
 }
 
--(void)configLJKeyboardToolBar:(LJKeyBroadRespoderModel*)model andWindow:(UIView*)window{
+-(void)configLJKeyboardToolBar:(LJKeyBroadRespoderModel*)model AndResponderArray:(NSArray*)responderArray{
     
+    [self.reloadTooBarUtil configLJKeyboardToolBar:model andNewToolBar:[self MadeToolBar:CGRectMake(0, 0, model.window.bounds.size.width, 40)] AndResponderArray:responderArray];
     
-    if([self.object_keyBroad respondsToSelector:@selector(TopSpacingToFirstResponder:)]){
-        model.topSpacingToFirstResponder = [self.object_keyBroad TopSpacingToFirstResponder:model.view];
-    }else{
-        model.topSpacingToFirstResponder = [LJkeyBroadConfig sharedInstance].topSpacingToFirstResponder;
-    }
-    if([self.object_keyBroad respondsToSelector:@selector(ShowExtensionToolBar:)]){
-        model.showExtensionToolBar = [self.object_keyBroad ShowExtensionToolBar:model.view];
-    }else{
-        model.showExtensionToolBar = [LJkeyBroadConfig sharedInstance].showExtensionToolBar;
-    }
-    if(model.showExtensionToolBar){
-        
-        if([model.view isKindOfClass:[UITextField class]]){
-            UITextField *textView = ((UITextField*)model.view);
-            if(textView.inputAccessoryView == nil){
-                
-                
-                textView.inputAccessoryView = [self reloadLJKeyboardToolBar:[self MadeToolBar:CGRectMake(0, 0, window.bounds.size.width, 40)] and:model];
-                
-                model.ExtensionToolBarHeight = 40;
-            }else{
-                
-                if([textView.inputAccessoryView isKindOfClass:[LJKeyboardToolBar class]]){
-                    
-                    textView.inputAccessoryView = [self reloadLJKeyboardToolBar:[self MadeToolBar:CGRectMake(0, 0, window.bounds.size.width, 40)] and:model];
-                    model.ExtensionToolBarHeight = 40;
-                    
-                }else{
-                    model.ExtensionToolBarHeight = textView.inputAccessoryView.bounds.size.height;
-                }
-            }
-        }
-        if([model.view isKindOfClass:[UITextView class]]){
-            UITextView *textView = ((UITextView*)model.view);
-            if(textView.inputAccessoryView == nil){
-                
-                textView.inputAccessoryView = [self reloadLJKeyboardToolBar:[self MadeToolBar:CGRectMake(0, 0, window.bounds.size.width, 40)] and:model];
-                
-                model.ExtensionToolBarHeight = 40;
-                
-            }else{
-                
-                if([textView.inputAccessoryView isKindOfClass:[LJKeyboardToolBar class]]){
-                    
-                    textView.inputAccessoryView = [self reloadLJKeyboardToolBar:[self MadeToolBar:CGRectMake(0, 0, window.bounds.size.width, 40)] and:model];
-                    model.ExtensionToolBarHeight = 40;
-                    
-                }else{
-                    model.ExtensionToolBarHeight = textView.inputAccessoryView.bounds.size.height;
-                }
-                
-            }
-        }
-    }
     __weak LJKeyBroadManager *weakself = self;
     [self.moveOffsetManager setMoveCallBlock:^(LJKeyBroadRespoderModel *model) {
         
-        if(weakself){
-            if([model isKindOfClass:LJKeyBroadRespoderModel.class]&&[model.view isKindOfClass:UIView.class]&&[model.window isKindOfClass:UIView.class]){
-                
-                UIView *bar = nil;
-                
-                if([model.view isKindOfClass:[UITextView class]]){
-                    UITextView *textView = ((UITextView*)model.view);
-                    bar = textView.inputAccessoryView;
-                    
-                }
-                if([model.view isKindOfClass:[UITextField class]]){
-                    UITextField *textView = ((UITextField*)model.view);
-                    bar = textView.inputAccessoryView;
-                    
-                }
-                if([bar isKindOfClass:LJKeyboardToolBar.class]){
-                    LJKeyboardToolBar *keyBroadBar = (LJKeyboardToolBar*)bar;
-                    
-                    [weakself reloadLJKeyboardToolBar:keyBroadBar and:model];
-                    
-                }
-                
-            }
+        if(weakself&&[model isKindOfClass:LJKeyBroadRespoderModel.class]&&[weakself ResponderArray].count>0){
+            
+            [weakself.reloadTooBarUtil reloadLJKeyboardToolBarAndResponderModel:model AndResponderArray:[weakself ResponderArray]];
         }
     }];
-}
-
-
--(LJKeyboardToolBar*)reloadLJKeyboardToolBar:(LJKeyboardToolBar*)bar and:(LJKeyBroadRespoderModel*)model{
-    
-    if(self.object_keyBroad.isViewLoaded && [model isKindOfClass:LJKeyBroadRespoderModel.class]){
-        LJKeyBroadRespoderModel *leftModel = [LJKeyBroadResponderArray CanLeftArrowButton:model AndResponderArray:self.ResponderArray andRootView:self.object_keyBroad.view];
-        
-        if([leftModel isKindOfClass:LJKeyBroadRespoderModel.class]){
-            
-            bar.leftbtn.enabled = YES;
-            
-        }else{
-            bar.leftbtn.enabled = NO;
-        }
-        
-        LJKeyBroadRespoderModel *rightModel = [LJKeyBroadResponderArray CanRightArrowButton:model AndResponderArray:self.ResponderArray andRootView:self.object_keyBroad.view];
-        
-        if([rightModel isKindOfClass:LJKeyBroadRespoderModel.class]){
-            bar.rightbtn.enabled = YES;
-        }else{
-            bar.rightbtn.enabled = NO;
-        }
-        
-    }else{
-        bar.leftbtn.enabled = NO;
-        bar.rightbtn.enabled = NO;
-        
-    }
-    return bar;
 }
 
 - (LJKeyboardToolBar *)MadeToolBar:(CGRect)frame{
@@ -296,6 +167,9 @@
         }
     }];
 }
+
+
+
 - (void)didClickedLeftArrowButton{
     
     if(self.responderModel&&[self.responderModel.view isKindOfClass:[UIView class]]){
@@ -399,12 +273,14 @@
     return _moveOffsetManager;
     
 }
-
-- (void)dealloc
-{
-    if(self.dellocBlock){
-        self.dellocBlock();
+-(LJKeyboardReloadToolBar*)reloadTooBarUtil{
+    
+    if(_reloadTooBarUtil==nil){
+        _reloadTooBarUtil = [[LJKeyboardReloadToolBar alloc]initWithMaster_object_keyBroad:self.object_keyBroad];
     }
+    return _reloadTooBarUtil;
+    
 }
+
 @end
 

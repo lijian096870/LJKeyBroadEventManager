@@ -30,6 +30,20 @@
         return mess;
     }
 }
+
+- (LJKeyBoradEventResponderModel *)NSObject_KeyBoradEventResponderModel_viewController_info
+{
+    id obj=objc_getAssociatedObject(self, @selector(NSObject_KeyBoradEventResponderModel_viewController_info));
+    if([obj isKindOfClass:[LJKeyBoradEventResponderModel class]]){
+        return obj;
+    }else{
+        LJKeyBoradEventResponderModel *mess=[[LJKeyBoradEventResponderModel alloc] initWithMaster_object_keyBroad:self];
+        objc_setAssociatedObject(self, @selector(NSObject_KeyBoradEventResponderModel_viewController_info), mess, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        return mess;
+    }
+}
+
+
 - (NSString *)keyBroad_mess_uniqueID
 {
     NSString* obj=objc_getAssociatedObject(self, @selector(keyBroad_mess_uniqueID));

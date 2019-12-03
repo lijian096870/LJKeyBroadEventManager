@@ -67,7 +67,7 @@
             if([viewController isKindOfClass:[UIViewController class]]){
                 if([self isRegister:viewController.keyBroad_mess_uniqueID]){
                     
-                    return [viewController.NSObject_KeyBoradManager_info ShowKeyBroad:view];
+                    return [viewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowKeyBroad:view];
                     
                 }
             }
@@ -80,7 +80,7 @@
             if([viewController isKindOfClass:[UIViewController class]]){
                 if([self isRegister:viewController.keyBroad_mess_uniqueID]){
                     
-                    [viewController.NSObject_KeyBoradManager_info ShowKeyBroadAnimation:view andkeyBroadHeight:keyBroadHeight];
+                    [viewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowKeyBroadAnimation:view andkeyBroadHeight:keyBroadHeight];
                     
                 }
             }
@@ -90,8 +90,7 @@
             UIViewController *viewController = viewGetSuperController(view);
             if([viewController isKindOfClass:[UIViewController class]]){
                 if([self isRegister:viewController.keyBroad_mess_uniqueID]){
-                    
-                    [viewController.NSObject_KeyBoradManager_info keyBroadFrameChange:view andkeyBroadHeight:keyBroadHeight];
+                    [viewController.NSObject_KeyBoradEventResponderModel_viewController_info keyBroadFrameChange:view andkeyBroadHeight:keyBroadHeight];
                     
                 }
             }
@@ -102,7 +101,7 @@
             if([viewController isKindOfClass:[UIViewController class]]){
                 if([self isRegister:viewController.keyBroad_mess_uniqueID]){
                     
-                    [viewController.NSObject_KeyBoradManager_info HiddenKeyBroad:view];
+                    [viewController.NSObject_KeyBoradEventResponderModel_viewController_info HiddenKeyBroad:view];
                     
                 }
             }
@@ -112,7 +111,7 @@
             if([viewController isKindOfClass:[UIViewController class]]){
                 if([self isRegister:viewController.keyBroad_mess_uniqueID]){
                     
-                    [viewController.NSObject_KeyBoradManager_info HiddenBroadAnimation:view];
+                    [viewController.NSObject_KeyBoradEventResponderModel_viewController_info HiddenBroadAnimation:view];
                     
                 }
             }
@@ -125,7 +124,7 @@
         NSString *ID = keyBroadResponder.keyBroad_mess_uniqueID;
         [self.set addObject:ID];
         
-        [keyBroadResponder.NSObject_KeyBoradManager_info configDestroyBlock:^{
+        [keyBroadResponder.NSObject_KeyBoradEventResponderModel_viewController_info configDestroyBlock:^{
             [self.set removeObject:ID];
         }];
         

@@ -33,103 +33,117 @@
 
 -(void)addlister{
     
-//      __weak LJKeyBroadNotificationManager *weakself = self;
-//
-//    [NSNotificationCenter registerNotificationAfterBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
-//
-//        if([weakself isKindOfClass:LJKeyBroadNotificationManager.class]){
-//
-//            [weakself keyboardDidShow:aUserInfo];
-//
-//        }
-//
-//    } AndName:UIKeyboardDidShowNotification anyKey:self.randStringID];
+    __weak LJKeyBroadNotificationManager *weakself = self;
+    
+    [NSNotificationCenter registerNotificationAfterBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
+        
+        if([weakself isKindOfClass:LJKeyBroadNotificationManager.class]){
+            
+            [weakself keyboardShow:aUserInfo];
+            
+        }
+        
+    } AndName:UIKeyboardDidShowNotification anyKey:self.randStringID];
     
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
+    
+    [NSNotificationCenter registerNotificationBeforeBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
+        
+        if([weakself isKindOfClass:LJKeyBroadNotificationManager.class]){
+            
+            [weakself keyboardHide:aUserInfo];
+            
+        }
+        
+    } AndName:UIKeyboardWillHideNotification anyKey:self.randStringID];
     
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillChange:)
-                                                 name:UIKeyboardWillChangeFrameNotification
-                                               object:nil];
+    [NSNotificationCenter registerNotificationBeforeBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
+        
+        if([weakself isKindOfClass:LJKeyBroadNotificationManager.class]){
+            
+            [weakself keyboardChange:aUserInfo];
+            
+        }
+        
+        
+    } AndName:UIKeyboardWillChangeFrameNotification anyKey:self.randStringID];
+    
+    
     
 }
--(void)keyboardDidShow:(NSDictionary*)aUserInfo{
-        
-    UIView *view = (UIView *)[UIResponder lj_currentFirstResponder];
-    if([view isKindOfClass:UITextField.class]||[view isKindOfClass:UITextView.class]){
-        
-        for (NSString *Key in self.keyBroadNotificationBlockDictionary.allKeys) {
-            if([Key isEqualToString:UIKeyboardWillShowNotification]){
-                
-                NSArray *array = [self.keyBroadNotificationBlockDictionary objectForKey:Key];
-                
-                for (NSString *NotKey in aUserInfo.allKeys) {
-                    if([NotKey isEqualToString:UIKeyboardFrameEndUserInfoKey]){
-                        
-                        NSValue *aValue = [aUserInfo objectForKey:NotKey];
-                        CGRect keyboardRect = [aValue CGRectValue];
-                        CGFloat height = keyboardRect.size.height;
-                        
-                        for (KeyBroadNotificationBlock block in array) {
-                            if(block){
-                                block(view,height);
+-(void)keyboardShow:(NSDictionary*)aUserInfo{
+    
+    if([aUserInfo isKindOfClass:NSDictionary.class]){
+        UIView *view = (UIView *)[UIResponder lj_currentFirstResponder];
+        if([view isKindOfClass:UITextField.class]||[view isKindOfClass:UITextView.class]){
+            
+            for (NSString *Key in self.keyBroadNotificationBlockDictionary.allKeys) {
+                if([Key isEqualToString:UIKeyboardWillShowNotification]){
+                    
+                    NSArray *array = [self.keyBroadNotificationBlockDictionary objectForKey:Key];
+                    
+                    for (NSString *NotKey in aUserInfo.allKeys) {
+                        if([NotKey isEqualToString:UIKeyboardFrameEndUserInfoKey]){
+                            
+                            NSValue *aValue = [aUserInfo objectForKey:NotKey];
+                            CGRect keyboardRect = [aValue CGRectValue];
+                            CGFloat height = keyboardRect.size.height;
+                            
+                            for (KeyBroadNotificationBlock block in array) {
+                                if(block){
+                                    block(view,height);
+                                }
                             }
+                            break;
                         }
-                        break;
                     }
+                    
                 }
-                
             }
         }
     }
     
     
+    
 }
--(void)keyboardWillChange:(NSNotification*)not{
+-(void)keyboardChange:(NSDictionary*)aUserInfo{
     
-    NSDictionary *aUserInfo = not.userInfo;
-    
-    UIView *view = (UIView *)[UIResponder lj_currentFirstResponder];
-    
-    if([view isKindOfClass:UITextField.class]||[view isKindOfClass:UITextView.class]){
+    if([aUserInfo isKindOfClass:NSDictionary.class]){
+        UIView *view = (UIView *)[UIResponder lj_currentFirstResponder];
         
-        for (NSString *Key in self.keyBroadNotificationBlockDictionary.allKeys) {
-            if([Key isEqualToString:UIKeyboardWillChangeFrameNotification]){
-                
-                NSArray *array = [self.keyBroadNotificationBlockDictionary objectForKey:Key];
-                
-                for (NSString *NotKey in aUserInfo.allKeys) {
-                    if([NotKey isEqualToString:UIKeyboardFrameEndUserInfoKey]){
-                        
-                        NSValue *aValue = [aUserInfo objectForKey:NotKey];
-                        CGRect keyboardRect = [aValue CGRectValue];
-                        CGFloat height = keyboardRect.size.height;
-                        
-                        for (KeyBroadNotificationBlock block in array) {
-                            if(block){
-                                block(view,height);
+        if([view isKindOfClass:UITextField.class]||[view isKindOfClass:UITextView.class]){
+            
+            for (NSString *Key in self.keyBroadNotificationBlockDictionary.allKeys) {
+                if([Key isEqualToString:UIKeyboardWillChangeFrameNotification]){
+                    
+                    NSArray *array = [self.keyBroadNotificationBlockDictionary objectForKey:Key];
+                    
+                    for (NSString *NotKey in aUserInfo.allKeys) {
+                        if([NotKey isEqualToString:UIKeyboardFrameEndUserInfoKey]){
+                            
+                            NSValue *aValue = [aUserInfo objectForKey:NotKey];
+                            CGRect keyboardRect = [aValue CGRectValue];
+                            CGFloat height = keyboardRect.size.height;
+                            
+                            for (KeyBroadNotificationBlock block in array) {
+                                if(block){
+                                    block(view,height);
+                                }
                             }
+                            break;
                         }
-                        break;
                     }
+                    
                 }
-                
             }
+            
         }
-        
     }
+
 }
 
--(void)keyboardWillHide:(NSNotification*)not{
+-(void)keyboardHide:(NSDictionary*)aUserInfo{
     
     UIView *view = (UIView *)[UIResponder lj_currentFirstResponder];
     
@@ -137,14 +151,6 @@
         
         [self keyboardWillHideView:view];
         
-    }else{
-        UIView *view = (UIView *)[UIResponder lj_currentBecomeFirstResponderIng];
-        
-        if([view isKindOfClass:UITextField.class]||[view isKindOfClass:UITextView.class]){
-            
-            [self keyboardWillHideView:view];
-            
-        }
     }
 }
 
@@ -170,35 +176,7 @@
 }
 -(void)keyboardWillShow:(NSNotification*)not{
     
-    NSDictionary *aUserInfo = not.userInfo;
-    
-    UIView *view = (UIView *)[UIResponder lj_currentFirstResponder];
-    if([view isKindOfClass:UITextField.class]||[view isKindOfClass:UITextView.class]){
-        
-        for (NSString *Key in self.keyBroadNotificationBlockDictionary.allKeys) {
-            if([Key isEqualToString:UIKeyboardWillShowNotification]){
-                
-                NSArray *array = [self.keyBroadNotificationBlockDictionary objectForKey:Key];
-                
-                for (NSString *NotKey in aUserInfo.allKeys) {
-                    if([NotKey isEqualToString:UIKeyboardFrameEndUserInfoKey]){
-                        
-                        NSValue *aValue = [aUserInfo objectForKey:NotKey];
-                        CGRect keyboardRect = [aValue CGRectValue];
-                        CGFloat height = keyboardRect.size.height;
-                        
-                        for (KeyBroadNotificationBlock block in array) {
-                            if(block){
-                                block(view,height);
-                            }
-                        }
-                        break;
-                    }
-                }
-                
-            }
-        }
-    }
+    [self keyboardShow:not.userInfo];
     
     
 }
@@ -246,8 +224,6 @@
         [array addObject:block];
         [self.keyBroadNotificationBlockDictionary setObject:array forKey:Name];
     }
-    
-    
 }
 
 -(NSMutableDictionary*)keyBroadNotificationBlockDictionary{

@@ -15,15 +15,9 @@ static NSMutableArray *resignFirstResponderCallBackBlockArray;
 static canBecomeFirstResponderCallBackBlock canBecomeFirstResponder = nil;
 
 static __weak UIResponder *lj_currentFirstResponder;
-static __weak UIResponder *lj_currentBecomeFirstResponderIng;
 
 @implementation UIResponder (becomeFirstResponderCallBack)
 
-
-+(UIResponder*)lj_currentBecomeFirstResponderIng{
-    
-    return lj_currentBecomeFirstResponderIng;
-}
 
 + (UIResponder *)lj_currentFirstResponder{
     
@@ -116,10 +110,7 @@ static __weak UIResponder *lj_currentBecomeFirstResponderIng;
 }
 
 - (BOOL)Customer_becomeFirstResponder{
-    
-    
-    
-    
+
     if([self isKindOfClass:[UITextView class]]||[self isKindOfClass:[UITextField class]]){
         
         if(canBecomeFirstResponder){
@@ -128,13 +119,11 @@ static __weak UIResponder *lj_currentBecomeFirstResponderIng;
                 
                 if(self.keyBroad_FirstResponder_info.isFirstResponder){
                     
-                    lj_currentBecomeFirstResponderIng = self;
                     BOOL result = [self Customer_becomeFirstResponder];
-                    lj_currentBecomeFirstResponderIng = nil;
                     return result;
                     
                 }else{
-
+                    
                     BOOL canBeFirst = YES;
                     for (becomeFirstResponderCallBackBlock block in becomeFirstResponderCallBackBlockArray) {
                         canBeFirst = block((UIView*)self) && canBeFirst;
@@ -144,9 +133,7 @@ static __weak UIResponder *lj_currentBecomeFirstResponderIng;
                         
                         self.keyBroad_FirstResponder_info.isFirstResponder = true;
                         
-                        lj_currentBecomeFirstResponderIng = self;
                         BOOL result = [self Customer_becomeFirstResponder];
-                        lj_currentBecomeFirstResponderIng = nil;
                         
                         return result;
                     }else{
@@ -163,14 +150,12 @@ static __weak UIResponder *lj_currentBecomeFirstResponderIng;
             
             if(self.keyBroad_FirstResponder_info.isFirstResponder){
                 
-                lj_currentBecomeFirstResponderIng = self;
                 BOOL result = [self Customer_becomeFirstResponder];
-                lj_currentBecomeFirstResponderIng = nil;
                 return result;
                 
             }else{
                 
-
+                
                 BOOL canBeFirst = YES;
                 for (becomeFirstResponderCallBackBlock block in becomeFirstResponderCallBackBlockArray) {
                     canBeFirst = block((UIView*)self) && canBeFirst;
@@ -179,9 +164,8 @@ static __weak UIResponder *lj_currentBecomeFirstResponderIng;
                     
                     self.keyBroad_FirstResponder_info.isFirstResponder = true;
                     
-                    lj_currentBecomeFirstResponderIng = self;
                     BOOL result = [self Customer_becomeFirstResponder];
-                    lj_currentBecomeFirstResponderIng = nil;
+                    
                     return result;
                 }else{
                     return false;

@@ -20,6 +20,8 @@
 
 @property(nonatomic,strong)NSNumber *keyBroadHeightNumber;
 
+@property(nonatomic,strong)NSNumber *moveOffsetNumber;
+
 @end
 
 @implementation LJKeyBroadMoveOffsetManager
@@ -39,6 +41,7 @@
     if([model isKindOfClass:LJKeyBroadRespoderModel.class] && [model.view isKindOfClass:UIView.class]){
         
         self.keyBroadHeightNumber = [NSNumber numberWithFloat:0.0];
+        self.moveOffsetNumber = [NSNumber numberWithFloat:0.0];
         
         [self moveOffset:0.0 ResponderModel:model];
     }
@@ -57,7 +60,6 @@
 
 -(void)moveOffset:(CGFloat)offset ResponderModel:(LJKeyBroadRespoderModel *)model{
     
-    
     if([self.currentNumber isKindOfClass:[NSNumber class]]){
         
         if([self.currentNumber floatValue] == offset){
@@ -74,21 +76,25 @@
                     
                 }
                 
+                self.moveOffsetNumber = [NSNumber numberWithFloat:offset];
+                
                 if([self.object_keyBroad respondsToSelector:@selector(keyBroadOffset:Responder:)]){
                     
                     [self.object_keyBroad keyBroadOffset:-offset Responder:model.view];
                 }
                 CGFloat scrollOffsect = [self.object_keyBroad claculateScrollerViewOffset:-offset];
+                
+                
                 if([self.object_keyBroad respondsToSelector:@selector(keyBroadScrollOffset:Responder:)]){
                     
                     [self.object_keyBroad keyBroadScrollOffset:-scrollOffsect Responder:model.view];
                     
                 }
-
+                
                 if(self.moveCallBlock){
                     self.moveCallBlock(model);
                 }
-
+                
             }
         }
         
@@ -105,12 +111,18 @@
                     [self.object_keyBroad keyBroadOffset:-offset];
                     
                 }
+                
+                  self.moveOffsetNumber = [NSNumber numberWithFloat:offset];
+                
                 if([self.object_keyBroad respondsToSelector:@selector(keyBroadOffset:Responder:)]){
                     
                     [self.object_keyBroad keyBroadOffset:-offset Responder:model.view];
                 }
                 
                 CGFloat scrollOffsect = [self.object_keyBroad claculateScrollerViewOffset:-offset];
+                
+              
+                
                 if([self.object_keyBroad respondsToSelector:@selector(keyBroadScrollOffset:Responder:)]){
                     [self.object_keyBroad keyBroadScrollOffset:-scrollOffsect Responder:model.view];
                 }
@@ -131,6 +143,11 @@
     return result;
 }
 
+-(CGFloat)moveOffset{
+    
+    return [self.moveOffsetNumber floatValue];
+    
+}
 -(NSNumber*)keyBroadHeightNumber{
     
     if(_keyBroadHeightNumber == nil){
@@ -139,5 +156,12 @@
     return _keyBroadHeightNumber;
     
 }
-
+-(NSNumber*)moveOffsetNumber{
+    
+    if(_moveOffsetNumber==nil){
+        _moveOffsetNumber = [NSNumber numberWithFloat:0.0];
+    }
+    return _moveOffsetNumber;
+    
+}
 @end

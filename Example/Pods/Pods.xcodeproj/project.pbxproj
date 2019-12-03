@@ -19,6 +19,10 @@
 		235FB0080BCE8F9B33D6230FA3710337 /* LJKeyBroadBecomeFirstOpertor.h in Headers */ = {isa = PBXBuildFile; fileRef = E3C420A6D8C41E1C59485472820ECFCE /* LJKeyBroadBecomeFirstOpertor.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		24D5236E23960850009C9A37 /* NSNotificationCenter+LJKeyBroad.h in Headers */ = {isa = PBXBuildFile; fileRef = 24D5236C2396084F009C9A37 /* NSNotificationCenter+LJKeyBroad.h */; };
 		24D5236F23960850009C9A37 /* NSNotificationCenter+LJKeyBroad.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D5236D23960850009C9A37 /* NSNotificationCenter+LJKeyBroad.m */; };
+		30720B7A2396549C00290352 /* LJKeyBoradEventResponderModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 30720B782396549C00290352 /* LJKeyBoradEventResponderModel.h */; };
+		30720B7B2396549C00290352 /* LJKeyBoradEventResponderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30720B792396549C00290352 /* LJKeyBoradEventResponderModel.m */; };
+		30720B7E23965C6100290352 /* LJKeyboardReloadToolBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 30720B7C23965C6100290352 /* LJKeyboardReloadToolBar.h */; };
+		30720B7F23965C6100290352 /* LJKeyboardReloadToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 30720B7D23965C6100290352 /* LJKeyboardReloadToolBar.m */; };
 		3A80F04E92C7DC864B725749F4D0159C /* UIViewController+LJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A81B06A97AF8B2F24848CBDE5ABE85AA /* UIViewController+LJViewController.m */; };
 		4146A669751020D5369A5670EEA7A124 /* LJView_info_ViewController_ViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = BACB5204E257E0F5B3849D73ED6D3FA1 /* LJView_info_ViewController_ViewModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		4918B66382E78E3B475A44E63D2BF1CD /* FirstResponderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6E0B7968D98DCF6173FCFC6D2892D /* FirstResponderModel.m */; };
@@ -93,6 +97,10 @@
 		2C4024FAFB7B06237B505F5AE280AA62 /* UIResponder+becomeFirstResponderCallBack.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+becomeFirstResponderCallBack.m"; sourceTree = "<group>"; };
 		2E455B2C71186B74486395985C71FD88 /* LJView_info_ViewController_ViewModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LJView_info_ViewController_ViewModel.m; path = LJViewController/Classes/LJView_info_ViewController_ViewModel.m; sourceTree = "<group>"; };
 		2E5B6D42F2E1C4FFCC8EB5750C3120A3 /* LJKeyBroadResponderArray.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LJKeyBroadResponderArray.m; sourceTree = "<group>"; };
+		30720B782396549C00290352 /* LJKeyBoradEventResponderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJKeyBoradEventResponderModel.h; sourceTree = "<group>"; };
+		30720B792396549C00290352 /* LJKeyBoradEventResponderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJKeyBoradEventResponderModel.m; sourceTree = "<group>"; };
+		30720B7C23965C6100290352 /* LJKeyboardReloadToolBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJKeyboardReloadToolBar.h; sourceTree = "<group>"; };
+		30720B7D23965C6100290352 /* LJKeyboardReloadToolBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJKeyboardReloadToolBar.m; sourceTree = "<group>"; };
 		35F999511E63568C4BA0380A359F9D76 /* LJkeyBroadEventManager.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = LJkeyBroadEventManager.bundle; path = LJKeyBroadEventManager/Assets/LJkeyBroadEventManager.bundle; sourceTree = "<group>"; };
 		3DB6E0B7968D98DCF6173FCFC6D2892D /* FirstResponderModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = FirstResponderModel.m; sourceTree = "<group>"; };
 		3E8C61849D550CB7B12E9CC53B207874 /* LJKeyBroadNotificationManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LJKeyBroadNotificationManager.m; sourceTree = "<group>"; };
@@ -247,6 +255,10 @@
 				4EBB3AC3608DD3C8EC10C77060C2B964 /* UIViewController+KeyBoradManager.m */,
 				24D5236C2396084F009C9A37 /* NSNotificationCenter+LJKeyBroad.h */,
 				24D5236D23960850009C9A37 /* NSNotificationCenter+LJKeyBroad.m */,
+				30720B782396549C00290352 /* LJKeyBoradEventResponderModel.h */,
+				30720B792396549C00290352 /* LJKeyBoradEventResponderModel.m */,
+				30720B7C23965C6100290352 /* LJKeyboardReloadToolBar.h */,
+				30720B7D23965C6100290352 /* LJKeyboardReloadToolBar.m */,
 			);
 			name = KeyBroad;
 			path = LJKeyBroadEventManager/Classes/KeyBroad;
@@ -381,12 +393,14 @@
 				D31A236C521317623B1D6DEED99C9290 /* LJKeyBroadEventManager.h in Headers */,
 				835F0779885254BC107AE78625442163 /* LJKeyBroadManager.h in Headers */,
 				0486D35CC09FA7C1046FFB464E73DD4C /* LJKeyBroadMoveOffsetManager.h in Headers */,
+				30720B7E23965C6100290352 /* LJKeyboardReloadToolBar.h in Headers */,
 				ACF3BF44F1C306B0689312420E9D9A44 /* LJKeyBroadNotificationManager.h in Headers */,
 				78CA1CB1921DCDA2654606C3D88CF41A /* LJKeyBroadRegisterManager.h in Headers */,
 				7A663DAF2234790E7040B82E58E023C5 /* LJKeyBroadRespoderModel.h in Headers */,
 				A18FCDD1AF9A6846DE579B22B657A24C /* LJKeyBroadResponderArray.h in Headers */,
 				11F3DF13A56B2B26501B52E81B4CC118 /* UIResponder+becomeFirstResponderCallBack.h in Headers */,
 				0C8B2683D7B22CA1B07AB970A6DC09A9 /* UIViewController+KeyBoradManager.h in Headers */,
+				30720B7A2396549C00290352 /* LJKeyBoradEventResponderModel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +498,8 @@
 				83FDD93D3312076873EF742CB160BE03 /* KeyBroadRandString.m in Sources */,
 				5964E46F3B8EF414549B2ECB68384684 /* LJKeyboardToolBar.m in Sources */,
 				790DB7DFBC1B72CF470CBA22449DA07C /* LJKeyBraodResponderCallBlockModel.m in Sources */,
+				30720B7B2396549C00290352 /* LJKeyBoradEventResponderModel.m in Sources */,
+				30720B7F23965C6100290352 /* LJKeyboardReloadToolBar.m in Sources */,
 				BE88F57A7FB5A0DEA4BDD8D09550C8B2 /* LJKeyBroadBecomeFirstOpertor.m in Sources */,
 				E7CEBBD8C4369FB2DBA2F5D942DBF627 /* LJkeyBroadConfig.m in Sources */,
 				E525D6213EA1E9A0E11E61573E93DC49 /* LJKeyBroadEvent.m in Sources */,

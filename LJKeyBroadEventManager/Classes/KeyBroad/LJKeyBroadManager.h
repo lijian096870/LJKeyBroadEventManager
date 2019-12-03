@@ -21,7 +21,7 @@
 
 -(void)HiddenBroadAnimation:(UIView *)view;
 
--(void)configDestroyBlock:(dispatch_block_t)dellocBlock;
+
 
 @end
 

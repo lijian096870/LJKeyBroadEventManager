@@ -17,6 +17,92 @@
 @implementation LJKeyBroadResponderArray
 
 
++(void)responderArrayRenewResponderLocation:(NSMutableArray*)responderArray AndDontMove:(LJKeyBroadRespoderModel*)model andRootView:(UIView*)rootView{
+    
+    if(responderArray.count>0&&[model isKindOfClass:LJKeyBroadRespoderModel.class]&&[model.window isKindOfClass:UIView.class]&&[model.view isKindOfClass:UIView.class]){
+        
+        @autoreleasepool {
+            
+            [self responderArrayRenewResponderLocationRemoveOutLocation:responderArray AndDontMove:model andRootView:rootView];
+            
+            [self removeRepeatLocation:responderArray AndWindow:model.window AndDontMove:model.view];
+            
+            [self responderArray:responderArray MustHaveModel:model];
+            
+            [self sortArray:responderArray];
+            
+            [self RenewLocationDistanceInfo:responderArray andWindow:model.window];
+        }
+    }
+}
++(void)responderArray:(NSMutableArray*)array MustHaveModel:(LJKeyBroadRespoderModel*)model{
+    
+    for (LJKeyBroadRespoderModel *temp in array) {
+        if(temp == model){
+            return;
+        }
+    }
+    
+    [array removeAllObjects];
+    [array addObject:model];
+}
+
++(void)RenewLocationDistanceInfo:(NSArray*)array andWindow:(UIView*)window{
+    
+    LJKeyBroadRespoderModel *model = nil;
+    
+    for (int i = 0; i<array.count; i++) {
+        
+        LJKeyBroadRespoderModel *current = [array objectAtIndex:i];
+        
+        if([current.view isKindOfClass:UIView.class]&&[current.window isKindOfClass:UIView.class]){
+            
+            current.responderLocation = [current.view convertRect:current.view.bounds toView:current.window];
+            
+            if([model isKindOfClass:LJKeyBroadRespoderModel.class]){
+                
+                CGFloat dis = [self dis:current.view and:model.view and:window];
+                model.nextDis = dis;
+                model.nextView = current.view;
+                current.aheadDis = dis;
+                current.aheadView = model.view;
+                
+            }
+            
+        }
+        
+        model = current;
+    }
+    
+}
++(void)responderArrayRenewResponderLocationRemoveOutLocation:(NSMutableArray*)responderArray AndDontMove:(LJKeyBroadRespoderModel*)model andRootView:(UIView*)rootView{
+    
+    NSArray *tempArray = [NSArray arrayWithArray:responderArray];
+    
+    for (LJKeyBroadRespoderModel *tempModel in tempArray) {
+        if(tempModel == model){
+            
+        }else{
+            if([tempModel.view isKindOfClass:UIView.class]){
+                if([self canBeEditResponder:tempModel.view andWindow:model.window andRootView:rootView AndisStrict:YES]){
+                    
+                }else{
+                    [responderArray removeObject:tempModel];
+                }
+                
+                
+                
+            }else{
+                [responderArray removeObject:tempModel];
+            }
+            
+        }
+        
+    }
+    
+    
+}
+
 +(void)loopSubView:(NSMutableArray*)array and:(UIView*)view andWindow:(UIView*)window AndDontMove:(UIView*)DonMoveView{
     
     @autoreleasepool {

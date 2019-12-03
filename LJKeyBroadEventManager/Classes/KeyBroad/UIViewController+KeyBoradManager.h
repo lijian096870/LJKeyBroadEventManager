@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 
 #import "LJKeyBroadManager.h"
+#import "LJKeyBoradEventResponderModel.h"
 
 @interface UIViewController (KeyBoradManager)
 
 - (LJKeyBroadManager *)NSObject_KeyBoradManager_info;
+- (LJKeyBoradEventResponderModel *)NSObject_KeyBoradEventResponderModel_viewController_info;
+
 
 - (NSString *)keyBroad_mess_uniqueID;
 

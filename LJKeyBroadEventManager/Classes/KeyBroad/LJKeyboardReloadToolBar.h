@@ -5,12 +5,21 @@
 //  Created by lijian on 2019/12/3.
 //
 
-#import <Foundation/Foundation.h>
-
-NS_ASSUME_NONNULL_BEGIN
+#import <UIKit/UIKit.h>
+#import "LJKeyboardToolBar.h"
+#import "LJKeyBroadRespoderModel.h"
 
 @interface LJKeyboardReloadToolBar : NSObject
 
+
+- (instancetype)initWithMaster_object_keyBroad:(UIViewController*)object;
+
+
+-(void)configLJKeyboardToolBar:(LJKeyBroadRespoderModel*)model andNewToolBar:(LJKeyboardToolBar*)bar AndResponderArray:(NSArray*)responderArray;
+
+
+-(void)reloadLJKeyboardToolBarAndResponderModel:(LJKeyBroadRespoderModel*)model AndResponderArray:(NSArray*)responderArray;
+
+
 @end
 
-NS_ASSUME_NONNULL_END

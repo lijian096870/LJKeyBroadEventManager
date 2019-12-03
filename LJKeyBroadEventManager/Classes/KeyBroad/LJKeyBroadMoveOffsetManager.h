@@ -18,6 +18,9 @@ typedef void(^moveOffsetKeyBlock)(LJKeyBroadRespoderModel *model);
 
 @property(nonatomic,assign,readonly)CGFloat keyBroadHeight;
 
+@property(nonatomic,assign,readonly)CGFloat moveOffset;
+
+
 @property(nonatomic,copy)moveOffsetKeyBlock moveCallBlock;
 
 -(void)moveOffsetKeyBroadHeight:(CGFloat)keyBroadHeight ResponderModel:(LJKeyBroadRespoderModel *)model;

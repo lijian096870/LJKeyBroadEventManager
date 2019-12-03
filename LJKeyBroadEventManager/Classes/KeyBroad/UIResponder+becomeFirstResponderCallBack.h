@@ -23,7 +23,6 @@ typedef BOOL(^canBecomeFirstResponderCallBackBlock)(UIView *view);
 
 
 + (UIResponder *)lj_currentFirstResponder;
-+(UIResponder*)lj_currentBecomeFirstResponderIng;
 
 @end
 
