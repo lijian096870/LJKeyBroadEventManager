@@ -28,6 +28,12 @@
 @implementation LJKeyBroadRespoderModel
 
 
+-(CGRect)windowBounds{
+    
+    return self.window.bounds;
+    
+}
+
 -(void)setNextDis:(CGFloat)nextDis{
     self.nextDis_temp = [NSNumber numberWithFloat:nextDis];
 }

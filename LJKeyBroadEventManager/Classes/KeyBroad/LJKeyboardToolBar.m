@@ -17,8 +17,6 @@
 
 @implementation LJKeyboardToolBar
 
-
-
 -(UIButton*)MadeButton:(NSString*)ImageName{
     
     

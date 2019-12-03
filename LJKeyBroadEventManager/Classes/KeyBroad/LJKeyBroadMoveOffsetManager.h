@@ -6,13 +6,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LJKeyBroadRespoderModel.h"
+
+
+typedef void(^moveOffsetKeyBlock)(LJKeyBroadRespoderModel *model);
 
 @interface LJKeyBroadMoveOffsetManager : NSObject
 
 - (instancetype)initWithMaster_object_keyBroad:(UIViewController*)object;
 
 
--(void)moveOffset:(CGFloat)offset Responder:(UIView*)Responder;
+@property(nonatomic,assign,readonly)CGFloat keyBroadHeight;
+
+@property(nonatomic,copy)moveOffsetKeyBlock moveCallBlock;
+
+-(void)moveOffsetKeyBroadHeight:(CGFloat)keyBroadHeight ResponderModel:(LJKeyBroadRespoderModel *)model;
+
+
+-(void)endEditResponderModel:(LJKeyBroadRespoderModel *)model;
+
 @end
 
 

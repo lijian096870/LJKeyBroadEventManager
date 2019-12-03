@@ -24,9 +24,7 @@
     self.tableView.contentOffset = CGPointMake(0, self.tableView.contentOffset.y + _offsect - offsect);
     _offsect = offsect;
     
-   
-    
-    
+
 }
 
 - (void)viewDidLoad {

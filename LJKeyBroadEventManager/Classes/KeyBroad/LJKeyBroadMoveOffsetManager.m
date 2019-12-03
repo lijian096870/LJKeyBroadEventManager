@@ -18,6 +18,8 @@
 
 @property(nonatomic,strong)NSNumber *currentNumber;
 
+@property(nonatomic,strong)NSNumber *keyBroadHeightNumber;
+
 @end
 
 @implementation LJKeyBroadMoveOffsetManager
@@ -27,11 +29,33 @@
     self = [super init];
     if (self) {
         self.object_keyBroad = object;
-      
+        
     }
     return self;
 }
--(void)moveOffset:(CGFloat)offset Responder:(UIView*)Responder{
+
+-(void)endEditResponderModel:(LJKeyBroadRespoderModel *)model{
+    
+    if([model isKindOfClass:LJKeyBroadRespoderModel.class] && [model.view isKindOfClass:UIView.class]){
+        
+        self.keyBroadHeightNumber = [NSNumber numberWithFloat:0.0];
+        
+        [self moveOffset:0.0 ResponderModel:model];
+    }
+}
+
+-(void)moveOffsetKeyBroadHeight:(CGFloat)keyBroadHeight ResponderModel:(LJKeyBroadRespoderModel *)model{
+    
+    if([model isKindOfClass:LJKeyBroadRespoderModel.class] && [model.view isKindOfClass:UIView.class]){
+        
+        self.keyBroadHeightNumber = [NSNumber numberWithFloat:keyBroadHeight];
+        
+        [self moveOffset:[model calculate:keyBroadHeight] ResponderModel:model];
+        
+    }
+}
+
+-(void)moveOffset:(CGFloat)offset ResponderModel:(LJKeyBroadRespoderModel *)model{
     
     
     if([self.currentNumber isKindOfClass:[NSNumber class]]){
@@ -52,14 +76,19 @@
                 
                 if([self.object_keyBroad respondsToSelector:@selector(keyBroadOffset:Responder:)]){
                     
-                    [self.object_keyBroad keyBroadOffset:-offset Responder:Responder];
+                    [self.object_keyBroad keyBroadOffset:-offset Responder:model.view];
                 }
                 CGFloat scrollOffsect = [self.object_keyBroad claculateScrollerViewOffset:-offset];
                 if([self.object_keyBroad respondsToSelector:@selector(keyBroadScrollOffset:Responder:)]){
-                    [self.object_keyBroad keyBroadScrollOffset:-scrollOffsect Responder:Responder];
+                    
+                    [self.object_keyBroad keyBroadScrollOffset:-scrollOffsect Responder:model.view];
+                    
                 }
-                
-                
+
+                if(self.moveCallBlock){
+                    self.moveCallBlock(model);
+                }
+
             }
         }
         
@@ -78,18 +107,37 @@
                 }
                 if([self.object_keyBroad respondsToSelector:@selector(keyBroadOffset:Responder:)]){
                     
-                    [self.object_keyBroad keyBroadOffset:-offset Responder:Responder];
+                    [self.object_keyBroad keyBroadOffset:-offset Responder:model.view];
                 }
                 
                 CGFloat scrollOffsect = [self.object_keyBroad claculateScrollerViewOffset:-offset];
                 if([self.object_keyBroad respondsToSelector:@selector(keyBroadScrollOffset:Responder:)]){
-                    [self.object_keyBroad keyBroadScrollOffset:-scrollOffsect Responder:Responder];
+                    [self.object_keyBroad keyBroadScrollOffset:-scrollOffsect Responder:model.view];
+                }
+                if(self.moveCallBlock){
+                    self.moveCallBlock(model);
                 }
                 
                 
             }
         }
-        
     }
 }
+
+-(CGFloat)keyBroadHeight{
+    
+    CGFloat result = [self.keyBroadHeightNumber floatValue];
+    
+    return result;
+}
+
+-(NSNumber*)keyBroadHeightNumber{
+    
+    if(_keyBroadHeightNumber == nil){
+        _keyBroadHeightNumber = [NSNumber numberWithFloat:0.0];
+    }
+    return _keyBroadHeightNumber;
+    
+}
+
 @end

@@ -14,17 +14,19 @@
 
 @end
 
+
+
 @implementation LJTextField
+
+
 
 
 
 +(instancetype)allocWithZone:(struct _NSZone *)zone{
     
     LJTextField *text = [super allocWithZone:zone];
-    
 
-    
-    
+
     return text;
 }
 

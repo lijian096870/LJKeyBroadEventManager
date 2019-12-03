@@ -20,13 +20,13 @@
 @property(nonatomic,weak)UIView *aheadView;
 
 
-@property(nonatomic,assign)CGRect windowBounds;
+@property(nonatomic,assign,readonly)CGRect windowBounds;
+
 
 @property(nonatomic,assign)CGRect responderLocation;
 
 
 @property (nonatomic, assign)CGFloat topSpacingToFirstResponder;
-
 
 @property (nonatomic, assign)BOOL showExtensionToolBar;
 
@@ -34,6 +34,7 @@
 
 
 @property(nonatomic,weak)UIView *view;
+@property(nonatomic,weak)UIView *window;
 
 -(CGFloat)calculate:(CGFloat)keyBroadHeight;
 

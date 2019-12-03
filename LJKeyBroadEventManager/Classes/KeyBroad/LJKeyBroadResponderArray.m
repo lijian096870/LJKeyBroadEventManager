@@ -20,7 +20,7 @@
 +(void)loopSubView:(NSMutableArray*)array and:(UIView*)view andWindow:(UIView*)window AndDontMove:(UIView*)DonMoveView{
     
     @autoreleasepool {
-        [self LocationloopSubView:array and:view andWindow:window andRootView:view];
+        [self LocationloopSubView:array and:view andWindow:window andRootView:view AndisStrict:false];
         
         [self removeRepeatLocation:array AndWindow:window AndDontMove:DonMoveView];
         
@@ -43,8 +43,8 @@
         CGRect loaction = [view convertRect:view.bounds toView:window];
         
         model.responderLocation = loaction;
-        model.windowBounds = window.bounds;
         model.view = view;
+        model.window = window;
         [array addObject:model];
         
     }
@@ -115,11 +115,11 @@
     }
 }
 
-+(void)LocationloopSubView:(NSMutableArray*)array and:(UIView*)view andWindow:(UIView*)window andRootView:(UIView*)rootView{
++(void)LocationloopSubView:(NSMutableArray*)array and:(UIView*)view andWindow:(UIView*)window andRootView:(UIView*)rootView AndisStrict:(BOOL)strict{
     
     if([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]){
         
-        if([self canBeEditResponder:view andWindow:window andRootView:rootView]){
+        if([self canBeEditResponder:view andWindow:window andRootView:rootView AndisStrict:strict]){
             
             LJKeyBroadRespoderModel *model = [[LJKeyBroadRespoderModel alloc]init];
             
@@ -128,8 +128,8 @@
             if(CGRectContainsPoint(window.bounds, loaction.origin)||CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y+loaction.size.height))||CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y))||CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x, loaction.origin.y+loaction.size.height))||CGRectContainsRect(window.bounds, loaction)){
                 
                 model.responderLocation = loaction;
-                model.windowBounds = window.bounds;
                 model.view = view;
+                model.window = window;
                 [array addObject:model];
             }
         }
@@ -138,17 +138,17 @@
         
         for (UIView *subView in view.subviews) {
             
-            [self LocationloopSubView:array and:subView andWindow:window andRootView:rootView];
+            [self LocationloopSubView:array and:subView andWindow:window andRootView:rootView AndisStrict:strict];
             
         }
     }
 }
 
-+(BOOL)canBeEditResponder:(UIView*)view andWindow:(UIView*)window andRootView:(UIView*)rootView{
++(BOOL)canBeEditResponder:(UIView*)view andWindow:(UIView*)window andRootView:(UIView*)rootView AndisStrict:(BOOL)strict{
     if([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]){
         if([self canBeFirstResponder:view]){
             
-            if([self isOutLocation:view AndWindow:window andRootView:rootView]||[self isCoverInputView:view AndWindow:window andRootView:rootView]){
+            if([self isOutLocation:view AndWindow:window andRootView:rootView AndisStrict:strict]||[self isCoverInputView:view AndWindow:window andRootView:rootView AndisStrict:strict]){
                 return NO;
             }else{
                 return YES;
@@ -196,13 +196,13 @@
     
 }
 
-+(BOOL)isCoverInputView:(UIView*)inputView AndWindow:(UIView*)window andRootView:(UIView*)rootView{
++(BOOL)isCoverInputView:(UIView*)inputView AndWindow:(UIView*)window andRootView:(UIView*)rootView AndisStrict:(BOOL)strict{
     
-    return [self isCoverLoop:inputView and:window AndinputView:inputView andRootView:rootView];
+    return [self isCoverLoop:inputView and:window AndinputView:inputView andRootView:rootView AndisStrict:YES];
     
 }
 
-+(BOOL)isCoverLoop:(UIView*)view and:(UIView*)window AndinputView:(UIView*)inputView andRootView:(UIView*)rootView{
++(BOOL)isCoverLoop:(UIView*)view and:(UIView*)window AndinputView:(UIView*)inputView andRootView:(UIView*)rootView AndisStrict:(BOOL)strict{
     
     if([view isKindOfClass:UIView.class]){
         UIView *superView = view.superview;
@@ -232,7 +232,7 @@
                             
                         }else{
                             
-                            return [self isCoverLoop:superView and:window AndinputView:inputView andRootView:rootView];
+                            return [self isCoverLoop:superView and:window AndinputView:inputView andRootView:rootView AndisStrict:strict];
                         }
                     }else{
                         if(temp == view){
@@ -243,7 +243,7 @@
                 }
                 if(lookfor){
                     
-                    return [self isCoverLoop:superView and:window AndinputView:inputView andRootView:rootView];
+                    return [self isCoverLoop:superView and:window AndinputView:inputView andRootView:rootView AndisStrict:strict];
                     
                 }else{
                     return YES;
@@ -260,13 +260,13 @@
     return YES;
 }
 
-+(BOOL)isOutLocation:(UIView*)inputView AndWindow:(UIView*)window andRootView:(UIView*)rootView{
++(BOOL)isOutLocation:(UIView*)inputView AndWindow:(UIView*)window andRootView:(UIView*)rootView AndisStrict:(BOOL)strict{
     
-    return [self isOutLocationLoop:inputView and:window AndinputView:inputView andRootView:rootView];
+    return [self isOutLocationLoop:inputView and:window AndinputView:inputView andRootView:rootView AndisStrict:strict];
     
 }
 
-+(BOOL)isOutLocationLoop:(UIView*)view and:(UIView*)window AndinputView:(UIView*)inputView andRootView:(UIView*)rootView{
++(BOOL)isOutLocationLoop:(UIView*)view and:(UIView*)window AndinputView:(UIView*)inputView andRootView:(UIView*)rootView AndisStrict:(BOOL)strict{
     if([view isKindOfClass:UIView.class]){
         UIView *superView = view.superview;
         
@@ -281,14 +281,31 @@
                 
                 CGRect superViewframe = [superView convertRect:superView.bounds toView:window];
                 
-                if(CGRectContainsPoint(superViewframe, loaction.origin)&&CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y+loaction.size.height))&&CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y))&&CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x, loaction.origin.y+loaction.size.height))&&CGRectContainsRect(superViewframe, loaction)){
+                if(strict){
                     
-                    return [self isOutLocationLoop:superView and:window AndinputView:inputView andRootView:rootView];
+                    if(CGRectContainsPoint(superViewframe, loaction.origin)&&CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y+loaction.size.height))&&CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y))&&CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x, loaction.origin.y+loaction.size.height))&&CGRectContainsRect(superViewframe, loaction)){
+                        
+                        return [self isOutLocationLoop:superView and:window AndinputView:inputView andRootView:rootView AndisStrict:strict];
+                        
+                    }else{
+                        
+                        return YES;
+                    }
                     
                 }else{
                     
-                    return YES;
+                    if(CGRectContainsPoint(superViewframe, loaction.origin)||CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y+loaction.size.height))||CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y))||CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x, loaction.origin.y+loaction.size.height))||CGRectContainsRect(superViewframe, loaction)){
+                        
+                        return [self isOutLocationLoop:superView and:window AndinputView:inputView andRootView:rootView AndisStrict:strict];
+                        
+                    }else{
+                        
+                        return YES;
+                    }
+                    
                 }
+                
+                
                 
             }else{
                 return NO;
@@ -349,21 +366,23 @@
     }
     
 }
-+(BOOL)confimDisCorrect:(LJKeyBroadRespoderModel*)ahead andNext:(LJKeyBroadRespoderModel*)Next and:(UIView*)window andRootView:(UIView*)rootView{
++(BOOL)confimDisCorrect:(LJKeyBroadRespoderModel*)ahead andNext:(LJKeyBroadRespoderModel*)Next andRootView:(UIView*)rootView{
     
-    if([ahead.nextView isKindOfClass:UIView.class]&&[Next.aheadView isKindOfClass:UIView.class]&&[Next.view isKindOfClass:UIView.class]&&[ahead.view isKindOfClass:UIView.class]){
+    if([ahead.nextView isKindOfClass:UIView.class]&&[Next.aheadView isKindOfClass:UIView.class]&&[Next.view isKindOfClass:UIView.class]&&[ahead.view isKindOfClass:UIView.class]&&[Next.window isKindOfClass:UIView.class]){
         
         if(ahead.nextView == Next.view && Next.aheadView == ahead.view){
             
-            if([self canBeEditResponder:Next.view andWindow:window andRootView:rootView]){
+            if([self canBeEditResponder:Next.view andWindow:Next.window andRootView:rootView AndisStrict:YES]){
                 
-                CGFloat dis = [self dis:ahead.view and:Next.view and:window];
+                CGFloat dis = [self dis:ahead.view and:Next.view and:Next.window];
                 
                 NSNumber *disNumber = [NSNumber numberWithFloat:dis];
                 
                 if([[NSNumber numberWithFloat:ahead.nextDis] isEqualToNumber:disNumber] && [[NSNumber numberWithFloat:Next.aheadDis] isEqualToNumber:disNumber]){
                     
-                    CGRect loaction = [Next.view convertRect:Next.view.bounds toView:window];
+                    CGRect loaction = [Next.view convertRect:Next.view.bounds toView:Next.window];
+                    
+                    UIView *window = Next.window;
                     
                     if(CGRectContainsPoint(window.bounds, loaction.origin)&&CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y+loaction.size.height))&&CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y))&&CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x, loaction.origin.y+loaction.size.height))&&CGRectContainsRect(window.bounds, loaction)){
                         
@@ -392,27 +411,27 @@
     }
 }
 
-+ (LJKeyBroadRespoderModel*)CanLeftArrowButton:(LJKeyBroadRespoderModel *)currentModel and:(UIView*)window AndResponderArray:(NSArray*)array andRootView:(UIView*)rootView{
++ (LJKeyBroadRespoderModel*)CanLeftArrowButton:(LJKeyBroadRespoderModel *)currentModel AndResponderArray:(NSArray*)array andRootView:(UIView*)rootView{
     
     NSUInteger index = [array indexOfObject:currentModel] -1;
     if(index<array.count&&index>=0){
         
         LJKeyBroadRespoderModel *model = [array objectAtIndex:index];
         
-        if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray confimDisCorrect:model andNext:currentModel and:window andRootView:rootView]){
+        if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray confimDisCorrect:model andNext:currentModel andRootView:rootView]){
             
             UIViewController *viewController = viewGetSuperController(currentModel.view);
             
             if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
                 if([viewController canBecomeFirstResponder:model.view]){
                     
-                    if([LJKeyBroadResponderArray confimDisCorrect:model andNext:currentModel and:window andRootView:rootView]){
+                    if([LJKeyBroadResponderArray confimDisCorrect:model andNext:currentModel andRootView:rootView]){
                         return model;
                     }
                 }
                 
             }else{
-                if([LJKeyBroadResponderArray confimDisCorrect:model andNext:currentModel and:window andRootView:rootView]){
+                if([LJKeyBroadResponderArray confimDisCorrect:model andNext:currentModel andRootView:rootView]){
                     return model;
                 }
             }
@@ -421,32 +440,32 @@
     }
     return nil;
 }
-+ (LJKeyBroadRespoderModel*)CanRightArrowButton:(LJKeyBroadRespoderModel *)currentModel and:(UIView*)window AndResponderArray:(NSArray*)array andRootView:(UIView*)rootView{
++ (LJKeyBroadRespoderModel*)CanRightArrowButton:(LJKeyBroadRespoderModel *)currentModel AndResponderArray:(NSArray*)array andRootView:(UIView*)rootView{
     
     NSUInteger index = [array indexOfObject:currentModel] +1;
     if(index<array.count&&index>=0){
         
         LJKeyBroadRespoderModel *model = [array objectAtIndex:index];
         
-        if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray confimDisCorrect:currentModel andNext:model and:window andRootView:rootView]){
+        if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray confimDisCorrect:currentModel andNext:model andRootView:rootView]){
             
             UIViewController *viewController = viewGetSuperController(currentModel.view);
             
             if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
                 if([viewController canBecomeFirstResponder:model.view]){
                     
-                    if([LJKeyBroadResponderArray confimDisCorrect:currentModel andNext:model and:window andRootView:rootView]){
+                    if([LJKeyBroadResponderArray confimDisCorrect:currentModel andNext:model andRootView:rootView]){
                         return model;
                     }
                 }
             }else{
-                if([LJKeyBroadResponderArray confimDisCorrect:currentModel andNext:model and:window andRootView:rootView]){
+                if([LJKeyBroadResponderArray confimDisCorrect:currentModel andNext:model andRootView:rootView]){
                     return model;
                 }
             }
         }
     }
-    return false;
+    return nil;
 }
 
 +(CGFloat)dis:(UIView*)view1 and:(UIView*)view2 and:(UIView*)window{

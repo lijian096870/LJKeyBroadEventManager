@@ -30,6 +30,7 @@
 
 -(void)removeKeyBroadResponder:(UIViewController<LJKeyboardManagerDelegate> *)keyBroadResponder{
     if([keyBroadResponder isKindOfClass:[UIViewController class]]){
+        
         [self.set removeObject:keyBroadResponder.keyBroad_mess_uniqueID];
     }
 }
