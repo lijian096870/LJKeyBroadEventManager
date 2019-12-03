@@ -96,38 +96,52 @@
         
         [self.keyBroadNotManager addKeyBroadNotificationFrameChangeBlock:^(UIView *view, CGFloat keyBroadHeight) {
             
-            for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
-                
-                if(model.frameChangeBlock){
+            if([view isKindOfClass:UIView.class]){
+                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
                     
-                    model.frameChangeBlock(view, keyBroadHeight);
+                    if(model.frameChangeBlock){
+                        
+                        model.frameChangeBlock(view, keyBroadHeight);
+                    }
+                    
                 }
-                
             }
+            
+            
             
         }];
         
         [self.keyBroadNotManager addKeyBroadNotificationShowBlock:^(UIView *view, CGFloat keyBroadHeight) {
             
-            for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
-                
-                if(model.animationShowBlock){
+            if([view isKindOfClass:UIView.class]){
+                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
                     
-                    model.animationShowBlock(view,keyBroadHeight);
+                    if(model.animationShowBlock){
+                        
+                        model.animationShowBlock(view,keyBroadHeight);
+                    }
+                    
                 }
-                
             }
+            
+            
         }];
         [self.keyBroadNotManager addKeyBroadNotificationHideBlock:^(UIView *view, CGFloat keyBroadHeight) {
             
-            for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
+            if([view isKindOfClass:UIView.class]){
                 
-                if(model.animationHidenBlock){
+                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
                     
-                    model.animationHidenBlock(view,keyBroadHeight);
+                    if(model.animationHidenBlock){
+                        
+                        model.animationHidenBlock(view,keyBroadHeight);
+                    }
+                    
                 }
                 
             }
+            
+            
             
         }];
     });
@@ -162,7 +176,7 @@
                 for (KeyBroadEventBecomeFirstCallBlock block in self.becomeFirstSet) {
                     result = block(view) && result;
                 }
-            
+                
                 return result;
                 
             }else{

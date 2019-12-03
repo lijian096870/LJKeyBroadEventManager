@@ -497,7 +497,7 @@
     }
 }
 
-+ (LJKeyBroadRespoderModel*)CanLeftArrowButton:(LJKeyBroadRespoderModel *)currentModel AndResponderArray:(NSArray*)array andRootView:(UIView*)rootView{
++ (LJKeyBroadRespoderModel*)CanLeftArrowButton:(LJKeyBroadRespoderModel *)currentModel AndResponderArray:(NSArray*)array andRootView:(UIView*)rootView AndViewController:(UIViewController*)viewController{
     
     NSUInteger index = [array indexOfObject:currentModel] -1;
     if(index<array.count&&index>=0){
@@ -506,27 +506,29 @@
         
         if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray confimDisCorrect:model andNext:currentModel andRootView:rootView]){
             
-            UIViewController *viewController = viewGetSuperController(currentModel.view);
-            
             if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
                 if([viewController canBecomeFirstResponder:model.view]){
                     
-                    if([LJKeyBroadResponderArray confimDisCorrect:model andNext:currentModel andRootView:rootView]){
-                        return model;
-                    }
+                    return model;
+                    
+                }else{
+                    
+                    return [self CanLeftArrowButton:model AndResponderArray:array andRootView:rootView AndViewController:viewController];
                 }
                 
             }else{
-                if([LJKeyBroadResponderArray confimDisCorrect:model andNext:currentModel andRootView:rootView]){
-                    return model;
-                }
+                
+                return model;
             }
             
+        }else{
+            return [self CanLeftArrowButton:model AndResponderArray:array andRootView:rootView AndViewController:viewController];
         }
+    }else{
+        return nil;
     }
-    return nil;
 }
-+ (LJKeyBroadRespoderModel*)CanRightArrowButton:(LJKeyBroadRespoderModel *)currentModel AndResponderArray:(NSArray*)array andRootView:(UIView*)rootView{
++ (LJKeyBroadRespoderModel*)CanRightArrowButton:(LJKeyBroadRespoderModel *)currentModel AndResponderArray:(NSArray*)array andRootView:(UIView*)rootView AndViewController:(UIViewController*)viewController{
     
     NSUInteger index = [array indexOfObject:currentModel] +1;
     if(index<array.count&&index>=0){
@@ -535,23 +537,24 @@
         
         if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray confimDisCorrect:currentModel andNext:model andRootView:rootView]){
             
-            UIViewController *viewController = viewGetSuperController(currentModel.view);
             
             if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
                 if([viewController canBecomeFirstResponder:model.view]){
                     
-                    if([LJKeyBroadResponderArray confimDisCorrect:currentModel andNext:model andRootView:rootView]){
-                        return model;
-                    }
+                    return model;
+                }else{
+                    return [self CanRightArrowButton:model AndResponderArray:array andRootView:rootView AndViewController:viewController];
                 }
             }else{
-                if([LJKeyBroadResponderArray confimDisCorrect:currentModel andNext:model andRootView:rootView]){
-                    return model;
-                }
+                return model;
             }
+        }else{
+            
+            return [self CanRightArrowButton:model AndResponderArray:array andRootView:rootView AndViewController:viewController];
         }
+    }else{
+        return nil;
     }
-    return nil;
 }
 
 +(CGFloat)dis:(UIView*)view1 and:(UIView*)view2 and:(UIView*)window{

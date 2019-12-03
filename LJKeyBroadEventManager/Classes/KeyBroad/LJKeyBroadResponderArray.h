@@ -16,9 +16,9 @@
 +(void)responderArrayRenewResponderLocation:(NSMutableArray*)responderArray AndDontMove:(LJKeyBroadRespoderModel*)model andRootView:(UIView*)rootView;
 
 
-+ (LJKeyBroadRespoderModel*)CanLeftArrowButton:(LJKeyBroadRespoderModel *)currentModel AndResponderArray:(NSArray*)array andRootView:(UIView*)rootView;
++ (LJKeyBroadRespoderModel*)CanLeftArrowButton:(LJKeyBroadRespoderModel *)currentModel AndResponderArray:(NSArray*)array andRootView:(UIView*)rootView AndViewController:(UIViewController*)viewController;
 
-+ (LJKeyBroadRespoderModel*)CanRightArrowButton:(LJKeyBroadRespoderModel *)currentModel AndResponderArray:(NSArray*)array andRootView:(UIView*)rootView;
++ (LJKeyBroadRespoderModel*)CanRightArrowButton:(LJKeyBroadRespoderModel *)currentModel AndResponderArray:(NSArray*)array andRootView:(UIView*)rootView AndViewController:(UIViewController*)viewController;
 
 
 

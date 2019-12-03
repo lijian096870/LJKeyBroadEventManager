@@ -7,6 +7,14 @@
 
 #import "LJKeyBoradEventResponderModel.h"
 #import "UIViewController+KeyBoradManager.h"
+#import "LJKeyBroadRegisterManager.h"
+
+@interface LJKeyBroadRegisterManager ()
+
+-(BOOL)isRegister:(NSString*)key;
+
+@end
+
 @interface LJKeyBoradEventResponderModel ()
 
 @property(nonatomic,weak)UIViewController *object_keyBroad;
@@ -71,9 +79,6 @@
             [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroadAnimation:view andkeyBroadHeight:keyBroadHeight];
         }
     }
-    
-    
-    
 }
 
 -(void)keyBroadFrameChange:(UIView*)view andkeyBroadHeight:(CGFloat)keyBroadHeight{
@@ -110,7 +115,12 @@
         if([self.cancelView isKindOfClass:UIView.class]){
             UIView *view = self.cancelView;
             self.cancelView = nil;
-            [self.object_keyBroad.NSObject_KeyBoradManager_info HiddenBroadAnimation:view];
+            if([[LJKeyBroadRegisterManager sharedInstance] isRegister:self.object_keyBroad.keyBroad_mess_uniqueID]){
+                
+                [self.object_keyBroad.NSObject_KeyBoradManager_info HiddenBroadAnimation:view];
+            }
+            
+            
         }
     }
     

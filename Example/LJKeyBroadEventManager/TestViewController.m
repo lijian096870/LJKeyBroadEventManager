@@ -24,7 +24,7 @@
     self.tableView.contentOffset = CGPointMake(0, self.tableView.contentOffset.y + _offsect - offsect);
     _offsect = offsect;
     
-
+    
 }
 
 - (void)viewDidLoad {
@@ -69,23 +69,31 @@
 
 -(void)keyBroadScrollOffset:(CGFloat)offset Responder:(UIView *)Responder{
     
- 
-
+    
+    
     self.tableView.contentOffset = CGPointMake(self.tableView.contentOffset.x,   self.tableView.contentOffset.y + offset);
     
 }
 -(CGFloat)TopSpacingToFirstResponder:(UIView*)Responder{
     
-    return 0.0;
+    return 20.0;
 }
 
 -(BOOL)ShowExtensionToolBar:(UIView*)Responder{
     
+    UITextField *text = (UITextField*)Responder;
+    if([text.text isEqualToString:@"10"]){
+        return NO;
+    }
     return true;
     
 }
 -(BOOL)canBecomeFirstResponder:(UIView *)Responder{
     
+    UITextField *text = (UITextField*)Responder;
+    if([text.text isEqualToString:@"12"]){
+        return NO;
+    }
     return true;
     
 }

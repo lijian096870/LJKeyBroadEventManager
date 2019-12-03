@@ -119,7 +119,7 @@
 -(LJKeyboardToolBar*)reloadLJKeyboardToolBar:(LJKeyboardToolBar*)bar and:(LJKeyBroadRespoderModel*)model AndResponderArray:(NSArray*)responderArray{
     
     if(self.object_keyBroad.isViewLoaded && [model isKindOfClass:LJKeyBroadRespoderModel.class]&&responderArray.count>0){
-        LJKeyBroadRespoderModel *leftModel = [LJKeyBroadResponderArray CanLeftArrowButton:model AndResponderArray:responderArray andRootView:self.object_keyBroad.view];
+        LJKeyBroadRespoderModel *leftModel = [LJKeyBroadResponderArray CanLeftArrowButton:model AndResponderArray:responderArray andRootView:self.object_keyBroad.view AndViewController:self.object_keyBroad];
         
         if([leftModel isKindOfClass:LJKeyBroadRespoderModel.class]){
             
@@ -129,7 +129,7 @@
             bar.leftbtn.enabled = NO;
         }
         
-        LJKeyBroadRespoderModel *rightModel = [LJKeyBroadResponderArray CanRightArrowButton:model AndResponderArray:responderArray andRootView:self.object_keyBroad.view];
+        LJKeyBroadRespoderModel *rightModel = [LJKeyBroadResponderArray CanRightArrowButton:model AndResponderArray:responderArray andRootView:self.object_keyBroad.view AndViewController:self.object_keyBroad];
         
         if([rightModel isKindOfClass:LJKeyBroadRespoderModel.class]){
             bar.rightbtn.enabled = YES;

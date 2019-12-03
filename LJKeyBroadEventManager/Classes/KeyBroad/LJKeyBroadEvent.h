@@ -18,7 +18,6 @@ typedef BOOL(^canBecomeFirstResponderCallBackBlock)(UIView *view);
 
 
 
-
 typedef BOOL(^KeyBroadEventBecomeFirstCallBlock)(UIView *view);
 
 typedef void(^KeyBroadEventreginFirstCallBlock)(UIView *view);

@@ -174,9 +174,9 @@
     
     if(self.responderModel&&[self.responderModel.view isKindOfClass:[UIView class]]){
         
-        if(self.object_keyBroad.isViewLoaded){
+        if([self.object_keyBroad isKindOfClass:UIViewController.class] && self.object_keyBroad.isViewLoaded){
             
-            LJKeyBroadRespoderModel *model = [LJKeyBroadResponderArray CanLeftArrowButton:self.responderModel AndResponderArray:self.ResponderArray andRootView:self.object_keyBroad.view];
+            LJKeyBroadRespoderModel *model = [LJKeyBroadResponderArray CanLeftArrowButton:self.responderModel AndResponderArray:self.ResponderArray andRootView:self.object_keyBroad.view AndViewController:self.object_keyBroad];
             
             if([model isKindOfClass:LJKeyBroadRespoderModel.class]&&[model.view isKindOfClass:UIView.class]){
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -192,9 +192,9 @@
     
     if(self.responderModel&&[self.responderModel.view isKindOfClass:[UIView class]]){
         
-        if(self.object_keyBroad.isViewLoaded){
+        if([self.object_keyBroad isKindOfClass:UIViewController.class] && self.object_keyBroad.isViewLoaded){
             
-            LJKeyBroadRespoderModel *model = [LJKeyBroadResponderArray CanRightArrowButton:self.responderModel AndResponderArray:self.ResponderArray andRootView:self.object_keyBroad.view];
+            LJKeyBroadRespoderModel *model = [LJKeyBroadResponderArray CanRightArrowButton:self.responderModel AndResponderArray:self.ResponderArray andRootView:self.object_keyBroad.view AndViewController:self.object_keyBroad];
             
             if([model isKindOfClass:LJKeyBroadRespoderModel.class]&&[model.view isKindOfClass:UIView.class]){
                 dispatch_async(dispatch_get_main_queue(), ^{
