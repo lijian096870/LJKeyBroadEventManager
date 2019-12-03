@@ -16,7 +16,6 @@
 		1F2F30FD6FC75A08E8B70311D05C9BA9 /* LJKeyBraodResponderCallBlockModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 568CAAC80855DDD600B1D4CEA693D72C /* LJKeyBraodResponderCallBlockModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1FB8AE1D59C9F1F4797BD4A1656DD872 /* UIResponder+becomeFirstResponderCallBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4024FAFB7B06237B505F5AE280AA62 /* UIResponder+becomeFirstResponderCallBack.m */; };
 		1FC7EB99E47566F003E65AED94FB4098 /* LJViewController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1EC1CBB575A37D41F9ECF312DB2209 /* LJViewController-dummy.m */; };
-		235FB0080BCE8F9B33D6230FA3710337 /* LJKeyBroadBecomeFirstOpertor.h in Headers */ = {isa = PBXBuildFile; fileRef = E3C420A6D8C41E1C59485472820ECFCE /* LJKeyBroadBecomeFirstOpertor.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		24D5236E23960850009C9A37 /* NSNotificationCenter+LJKeyBroad.h in Headers */ = {isa = PBXBuildFile; fileRef = 24D5236C2396084F009C9A37 /* NSNotificationCenter+LJKeyBroad.h */; };
 		24D5236F23960850009C9A37 /* NSNotificationCenter+LJKeyBroad.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D5236D23960850009C9A37 /* NSNotificationCenter+LJKeyBroad.m */; };
 		30720B7A2396549C00290352 /* LJKeyBoradEventResponderModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 30720B782396549C00290352 /* LJKeyBoradEventResponderModel.h */; };
@@ -45,7 +44,6 @@
 		A9BD54518C9CE26648FFB568D167D7A7 /* LJViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 737724A3D8B429E3D3BEFD5D772D6C86 /* LJViewControllerManager.m */; };
 		ACF3BF44F1C306B0689312420E9D9A44 /* LJKeyBroadNotificationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C76F0ED0AAB47C9405836432C3173C8 /* LJKeyBroadNotificationManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B26EC248695EA361E0CDD35CDDBB8059 /* LJKeyBroadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CC629760B1E7CC36C096458654D69CBD /* LJKeyBroadManager.m */; };
-		BE88F57A7FB5A0DEA4BDD8D09550C8B2 /* LJKeyBroadBecomeFirstOpertor.m in Sources */ = {isa = PBXBuildFile; fileRef = D83EAE50DDCE4EDFD594C04272FD3C63 /* LJKeyBroadBecomeFirstOpertor.m */; };
 		C5AEC9A74F22BE67A06708955B84EA39 /* LJKeyBroadMoveOffsetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A08DFEBC69063E2A47FD349A3E43B0F4 /* LJKeyBroadMoveOffsetManager.m */; };
 		C904670943FED707DABB12D46DC32D04 /* LJKeyBroadEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2911DBFFDD817BF4B677A9380AC0B051 /* LJKeyBroadEventManager.m */; };
 		C9170B18A7524D71D14DBAEF4918A944 /* KeyBroadRandString.h in Headers */ = {isa = PBXBuildFile; fileRef = 61E8B1382BF2120A47899607CA5BB28B /* KeyBroadRandString.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -140,12 +138,10 @@
 		C1AB765C654C2E56475497A263FC2CBE /* Pods-LJKeyBroadEventManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LJKeyBroadEventManager.debug.xcconfig"; sourceTree = "<group>"; };
 		CC629760B1E7CC36C096458654D69CBD /* LJKeyBroadManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LJKeyBroadManager.m; sourceTree = "<group>"; };
 		D5E12B79B590D7A9ED0BFB8328C65758 /* UIView+ReateViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+ReateViewController.h"; path = "LJViewController/Classes/UIView+ReateViewController.h"; sourceTree = "<group>"; };
-		D83EAE50DDCE4EDFD594C04272FD3C63 /* LJKeyBroadBecomeFirstOpertor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LJKeyBroadBecomeFirstOpertor.m; sourceTree = "<group>"; };
 		D9EA98C0CD3462B2D76C88D250950A94 /* UIResponder+becomeFirstResponderCallBack.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIResponder+becomeFirstResponderCallBack.h"; sourceTree = "<group>"; };
 		DC21F4E8D530A101D18F641C8CE563A1 /* LJViewControllerManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LJViewControllerManager.h; path = LJViewController/Classes/LJViewControllerManager.h; sourceTree = "<group>"; };
 		DC462BBC4B82DD00D07E3A372261BA74 /* LJkeyBroadConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LJkeyBroadConfig.m; sourceTree = "<group>"; };
 		DCAE7B78C7D0A04249F8E8C789DA9A06 /* LJKeyBroadEventManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LJKeyBroadEventManager.h; path = LJKeyBroadEventManager/Classes/LJKeyBroadEventManager.h; sourceTree = "<group>"; };
-		E3C420A6D8C41E1C59485472820ECFCE /* LJKeyBroadBecomeFirstOpertor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LJKeyBroadBecomeFirstOpertor.h; sourceTree = "<group>"; };
 		E5E6DF9D249C0365CA92EE03652BB4D2 /* LJKeyBroadEventManager.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LJKeyBroadEventManager.xcconfig; sourceTree = "<group>"; };
 		F0427C8B2FAC358D2313812AE09168EA /* UIViewController+KeyBoradManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KeyBoradManager.h"; sourceTree = "<group>"; };
 		F3C46749020A3E7375793609E6A605D7 /* LJViewController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LJViewController-prefix.pch"; sourceTree = "<group>"; };
@@ -230,8 +226,6 @@
 				071C62D999647BCA2A754D4D598C5C17 /* LJKeyboardToolBar.m */,
 				568CAAC80855DDD600B1D4CEA693D72C /* LJKeyBraodResponderCallBlockModel.h */,
 				05C5765616FA1E426B0D23C0A07A9DC1 /* LJKeyBraodResponderCallBlockModel.m */,
-				E3C420A6D8C41E1C59485472820ECFCE /* LJKeyBroadBecomeFirstOpertor.h */,
-				D83EAE50DDCE4EDFD594C04272FD3C63 /* LJKeyBroadBecomeFirstOpertor.m */,
 				9B5B630BB2FA35E16746EFCAE7CB1017 /* LJkeyBroadConfig.h */,
 				DC462BBC4B82DD00D07E3A372261BA74 /* LJkeyBroadConfig.m */,
 				AAB6ACF8EFF8FE3A3E47D5107B1380D1 /* LJKeyBroadEvent.h */,
@@ -387,7 +381,6 @@
 				24D5236E23960850009C9A37 /* NSNotificationCenter+LJKeyBroad.h in Headers */,
 				9A5D5C5A14F0BDE1FB5F74E0EEA60553 /* LJKeyboardToolBar.h in Headers */,
 				1F2F30FD6FC75A08E8B70311D05C9BA9 /* LJKeyBraodResponderCallBlockModel.h in Headers */,
-				235FB0080BCE8F9B33D6230FA3710337 /* LJKeyBroadBecomeFirstOpertor.h in Headers */,
 				F59752F734A053FC26FE979C343932BA /* LJkeyBroadConfig.h in Headers */,
 				ED5A757C5A65CDC0D9394E2AB75E9135 /* LJKeyBroadEvent.h in Headers */,
 				D31A236C521317623B1D6DEED99C9290 /* LJKeyBroadEventManager.h in Headers */,
@@ -500,7 +493,6 @@
 				790DB7DFBC1B72CF470CBA22449DA07C /* LJKeyBraodResponderCallBlockModel.m in Sources */,
 				30720B7B2396549C00290352 /* LJKeyBoradEventResponderModel.m in Sources */,
 				30720B7F23965C6100290352 /* LJKeyboardReloadToolBar.m in Sources */,
-				BE88F57A7FB5A0DEA4BDD8D09550C8B2 /* LJKeyBroadBecomeFirstOpertor.m in Sources */,
 				E7CEBBD8C4369FB2DBA2F5D942DBF627 /* LJkeyBroadConfig.m in Sources */,
 				E525D6213EA1E9A0E11E61573E93DC49 /* LJKeyBroadEvent.m in Sources */,
 				A2BD1357F30BB2B481D1AB611722FB10 /* LJKeyBroadEventManager-dummy.m in Sources */,
