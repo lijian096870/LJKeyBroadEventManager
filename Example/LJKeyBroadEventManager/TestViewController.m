@@ -76,15 +76,12 @@
 }
 -(CGFloat)TopSpacingToFirstResponder:(UIView*)Responder{
     
-    return 20.0;
+    return 0;
 }
 
 -(BOOL)ShowExtensionToolBar:(UIView*)Responder{
     
-    UITextField *text = (UITextField*)Responder;
-    if([text.text isEqualToString:@"10"]){
-        return NO;
-    }
+   
     return true;
     
 }
