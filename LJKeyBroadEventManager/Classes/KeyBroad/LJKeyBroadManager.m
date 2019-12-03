@@ -90,11 +90,10 @@
                     
                     return YES;
                 }else{
-                    
+                    [self.ResponderArray removeAllObjects];
                     return NO;
                     
                 }
-                
             }
         
         }else{
