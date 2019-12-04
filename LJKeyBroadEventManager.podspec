@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = 'LJKeyBroadEventManager'
   s.summary      = '键盘弹出遮挡输入框解决方案'
-  s.version      = '2.7.1'
+  s.version      = '3.0.1beta'
   s.license       = { :type => 'MIT', :file => 'LICENSE' }
   
   
