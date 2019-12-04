@@ -116,6 +116,12 @@
 
 -(void)ShowKeyBroadAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight{
     
+    [self keyBroadFrameChange:view andkeyBroadHeight:keyBroadHeight];
+    
+}
+
+-(void)keyBroadFrameChange:(UIView*)view andkeyBroadHeight:(CGFloat)keyBroadHeight{
+    
     if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&[self.object_keyBroad isViewLoaded]&&(([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]))&&[self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]&&[self.responderNextSet isValid]&&[self.responderNextSet isCurrentView:view]){
         
         if([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]]&&self.object_keyBroad.isViewLoaded){
@@ -126,15 +132,6 @@
             
         }
         
-        [self.moveOffsetManager moveOffsetKeyBroadHeight:keyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
-        
-    }
-    
-}
-
--(void)keyBroadFrameChange:(UIView*)view andkeyBroadHeight:(CGFloat)keyBroadHeight{
-    
-    if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&[self.object_keyBroad isViewLoaded]&&(([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]))&&[self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]&&[self.responderNextSet isValid]&&[self.responderNextSet isCurrentView:view]){
         
         [self.moveOffsetManager moveOffsetKeyBroadHeight:keyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
         

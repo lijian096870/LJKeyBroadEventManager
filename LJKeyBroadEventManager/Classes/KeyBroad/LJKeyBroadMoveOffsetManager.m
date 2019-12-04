@@ -62,7 +62,7 @@
     
     if([self.currentNumber isKindOfClass:[NSNumber class]]){
         
-        if([self.currentNumber floatValue] == offset){
+        if([self.currentNumber isEqualToNumber:[NSNumber numberWithFloat:offset]]){
             
         }else{
             self.currentNumber = [NSNumber numberWithFloat:offset];
@@ -100,7 +100,7 @@
         
     }else{
         
-        if(offset == 0.0){
+        if([[NSNumber numberWithFloat:offset] isEqualToNumber:[NSNumber numberWithFloat:0.0]]){
             
             
         }else{
