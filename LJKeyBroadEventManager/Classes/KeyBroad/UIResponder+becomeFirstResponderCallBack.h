@@ -9,6 +9,9 @@
 
 
 typedef BOOL(^becomeFirstResponderCallBackBlock)(UIView *view);
+typedef void(^becomeFirstResponderResultCallBackBlock)(UIView *view,BOOL result);
+
+
 typedef void(^resignFirstResponderCallBackBlock)(UIView *view);
 typedef BOOL(^canBecomeFirstResponderCallBackBlock)(UIView *view);
 
@@ -18,6 +21,8 @@ typedef BOOL(^canBecomeFirstResponderCallBackBlock)(UIView *view);
 
 
 +(void)configbecomeFirstResponderCallBackBlock:(becomeFirstResponderCallBackBlock)block;
++(void)configbecomeFirstResponderResultCallBackBlock:(becomeFirstResponderResultCallBackBlock)block;
+
 
 +(void)configresignFirstResponderCallBackBlock:(resignFirstResponderCallBackBlock)block;
 

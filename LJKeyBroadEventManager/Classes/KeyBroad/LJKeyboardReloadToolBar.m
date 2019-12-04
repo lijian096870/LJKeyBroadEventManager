@@ -6,7 +6,6 @@
 //
 
 #import "LJKeyboardReloadToolBar.h"
-#import "LJKeyBroadResponderArray.h"
 #import "LJKeyBroadEventManager.h"
 #import "LJkeyBroadConfig.h"
 
@@ -31,58 +30,58 @@
     return self;
 }
 
--(void)configLJKeyboardToolBar:(LJKeyBroadRespoderModel*)model andNewToolBar:(LJKeyboardToolBar*)bar AndResponderArray:(NSArray*)responderArray{
+-(void)configLJKeyboardToolBar:(LJKeyBroadRespoderNextSet *)responderNextSet andNewToolBar:(LJKeyboardToolBar*)bar{
     
     
     if([self.object_keyBroad respondsToSelector:@selector(TopSpacingToFirstResponder:)]){
-        model.topSpacingToFirstResponder = [self.object_keyBroad TopSpacingToFirstResponder:model.view];
+        responderNextSet.currentResponderModel.topSpacingToFirstResponder = [self.object_keyBroad TopSpacingToFirstResponder:responderNextSet.currentResponderModel.view];
     }else{
-        model.topSpacingToFirstResponder = [LJkeyBroadConfig sharedInstance].topSpacingToFirstResponder;
+        responderNextSet.currentResponderModel.topSpacingToFirstResponder = [LJkeyBroadConfig sharedInstance].topSpacingToFirstResponder;
     }
     if([self.object_keyBroad respondsToSelector:@selector(ShowExtensionToolBar:)]){
-        model.showExtensionToolBar = [self.object_keyBroad ShowExtensionToolBar:model.view];
+        responderNextSet.currentResponderModel.showExtensionToolBar = [self.object_keyBroad ShowExtensionToolBar:responderNextSet.currentResponderModel.view];
     }else{
-        model.showExtensionToolBar = [LJkeyBroadConfig sharedInstance].showExtensionToolBar;
+        responderNextSet.currentResponderModel.showExtensionToolBar = [LJkeyBroadConfig sharedInstance].showExtensionToolBar;
     }
-    if(model.showExtensionToolBar){
+    if(responderNextSet.currentResponderModel.showExtensionToolBar){
         
-        if([model.view isKindOfClass:[UITextField class]]){
-            UITextField *textView = ((UITextField*)model.view);
+        if([responderNextSet.currentResponderModel.view isKindOfClass:[UITextField class]]){
+            UITextField *textView = ((UITextField*)responderNextSet.currentResponderModel.view);
             if(textView.inputAccessoryView == nil){
                 
                 
-                textView.inputAccessoryView = [self reloadLJKeyboardToolBar:bar and:model AndResponderArray:responderArray];
+                textView.inputAccessoryView = [self reloadLJKeyboardToolBar:bar and:responderNextSet];
                 
-                model.ExtensionToolBarHeight = 40;
+                responderNextSet.currentResponderModel.ExtensionToolBarHeight = 40;
             }else{
                 
                 if([textView.inputAccessoryView isKindOfClass:[LJKeyboardToolBar class]]){
                     
-                    textView.inputAccessoryView = [self reloadLJKeyboardToolBar:bar and:model AndResponderArray:responderArray];
-                    model.ExtensionToolBarHeight = 40;
+                    textView.inputAccessoryView = [self reloadLJKeyboardToolBar:bar and:responderNextSet];
+                    responderNextSet.currentResponderModel.ExtensionToolBarHeight = 40;
                     
                 }else{
-                    model.ExtensionToolBarHeight = textView.inputAccessoryView.bounds.size.height;
+                    responderNextSet.currentResponderModel.ExtensionToolBarHeight = textView.inputAccessoryView.bounds.size.height;
                 }
             }
         }
-        if([model.view isKindOfClass:[UITextView class]]){
-            UITextView *textView = ((UITextView*)model.view);
+        if([responderNextSet.currentResponderModel.view isKindOfClass:[UITextView class]]){
+            UITextView *textView = ((UITextView*)responderNextSet.currentResponderModel.view);
             if(textView.inputAccessoryView == nil){
                 
-                textView.inputAccessoryView = [self reloadLJKeyboardToolBar:bar and:model AndResponderArray:responderArray];
+                textView.inputAccessoryView = [self reloadLJKeyboardToolBar:bar and:responderNextSet];
                 
-                model.ExtensionToolBarHeight = 40;
+                responderNextSet.currentResponderModel.ExtensionToolBarHeight = 40;
                 
             }else{
                 
                 if([textView.inputAccessoryView isKindOfClass:[LJKeyboardToolBar class]]){
                     
-                    textView.inputAccessoryView = [self reloadLJKeyboardToolBar:bar and:model AndResponderArray:responderArray];
-                    model.ExtensionToolBarHeight = 40;
+                    textView.inputAccessoryView = [self reloadLJKeyboardToolBar:bar and:responderNextSet];
+                    responderNextSet.currentResponderModel.ExtensionToolBarHeight = 40;
                     
                 }else{
-                    model.ExtensionToolBarHeight = textView.inputAccessoryView.bounds.size.height;
+                    responderNextSet.currentResponderModel.ExtensionToolBarHeight = textView.inputAccessoryView.bounds.size.height;
                 }
             }
         }
@@ -91,51 +90,40 @@
 }
 
 
--(void)reloadLJKeyboardToolBarAndResponderModel:(LJKeyBroadRespoderModel*)model AndResponderArray:(NSArray*)responderArray{
+-(void)reloadLJKeyboardToolBarAndResponderModel:(LJKeyBroadRespoderNextSet *)responderNextSet{
     
-    if([model isKindOfClass:LJKeyBroadRespoderModel.class]&&[model.view isKindOfClass:UIView.class]&&[model.window isKindOfClass:UIView.class]){
+    if([responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]&&[responderNextSet isValid]){
         
         UIView *bar = nil;
         
-        if([model.view isKindOfClass:[UITextView class]]){
-            UITextView *textView = ((UITextView*)model.view);
+        if([responderNextSet.currentResponderModel.view isKindOfClass:[UITextView class]]){
+            UITextView *textView = ((UITextView*)responderNextSet.currentResponderModel.view);
             bar = textView.inputAccessoryView;
             
         }
-        if([model.view isKindOfClass:[UITextField class]]){
-            UITextField *textView = ((UITextField*)model.view);
+        if([responderNextSet.currentResponderModel.view isKindOfClass:[UITextField class]]){
+            UITextField *textView = ((UITextField*)responderNextSet.currentResponderModel.view);
             bar = textView.inputAccessoryView;
             
         }
         if([bar isKindOfClass:LJKeyboardToolBar.class]){
             LJKeyboardToolBar *keyBroadBar = (LJKeyboardToolBar*)bar;
             
-            [self reloadLJKeyboardToolBar:keyBroadBar and:model AndResponderArray:responderArray];
+            [self reloadLJKeyboardToolBar:keyBroadBar and:responderNextSet];
             
         }
         
     }
 }
--(LJKeyboardToolBar*)reloadLJKeyboardToolBar:(LJKeyboardToolBar*)bar and:(LJKeyBroadRespoderModel*)model AndResponderArray:(NSArray*)responderArray{
+-(LJKeyboardToolBar*)reloadLJKeyboardToolBar:(LJKeyboardToolBar*)bar and:(LJKeyBroadRespoderNextSet*)responderNextSet{
     
-    if(self.object_keyBroad.isViewLoaded && [model isKindOfClass:LJKeyBroadRespoderModel.class]&&responderArray.count>0){
-        LJKeyBroadRespoderModel *leftModel = [LJKeyBroadResponderArray CanLeftArrowButton:model AndResponderArray:responderArray andRootView:self.object_keyBroad.view AndViewController:self.object_keyBroad];
+    if(self.object_keyBroad.isViewLoaded && [responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]&&[responderNextSet isValid]){
         
-        if([leftModel isKindOfClass:LJKeyBroadRespoderModel.class]){
-            
-            bar.leftbtn.enabled = YES;
-            
-        }else{
-            bar.leftbtn.enabled = NO;
-        }
         
-        LJKeyBroadRespoderModel *rightModel = [LJKeyBroadResponderArray CanRightArrowButton:model AndResponderArray:responderArray andRootView:self.object_keyBroad.view AndViewController:self.object_keyBroad];
+        bar.leftbtn.enabled = [responderNextSet CanLeftArrow];
         
-        if([rightModel isKindOfClass:LJKeyBroadRespoderModel.class]){
-            bar.rightbtn.enabled = YES;
-        }else{
-            bar.rightbtn.enabled = NO;
-        }
+        bar.rightbtn.enabled = [responderNextSet CanRightArrow];
+        
         
     }else{
         bar.leftbtn.enabled = NO;

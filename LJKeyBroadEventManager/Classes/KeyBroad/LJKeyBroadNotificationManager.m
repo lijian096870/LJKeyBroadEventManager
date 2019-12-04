@@ -248,5 +248,7 @@
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     [NSNotificationCenter removeNotificationAftereName:UIKeyboardDidShowNotification anyKey:self.randStringID];
+    [NSNotificationCenter removeNotificationAftereName:UIKeyboardWillHideNotification anyKey:self.randStringID];
+    [NSNotificationCenter removeNotificationAftereName:UIKeyboardWillChangeFrameNotification anyKey:self.randStringID];
 }
 @end

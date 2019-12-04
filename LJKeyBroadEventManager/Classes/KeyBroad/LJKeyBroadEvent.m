@@ -17,6 +17,7 @@
 
 @property(nonatomic,strong)NSMutableSet *becomeFirstSet;
 @property(nonatomic,strong)NSMutableSet *reginFirstSet;
+@property(nonatomic,strong)NSMutableSet *becomeFirstResultSet;
 
 @property(nonatomic,copy)canBecomeFirstResponderCallBackBlock canBecomeFirstResponder;
 
@@ -30,12 +31,12 @@
 @implementation LJKeyBroadEvent
 
 
--(void)registerKeyBroadEventShowEvent:(KeyBroadEventBecomeFirstCallBlock)Showblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationShowBlock AndFrameChangeBlock:(KeyBroadEventNotificationViewAnimationBlock)frameChangeBlock HidenEvent:(KeyBroadEventreginFirstCallBlock)Hidenblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationHidenBlock{
+-(void)registerKeyBroadEventShowEvent:(KeyBroadEventBecomeFirstCallBlock)Showblock BroadEventShowResult:(KeyBroadEventBecomeFirstResultCallBlock)ShowResultBlock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationShowBlock AndFrameChangeBlock:(KeyBroadEventNotificationViewAnimationBlock)frameChangeBlock HidenEvent:(KeyBroadEventreginFirstCallBlock)Hidenblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationHidenBlock{
     
     [self blingNotEvent];
     
     
-    LJKeyBraodResponderCallBlockModel *model = [[LJKeyBraodResponderCallBlockModel alloc]initWithBroadEventShowEvent:Showblock AndViewAnimationBlock:animationShowBlock AndFrameChangeBlock:frameChangeBlock HidenEvent:Hidenblock AndViewAnimationBlock:animationHidenBlock];
+    LJKeyBraodResponderCallBlockModel *model = [[LJKeyBraodResponderCallBlockModel alloc]initWithBroadEventShowEvent:Showblock BroadEventShowResult:ShowResultBlock  AndViewAnimationBlock:animationShowBlock AndFrameChangeBlock:frameChangeBlock HidenEvent:Hidenblock AndViewAnimationBlock:animationHidenBlock];
     
     [self.responderSet addObject:model];
     
@@ -65,6 +66,16 @@
         }
         
     }];
+    
+    [self registerKeyBroadEventBecomeFirstResult:^(UIView *view, BOOL result) {
+        
+        for (LJKeyBraodResponderCallBlockModel *model in self.responderSet) {
+            if(model.ShowResultBlock){
+                model.ShowResultBlock(view, result);
+            }
+        }
+        
+    }];
 }
 
 -(void)configCanBecomeFirstResponderCallBackBlock:(canBecomeFirstResponderCallBackBlock)block{
@@ -78,6 +89,14 @@
     
     if(block){
         [self.becomeFirstSet addObject:block];
+    }
+}
+-(void)registerKeyBroadEventBecomeFirstResult:(KeyBroadEventBecomeFirstResultCallBlock)block{
+    
+    [self blingEvent];
+    
+    if(block){
+        [self.becomeFirstResultSet addObject:block];
     }
 }
 -(void)registerKeyBroadEventReginsFirst:(KeyBroadEventreginFirstCallBlock)block{
@@ -141,8 +160,6 @@
                 
             }
             
-            
-            
         }];
     });
     
@@ -193,6 +210,16 @@
                 
             }
         }];
+        
+        [UIResponder configbecomeFirstResponderResultCallBackBlock:^(UIView *view, BOOL result) {
+            if([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]){
+                
+                for (KeyBroadEventBecomeFirstResultCallBlock Block in self.becomeFirstResultSet) {
+                    Block(view,result);
+                }
+                
+            }
+        }];
     });
     
 }
@@ -231,7 +258,14 @@
     return _becomeFirstSet;
     
 }
-
+-(NSMutableSet*)becomeFirstResultSet{
+    
+    if(_becomeFirstResultSet==nil){
+        _becomeFirstResultSet = [NSMutableSet set];
+    }
+    return _becomeFirstResultSet;
+    
+}
 
 static id _instace;
 + (id)allocWithZone:(struct _NSZone *)zone

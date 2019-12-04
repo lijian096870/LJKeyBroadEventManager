@@ -19,6 +19,8 @@ typedef BOOL(^canBecomeFirstResponderCallBackBlock)(UIView *view);
 
 
 typedef BOOL(^KeyBroadEventBecomeFirstCallBlock)(UIView *view);
+typedef void(^KeyBroadEventBecomeFirstResultCallBlock)(UIView *view,BOOL result);
+
 
 typedef void(^KeyBroadEventreginFirstCallBlock)(UIView *view);
 
@@ -30,7 +32,7 @@ typedef BOOL(^KeyBroadEventNotificationHiddenCallBack)(UIView *view);
 
 -(void)configCanBecomeFirstResponderCallBackBlock:(canBecomeFirstResponderCallBackBlock)block;
 
--(void)registerKeyBroadEventShowEvent:(KeyBroadEventBecomeFirstCallBlock)Showblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationShowBlock AndFrameChangeBlock:(KeyBroadEventNotificationViewAnimationBlock)frameChangeBlock HidenEvent:(KeyBroadEventreginFirstCallBlock)Hidenblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationHidenBlock;
+-(void)registerKeyBroadEventShowEvent:(KeyBroadEventBecomeFirstCallBlock)Showblock BroadEventShowResult:(KeyBroadEventBecomeFirstResultCallBlock)ShowResultBlock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationShowBlock AndFrameChangeBlock:(KeyBroadEventNotificationViewAnimationBlock)frameChangeBlock HidenEvent:(KeyBroadEventreginFirstCallBlock)Hidenblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationHidenBlock;
 
 + (instancetype)sharedInstance;
 @end

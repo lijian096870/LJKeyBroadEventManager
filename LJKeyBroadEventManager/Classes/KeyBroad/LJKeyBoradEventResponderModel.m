@@ -45,6 +45,8 @@
     if([self.object_keyBroad isViewLoaded]&&[self.object_keyBroad isKindOfClass:UIViewController.class]){
         if([view isKindOfClass:UITextView.class]||[view isKindOfClass:UITextField.class]){
             
+            self.cancelView = nil;
+            
             if([self.currentView isKindOfClass:UIView.class]){
                 
                 if(self.currentView == view){
@@ -66,6 +68,21 @@
     }else{
         return NO;
     }
+}
+
+-(void)ShowkeyBroadResult:(UIView*)view AndResult:(BOOL)result{
+    
+    if([self.object_keyBroad isViewLoaded]&&[self.object_keyBroad isKindOfClass:UIViewController.class]){
+        if([view isKindOfClass:UITextView.class]||[view isKindOfClass:UITextField.class]){
+            
+            if([self.currentView isKindOfClass:UIView.class]&&self.currentView == view){
+                
+                self.cancelView = nil;
+                
+                [self.object_keyBroad.NSObject_KeyBoradManager_info ShowkeyBroadResult:view AndResult:result];
+            }
+        }
+    }
     
     
 }
@@ -75,7 +92,7 @@
     if([self.object_keyBroad isViewLoaded]&&[self.object_keyBroad isKindOfClass:UIViewController.class]){
         
         if([self.currentView isKindOfClass:UIView.class]&&self.currentView == view){
-            
+            self.cancelView = nil;
             [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroadAnimation:view andkeyBroadHeight:keyBroadHeight];
         }
     }
@@ -90,7 +107,6 @@
             [self.object_keyBroad.NSObject_KeyBoradManager_info keyBroadFrameChange:view andkeyBroadHeight:keyBroadHeight];
         }
     }
-    
 }
 
 -(void)HiddenKeyBroad:(UIView*)view{
@@ -103,8 +119,6 @@
             [self.object_keyBroad.NSObject_KeyBoradManager_info HiddenKeyBroad:view];
         }
     }
-    
-    
     
 }
 
@@ -119,12 +133,8 @@
                 
                 [self.object_keyBroad.NSObject_KeyBoradManager_info HiddenBroadAnimation:view];
             }
-            
-            
         }
     }
-    
-    
 }
 -(void)HiddenBroadAnimation:(UIView *)view{
     

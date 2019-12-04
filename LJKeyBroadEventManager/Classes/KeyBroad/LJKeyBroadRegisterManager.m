@@ -74,6 +74,17 @@
             
             return YES;
             
+        } BroadEventShowResult:^(UIView *view, BOOL result) {
+            
+            UIViewController *viewController = viewGetSuperController(view);
+            if([viewController isKindOfClass:[UIViewController class]]){
+                if([self isRegister:viewController.keyBroad_mess_uniqueID]){
+                    
+                    return [viewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowkeyBroadResult:view AndResult:result];
+                    
+                }
+            }
+            
         } AndViewAnimationBlock:^(UIView *view, CGFloat keyBroadHeight) {
             
             UIViewController *viewController = viewGetSuperController(view);

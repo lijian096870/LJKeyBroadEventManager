@@ -15,6 +15,8 @@
 
 -(BOOL)ShowKeyBroad:(UIView*)view;
 
+-(void)ShowkeyBroadResult:(UIView*)view AndResult:(BOOL)result;
+
 -(void)ShowKeyBroadAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
 
 -(void)keyBroadFrameChange:(UIView*)view andkeyBroadHeight:(CGFloat)keyBroadHeight;

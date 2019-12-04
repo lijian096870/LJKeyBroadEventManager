@@ -10,6 +10,7 @@
 #import "FirstResponderModel.h"
 
 static NSMutableArray *becomeFirstResponderCallBackBlockArray;
+static NSMutableArray *becomeFirstResponderResultCallBackBlockArray;
 static NSMutableArray *resignFirstResponderCallBackBlockArray;
 
 static canBecomeFirstResponderCallBackBlock canBecomeFirstResponder = nil;
@@ -43,6 +44,19 @@ static __weak UIResponder *lj_currentFirstResponder;
     [UIResponder becomeFirstResponderCallBackMethodExchange];
     
     canBecomeFirstResponder = block;
+    
+}
+
++(void)configbecomeFirstResponderResultCallBackBlock:(becomeFirstResponderResultCallBackBlock)block{
+    
+    [UIResponder becomeFirstResponderCallBackMethodExchange];
+       
+       if(becomeFirstResponderResultCallBackBlockArray==nil){
+           becomeFirstResponderResultCallBackBlockArray = [NSMutableArray array];
+       }
+       if(block){
+           [becomeFirstResponderResultCallBackBlockArray addObject:block];
+       }
     
 }
 
@@ -135,6 +149,13 @@ static __weak UIResponder *lj_currentFirstResponder;
                         
                         BOOL result = [self Customer_becomeFirstResponder];
                         
+                        self.keyBroad_FirstResponder_info.isFirstResponder = result;
+                        
+                        for (becomeFirstResponderResultCallBackBlock block in becomeFirstResponderResultCallBackBlockArray) {
+                            if(block){
+                                block((UIView*)self,result);
+                            }
+                        }
                         return result;
                     }else{
                         return false;

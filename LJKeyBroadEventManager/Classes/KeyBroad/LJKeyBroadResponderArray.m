@@ -497,64 +497,77 @@
     }
 }
 
-+ (LJKeyBroadRespoderModel*)CanLeftArrowButton:(LJKeyBroadRespoderModel *)currentModel AndResponderArray:(NSArray*)array andRootView:(UIView*)rootView AndViewController:(UIViewController*)viewController{
++ (LJKeyBroadRespoderModel*)CanLeftArrowButton:(LJKeyBroadRespoderModel *)currentModel AndResponderArray:(NSArray*)array AndViewController:(UIViewController*)viewController{
     
-    NSUInteger index = [array indexOfObject:currentModel] -1;
-    if(index<array.count&&index>=0){
-        
-        LJKeyBroadRespoderModel *model = [array objectAtIndex:index];
-        
-        if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray confimDisCorrect:model andNext:currentModel andRootView:rootView]){
+    if(viewController.isViewLoaded){
+        NSUInteger index = [array indexOfObject:currentModel] -1;
+        if(index<array.count&&index>=0){
             
-            if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
-                if([viewController canBecomeFirstResponder:model.view]){
-                    
-                    return model;
+            LJKeyBroadRespoderModel *model = [array objectAtIndex:index];
+            
+            if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray confimDisCorrect:model andNext:currentModel andRootView:viewController.view]){
+                
+                if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
+                    if([viewController canBecomeFirstResponder:model.view]){
+                        
+                        return model;
+                        
+                    }else{
+                        
+                        return [self CanLeftArrowButton:model AndResponderArray:array AndViewController:viewController];
+                    }
                     
                 }else{
                     
-                    return [self CanLeftArrowButton:model AndResponderArray:array andRootView:rootView AndViewController:viewController];
+                    return model;
                 }
                 
             }else{
-                
-                return model;
+                return [self CanLeftArrowButton:model AndResponderArray:array AndViewController:viewController];
             }
-            
         }else{
-            return [self CanLeftArrowButton:model AndResponderArray:array andRootView:rootView AndViewController:viewController];
+            return nil;
         }
     }else{
         return nil;
     }
+    
+    
 }
-+ (LJKeyBroadRespoderModel*)CanRightArrowButton:(LJKeyBroadRespoderModel *)currentModel AndResponderArray:(NSArray*)array andRootView:(UIView*)rootView AndViewController:(UIViewController*)viewController{
++ (LJKeyBroadRespoderModel*)CanRightArrowButton:(LJKeyBroadRespoderModel *)currentModel AndResponderArray:(NSArray*)array AndViewController:(UIViewController*)viewController{
     
-    NSUInteger index = [array indexOfObject:currentModel] +1;
-    if(index<array.count&&index>=0){
+    if(viewController.isViewLoaded){
         
-        LJKeyBroadRespoderModel *model = [array objectAtIndex:index];
-        
-        if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray confimDisCorrect:currentModel andNext:model andRootView:rootView]){
+        NSUInteger index = [array indexOfObject:currentModel] +1;
+        if(index<array.count&&index>=0){
             
+            LJKeyBroadRespoderModel *model = [array objectAtIndex:index];
             
-            if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
-                if([viewController canBecomeFirstResponder:model.view]){
-                    
-                    return model;
+            if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray confimDisCorrect:currentModel andNext:model andRootView:viewController.view]){
+                
+                if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
+                    if([viewController canBecomeFirstResponder:model.view]){
+                        
+                        return model;
+                    }else{
+                        return [self CanRightArrowButton:model AndResponderArray:array AndViewController:viewController];
+                    }
                 }else{
-                    return [self CanRightArrowButton:model AndResponderArray:array andRootView:rootView AndViewController:viewController];
+                    return model;
                 }
             }else{
-                return model;
+                
+                return [self CanRightArrowButton:model AndResponderArray:array AndViewController:viewController];
             }
         }else{
-            
-            return [self CanRightArrowButton:model AndResponderArray:array andRootView:rootView AndViewController:viewController];
+            return nil;
         }
+        
     }else{
         return nil;
     }
+    
+    
 }
 
 +(CGFloat)dis:(UIView*)view1 and:(UIView*)view2 and:(UIView*)window{

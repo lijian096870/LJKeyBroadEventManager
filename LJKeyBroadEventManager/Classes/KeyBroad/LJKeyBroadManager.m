@@ -13,9 +13,9 @@
 #import "LJKeyBroadEventManager.h"
 #import "UIViewController+KeyBoradManager.h"
 #import "LJViewControllerManager.h"
-#import "LJKeyBroadResponderArray.h"
 #import "LJKeyBroadMoveOffsetManager.h"
 #import "LJKeyboardReloadToolBar.h"
+#import "LJKeyBroadRespoderNextSet.h"
 @interface UIViewController ()<LJKeyboardManagerDelegate>
 
 @end
@@ -25,14 +25,13 @@
 @property(nonatomic,weak)UIViewController *object_keyBroad;
 
 
-
 @property(nonatomic,strong)LJKeyBroadMoveOffsetManager *moveOffsetManager;
 
-@property(nonatomic,strong)LJKeyBroadRespoderModel *responderModel;
 
 @property(nonatomic,strong)LJKeyboardReloadToolBar *reloadTooBarUtil;
 
-@property(nonatomic,strong)NSMutableArray *ResponderArray;
+
+@property(nonatomic,strong)LJKeyBroadRespoderNextSet *responderNextSet;
 
 
 @end
@@ -42,104 +41,117 @@
 
 -(BOOL)ShowKeyBroad:(UIView*)view{
     
-    if(self.responderModel.view == view){
+    if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&[self.object_keyBroad isViewLoaded]&&(([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]))){
         
-        return YES;
-        
-    }else{
-        if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&[self.object_keyBroad isViewLoaded]){
+        if([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]){
             
-            UIView *window = [self getSuperWindows:self.object_keyBroad.view];
-
-            if(self.ResponderArray.count>0){
+            if([self.responderNextSet isCurrentView:view]){
                 
-                LJKeyBroadRespoderModel *model = [self GetResponder:self.ResponderArray and:view];
+                [self configLJKeyboardToolBar:self.responderNextSet];
                 
-                if([model isKindOfClass:LJKeyBroadRespoderModel.class]){
-                    
-                    [self configLJKeyboardToolBar:model AndResponderArray:self.ResponderArray];
-                    
-                    self.responderModel = model;
-                    
-                    [self customerKeyBroadChange];
-                    
-                    return YES;
-                    
-                }else{
-                    
-                    return NO;
-                    
-                }
+                [self customerKeyBroadChange];
+                
+                return YES;
                 
             }else{
-                
-                NSMutableArray *result= [NSMutableArray array];
-                
-                [LJKeyBroadResponderArray loopSubView:result and:self.object_keyBroad.view andWindow:window AndDontMove:view];
-                self.ResponderArray = result;
-                
-                LJKeyBroadRespoderModel *model = [self GetResponder:self.ResponderArray and:view];
-                
-                if([model isKindOfClass:LJKeyBroadRespoderModel.class]){
+                if([self.responderNextSet isValidContain:view]){
                     
-                    [self configLJKeyboardToolBar:model AndResponderArray:self.ResponderArray];
+                    if([self.responderNextSet moveThisView:view]){
+                        
+                        [self configLJKeyboardToolBar:self.responderNextSet];
+                        
+                        [self customerKeyBroadChange];
+                        
+                        return YES;
+                        
+                    }else{
+                        return NO;
+                    }
                     
-                    self.responderModel = model;
-                    
-                    [self customerKeyBroadChange];
-                    
-                    return YES;
                 }else{
-                    [self.ResponderArray removeAllObjects];
-                    return NO;
                     
+                    return NO;
                 }
             }
-        
+            
         }else{
             
-            return NO;
+            LJKeyBroadRespoderNextSet *NextSet = [[LJKeyBroadRespoderNextSet alloc]initWithViewController:self.object_keyBroad AndMustHaveView:view];
+            if([NextSet isValidContain:view]&&[NextSet isCurrentView:view]){
+                
+                self.responderNextSet = NextSet;
+                [self configLJKeyboardToolBar:self.responderNextSet];
+                [self customerKeyBroadChange];
+                return YES;
+                
+            }else{
+                return NO;
+            }
             
+        }
+        
+    }else{
+        return NO;
+    }
+}
+
+-(void)ShowkeyBroadResult:(UIView*)view AndResult:(BOOL)result{
+    
+    
+    if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&[self.object_keyBroad isViewLoaded]&&(([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]))&&[self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]&&[self.responderNextSet isCurrentView:view]){
+        
+        if(result){
+            
+        }else{
+            [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                
+                [self.moveOffsetManager endEditResponderModel:self.responderNextSet.currentResponderModel];
+                self.responderNextSet = nil;
+            } completion:^(BOOL finished) {
+                
+            }];
         }
     }
 }
+
 -(void)ShowKeyBroadAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight{
     
-    if([self.responderModel isKindOfClass:LJKeyBroadRespoderModel.class]&&[self.responderModel.view isKindOfClass:view.class] && (self.responderModel.view == view)){
+    if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&[self.object_keyBroad isViewLoaded]&&(([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]))&&[self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]&&[self.responderNextSet isValid]&&[self.responderNextSet isCurrentView:view]){
         
         if([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]]&&self.object_keyBroad.isViewLoaded){
             
-            [LJKeyBroadResponderArray responderArrayRenewResponderLocation:self.ResponderArray AndDontMove:self.responderModel andRootView:self.object_keyBroad.view];
+            [self.responderNextSet responderArrayRenewResponderLocation];
             
-            [self.reloadTooBarUtil reloadLJKeyboardToolBarAndResponderModel:self.responderModel AndResponderArray:self.ResponderArray];
+            [self.reloadTooBarUtil reloadLJKeyboardToolBarAndResponderModel:self.responderNextSet];
+            
         }
-
-        [self.moveOffsetManager moveOffsetKeyBroadHeight:keyBroadHeight ResponderModel:self.responderModel];
+        
+        [self.moveOffsetManager moveOffsetKeyBroadHeight:keyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
         
     }
+    
 }
 
 -(void)keyBroadFrameChange:(UIView*)view andkeyBroadHeight:(CGFloat)keyBroadHeight{
     
-    if([self.responderModel isKindOfClass:LJKeyBroadRespoderModel.class]&&self.responderModel.view == view){
+    if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&[self.object_keyBroad isViewLoaded]&&(([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]))&&[self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]&&[self.responderNextSet isValid]&&[self.responderNextSet isCurrentView:view]){
         
-        [self.moveOffsetManager moveOffsetKeyBroadHeight:keyBroadHeight ResponderModel:self.responderModel];
+        [self.moveOffsetManager moveOffsetKeyBroadHeight:keyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
         
     }
 }
 -(void)HiddenKeyBroad:(UIView*)view{
     
-    if([self.responderModel isKindOfClass:LJKeyBroadRespoderModel.class]&&self.responderModel.view == view){
-        [self.ResponderArray removeAllObjects];
-    }
+    
+    
+    
 }
 -(void)HiddenBroadAnimation:(UIView *)view{
     
-    if([self.responderModel isKindOfClass:LJKeyBroadRespoderModel.class]&&self.responderModel.view == view){
+    if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&[self.object_keyBroad isViewLoaded]&&(([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]))&&[self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]&&[self.responderNextSet isValid]&&[self.responderNextSet isCurrentView:view]){
         
-        LJKeyBroadRespoderModel *model = self.responderModel;
-        
-        self.responderModel = nil;
+        LJKeyBroadRespoderModel *model = self.responderNextSet.currentResponderModel;
+        self.responderNextSet = nil;
         
         [self.moveOffsetManager endEditResponderModel:model];
     }
@@ -155,16 +167,17 @@
     return self;
 }
 
--(void)configLJKeyboardToolBar:(LJKeyBroadRespoderModel*)model AndResponderArray:(NSArray*)responderArray{
+-(void)configLJKeyboardToolBar:(LJKeyBroadRespoderNextSet *)responderNextSet{
     
-    [self.reloadTooBarUtil configLJKeyboardToolBar:model andNewToolBar:[self MadeToolBar:CGRectMake(0, 0, model.window.bounds.size.width, 40)] AndResponderArray:responderArray];
+    [self.reloadTooBarUtil configLJKeyboardToolBar:responderNextSet andNewToolBar:[self MadeToolBar:CGRectMake(0, 0, responderNextSet.currentResponderModel.window.bounds.size.width, 40)]];
     
     __weak LJKeyBroadManager *weakself = self;
     [self.moveOffsetManager setMoveCallBlock:^(LJKeyBroadRespoderModel *model) {
         
-        if(weakself&&[model isKindOfClass:LJKeyBroadRespoderModel.class]&&[weakself ResponderArray].count>0){
+        
+        if(weakself&&[model isKindOfClass:LJKeyBroadRespoderModel.class]&&[weakself.responderNextSet isValid]&&weakself.responderNextSet.currentResponderModel == model){
             
-            [weakself.reloadTooBarUtil reloadLJKeyboardToolBarAndResponderModel:model AndResponderArray:[weakself ResponderArray]];
+            [weakself.reloadTooBarUtil reloadLJKeyboardToolBarAndResponderModel:weakself.responderNextSet];
         }
     }];
 }
@@ -189,48 +202,52 @@
     }];
 }
 
-
-
 - (void)didClickedLeftArrowButton{
     
-    if(self.responderModel&&[self.responderModel.view isKindOfClass:[UIView class]]){
+    
+    if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&[self.object_keyBroad isViewLoaded]&&[self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]&&[self.responderNextSet isValid]){
         
-        if([self.object_keyBroad isKindOfClass:UIViewController.class] && self.object_keyBroad.isViewLoaded && self.ResponderArray.count>0){
+        LJKeyBroadRespoderModel * model = [self.responderNextSet MoveLeftArrow];
+        
+        if([model isKindOfClass:LJKeyBroadRespoderModel.class]&&[model.view isKindOfClass:UIView.class]){
             
-            LJKeyBroadRespoderModel *model = [LJKeyBroadResponderArray CanLeftArrowButton:self.responderModel AndResponderArray:self.ResponderArray andRootView:self.object_keyBroad.view AndViewController:self.object_keyBroad];
-            
-            if([model isKindOfClass:LJKeyBroadRespoderModel.class]&&[model.view isKindOfClass:UIView.class]){
+            if([self.responderNextSet moveThisView:model.view]){
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [model.view becomeFirstResponder];
                 });
+                
+                
             }else{
-                  [self.reloadTooBarUtil reloadLJKeyboardToolBarAndResponderModel:self.responderModel AndResponderArray:self.ResponderArray];
+                [self.reloadTooBarUtil reloadLJKeyboardToolBarAndResponderModel:self.responderNextSet];
             }
+        }else{
+            [self.reloadTooBarUtil reloadLJKeyboardToolBarAndResponderModel:self.responderNextSet];
         }
     }
+    
 }
-
-
 - (void)didClickedRightArrowButton{
     
-    if(self.responderModel&&[self.responderModel.view isKindOfClass:[UIView class]]&&self.ResponderArray.count>0){
+    if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&[self.object_keyBroad isViewLoaded]&&[self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]&&[self.responderNextSet isValid]){
         
-        if([self.object_keyBroad isKindOfClass:UIViewController.class] && self.object_keyBroad.isViewLoaded){
+        LJKeyBroadRespoderModel * model = [self.responderNextSet MoveRightArrow];
+        
+        if([model isKindOfClass:LJKeyBroadRespoderModel.class]&&[model.view isKindOfClass:UIView.class]){
             
-            LJKeyBroadRespoderModel *model = [LJKeyBroadResponderArray CanRightArrowButton:self.responderModel AndResponderArray:self.ResponderArray andRootView:self.object_keyBroad.view AndViewController:self.object_keyBroad];
-            
-            if([model isKindOfClass:LJKeyBroadRespoderModel.class]&&[model.view isKindOfClass:UIView.class]){
+            if([self.responderNextSet moveThisView:model.view]){
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    
                     [model.view becomeFirstResponder];
-                    
                 });
             }else{
-                
-                 [self.reloadTooBarUtil reloadLJKeyboardToolBarAndResponderModel:self.responderModel AndResponderArray:self.ResponderArray];
+                [self.reloadTooBarUtil reloadLJKeyboardToolBarAndResponderModel:self.responderNextSet];
             }
+        }else{
+            [self.reloadTooBarUtil reloadLJKeyboardToolBarAndResponderModel:self.responderNextSet];
         }
     }
+    
 }
 - (void)didClickedDone{
     
@@ -240,42 +257,18 @@
 
 -(void)customerKeyBroadChange{
     
-    if([self.responderModel isKindOfClass:LJKeyBroadRespoderModel.class]&&self.moveOffsetManager.keyBroadHeight>0){
+    if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&[self.object_keyBroad isViewLoaded]&&[self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]&&[self.responderNextSet isValid]){
         
         [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             
-            [self.moveOffsetManager moveOffsetKeyBroadHeight:self.moveOffsetManager.keyBroadHeight ResponderModel:self.responderModel];
+            [self.moveOffsetManager moveOffsetKeyBroadHeight:self.moveOffsetManager.keyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
             
         } completion:^(BOOL finished) {
             
         }];
-    }
-}
-
--(UIView*)getSuperWindows:(UIView*)view{
-    
-    if([view.superview isKindOfClass:[UIView class]]){
         
-        return [self getSuperWindows:view.superview];
-        
-    }else{
-        return view;
     }
 }
-
-
--(LJKeyBroadRespoderModel*)GetResponder:(NSMutableArray*)array and:(UIView*)view{
-    
-    for (LJKeyBroadRespoderModel *temp in array) {
-        if(temp.view == view){
-            return temp;
-        }
-    }
-    return nil;
-    
-}
-
-
 -(LJKeyBroadMoveOffsetManager*)moveOffsetManager{
     
     if(_moveOffsetManager==nil){
