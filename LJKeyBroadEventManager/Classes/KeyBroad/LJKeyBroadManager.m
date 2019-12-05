@@ -49,7 +49,7 @@
                 
                 [self configLJKeyboardToolBar:self.responderNextSet];
                 
-                [self customerKeyBroadChange];
+                [self.moveOffsetManager customerKeyBroadChange:self.responderNextSet];
                 
                 return YES;
                 
@@ -60,7 +60,7 @@
                         
                         [self configLJKeyboardToolBar:self.responderNextSet];
                         
-                        [self customerKeyBroadChange];
+                        [self.moveOffsetManager customerKeyBroadChange:self.responderNextSet];
                         
                         return YES;
                         
@@ -81,7 +81,7 @@
                 
                 self.responderNextSet = NextSet;
                 [self configLJKeyboardToolBar:self.responderNextSet];
-                [self customerKeyBroadChange];
+                [self.moveOffsetManager customerKeyBroadChange:self.responderNextSet];
                 return YES;
                 
             }else{
@@ -252,20 +252,6 @@
     
 }
 
--(void)customerKeyBroadChange{
-    
-    if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&[self.object_keyBroad isViewLoaded]&&[self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]&&[self.responderNextSet isValid]){
-        
-        [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            
-            [self.moveOffsetManager moveOffsetKeyBroadHeight:self.moveOffsetManager.keyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
-            
-        } completion:^(BOOL finished) {
-            
-        }];
-        
-    }
-}
 -(LJKeyBroadMoveOffsetManager*)moveOffsetManager{
     
     if(_moveOffsetManager==nil){

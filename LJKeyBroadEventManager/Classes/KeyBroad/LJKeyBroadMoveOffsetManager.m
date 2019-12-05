@@ -39,10 +39,12 @@
 
 -(void)customerKeyBroadChange:(LJKeyBroadRespoderNextSet *)responderNextSet{
     
+    LJKeyBroadRespoderModel *temp = responderNextSet.currentResponderModel;
+    
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&[self.object_keyBroad isViewLoaded]&&[responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]&&[responderNextSet isValid]&&self.keyBroadHeight>0.0){
+        if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&[self.object_keyBroad isViewLoaded]&&[temp isKindOfClass:LJKeyBroadRespoderModel.class]&&[temp.view isKindOfClass:UIView.class]&&[responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]&&[responderNextSet isValid]&&responderNextSet.currentResponderModel == temp&&self.keyBroadHeight>0.0){
             
             [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
                 
@@ -51,7 +53,6 @@
             } completion:^(BOOL finished) {
                 
             }];
-            
         }
     });
     
