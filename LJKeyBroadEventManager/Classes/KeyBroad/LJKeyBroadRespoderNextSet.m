@@ -33,13 +33,13 @@
             [self.ResponderArray removeAllObjects];
             [LJKeyBroadResponderArray loopSubView:self.ResponderArray and:viewController.view andWindow:[self getSuperWindows:viewController.view] AndDontMove:mastView];
             self.model = [self GetResponder:self.ResponderArray and:mastView];
-            
+                    
             __weak LJKeyBroadRespoderNextSet *weakself = self;
             [self.arcReleaseManager configArcReleaseCallBlock:^(LJKeyBroadRespoderModel *model) {
                 if(weakself && [weakself isKindOfClass:LJKeyBroadRespoderNextSet.class]){
                     [weakself releaseResponder:model];
                 }
-
+                
             } andArray:self.ResponderArray];
         }
         
@@ -54,25 +54,36 @@
         if(index>=0&&index<self.ResponderArray.count){
             if(index ==0){
                 [self.ResponderArray removeObjectAtIndex:0];
+                if(self.reloadBarBlock){
+                    self.reloadBarBlock();
+                }
                 
-            }else if (index == self.ResponderArray.count-1)
+            }else if (index == self.ResponderArray.count-1){
                 
                 [self.ResponderArray removeLastObject];
-            
-        }else{
-            
-            LJKeyBroadRespoderModel *aheadModel = [self.ResponderArray objectAtIndex:index-1];
-            LJKeyBroadRespoderModel *NextModel = [self.ResponderArray objectAtIndex:index +1];
-            
-            [self.ResponderArray removeObjectAtIndex:index];
-            
-            if([aheadModel isKindOfClass:LJKeyBroadRespoderModel.class]&&[NextModel isKindOfClass:LJKeyBroadRespoderModel.class]){
-                aheadModel.nextDis = model.nextDis + aheadModel.nextDis;
-                NextModel.aheadDis = model.aheadDis + NextModel.aheadDis;
-                aheadModel.nextView = NextModel.view;
-                NextModel.aheadView = aheadModel.view;
+                if(self.reloadBarBlock){
+                    self.reloadBarBlock();
+                }
                 
+            }else{
+                LJKeyBroadRespoderModel *aheadModel = [self.ResponderArray objectAtIndex:index-1];
+                LJKeyBroadRespoderModel *NextModel = [self.ResponderArray objectAtIndex:index +1];
+                
+                [self.ResponderArray removeObjectAtIndex:index];
+                
+                if([aheadModel isKindOfClass:LJKeyBroadRespoderModel.class]&&[NextModel isKindOfClass:LJKeyBroadRespoderModel.class]){
+                    aheadModel.nextDis = model.nextDis + aheadModel.nextDis;
+                    NextModel.aheadDis = model.aheadDis + NextModel.aheadDis;
+                    aheadModel.nextView = NextModel.view;
+                    NextModel.aheadView = aheadModel.view;
+                    
+                    
+                }
+                if(self.reloadBarBlock){
+                    self.reloadBarBlock();
+                }
             }
+            
         }
     }
 }

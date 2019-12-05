@@ -35,7 +35,7 @@
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"TestTableViewCell" bundle:nil] forCellReuseIdentifier:NSStringFromClass(TestTableViewCell.class)];
     
-//    registerKeyBroadResponder(self);
+    registerKeyBroadResponder(self);
     
     
 }

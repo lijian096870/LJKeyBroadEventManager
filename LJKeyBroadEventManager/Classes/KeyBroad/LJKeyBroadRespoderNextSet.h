@@ -16,6 +16,7 @@
 
 - (instancetype)initWithViewController:(UIViewController*)viewController AndMustHaveView:(UIView*)mastView;
 
+@property(nonatomic,copy)dispatch_block_t reloadBarBlock;
 
 -(void)responderArrayRenewResponderLocation;
 

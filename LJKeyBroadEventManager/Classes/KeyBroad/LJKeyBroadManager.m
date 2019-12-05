@@ -178,6 +178,15 @@
             [weakself.reloadTooBarUtil reloadLJKeyboardToolBarAndResponderModel:weakself.responderNextSet];
         }
     }];
+    
+    [responderNextSet setReloadBarBlock:^{
+        
+        if(weakself&&[weakself.responderNextSet isValid]){
+            
+            [weakself.reloadTooBarUtil reloadLJKeyboardToolBarAndResponderModel:weakself.responderNextSet];
+        }
+        
+    }];
 }
 
 - (LJKeyboardToolBar *)MadeToolBar:(CGRect)frame{

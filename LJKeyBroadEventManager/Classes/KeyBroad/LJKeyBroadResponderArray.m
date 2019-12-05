@@ -116,6 +116,8 @@ typedef NS_ENUM(NSInteger, LJKeyBroadViewConfirmResult) {
     @autoreleasepool {
         [self LocationloopSubView:array and:view andWindow:window andRootView:view AndisStrict:false];
         
+        NSLog(@"%@",array);
+        
         [self removeRepeatLocation:array AndWindow:window AndDontMove:DonMoveView];
         
         [self responderArray:array MustHaveView:DonMoveView andWindow:window];
@@ -527,6 +529,7 @@ typedef NS_ENUM(NSInteger, LJKeyBroadViewConfirmResult) {
     
     if(viewController.isViewLoaded){
         NSUInteger index = [array indexOfObject:currentModel] -1;
+ 
         if(index<array.count&&index>=0){
             
             LJKeyBroadRespoderModel *model = [array objectAtIndex:index];

@@ -19,21 +19,21 @@
 
 -(void)configArcReleaseCallBlock:(arcReleaseCallBlock)block andArray:(NSArray*)array{
     
-//    for (LJKeyBroadRespoderModel *model in array) {
-//
-//        LJKeyBroadArcReleaseResponerArrayManagerWeakResponderModel *weakModel = [[LJKeyBroadArcReleaseResponerArrayManagerWeakResponderModel alloc]init];
-//        weakModel.model = model;
-//
-//        [model.view setKeyBroadArcObjectClassReleaseCallBlockValue:^{
-//            if(block){
-//                if([weakModel.model isKindOfClass:LJKeyBroadRespoderModel.class]){
-//                    block(weakModel.model);
-//                }
-//            }
-//
-//        }];
-//
-//    }
+    for (LJKeyBroadRespoderModel *model in array) {
+
+        LJKeyBroadArcReleaseResponerArrayManagerWeakResponderModel *weakModel = [[LJKeyBroadArcReleaseResponerArrayManagerWeakResponderModel alloc]init];
+        weakModel.model = model;
+
+        [model.view setKeyBroadArcObjectClassReleaseCallBlockValue:^{
+            if(block){
+                if([weakModel.model isKindOfClass:LJKeyBroadRespoderModel.class]){
+                    block(weakModel.model);
+                }
+            }
+
+        }];
+
+    }
     
 }
 
