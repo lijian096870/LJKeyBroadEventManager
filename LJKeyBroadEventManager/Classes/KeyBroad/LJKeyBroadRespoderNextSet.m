@@ -7,6 +7,7 @@
 
 #import "LJKeyBroadRespoderNextSet.h"
 #import "LJKeyBroadResponderArray.h"
+#import "LJKeyBroadArcReleaseResponerArrayManager.h"
 @interface LJKeyBroadRespoderNextSet ()
 
 @property(nonatomic,strong)NSMutableArray *ResponderArray;
@@ -14,6 +15,8 @@
 @property(nonatomic,strong)LJKeyBroadRespoderModel *model;
 
 @property(nonatomic,weak)UIViewController *object_keyBroad;
+
+@property(nonatomic,strong)LJKeyBroadArcReleaseResponerArrayManager *arcReleaseManager;
 
 @end
 
@@ -30,6 +33,7 @@
             [self.ResponderArray removeAllObjects];
             [LJKeyBroadResponderArray loopSubView:self.ResponderArray and:viewController.view andWindow:[self getSuperWindows:viewController.view] AndDontMove:mastView];
             self.model = [self GetResponder:self.ResponderArray and:mastView];
+            
         }
         
     }
@@ -57,10 +61,43 @@
 
 -(BOOL)moveThisView:(UIView*)view{
     
+    LJKeyBroadRespoderModel *currentModel = self.model;
+    
     LJKeyBroadRespoderModel *model = [self GetResponder:self.ResponderArray and:view];
+    
     if([model isKindOfClass:LJKeyBroadRespoderModel.class]&&[model.view isKindOfClass:UIView.class]&&model.view == view){
-        self.model = model;
-        return YES;
+        
+        NSUInteger currentIndex = [self.ResponderArray indexOfObject:currentModel];
+        NSUInteger index = [self.ResponderArray indexOfObject:model];
+        
+        if(currentIndex>=0&&currentIndex<self.ResponderArray.count&&index>=0&&index<self.ResponderArray.count){
+            if(currentIndex>index){
+                
+                BOOL result = [self loopLeftLookForRespoderModel:model AndCurrentModel:currentModel And:self.ResponderArray];
+                if(result){
+                    self.model = model;
+                }
+                
+                return result;
+                
+            }else if (currentIndex<index){
+                
+                BOOL result = [self loopRightLookForRespoderModel:model AndCurrentModel:currentModel And:self.ResponderArray];
+                if(result){
+                    self.model = model;
+                }
+                
+                return result;
+            }else{
+                
+                self.model = model;
+                return YES;
+            }
+            
+            
+        }else{
+            return NO;
+        }
     }else{
         return NO;
     }
@@ -68,12 +105,50 @@
     
 }
 
-- (BOOL)isValidContain:(UIView*)view{
+-(BOOL)loopLeftLookForRespoderModel:(LJKeyBroadRespoderModel*)model AndCurrentModel:(LJKeyBroadRespoderModel*)currentModel And:(NSArray*)array{
+    
+    LJKeyBroadRespoderModel *lookResult = [LJKeyBroadResponderArray CanLeftArrowButton:currentModel AndResponderArray:array AndViewController:self.object_keyBroad];
+    if([lookResult isKindOfClass:LJKeyBroadRespoderModel.class]){
+        
+        if(lookResult == model){
+            
+            return YES;
+        }else{
+            
+            return [self loopLeftLookForRespoderModel:model AndCurrentModel:lookResult And:array];
+        }
+        
+    }else{
+        return NO;
+    }
+    
+}
+
+-(BOOL)loopRightLookForRespoderModel:(LJKeyBroadRespoderModel*)model AndCurrentModel:(LJKeyBroadRespoderModel*)currentModel And:(NSArray*)array{
+    
+    LJKeyBroadRespoderModel *lookResult = [LJKeyBroadResponderArray CanRightArrowButton:currentModel AndResponderArray:array AndViewController:self.object_keyBroad];
+    if([lookResult isKindOfClass:LJKeyBroadRespoderModel.class]){
+        
+        if(lookResult == model){
+            
+            return YES;
+        }else{
+            
+            return [self loopRightLookForRespoderModel:model AndCurrentModel:lookResult And:array];
+        }
+        
+    }else{
+        return NO;
+    }
+    
+}
+
+- (BOOL)isContain:(UIView*)view{
     
     if([self.object_keyBroad isKindOfClass:UIViewController.class] && self.object_keyBroad.isViewLoaded && self.ResponderArray.count>0 &&[self.model isKindOfClass:LJKeyBroadRespoderModel.class]&&[view isKindOfClass:UIView.class]){
         
         for (LJKeyBroadRespoderModel *model in self.ResponderArray) {
-            if(model == self.model && model.view == view){
+            if(model.view == view){
                 return YES;
             }
         }
@@ -175,6 +250,16 @@
         _ResponderArray = [NSMutableArray array];
     }
     return _ResponderArray;
+    
+    
+}
+
+-(LJKeyBroadArcReleaseResponerArrayManager*)arcReleaseManager{
+    
+    if(_arcReleaseManager==nil){
+        _arcReleaseManager = [[LJKeyBroadArcReleaseResponerArrayManager alloc]init];
+    }
+    return _arcReleaseManager;
     
     
 }

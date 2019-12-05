@@ -41,6 +41,7 @@
 
 -(BOOL)ShowKeyBroad:(UIView*)view{
     
+    
     if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&[self.object_keyBroad isViewLoaded]&&(([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]))){
         
         if([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]){
@@ -54,7 +55,7 @@
                 return YES;
                 
             }else{
-                if([self.responderNextSet isValidContain:view]){
+                if([self.responderNextSet isValid] && [self.responderNextSet isContain:view]){
                     
                     if([self.responderNextSet moveThisView:view]){
                         
@@ -77,7 +78,7 @@
         }else{
             
             LJKeyBroadRespoderNextSet *NextSet = [[LJKeyBroadRespoderNextSet alloc]initWithViewController:self.object_keyBroad AndMustHaveView:view];
-            if([NextSet isValidContain:view]&&[NextSet isCurrentView:view]){
+            if([NextSet isValid]&&[NextSet isContain:view]&&[NextSet isCurrentView:view]){
                 
                 self.responderNextSet = NextSet;
                 [self configLJKeyboardToolBar:self.responderNextSet];

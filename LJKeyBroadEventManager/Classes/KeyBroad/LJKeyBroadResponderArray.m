@@ -240,7 +240,7 @@ typedef NS_ENUM(NSInteger, LJKeyBroadViewConfirmResult) {
 
 +(BOOL)canBeEditResponder:(UIView*)view andWindow:(UIView*)window andRootView:(UIView*)rootView AndisStrict:(BOOL)strict{
     if([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]){
-        if([self canBeFirstResponder:view]){
+        if([self canBeFirstResponder:view]&&[self view:view superView:rootView]){
             
             if([self isOutLocation:view AndWindow:window andRootView:rootView AndisStrict:strict]||[self isCoverInputView:view AndWindow:window andRootView:rootView AndisStrict:strict]){
                 return NO;
@@ -255,6 +255,22 @@ typedef NS_ENUM(NSInteger, LJKeyBroadViewConfirmResult) {
         return NO;
     }
 }
+
++(BOOL)view:(UIView*)view superView:(UIView*)rootView{
+    
+    if([view isKindOfClass:UIView.class]){
+        
+        if(view == rootView){
+            return YES;
+        }else{
+            return [self view:view.superview superView:rootView];
+        }
+    }else{
+        return NO;
+    }
+    
+}
+
 
 + (BOOL)canBeFirstResponder:(UIView *)view {
     

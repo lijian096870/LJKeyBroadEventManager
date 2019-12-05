@@ -26,7 +26,7 @@
 
 - (BOOL)isValid;
 
-- (BOOL)isValidContain:(UIView*)view;
+- (BOOL)isContain:(UIView*)view;
 
 - (BOOL)CanLeftArrow;
 - (BOOL)CanRightArrow;
