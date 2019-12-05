@@ -6,8 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LJKeyBroadRespoderModel.h"
-
+#import "LJKeyBroadRespoderNextSet.h"
 
 typedef void(^moveOffsetKeyBlock)(LJKeyBroadRespoderModel *model);
 
@@ -22,6 +21,10 @@ typedef void(^moveOffsetKeyBlock)(LJKeyBroadRespoderModel *model);
 
 
 @property(nonatomic,copy)moveOffsetKeyBlock moveCallBlock;
+
+
+-(void)customerKeyBroadChange:(LJKeyBroadRespoderNextSet *)responderNextSet;
+
 
 -(void)moveOffsetKeyBroadHeight:(CGFloat)keyBroadHeight ResponderModel:(LJKeyBroadRespoderModel *)model;
 

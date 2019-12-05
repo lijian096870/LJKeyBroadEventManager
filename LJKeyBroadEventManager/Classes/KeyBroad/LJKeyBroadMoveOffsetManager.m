@@ -37,6 +37,26 @@
     return self;
 }
 
+-(void)customerKeyBroadChange:(LJKeyBroadRespoderNextSet *)responderNextSet{
+    
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&[self.object_keyBroad isViewLoaded]&&[responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]&&[responderNextSet isValid]&&self.keyBroadHeight>0.0){
+            
+            [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                
+                [self moveOffsetKeyBroadHeight:self.keyBroadHeight ResponderModel:responderNextSet.currentResponderModel];
+                
+            } completion:^(BOOL finished) {
+                
+            }];
+            
+        }
+    });
+    
+}
+
 -(void)endEditResponderModel:(LJKeyBroadRespoderModel *)model{
     
     if([model isKindOfClass:LJKeyBroadRespoderModel.class] && [model.view isKindOfClass:UIView.class]){
@@ -106,7 +126,7 @@
             
         }else{
             self.currentNumber = [NSNumber numberWithFloat:offset];
-           if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&self.object_keyBroad.isViewLoaded){
+            if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&self.object_keyBroad.isViewLoaded){
                 
                 
                 if([self.object_keyBroad respondsToSelector:@selector(keyBroadOffset:)]){
@@ -115,7 +135,7 @@
                     
                 }
                 
-                  self.moveOffsetNumber = [NSNumber numberWithFloat:offset];
+                self.moveOffsetNumber = [NSNumber numberWithFloat:offset];
                 
                 if([self.object_keyBroad respondsToSelector:@selector(keyBroadOffset:Responder:)]){
                     
@@ -124,7 +144,7 @@
                 
                 CGFloat scrollOffsect = [self.object_keyBroad claculateScrollerViewOffset:-offset];
                 
-              
+                
                 
                 if([self.object_keyBroad respondsToSelector:@selector(keyBroadScrollOffset:Responder:)]){
                     [self.object_keyBroad keyBroadScrollOffset:-scrollOffsect Responder:model.view];
