@@ -9,6 +9,14 @@
 #import "LJViewControllerManager.h"
 #import "LJKeyBroadEventManager.h"
 
+
+typedef NS_ENUM(NSInteger, LJKeyBroadViewConfirmResult) {
+    LJKeyBroadViewConfirmSuccess = 0,
+    LJKeyBroadViewConfirmUserIntefaceClose = 1,
+    LJKeyBroadViewConfirmFail = 2,
+};
+
+
 @interface UIViewController ()<LJKeyboardManagerDelegate>
 
 @end
@@ -452,48 +460,50 @@
     }
     
 }
-+(BOOL)confimDisCorrect:(LJKeyBroadRespoderModel*)ahead andNext:(LJKeyBroadRespoderModel*)Next andRootView:(UIView*)rootView{
++(LJKeyBroadViewConfirmResult)confirmDisCorrect:(LJKeyBroadRespoderModel*)ahead andNext:(LJKeyBroadRespoderModel*)Next andRootView:(UIView*)rootView{
     
     if([ahead.nextView isKindOfClass:UIView.class]&&[Next.aheadView isKindOfClass:UIView.class]&&[Next.view isKindOfClass:UIView.class]&&[ahead.view isKindOfClass:UIView.class]&&[Next.window isKindOfClass:UIView.class]){
         
         if(ahead.nextView == Next.view && Next.aheadView == ahead.view){
             
-            if([self canBeEditResponder:Next.view andWindow:Next.window andRootView:rootView AndisStrict:YES]){
+            CGFloat dis = [self dis:ahead.view and:Next.view and:Next.window];
+            
+            NSNumber *disNumber = [NSNumber numberWithFloat:dis];
+            
+            if([[NSNumber numberWithFloat:ahead.nextDis] isEqualToNumber:disNumber] && [[NSNumber numberWithFloat:Next.aheadDis] isEqualToNumber:disNumber]){
                 
-                CGFloat dis = [self dis:ahead.view and:Next.view and:Next.window];
+                CGRect loaction = [Next.view convertRect:Next.view.bounds toView:Next.window];
                 
-                NSNumber *disNumber = [NSNumber numberWithFloat:dis];
+                UIView *window = Next.window;
                 
-                if([[NSNumber numberWithFloat:ahead.nextDis] isEqualToNumber:disNumber] && [[NSNumber numberWithFloat:Next.aheadDis] isEqualToNumber:disNumber]){
+                if(CGRectContainsPoint(window.bounds, loaction.origin)&&CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y+loaction.size.height))&&CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y))&&CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x, loaction.origin.y+loaction.size.height))&&CGRectContainsRect(window.bounds, loaction)){
                     
-                    CGRect loaction = [Next.view convertRect:Next.view.bounds toView:Next.window];
-                    
-                    UIView *window = Next.window;
-                    
-                    if(CGRectContainsPoint(window.bounds, loaction.origin)&&CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y+loaction.size.height))&&CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y))&&CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x, loaction.origin.y+loaction.size.height))&&CGRectContainsRect(window.bounds, loaction)){
+                    if([self canBeEditResponder:Next.view andWindow:Next.window andRootView:rootView AndisStrict:YES]){
                         
-                        return YES;
-                        
+                        return LJKeyBroadViewConfirmSuccess;
                     }else{
                         
-                        return NO;
+                        return LJKeyBroadViewConfirmUserIntefaceClose;
+                        
                     }
+                    
                 }else{
                     
-                    return NO;
-                    
+                    return LJKeyBroadViewConfirmFail;
                 }
-                
             }else{
-                return NO;
+                
+                return LJKeyBroadViewConfirmFail;
+                
             }
             
+            
         }else{
-            return NO;
+            return LJKeyBroadViewConfirmFail;
         }
     }else{
         
-        return NO;
+        return LJKeyBroadViewConfirmFail;
     }
 }
 
@@ -505,26 +515,39 @@
             
             LJKeyBroadRespoderModel *model = [array objectAtIndex:index];
             
-            if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray confimDisCorrect:model andNext:currentModel andRootView:viewController.view]){
+            if([model.view isKindOfClass:[UIView class]]){
                 
-                if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
-                    if([viewController canBecomeFirstResponder:model.view]){
-                        
-                        return model;
-                        
-                    }else{
-                        
+                
+                LJKeyBroadViewConfirmResult result = [LJKeyBroadResponderArray confirmDisCorrect:model andNext:currentModel andRootView:viewController.view];
+                
+                switch (result) {
+                    case LJKeyBroadViewConfirmSuccess:
+                        if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
+                            if([viewController canBecomeFirstResponder:model.view]){
+                                
+                                return model;
+                                
+                            }else{
+                                
+                                return [self CanLeftArrowButton:model AndResponderArray:array AndViewController:viewController];
+                            }
+                            
+                        }else{
+                            
+                            return model;
+                        }
+                    case LJKeyBroadViewConfirmUserIntefaceClose:
                         return [self CanLeftArrowButton:model AndResponderArray:array AndViewController:viewController];
-                    }
-                    
-                }else{
-                    
-                    return model;
+                    case LJKeyBroadViewConfirmFail:
+                        return nil;
+                    default:
+                        return nil;
+                        
                 }
-                
             }else{
-                return [self CanLeftArrowButton:model AndResponderArray:array AndViewController:viewController];
+                return nil;
             }
+            
         }else{
             return nil;
         }
@@ -543,22 +566,40 @@
             
             LJKeyBroadRespoderModel *model = [array objectAtIndex:index];
             
-            if([model.view isKindOfClass:[UIView class]]&&[LJKeyBroadResponderArray confimDisCorrect:currentModel andNext:model andRootView:viewController.view]){
+            if([model isKindOfClass:LJKeyBroadRespoderModel.class] && [model.view isKindOfClass:[UIView class]]){
                 
-                if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
-                    if([viewController canBecomeFirstResponder:model.view]){
+                LJKeyBroadViewConfirmResult result = [LJKeyBroadResponderArray confirmDisCorrect:currentModel andNext:model andRootView:viewController.view];
+                
+                switch (result) {
                         
-                        return model;
-                    }else{
+                    case LJKeyBroadViewConfirmSuccess:{
+                        if([viewController isKindOfClass:[UIViewController class]]&&[viewController respondsToSelector:@selector(canBecomeFirstResponder:)]){
+                            if([viewController canBecomeFirstResponder:model.view]){
+                                
+                                return model;
+                            }else{
+                                return [self CanRightArrowButton:model AndResponderArray:array AndViewController:viewController];
+                            }
+                        }else{
+                            return model;
+                        }
+                        
+                    }break;
+                    case LJKeyBroadViewConfirmUserIntefaceClose:
                         return [self CanRightArrowButton:model AndResponderArray:array AndViewController:viewController];
-                    }
-                }else{
-                    return model;
+                    case LJKeyBroadViewConfirmFail:
+                        return nil;
+                    default:
+                        return nil;
+                        break;
                 }
+                
             }else{
                 
-                return [self CanRightArrowButton:model AndResponderArray:array AndViewController:viewController];
+                return nil;
             }
+            
+            
         }else{
             return nil;
         }
