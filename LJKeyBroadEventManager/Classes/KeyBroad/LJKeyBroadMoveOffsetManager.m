@@ -22,6 +22,7 @@
 
 @property(nonatomic,strong)NSNumber *moveOffsetNumber;
 
+
 @end
 
 @implementation LJKeyBroadMoveOffsetManager
@@ -67,7 +68,7 @@
         }else{
             self.currentNumber = [NSNumber numberWithFloat:offset];
             
-            if([self.object_keyBroad isKindOfClass:[UIViewController class]]){
+            if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&self.object_keyBroad.isViewLoaded){
                 
                 
                 if([self.object_keyBroad respondsToSelector:@selector(keyBroadOffset:)]){
@@ -105,7 +106,9 @@
             
         }else{
             self.currentNumber = [NSNumber numberWithFloat:offset];
-            if([self.object_keyBroad isKindOfClass:[UIViewController class]]){
+           if([self.object_keyBroad isKindOfClass:[UIViewController class]]&&self.object_keyBroad.isViewLoaded){
+                
+                
                 if([self.object_keyBroad respondsToSelector:@selector(keyBroadOffset:)]){
                     
                     [self.object_keyBroad keyBroadOffset:-offset];
