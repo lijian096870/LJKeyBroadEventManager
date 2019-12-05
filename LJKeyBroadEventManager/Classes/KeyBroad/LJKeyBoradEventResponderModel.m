@@ -52,13 +52,19 @@
                 if(self.currentView == view){
                     return YES;
                 }else{
-                    self.currentView = view;
-                    return [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroad:view];
+                    BOOL result = [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroad:view];
+                    if(result){
+                        self.currentView = view;
+                    }
+                    return result;
                 }
                 
             }else{
-                self.currentView = view;
-                return [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroad:view];
+                BOOL result = [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroad:view];
+                if(result){
+                    self.currentView = view;
+                }
+                return result;
                 
             }
             
