@@ -34,10 +34,47 @@
             [LJKeyBroadResponderArray loopSubView:self.ResponderArray and:viewController.view andWindow:[self getSuperWindows:viewController.view] AndDontMove:mastView];
             self.model = [self GetResponder:self.ResponderArray and:mastView];
             
+            __weak LJKeyBroadRespoderNextSet *weakself = self;
+            [self.arcReleaseManager configArcReleaseCallBlock:^(LJKeyBroadRespoderModel *model) {
+                if(weakself && [weakself isKindOfClass:LJKeyBroadRespoderNextSet.class]){
+                    [weakself releaseResponder:model];
+                }
+
+            } andArray:self.ResponderArray];
         }
         
     }
     return self;
+}
+
+-(void)releaseResponder:(LJKeyBroadRespoderModel*)model{
+    
+    if([model isKindOfClass:LJKeyBroadRespoderModel.class]){
+        NSUInteger index = [self.ResponderArray indexOfObject:model];
+        if(index>=0&&index<self.ResponderArray.count){
+            if(index ==0){
+                [self.ResponderArray removeObjectAtIndex:0];
+                
+            }else if (index == self.ResponderArray.count-1)
+                
+                [self.ResponderArray removeLastObject];
+            
+        }else{
+            
+            LJKeyBroadRespoderModel *aheadModel = [self.ResponderArray objectAtIndex:index-1];
+            LJKeyBroadRespoderModel *NextModel = [self.ResponderArray objectAtIndex:index +1];
+            
+            [self.ResponderArray removeObjectAtIndex:index];
+            
+            if([aheadModel isKindOfClass:LJKeyBroadRespoderModel.class]&&[NextModel isKindOfClass:LJKeyBroadRespoderModel.class]){
+                aheadModel.nextDis = model.nextDis + aheadModel.nextDis;
+                NextModel.aheadDis = model.aheadDis + NextModel.aheadDis;
+                aheadModel.nextView = NextModel.view;
+                NextModel.aheadView = aheadModel.view;
+                
+            }
+        }
+    }
 }
 
 -(void)responderArrayRenewResponderLocation{
@@ -176,8 +213,6 @@
     }else{
         return NO;
     }
-    
-    
 }
 
 - (BOOL)CanLeftArrow{
@@ -227,8 +262,6 @@
             }
         }
     }
-    
-    
     return nil;
     
 }

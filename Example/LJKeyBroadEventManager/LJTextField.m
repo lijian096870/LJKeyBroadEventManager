@@ -19,7 +19,10 @@
 @implementation LJTextField
 
 
-
+- (void)dealloc
+{
+    NSLog(@"%@",self);
+}
 
 
 +(instancetype)allocWithZone:(struct _NSZone *)zone{
