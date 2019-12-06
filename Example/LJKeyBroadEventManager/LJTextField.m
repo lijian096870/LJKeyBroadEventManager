@@ -15,18 +15,7 @@
 
 @implementation LJTextField
 
-//
-//-(void)willMoveToWindow:(nullable UIWindow *)newWindow{
-//    [super willMoveToWindow:newWindow];
-//    NSLog(@"111111111,%@",newWindow);
-//    
-//    
-//}
-//-(void)didMoveToWindow{
-//    [super didMoveToWindow];
-//    NSLog(@"2222222");
-//    
-//}
+
 - (void)dealloc
 {
      NSLog(@"%@",self);
