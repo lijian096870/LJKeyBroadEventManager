@@ -168,7 +168,7 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewConfirmResult) {
 }
 
 + (void)LocationloopSubView:(NSMutableArray *)array and:(UIView *)view andWindow:(UIView *)window andRootView:(UIView *)rootView AndisStrict:(BOOL)strict {
-    if (viewIsControllerView(view)) {} else {
+    if ((view != rootView) && viewIsControllerView(view)) {} else {
         if ([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]]) {
             if ([self canBeEditResponder:view andWindow:window andRootView:rootView AndisStrict:strict]) {
                 LJKeyBroadRespoderModel *model = [[LJKeyBroadRespoderModel alloc]init];
