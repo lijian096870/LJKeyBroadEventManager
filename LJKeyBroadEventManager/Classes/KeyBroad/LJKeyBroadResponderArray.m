@@ -116,7 +116,6 @@ typedef NS_ENUM(NSInteger, LJKeyBroadViewConfirmResult) {
     @autoreleasepool {
         [self LocationloopSubView:array and:view andWindow:window andRootView:view AndisStrict:false];
         
-        NSLog(@"%@",array);
         
         [self removeRepeatLocation:array AndWindow:window AndDontMove:DonMoveView];
         
@@ -374,30 +373,28 @@ typedef NS_ENUM(NSInteger, LJKeyBroadViewConfirmResult) {
 
 +(BOOL)isOutLocation:(UIView*)inputView AndWindow:(UIView*)window andRootView:(UIView*)rootView AndisStrict:(BOOL)strict{
     
-    return [self isOutLocationLoop:inputView and:window AndinputView:inputView andRootView:rootView AndisStrict:strict];
+    return [self isOutLocationLoop:inputView and:window AndinputViewLocation:[inputView convertRect:inputView.bounds toView:window] AndisStrict:strict];
     
 }
 
-+(BOOL)isOutLocationLoop:(UIView*)view and:(UIView*)window AndinputView:(UIView*)inputView andRootView:(UIView*)rootView AndisStrict:(BOOL)strict{
++(BOOL)isOutLocationLoop:(UIView*)view and:(UIView*)window AndinputViewLocation:(CGRect)loaction AndisStrict:(BOOL)strict{
     if([view isKindOfClass:UIView.class]){
         UIView *superView = view.superview;
         
-        if(rootView == view){
+        if([superView isKindOfClass:UIView.class]){
             
-            return NO;
-            
-        }else{
-            if([superView isKindOfClass:UIView.class]){
+            if([NSStringFromClass(superView.class) isEqualToString:@"UITableViewWrapperView"]){
                 
-                CGRect loaction = [inputView convertRect:inputView.bounds toView:window];
+                return [self isOutLocationLoop:superView and:window AndinputViewLocation:loaction AndisStrict:strict];
                 
+            }else{
                 CGRect superViewframe = [superView convertRect:superView.bounds toView:window];
                 
                 if(strict){
                     
                     if(CGRectContainsPoint(superViewframe, loaction.origin)&&CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y+loaction.size.height))&&CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y))&&CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x, loaction.origin.y+loaction.size.height))&&CGRectContainsRect(superViewframe, loaction)){
                         
-                        return [self isOutLocationLoop:superView and:window AndinputView:inputView andRootView:rootView AndisStrict:strict];
+                        return [self isOutLocationLoop:superView and:window AndinputViewLocation:loaction AndisStrict:strict];
                         
                     }else{
                         
@@ -408,7 +405,7 @@ typedef NS_ENUM(NSInteger, LJKeyBroadViewConfirmResult) {
                     
                     if(CGRectContainsPoint(superViewframe, loaction.origin)||CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y+loaction.size.height))||CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x+loaction.size.width, loaction.origin.y))||CGRectContainsPoint(superViewframe, CGPointMake(loaction.origin.x, loaction.origin.y+loaction.size.height))||CGRectContainsRect(superViewframe, loaction)){
                         
-                        return [self isOutLocationLoop:superView and:window AndinputView:inputView andRootView:rootView AndisStrict:strict];
+                        return [self isOutLocationLoop:superView and:window AndinputViewLocation:loaction AndisStrict:strict];
                         
                     }else{
                         
@@ -416,12 +413,10 @@ typedef NS_ENUM(NSInteger, LJKeyBroadViewConfirmResult) {
                     }
                     
                 }
-                
-                
-                
-            }else{
-                return NO;
             }
+            
+        }else{
+            return NO;
         }
     }else{
         
@@ -529,7 +524,7 @@ typedef NS_ENUM(NSInteger, LJKeyBroadViewConfirmResult) {
     
     if(viewController.isViewLoaded){
         NSUInteger index = [array indexOfObject:currentModel] -1;
- 
+        
         if(index<array.count&&index>=0){
             
             LJKeyBroadRespoderModel *model = [array objectAtIndex:index];
