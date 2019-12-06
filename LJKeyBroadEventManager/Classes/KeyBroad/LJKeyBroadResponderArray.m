@@ -8,7 +8,7 @@
 #import "LJKeyBroadResponderArray.h"
 #import "LJViewControllerManager.h"
 #import "LJKeyBroadEventManager.h"
-
+#import "LJViewControllerManager.h"
 typedef NS_ENUM (NSInteger, LJKeyBroadViewConfirmResult) {
     LJKeyBroadViewConfirmSuccess            = 0,
     LJKeyBroadViewConfirmUserIntefaceClose  = 1,
@@ -168,22 +168,24 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewConfirmResult) {
 }
 
 + (void)LocationloopSubView:(NSMutableArray *)array and:(UIView *)view andWindow:(UIView *)window andRootView:(UIView *)rootView AndisStrict:(BOOL)strict {
-    if ([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]]) {
-        if ([self canBeEditResponder:view andWindow:window andRootView:rootView AndisStrict:strict]) {
-            LJKeyBroadRespoderModel *model = [[LJKeyBroadRespoderModel alloc]init];
+    if (viewIsControllerView(view)) {} else {
+        if ([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]]) {
+            if ([self canBeEditResponder:view andWindow:window andRootView:rootView AndisStrict:strict]) {
+                LJKeyBroadRespoderModel *model = [[LJKeyBroadRespoderModel alloc]init];
 
-            CGRect loaction = [view convertRect:view.bounds toView:window];
+                CGRect loaction = [view convertRect:view.bounds toView:window];
 
-            if (CGRectContainsPoint(window.bounds, loaction.origin) || CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x + loaction.size.width, loaction.origin.y + loaction.size.height)) || CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x + loaction.size.width, loaction.origin.y)) || CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x, loaction.origin.y + loaction.size.height)) || CGRectContainsRect(window.bounds, loaction)) {
-                model.responderLocation = loaction;
-                model.view = view;
-                model.window = window;
-                [array addObject:model];
+                if (CGRectContainsPoint(window.bounds, loaction.origin) || CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x + loaction.size.width, loaction.origin.y + loaction.size.height)) || CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x + loaction.size.width, loaction.origin.y)) || CGRectContainsPoint(window.bounds, CGPointMake(loaction.origin.x, loaction.origin.y + loaction.size.height)) || CGRectContainsRect(window.bounds, loaction)) {
+                    model.responderLocation = loaction;
+                    model.view = view;
+                    model.window = window;
+                    [array addObject:model];
+                }
             }
-        }
-    } else {
-        for (UIView *subView in view.subviews) {
-            [self LocationloopSubView:array and:subView andWindow:window andRootView:rootView AndisStrict:strict];
+        } else {
+            for (UIView *subView in view.subviews) {
+                [self LocationloopSubView:array and:subView andWindow:window andRootView:rootView AndisStrict:strict];
+            }
         }
     }
 }
