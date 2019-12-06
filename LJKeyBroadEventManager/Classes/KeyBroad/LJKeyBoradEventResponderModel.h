@@ -9,25 +9,20 @@
 
 @interface LJKeyBoradEventResponderModel : NSObject
 
+- (instancetype)initWithMaster_object_keyBroad:(UIViewController *)object;
 
-- (instancetype)initWithMaster_object_keyBroad:(UIViewController*)object;
+- (BOOL)ShowKeyBroad:(UIView *)view;
 
+- (void)ShowkeyBroadResult:(UIView *)view AndResult:(BOOL)result;
 
--(BOOL)ShowKeyBroad:(UIView*)view;
+- (void)ShowKeyBroadAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
 
--(void)ShowkeyBroadResult:(UIView*)view AndResult:(BOOL)result;
+- (void)keyBroadFrameChange:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
 
--(void)ShowKeyBroadAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
+- (void)HiddenKeyBroad:(UIView *)view;
 
--(void)keyBroadFrameChange:(UIView*)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
+- (void)HiddenBroadAnimation:(UIView *)view;
 
--(void)HiddenKeyBroad:(UIView*)view;
-
--(void)HiddenBroadAnimation:(UIView *)view;
-
-
--(void)configDestroyBlock:(dispatch_block_t)dellocBlock;
+- (void)configDestroyBlock:(dispatch_block_t)dellocBlock;
 
 @end
-
-

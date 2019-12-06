@@ -8,12 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface KeyBroadRandString : NSObject
 
-+ (NSString *) randomStringNameWithLength:(int) length;
++ (NSString *)randomStringNameWithLength:(int)length;
 
 @end
-
-NS_ASSUME_NONNULL_END

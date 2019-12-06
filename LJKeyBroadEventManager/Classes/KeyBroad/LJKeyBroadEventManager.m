@@ -13,49 +13,42 @@
 #import "LJkeyBroadConfig.h"
 #import "UIView+ReateViewController.h"
 
-void addbecomeFirstResponderCallBackBlock(becomeFirstResponderCallBackBlock block){
-    [UIResponder configbecomeFirstResponderCallBackBlock:^BOOL(UIView *view) {
-        
-        if(block){
+void addbecomeFirstResponderCallBackBlock(becomeFirstResponderCallBackBlock block)
+{
+    [UIResponder configbecomeFirstResponderCallBackBlock:^BOOL (UIView *view) {
+        if (block) {
             block(view);
         }
+
         return YES;
-        
     }];
 }
-void addresignResponderCallBackBlock(resignFirstResponderCallBackBlock block){
+
+void addresignResponderCallBackBlock(resignFirstResponderCallBackBlock block)
+{
     [UIResponder configresignFirstResponderCallBackBlock:block];
 }
 
-void registerKeyBroadResponder(UIViewController<LJKeyboardManagerDelegate> *keyBroadResponder){
-    
-    
-    if([keyBroadResponder isKindOfClass:[UIViewController class]]){
+void registerKeyBroadResponder(UIViewController <LJKeyboardManagerDelegate> *keyBroadResponder)
+{
+    if ([keyBroadResponder isKindOfClass:[UIViewController class]]) {
         [[LJKeyBroadRegisterManager sharedInstance] registerKeyBroadResponder:keyBroadResponder];
     }
-    
-    
 }
 
-
-void removeKeyBroadResponder(UIViewController<LJKeyboardManagerDelegate> *keyBroadResponder){
-    
-    if([keyBroadResponder isKindOfClass:[UIViewController class]]){
+void removeKeyBroadResponder(UIViewController <LJKeyboardManagerDelegate> *keyBroadResponder)
+{
+    if ([keyBroadResponder isKindOfClass:[UIViewController class]]) {
         [[LJKeyBroadRegisterManager sharedInstance]removeKeyBroadResponder:keyBroadResponder];
     }
 }
 
-
-
-void configTopSpacingToFirstResponder(CGFloat Height){
+void configTopSpacingToFirstResponder(CGFloat Height)
+{
     [LJkeyBroadConfig sharedInstance].topSpacingToFirstResponder = Height;
-    
-    
 }
 
-
-void configShowExtensionToolBar(BOOL show){
+void configShowExtensionToolBar(BOOL show)
+{
     [LJkeyBroadConfig sharedInstance].showExtensionToolBar = show;
 }
-
-

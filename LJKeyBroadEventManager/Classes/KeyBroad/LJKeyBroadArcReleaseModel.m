@@ -12,7 +12,7 @@
 
 - (void)dealloc
 {
-    if(self.block){
+    if (self.block) {
         self.block();
     }
 }

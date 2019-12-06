@@ -12,9 +12,12 @@
 - (instancetype)init
 {
     self = [super init];
+
     if (self) {
         self.isFirstResponder = false;
     }
+
     return self;
 }
+
 @end

@@ -8,29 +8,22 @@
 #import <UIKit/UIKit.h>
 #import "LJKeyBroadRespoderNextSet.h"
 
-typedef void(^moveOffsetKeyBlock)(LJKeyBroadRespoderModel *model);
+typedef void (^ moveOffsetKeyBlock)(LJKeyBroadRespoderModel *model);
 
 @interface LJKeyBroadMoveOffsetManager : NSObject
 
-- (instancetype)initWithMaster_object_keyBroad:(UIViewController*)object;
+- (instancetype)initWithMaster_object_keyBroad:(UIViewController *)object;
 
+@property(nonatomic, assign, readonly) CGFloat keyBroadHeight;
 
-@property(nonatomic,assign,readonly)CGFloat keyBroadHeight;
+@property(nonatomic, assign, readonly) CGFloat moveOffset;
 
-@property(nonatomic,assign,readonly)CGFloat moveOffset;
+@property(nonatomic, copy) moveOffsetKeyBlock moveCallBlock;
 
+- (void)customerKeyBroadChange:(LJKeyBroadRespoderNextSet *)responderNextSet;
 
-@property(nonatomic,copy)moveOffsetKeyBlock moveCallBlock;
+- (void)moveOffsetKeyBroadHeight:(CGFloat)keyBroadHeight ResponderModel:(LJKeyBroadRespoderModel *)model;
 
-
--(void)customerKeyBroadChange:(LJKeyBroadRespoderNextSet *)responderNextSet;
-
-
--(void)moveOffsetKeyBroadHeight:(CGFloat)keyBroadHeight ResponderModel:(LJKeyBroadRespoderModel *)model;
-
-
--(void)endEditResponderModel:(LJKeyBroadRespoderModel *)model;
+- (void)endEditResponderModel:(LJKeyBroadRespoderModel *)model;
 
 @end
-
-

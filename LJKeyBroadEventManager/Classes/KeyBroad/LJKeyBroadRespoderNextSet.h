@@ -8,34 +8,28 @@
 #import <UIKit/UIKit.h>
 #import "LJKeyBroadRespoderModel.h"
 
-
 @interface LJKeyBroadRespoderNextSet : NSObject
 
+@property(nonatomic, strong, readonly) LJKeyBroadRespoderModel *currentResponderModel;
 
-@property(nonatomic,strong,readonly)LJKeyBroadRespoderModel *currentResponderModel;
+- (instancetype)initWithViewController:(UIViewController *)viewController AndMustHaveView:(UIView *)mastView;
 
-- (instancetype)initWithViewController:(UIViewController*)viewController AndMustHaveView:(UIView*)mastView;
+@property(nonatomic, copy) dispatch_block_t reloadBarBlock;
 
-@property(nonatomic,copy)dispatch_block_t reloadBarBlock;
+- (void)responderArrayRenewResponderLocation;
 
--(void)responderArrayRenewResponderLocation;
+- (BOOL)moveThisView:(UIView *)view;
 
-
--(BOOL)moveThisView:(UIView*)view;
-
--(BOOL)isCurrentView:(UIView*)view;
+- (BOOL)isCurrentView:(UIView *)view;
 
 - (BOOL)isValid;
 
-- (BOOL)isContain:(UIView*)view;
+- (BOOL)isContain:(UIView *)view;
 
 - (BOOL)CanLeftArrow;
 - (BOOL)CanRightArrow;
 
-
-- (LJKeyBroadRespoderModel*)MoveLeftArrow;
-- (LJKeyBroadRespoderModel*)MoveRightArrow;
+- (LJKeyBroadRespoderModel *)MoveLeftArrow;
+- (LJKeyBroadRespoderModel *)MoveRightArrow;
 
 @end
-
-

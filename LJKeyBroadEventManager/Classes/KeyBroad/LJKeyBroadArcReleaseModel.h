@@ -10,8 +10,6 @@
 
 @interface LJKeyBroadArcReleaseModel : NSObject
 
-@property(nonatomic,copy)dispatch_block_t block;
+@property(nonatomic, copy) dispatch_block_t block;
 
 @end
-
-

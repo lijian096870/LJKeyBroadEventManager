@@ -8,139 +8,124 @@
 
 #import "LJKeyBroadRespoderModel.h"
 
-
 @interface LJKeyBroadRespoderModel ()
 
+@property (nonatomic, strong) NSNumber *topSpacingToFirstResponder_temp;
 
-@property (nonatomic, strong)NSNumber *topSpacingToFirstResponder_temp;
+@property (nonatomic, strong) NSNumber *showExtensionToolBar_temp;
 
-@property (nonatomic, strong)NSNumber *showExtensionToolBar_temp;
+@property (nonatomic, strong) NSNumber *ExtensionToolBarHeight_temp;
 
-@property (nonatomic,strong)NSNumber *ExtensionToolBarHeight_temp;
+@property(nonatomic, strong) NSNumber *aheadDis_temp;
 
-@property(nonatomic,strong)NSNumber *aheadDis_temp;
-
-@property(nonatomic,strong)NSNumber *nextDis_temp;
-
+@property(nonatomic, strong) NSNumber *nextDis_temp;
 
 @end
 
 @implementation LJKeyBroadRespoderModel
 
-
--(CGRect)windowBounds{
-    
+- (CGRect)windowBounds {
     return self.window.bounds;
-    
 }
 
--(void)setNextDis:(CGFloat)nextDis{
+- (void)setNextDis:(CGFloat)nextDis {
     self.nextDis_temp = [NSNumber numberWithFloat:nextDis];
 }
 
--(void)setAheadDis:(CGFloat)aheadDis{
+- (void)setAheadDis:(CGFloat)aheadDis {
     self.aheadDis_temp = [NSNumber numberWithFloat:aheadDis];
 }
 
--(CGFloat)nextDis{
+- (CGFloat)nextDis {
     return [self.nextDis_temp floatValue];
 }
 
--(CGFloat)aheadDis{
+- (CGFloat)aheadDis {
     return [self.aheadDis_temp floatValue];
 }
 
--(NSNumber*)nextDis_temp{
-    
-    if(_nextDis_temp==nil){
+- (NSNumber *)nextDis_temp {
+    if (_nextDis_temp == nil) {
         _nextDis_temp = [NSNumber numberWithFloat:0];
     }
+
     return _nextDis_temp;
-    
 }
 
--(NSNumber*)aheadDis_temp{
-    
-    if(_aheadDis_temp==nil){
-        _aheadDis_temp  = [NSNumber numberWithFloat:0];
+- (NSNumber *)aheadDis_temp {
+    if (_aheadDis_temp == nil) {
+        _aheadDis_temp = [NSNumber numberWithFloat:0];
     }
+
     return _aheadDis_temp;
-    
 }
 
--(CGFloat)calculate:(CGFloat)keyBroadHeight{
-    
-        
+- (CGFloat)calculate:(CGFloat)keyBroadHeight {
     CGFloat windowsHeight = self.windowBounds.origin.y + self.windowBounds.size.height;
-    
-    CGFloat locationHeight = self.responderLocation.size.height + self.responderLocation.origin.y;
-    
-    
-    CGFloat belowHeight = windowsHeight - locationHeight;
-    
-    
-    CGFloat keyH = self.topSpacingToFirstResponder + keyBroadHeight ;
-    
 
-    if(belowHeight>keyH){
-        
+    CGFloat locationHeight = self.responderLocation.size.height + self.responderLocation.origin.y;
+
+    CGFloat belowHeight = windowsHeight - locationHeight;
+
+    CGFloat keyH = self.topSpacingToFirstResponder + keyBroadHeight;
+
+    if (belowHeight > keyH) {
         return 0.0;
-        
-    }else{
-        
+    } else {
         return keyH - belowHeight;
     }
 }
 
-
--(BOOL)showExtensionToolBar{
+- (BOOL)showExtensionToolBar {
     return [self.showExtensionToolBar_temp boolValue];
 }
 
--(BOOL)isShowExtensionToolBar{
+- (BOOL)isShowExtensionToolBar {
     return [self.showExtensionToolBar_temp boolValue];
 }
--(NSNumber*)showExtensionToolBar_temp{
-    if(_showExtensionToolBar_temp == nil){
+
+- (NSNumber *)showExtensionToolBar_temp {
+    if (_showExtensionToolBar_temp == nil) {
         _showExtensionToolBar_temp = [NSNumber numberWithBool:false];
     }
+
     return _showExtensionToolBar_temp;
 }
 
--(void)setShowExtensionToolBar:(BOOL)showExtensionToolBar{
+- (void)setShowExtensionToolBar:(BOOL)showExtensionToolBar {
     self.showExtensionToolBar_temp = [NSNumber numberWithBool:showExtensionToolBar];
 }
 
--(NSNumber*)topSpacingToFirstResponder_temp{
-    
-    if(_topSpacingToFirstResponder_temp == nil){
+- (NSNumber *)topSpacingToFirstResponder_temp {
+    if (_topSpacingToFirstResponder_temp == nil) {
         _topSpacingToFirstResponder_temp = [NSNumber numberWithFloat:0.0];
     }
+
     return _topSpacingToFirstResponder_temp;
-    
 }
 
--(void)setTopSpacingToFirstResponder:(CGFloat)topSpacingToFirstResponder{
+- (void)setTopSpacingToFirstResponder:(CGFloat)topSpacingToFirstResponder {
     self.topSpacingToFirstResponder_temp = [NSNumber numberWithFloat:topSpacingToFirstResponder];
 }
 
--(CGFloat)topSpacingToFirstResponder{
+- (CGFloat)topSpacingToFirstResponder {
     return [self.topSpacingToFirstResponder_temp floatValue];
 }
 
--(NSNumber*)ExtensionToolBarHeight_temp{
-    
-    if(_ExtensionToolBarHeight_temp==nil){
+- (NSNumber *)ExtensionToolBarHeight_temp {
+    if (_ExtensionToolBarHeight_temp == nil) {
         _ExtensionToolBarHeight_temp = [NSNumber numberWithFloat:0.0];
     }
+
     return _ExtensionToolBarHeight_temp;
-    
 }
 
--(void)setExtensionToolBarHeight:(CGFloat)ExtensionToolBarHeight{
+- (void)setExtensionToolBarHeight:(CGFloat)ExtensionToolBarHeight {
     self.ExtensionToolBarHeight_temp = [NSNumber numberWithFloat:ExtensionToolBarHeight];
 }
--(CGFloat)ExtensionToolBarHeight{
+
+- (CGFloat)ExtensionToolBarHeight {
     return [self.ExtensionToolBarHeight_temp floatValue];
 }
+
 @end

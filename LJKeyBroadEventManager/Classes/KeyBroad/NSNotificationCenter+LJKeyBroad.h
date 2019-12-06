@@ -7,19 +7,16 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^NotificationAfterBeforeBlock)(NSNotificationName aName,id anObject,NSDictionary *aUserInfo);
+typedef void (^ NotificationAfterBeforeBlock)(NSNotificationName aName, id anObject, NSDictionary *aUserInfo);
 
 @interface NSNotificationCenter (LJKeyBroad)
 
-+(void)registerNotificationBeforeBlock:(NotificationAfterBeforeBlock)block AndName:(NSString*)aName anyKey:(NSString*)deletkey;
++ (void)registerNotificationBeforeBlock:(NotificationAfterBeforeBlock)block AndName:(NSString *)aName anyKey:(NSString *)deletkey;
 
-+(void)registerNotificationAfterBlock:(NotificationAfterBeforeBlock)block AndName:(NSString*)aName anyKey:(NSString*)deletkey;
++ (void)registerNotificationAfterBlock:(NotificationAfterBeforeBlock)block AndName:(NSString *)aName anyKey:(NSString *)deletkey;
 
++ (void)removeNotificationBeforeName:(NSNotificationName)aName anyKey:(NSString *)deletkey;
 
-+(void)removeNotificationBeforeName:(NSNotificationName)aName anyKey:(NSString*)deletkey;
-
-+(void)removeNotificationAftereName:(NSNotificationName)aName anyKey:(NSString*)deletkey;
++ (void)removeNotificationAftereName:(NSNotificationName)aName anyKey:(NSString *)deletkey;
 
 @end
-
-

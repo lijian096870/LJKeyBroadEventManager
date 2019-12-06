@@ -8,12 +8,10 @@
 #import <Foundation/Foundation.h>
 #import "LJKeyBroadRespoderModel.h"
 
-
-typedef void(^arcReleaseCallBlock)(LJKeyBroadRespoderModel *model);
+typedef void (^ arcReleaseCallBlock)(LJKeyBroadRespoderModel *model);
 
 @interface LJKeyBroadArcReleaseResponerArrayManager : NSObject
 
--(void)configArcReleaseCallBlock:(arcReleaseCallBlock)block andArray:(NSArray*)array;
+- (void)configArcReleaseCallBlock:(arcReleaseCallBlock)block andArray:(NSArray *)array;
 
 @end
-

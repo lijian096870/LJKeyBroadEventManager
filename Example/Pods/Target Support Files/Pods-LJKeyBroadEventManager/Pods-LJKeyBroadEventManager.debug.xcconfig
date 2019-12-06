@@ -1,7 +1,7 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/LJKeyBroadEventManager" "${PODS_ROOT}/Headers/Public/LJViewController"
-LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/LJKeyBroadEventManager" "${PODS_CONFIGURATION_BUILD_DIR}/LJViewController"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"LJKeyBroadEventManager" -l"LJViewController" -framework "UIKit"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/LJKeyBroadEventManager" "${PODS_ROOT}/Headers/Public/LJViewController" "${PODS_ROOT}/Headers/Public/LJViewKit"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/LJKeyBroadEventManager" "${PODS_CONFIGURATION_BUILD_DIR}/LJViewController" "${PODS_CONFIGURATION_BUILD_DIR}/LJViewKit"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"LJKeyBroadEventManager" -l"LJViewController" -l"LJViewKit" -framework "UIKit"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

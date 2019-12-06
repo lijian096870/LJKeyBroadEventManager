@@ -10,8 +10,6 @@
 
 @interface FirstResponderModel : NSObject
 
-@property(nonatomic,assign)BOOL isFirstResponder;
+@property(nonatomic, assign) BOOL isFirstResponder;
 
 @end
-
-

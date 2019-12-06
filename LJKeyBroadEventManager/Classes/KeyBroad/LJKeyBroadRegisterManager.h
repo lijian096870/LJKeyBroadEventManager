@@ -11,11 +11,9 @@
 
 @interface LJKeyBroadRegisterManager : NSObject
 
--(void)registerKeyBroadResponder:(UIViewController<LJKeyboardManagerDelegate> *)keyBroadResponder;
--(void)removeKeyBroadResponder:(UIViewController<LJKeyboardManagerDelegate> *)keyBroadResponder;
+- (void)registerKeyBroadResponder:(UIViewController <LJKeyboardManagerDelegate> *)keyBroadResponder;
+- (void)removeKeyBroadResponder:(UIViewController <LJKeyboardManagerDelegate> *)keyBroadResponder;
 
 + (instancetype)sharedInstance;
 
 @end
-
-

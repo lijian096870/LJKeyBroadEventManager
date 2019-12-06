@@ -7,27 +7,21 @@
 
 #import <UIKit/UIKit.h>
 
+typedef BOOL (^ becomeFirstResponderCallBackBlock)(UIView *view);
+typedef void (^ becomeFirstResponderResultCallBackBlock)(UIView *view, BOOL result);
 
-typedef BOOL(^becomeFirstResponderCallBackBlock)(UIView *view);
-typedef void(^becomeFirstResponderResultCallBackBlock)(UIView *view,BOOL result);
-
-
-typedef void(^resignFirstResponderCallBackBlock)(UIView *view);
-typedef BOOL(^canBecomeFirstResponderCallBackBlock)(UIView *view);
+typedef void (^ resignFirstResponderCallBackBlock)(UIView *view);
+typedef BOOL (^ canBecomeFirstResponderCallBackBlock)(UIView *view);
 
 @interface UIResponder (becomeFirstResponderCallBack)
 
-+(void)configCanBecomeFirstResponderCallBackBlock:(canBecomeFirstResponderCallBackBlock)block;
++ (void)configCanBecomeFirstResponderCallBackBlock:(canBecomeFirstResponderCallBackBlock)block;
 
++ (void)configbecomeFirstResponderCallBackBlock:(becomeFirstResponderCallBackBlock)block;
++ (void)configbecomeFirstResponderResultCallBackBlock:(becomeFirstResponderResultCallBackBlock)block;
 
-+(void)configbecomeFirstResponderCallBackBlock:(becomeFirstResponderCallBackBlock)block;
-+(void)configbecomeFirstResponderResultCallBackBlock:(becomeFirstResponderResultCallBackBlock)block;
-
-
-+(void)configresignFirstResponderCallBackBlock:(resignFirstResponderCallBackBlock)block;
-
++ (void)configresignFirstResponderCallBackBlock:(resignFirstResponderCallBackBlock)block;
 
 + (UIResponder *)lj_currentFirstResponder;
 
 @end
-

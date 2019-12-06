@@ -12,265 +12,213 @@
 #import "UIResponder+becomeFirstResponderCallBack.h"
 #import "LJKeyBraodResponderCallBlockModel.h"
 
-
 @interface LJKeyBroadEvent ()
 
-@property(nonatomic,strong)NSMutableSet *becomeFirstSet;
-@property(nonatomic,strong)NSMutableSet *reginFirstSet;
-@property(nonatomic,strong)NSMutableSet *becomeFirstResultSet;
+@property(nonatomic, strong) NSMutableSet   *becomeFirstSet;
+@property(nonatomic, strong) NSMutableSet   *reginFirstSet;
+@property(nonatomic, strong) NSMutableSet   *becomeFirstResultSet;
 
-@property(nonatomic,copy)canBecomeFirstResponderCallBackBlock canBecomeFirstResponder;
+@property(nonatomic, copy) canBecomeFirstResponderCallBackBlock canBecomeFirstResponder;
 
+@property(nonatomic, strong) NSMutableSet *responderSet;
 
-@property(nonatomic,strong)NSMutableSet *responderSet;
-
-@property(nonatomic,strong)LJKeyBroadNotificationManager *keyBroadNotManager;
+@property(nonatomic, strong) LJKeyBroadNotificationManager *keyBroadNotManager;
 
 @end
 
 @implementation LJKeyBroadEvent
 
-
--(void)registerKeyBroadEventShowEvent:(KeyBroadEventBecomeFirstCallBlock)Showblock BroadEventShowResult:(KeyBroadEventBecomeFirstResultCallBlock)ShowResultBlock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationShowBlock AndFrameChangeBlock:(KeyBroadEventNotificationViewAnimationBlock)frameChangeBlock HidenEvent:(KeyBroadEventreginFirstCallBlock)Hidenblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationHidenBlock{
-    
+- (void)registerKeyBroadEventShowEvent:(KeyBroadEventBecomeFirstCallBlock)Showblock BroadEventShowResult:(KeyBroadEventBecomeFirstResultCallBlock)ShowResultBlock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationShowBlock AndFrameChangeBlock:(KeyBroadEventNotificationViewAnimationBlock)frameChangeBlock HidenEvent:(KeyBroadEventreginFirstCallBlock)Hidenblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationHidenBlock {
     [self blingNotEvent];
-    
-    
-    LJKeyBraodResponderCallBlockModel *model = [[LJKeyBraodResponderCallBlockModel alloc]initWithBroadEventShowEvent:Showblock BroadEventShowResult:ShowResultBlock  AndViewAnimationBlock:animationShowBlock AndFrameChangeBlock:frameChangeBlock HidenEvent:Hidenblock AndViewAnimationBlock:animationHidenBlock];
-    
+
+    LJKeyBraodResponderCallBlockModel *model = [[LJKeyBraodResponderCallBlockModel alloc]initWithBroadEventShowEvent:Showblock BroadEventShowResult:ShowResultBlock AndViewAnimationBlock:animationShowBlock AndFrameChangeBlock:frameChangeBlock HidenEvent:Hidenblock AndViewAnimationBlock:animationHidenBlock];
+
     [self.responderSet addObject:model];
-    
-    
-    [self registerKeyBroadEventBecomeFirst:^BOOL(UIView *view) {
-        
+
+    [self registerKeyBroadEventBecomeFirst:^BOOL (UIView *view) {
         BOOL result = YES;
-        
+
         for (LJKeyBraodResponderCallBlockModel *model in self.responderSet) {
-            
-            if(model.Showblock){
-                result =  model.Showblock(view) && result;
+            if (model.Showblock) {
+                result = model.Showblock(view) && result;
             }
-            
         }
-        
+
         return result;
-        
     }];
-    
+
     [self registerKeyBroadEventReginsFirst:^(UIView *view) {
-        
         for (LJKeyBraodResponderCallBlockModel *model in self.responderSet) {
-            if(model.Hidenblock){
+            if (model.Hidenblock) {
                 model.Hidenblock(view);
             }
         }
-        
     }];
-    
+
     [self registerKeyBroadEventBecomeFirstResult:^(UIView *view, BOOL result) {
-        
         for (LJKeyBraodResponderCallBlockModel *model in self.responderSet) {
-            if(model.ShowResultBlock){
+            if (model.ShowResultBlock) {
                 model.ShowResultBlock(view, result);
             }
         }
-        
     }];
 }
 
--(void)configCanBecomeFirstResponderCallBackBlock:(canBecomeFirstResponderCallBackBlock)block{
-    
+- (void)configCanBecomeFirstResponderCallBackBlock:(canBecomeFirstResponderCallBackBlock)block {
     self.canBecomeFirstResponder = block;
 }
 
--(void)registerKeyBroadEventBecomeFirst:(KeyBroadEventBecomeFirstCallBlock)block{
-    
+- (void)registerKeyBroadEventBecomeFirst:(KeyBroadEventBecomeFirstCallBlock)block {
     [self blingEvent];
-    
-    if(block){
+
+    if (block) {
         [self.becomeFirstSet addObject:block];
     }
 }
--(void)registerKeyBroadEventBecomeFirstResult:(KeyBroadEventBecomeFirstResultCallBlock)block{
-    
+
+- (void)registerKeyBroadEventBecomeFirstResult:(KeyBroadEventBecomeFirstResultCallBlock)block {
     [self blingEvent];
-    
-    if(block){
+
+    if (block) {
         [self.becomeFirstResultSet addObject:block];
     }
 }
--(void)registerKeyBroadEventReginsFirst:(KeyBroadEventreginFirstCallBlock)block{
-    
+
+- (void)registerKeyBroadEventReginsFirst:(KeyBroadEventreginFirstCallBlock)block {
     [self blingEvent];
-    
-    if(block){
+
+    if (block) {
         [self.reginFirstSet addObject:block];
     }
 }
 
--(void)blingNotEvent{
-    
+- (void)blingNotEvent {
     static dispatch_once_t onceToken;
+
     dispatch_once(&onceToken, ^{
-        
         [self.keyBroadNotManager addKeyBroadNotificationFrameChangeBlock:^(UIView *view, CGFloat keyBroadHeight) {
-            
-            if([view isKindOfClass:UIView.class]){
+            if ([view isKindOfClass:UIView.class]) {
                 for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
-                    
-                    if(model.frameChangeBlock){
-                        
+                    if (model.frameChangeBlock) {
                         model.frameChangeBlock(view, keyBroadHeight);
                     }
-                    
                 }
             }
-            
-            
-            
         }];
-        
+
         [self.keyBroadNotManager addKeyBroadNotificationShowBlock:^(UIView *view, CGFloat keyBroadHeight) {
-            
-            if([view isKindOfClass:UIView.class]){
+            if ([view isKindOfClass:UIView.class]) {
                 for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
-                    
-                    if(model.animationShowBlock){
-                        
-                        model.animationShowBlock(view,keyBroadHeight);
+                    if (model.animationShowBlock) {
+                        model.animationShowBlock(view, keyBroadHeight);
                     }
-                    
                 }
             }
-            
-            
         }];
         [self.keyBroadNotManager addKeyBroadNotificationHideBlock:^(UIView *view, CGFloat keyBroadHeight) {
-            
-            if([view isKindOfClass:UIView.class]){
-                
+            if ([view isKindOfClass:UIView.class]) {
                 for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
-                    
-                    if(model.animationHidenBlock){
-                        
-                        model.animationHidenBlock(view,keyBroadHeight);
+                    if (model.animationHidenBlock) {
+                        model.animationHidenBlock(view, keyBroadHeight);
                     }
-                    
                 }
-                
             }
-            
         }];
     });
-    
 }
--(void)blingEvent{
-    
+
+- (void)blingEvent {
     static dispatch_once_t onceToken;
+
     dispatch_once(&onceToken, ^{
-        
-        
-        [UIResponder configCanBecomeFirstResponderCallBackBlock:^BOOL(UIView * _Nonnull view) {
-            if([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]){
-                
-                if(self.canBecomeFirstResponder){
+        [UIResponder configCanBecomeFirstResponderCallBackBlock:^BOOL (UIView *_Nonnull view) {
+            if ([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]]) {
+                if (self.canBecomeFirstResponder) {
                     return self.canBecomeFirstResponder(view);
-                }else{
+                } else {
                     return true;
                 }
-                
-            }else{
+            } else {
                 return true;
             }
         }];
-        
-        [UIResponder configbecomeFirstResponderCallBackBlock:^BOOL(UIView * _Nonnull view) {
-            
-            if([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]){
-                
+
+        [UIResponder configbecomeFirstResponderCallBackBlock:^BOOL (UIView *_Nonnull view) {
+            if ([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]]) {
                 BOOL result = YES;
-                
+
                 for (KeyBroadEventBecomeFirstCallBlock block in self.becomeFirstSet) {
                     result = block(view) && result;
                 }
-                
+
                 return result;
-                
-            }else{
+            } else {
                 return YES;
             }
-            
         }];
-        [UIResponder configresignFirstResponderCallBackBlock:^(UIView * _Nonnull view) {
-            if([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]){
-                
+        [UIResponder configresignFirstResponderCallBackBlock:^(UIView *_Nonnull view) {
+            if ([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]]) {
                 for (KeyBroadEventreginFirstCallBlock Block in self.reginFirstSet) {
                     Block(view);
                 }
-                
             }
         }];
-        
+
         [UIResponder configbecomeFirstResponderResultCallBackBlock:^(UIView *view, BOOL result) {
-            if([view isKindOfClass:[UITextView class]]||[view isKindOfClass:[UITextField class]]){
-                
+            if ([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]]) {
                 for (KeyBroadEventBecomeFirstResultCallBlock Block in self.becomeFirstResultSet) {
-                    Block(view,result);
+                    Block(view, result);
                 }
-                
             }
         }];
     });
-    
 }
 
--(LJKeyBroadNotificationManager*)keyBroadNotManager{
-    
-    if(_keyBroadNotManager==nil){
+- (LJKeyBroadNotificationManager *)keyBroadNotManager {
+    if (_keyBroadNotManager == nil) {
         _keyBroadNotManager = [[LJKeyBroadNotificationManager alloc]init];
     }
+
     return _keyBroadNotManager;
-    
 }
 
--(NSMutableSet*)responderSet{
-    if(_responderSet==nil){
+- (NSMutableSet *)responderSet {
+    if (_responderSet == nil) {
         _responderSet = [NSMutableSet set];
     }
+
     return _responderSet;
-    
 }
 
--(NSMutableSet*)reginFirstSet{
-    
-    if(_reginFirstSet==nil){
+- (NSMutableSet *)reginFirstSet {
+    if (_reginFirstSet == nil) {
         _reginFirstSet = [NSMutableSet set];
     }
+
     return _reginFirstSet;
-    
 }
 
--(NSMutableSet*)becomeFirstSet{
-    
-    if(_becomeFirstSet==nil){
+- (NSMutableSet *)becomeFirstSet {
+    if (_becomeFirstSet == nil) {
         _becomeFirstSet = [NSMutableSet set];
     }
+
     return _becomeFirstSet;
-    
 }
--(NSMutableSet*)becomeFirstResultSet{
-    
-    if(_becomeFirstResultSet==nil){
+
+- (NSMutableSet *)becomeFirstResultSet {
+    if (_becomeFirstResultSet == nil) {
         _becomeFirstResultSet = [NSMutableSet set];
     }
+
     return _becomeFirstResultSet;
-    
 }
 
 static id _instace;
 + (id)allocWithZone:(struct _NSZone *)zone
 {
     static dispatch_once_t onceToken;
+
     dispatch_once(&onceToken, ^{
         _instace = [super allocWithZone:zone];
     });
@@ -280,6 +228,7 @@ static id _instace;
 + (instancetype)sharedInstance
 {
     static dispatch_once_t onceToken;
+
     dispatch_once(&onceToken, ^{
         _instace = [[self alloc] init];
     });
@@ -289,6 +238,7 @@ static id _instace;
 + (instancetype)new
 {
     static dispatch_once_t onceToken;
+
     dispatch_once(&onceToken, ^{
         _instace = [[self alloc] init];
     });
@@ -299,4 +249,5 @@ static id _instace;
 {
     return _instace;
 }
+
 @end

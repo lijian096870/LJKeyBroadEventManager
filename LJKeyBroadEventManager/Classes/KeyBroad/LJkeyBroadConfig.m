@@ -12,53 +12,55 @@
 
 #pragma mark - readwrite
 
-@property (nonatomic, strong)NSNumber *topSpacingToFirstResponder_temp;
+@property (nonatomic, strong) NSNumber *topSpacingToFirstResponder_temp;
 
-@property (nonatomic, strong)NSNumber *showExtensionToolBar_temp;
+@property (nonatomic, strong) NSNumber *showExtensionToolBar_temp;
 
 @end
 
 @implementation LJkeyBroadConfig
 
-
--(BOOL)showExtensionToolBar{
+- (BOOL)showExtensionToolBar {
     return [self.showExtensionToolBar_temp boolValue];
 }
 
--(BOOL)isShowExtensionToolBar{
+- (BOOL)isShowExtensionToolBar {
     return [self.showExtensionToolBar_temp boolValue];
 }
--(NSNumber*)showExtensionToolBar_temp{
-    if(_showExtensionToolBar_temp == nil){
+
+- (NSNumber *)showExtensionToolBar_temp {
+    if (_showExtensionToolBar_temp == nil) {
         _showExtensionToolBar_temp = [NSNumber numberWithBool:false];
     }
+
     return _showExtensionToolBar_temp;
 }
 
--(void)setShowExtensionToolBar:(BOOL)showExtensionToolBar{
+- (void)setShowExtensionToolBar:(BOOL)showExtensionToolBar {
     self.showExtensionToolBar_temp = [NSNumber numberWithBool:showExtensionToolBar];
 }
 
--(NSNumber*)topSpacingToFirstResponder_temp{
-    
-    if(_topSpacingToFirstResponder_temp == nil){
+- (NSNumber *)topSpacingToFirstResponder_temp {
+    if (_topSpacingToFirstResponder_temp == nil) {
         _topSpacingToFirstResponder_temp = [NSNumber numberWithFloat:0.0];
     }
+
     return _topSpacingToFirstResponder_temp;
-    
 }
 
--(void)setTopSpacingToFirstResponder:(CGFloat)topSpacingToFirstResponder{
+- (void)setTopSpacingToFirstResponder:(CGFloat)topSpacingToFirstResponder {
     self.topSpacingToFirstResponder_temp = [NSNumber numberWithFloat:topSpacingToFirstResponder];
 }
 
--(CGFloat)topSpacingToFirstResponder{
+- (CGFloat)topSpacingToFirstResponder {
     return [self.topSpacingToFirstResponder_temp floatValue];
 }
+
 static id _instace;
 + (id)allocWithZone:(struct _NSZone *)zone
 {
     static dispatch_once_t onceToken;
+
     dispatch_once(&onceToken, ^{
         _instace = [super allocWithZone:zone];
     });
@@ -68,6 +70,7 @@ static id _instace;
 + (instancetype)sharedInstance
 {
     static dispatch_once_t onceToken;
+
     dispatch_once(&onceToken, ^{
         _instace = [[self alloc] init];
     });
@@ -77,7 +80,8 @@ static id _instace;
 + (instancetype)new
 {
     static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{ 
+
+    dispatch_once(&onceToken, ^{
         _instace = [[self alloc] init];
     });
     return _instace;
@@ -87,4 +91,5 @@ static id _instace;
 {
     return _instace;
 }
+
 @end

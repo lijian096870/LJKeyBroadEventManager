@@ -10,21 +10,16 @@
 
 @interface LJKeyBroadManager : NSObject
 
+- (BOOL)ShowKeyBroad:(UIView *)view;
 
--(BOOL)ShowKeyBroad:(UIView*)view;
+- (void)ShowkeyBroadResult:(UIView *)view AndResult:(BOOL)result;
 
--(void)ShowkeyBroadResult:(UIView*)view AndResult:(BOOL)result;
+- (void)ShowKeyBroadAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
 
--(void)ShowKeyBroadAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
+- (void)keyBroadFrameChange:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
 
--(void)keyBroadFrameChange:(UIView*)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
+- (void)HiddenKeyBroad:(UIView *)view;
 
--(void)HiddenKeyBroad:(UIView*)view;
-
--(void)HiddenBroadAnimation:(UIView *)view;
-
-
+- (void)HiddenBroadAnimation:(UIView *)view;
 
 @end
-
-

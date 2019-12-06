@@ -10,14 +10,10 @@
 
 @interface LJkeyBroadConfig : NSObject
 
+@property (nonatomic, assign) CGFloat topSpacingToFirstResponder;
 
-
-@property (nonatomic, assign)CGFloat topSpacingToFirstResponder;
-
-@property (nonatomic, assign)BOOL showExtensionToolBar;
+@property (nonatomic, assign) BOOL showExtensionToolBar;
 
 + (instancetype)sharedInstance;
 
 @end
-
-

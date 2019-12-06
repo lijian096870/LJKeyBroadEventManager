@@ -7,16 +7,14 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^KeyBroadNotificationBlock)(UIView *view,CGFloat keyBroadHeight);
+typedef void (^ KeyBroadNotificationBlock)(UIView *view, CGFloat keyBroadHeight);
 
 @interface LJKeyBroadNotificationManager : NSObject
 
--(void)addKeyBroadNotificationShowBlock:(KeyBroadNotificationBlock)block;
+- (void)addKeyBroadNotificationShowBlock:(KeyBroadNotificationBlock)block;
 
--(void)addKeyBroadNotificationFrameChangeBlock:(KeyBroadNotificationBlock)block;
+- (void)addKeyBroadNotificationFrameChangeBlock:(KeyBroadNotificationBlock)block;
 
--(void)addKeyBroadNotificationHideBlock:(KeyBroadNotificationBlock)block;
+- (void)addKeyBroadNotificationHideBlock:(KeyBroadNotificationBlock)block;
 
 @end
-
-

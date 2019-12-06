@@ -12,20 +12,20 @@
 
 @interface LJKeyBroadManager ()
 
-- (instancetype)initWithMaster_object_keyBroad:(UIViewController*)object;
+- (instancetype)initWithMaster_object_keyBroad:(UIViewController *)object;
 
 @end
 
 @implementation UIViewController (KeyBoradManager)
 
-
 - (LJKeyBroadManager *)NSObject_KeyBoradManager_info
 {
-    id obj=objc_getAssociatedObject(self, @selector(NSObject_KeyBoradManager_info));
-    if([obj isKindOfClass:[LJKeyBroadManager class]]){
+    id obj = objc_getAssociatedObject(self, @selector(NSObject_KeyBoradManager_info));
+
+    if ([obj isKindOfClass:[LJKeyBroadManager class]]) {
         return obj;
-    }else{
-        LJKeyBroadManager *mess=[[LJKeyBroadManager alloc] initWithMaster_object_keyBroad:self];
+    } else {
+        LJKeyBroadManager *mess = [[LJKeyBroadManager alloc] initWithMaster_object_keyBroad:self];
         objc_setAssociatedObject(self, @selector(NSObject_KeyBoradManager_info), mess, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         return mess;
     }
@@ -33,55 +33,54 @@
 
 - (LJKeyBoradEventResponderModel *)NSObject_KeyBoradEventResponderModel_viewController_info
 {
-    id obj=objc_getAssociatedObject(self, @selector(NSObject_KeyBoradEventResponderModel_viewController_info));
-    if([obj isKindOfClass:[LJKeyBoradEventResponderModel class]]){
+    id obj = objc_getAssociatedObject(self, @selector(NSObject_KeyBoradEventResponderModel_viewController_info));
+
+    if ([obj isKindOfClass:[LJKeyBoradEventResponderModel class]]) {
         return obj;
-    }else{
-        LJKeyBoradEventResponderModel *mess=[[LJKeyBoradEventResponderModel alloc] initWithMaster_object_keyBroad:self];
+    } else {
+        LJKeyBoradEventResponderModel *mess = [[LJKeyBoradEventResponderModel alloc] initWithMaster_object_keyBroad:self];
         objc_setAssociatedObject(self, @selector(NSObject_KeyBoradEventResponderModel_viewController_info), mess, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         return mess;
     }
 }
 
-
 - (NSString *)keyBroad_mess_uniqueID
 {
-    NSString* obj=objc_getAssociatedObject(self, @selector(keyBroad_mess_uniqueID));
-    if([obj isKindOfClass:[NSString class]]&&obj.length>0){
+    NSString *obj = objc_getAssociatedObject(self, @selector(keyBroad_mess_uniqueID));
+
+    if ([obj isKindOfClass:[NSString class]] && (obj.length > 0)) {
         return obj;
-    }else{
-        NSString *mess=[KeyBroadRandString randomStringNameWithLength:32];
+    } else {
+        NSString *mess = [KeyBroadRandString randomStringNameWithLength:32];
         objc_setAssociatedObject(self, @selector(keyBroad_mess_uniqueID), mess, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         return mess;
     }
 }
 
-
-
-
--(CGFloat)claculateScrollerViewOffset:(CGFloat)offset{
-    
+- (CGFloat)claculateScrollerViewOffset:(CGFloat)offset {
     CGFloat ahead = [self ReadrwordscrollerViewOffset];
-    
+
     CGFloat result = offset - ahead;
-    
+
     [self rwordscrollerViewOffset:offset];
-    
+
     return result;
 }
--(void)rwordscrollerViewOffset:(CGFloat)offset{
+
+- (void)rwordscrollerViewOffset:(CGFloat)offset {
     objc_setAssociatedObject(self, @selector(ReadrwordscrollerViewOffset), [NSNumber numberWithFloat:offset], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
 }
--(CGFloat)ReadrwordscrollerViewOffset{
-    
-    NSNumber* obj=objc_getAssociatedObject(self, @selector(ReadrwordscrollerViewOffset));
-    if([obj isKindOfClass:[NSNumber class]]){
+
+- (CGFloat)ReadrwordscrollerViewOffset {
+    NSNumber *obj = objc_getAssociatedObject(self, @selector(ReadrwordscrollerViewOffset));
+
+    if ([obj isKindOfClass:[NSNumber class]]) {
         return [obj floatValue];
-    }else{
-        NSNumber *mess=[NSNumber numberWithFloat:0.0];;
+    } else {
+        NSNumber *mess = [NSNumber numberWithFloat:0.0];
         objc_setAssociatedObject(self, @selector(ReadrwordscrollerViewOffset), mess, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         return [mess floatValue];
     }
 }
+
 @end
