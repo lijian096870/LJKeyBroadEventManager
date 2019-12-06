@@ -30,13 +30,13 @@
             }
         }];
 
-        AddWindowWillMoveBlock(model.view, ^(UIView *view, UIWindow *window) {
-            if (block) {
-                if ([weakModel.model isKindOfClass:LJKeyBroadRespoderModel.class]) {
-                    block(weakModel.model);
-                }
-            }
-        });
+//        AddWindowWillMoveBlock(model.view, ^(UIView *view, UIWindow *window) {
+//            if (block) {
+//                if ([weakModel.model isKindOfClass:LJKeyBroadRespoderModel.class]) {
+//                    block(weakModel.model);
+//                }
+//            }
+//        });
     }
 }
 
