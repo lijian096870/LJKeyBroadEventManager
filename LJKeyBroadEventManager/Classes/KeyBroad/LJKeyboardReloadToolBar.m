@@ -8,7 +8,6 @@
 #import "LJKeyboardReloadToolBar.h"
 #import "LJKeyBroadEventManager.h"
 #import "LJkeyBroadConfig.h"
-#import "LJViewKit.h"
 @interface UIViewController () <LJKeyboardManagerDelegate>
 
 @end
@@ -33,10 +32,7 @@
 }
 
 - (void)configLJKeyboardToolBar:(LJKeyBroadRespoderNextSet *)responderNextSet andNewToolBar:(LJKeyboardToolBar *)bar {
-    
-   
-    
-    
+
     if ([self.object_keyBroad respondsToSelector:@selector(TopSpacingToFirstResponder:)]) {
         responderNextSet.currentResponderModel.topSpacingToFirstResponder = [self.object_keyBroad TopSpacingToFirstResponder:responderNextSet.currentResponderModel.view];
     } else {

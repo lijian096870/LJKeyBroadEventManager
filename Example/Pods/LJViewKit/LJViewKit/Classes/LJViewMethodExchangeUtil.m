@@ -249,11 +249,11 @@ static BOOL run2 = YES;
                             }
                         }
                     } else {
-                        UIWindow *window = self.window;
+                        UIWindow *window = model.window;
                         
                         if ([window isKindOfClass:UIWindow.class]) {
-                            model.window = window;
-                            
+                           
+
                             if (model.willMoveBlock) {
                                 model.willMoveBlock(self, window);
                             }

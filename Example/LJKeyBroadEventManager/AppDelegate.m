@@ -8,8 +8,8 @@
 
 #import "AppDelegate.h"
 #import "TestViewController.h"
-
-
+#import "LJViewControllerManager.h"
+#import "LJViewKit.h"
 @interface AppDelegate ()
 
 @end
@@ -19,6 +19,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    addViewControllerLoadViewBlock(^(UIViewController *viewController) {
+       
+        AddWindowDidAddBlock(viewController.view, ^(UIView *view, UIWindow *window) {
+            
+            AddFrameWillChangeBlock(window, ^(UIView *view, CGRect oldFrame, CGRect newFrame) {
+               
+                NSLog(@"%@,%@",NSStringFromCGRect(oldFrame),NSStringFromCGRect(newFrame));
+                
+            });
+   
+        });
+        
+        
+    });
+    
     self.window.rootViewController = [[TestViewController alloc]init];
     
  

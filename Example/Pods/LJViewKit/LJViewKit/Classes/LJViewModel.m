@@ -138,10 +138,11 @@
 }
 
 - (UIWindow *)window {
-    if ([_window isKindOfClass:UIWindow.class]) {
-        return _window;
+    UIWindow *superWindow = self.view.window;
+    if ([superWindow isKindOfClass:UIWindow.class]) {
+        return superWindow;
     } else {
-        return self.view.window;
+        return _window;
     }
 }
 
