@@ -16,9 +16,20 @@
 
 @end
 
+static NSMutableArray *viewControllerLoadViewBlockArray = nil;
 
 @implementation UIViewController (LJViewController)
 
++(void)addViewControllerLoadViewBlock:(LJViewControllerLoadViewBlock)block{
+    
+    if(block){
+        if(viewControllerLoadViewBlockArray == nil){
+            viewControllerLoadViewBlockArray = [NSMutableArray array];
+        }
+        [viewControllerLoadViewBlockArray addObject:block];
+    }
+    
+}
 
 +(void)configDidloadMethod_reateView{
     
@@ -34,6 +45,7 @@
             
             ((void(*)(id))getMethod)(self);
             UIViewController *vc=self;
+
             if([vc.view respondsToSelector:@selector(setContentVC_reateViewController:)]){
                 
                 [vc.view setContentVC_reateViewController:self];
@@ -44,6 +56,15 @@
                 [vc.view setContentVC_reateViewControllerValue:YES];
                 
             }
+            
+            if(viewControllerLoadViewBlockArray){
+                for (LJViewControllerLoadViewBlock block in viewControllerLoadViewBlockArray) {
+                    if(block){
+                        block(vc);
+                    }
+                }
+            }
+            
         };
         
         if(Block){

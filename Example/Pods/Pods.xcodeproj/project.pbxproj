@@ -7,102 +7,102 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		025E4E8076DB60E8B67832C6749A42CE /* LJKeyBraodResponderCallBlockModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F918D14FC8C21A5605DB631C8B8C5F9A /* LJKeyBraodResponderCallBlockModel.m */; };
-		02608D7A29142DD724C0DCE4DA49CFD8 /* NSObject+LJKeyBroadArcRelease.m in Sources */ = {isa = PBXBuildFile; fileRef = 06666BD7AAD87AA75F367AFCB0574043 /* NSObject+LJKeyBroadArcRelease.m */; };
-		0AE588DA6AC2C57CBB684DE7EBA5A7AE /* NSNotificationCenter+LJKeyBroad.h in Headers */ = {isa = PBXBuildFile; fileRef = B908488FE98E3D3B4BA521E4F7449C5D /* NSNotificationCenter+LJKeyBroad.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		12C4D3F723E0BF84D360F0122F5D1663 /* LJViewMethodExchangeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4E275F7DCEDBCA4CC1188CB98DF7A0 /* LJViewMethodExchangeUtil.m */; };
-		1605E29D1DB4B161D459FCE6C3A6B83B /* LJKeyBroadEventManager-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D189C8BD2636EA2473013102D557B /* LJKeyBroadEventManager-dummy.m */; };
-		1A0F246215EEB8455FA172ABA96E4C46 /* LJView_info_ViewController_ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5605AA9F4756DC8CD015ACA7F27A18 /* LJView_info_ViewController_ViewModel.m */; };
-		1A6D727851ACD402B3591E219A33C5BB /* LJKeyBroadArcReleaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37769AE0B20857679CEA79F2D1EF0C45 /* LJKeyBroadArcReleaseModel.m */; };
-		1B86975B67F368B30DC943AFA1FA6008 /* KeyBroadRandString.m in Sources */ = {isa = PBXBuildFile; fileRef = B6AB8181F053CBF9498DCB312C947241 /* KeyBroadRandString.m */; };
-		22A7BB3FD948A7D5BB50876738D27318 /* LJKeyBroadMoveOffsetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEE73E6F483B744637F2BC27B91C5EC /* LJKeyBroadMoveOffsetManager.m */; };
-		27EBC3597ADA4AB8143F16D1FF6CD6A8 /* LJkeyBroadConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B23014E7CA5978C6982AC041D260547 /* LJkeyBroadConfig.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2BAD36D0DA5506250355D347743F3ACC /* LJKeyBroadRespoderNextSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AD8AF2DBF6AAB82E9E7B9F1AC2906 /* LJKeyBroadRespoderNextSet.m */; };
-		3129F2B5363169435D37A2599E44BEC5 /* LJKeyBroadRespoderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F1CF47DF0463AB83BBB1A81C1BEFCD51 /* LJKeyBroadRespoderModel.m */; };
-		31D7E9A57C184212FF207E956662ACD6 /* KeyBroadRandString.h in Headers */ = {isa = PBXBuildFile; fileRef = 1612148EB26E0815911384E02BF98DCF /* KeyBroadRandString.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		331A72A10090CA69F4B6DDD05E2CD1DF /* LJViewController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 111BE3D05E80079E6C0C4FADB57C554F /* LJViewController-dummy.m */; };
-		3963A6EAFB0320C8CCD69962C5E91CF9 /* UIView+ReateViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B23D12BA4ED53E06202DD89FC88A656C /* UIView+ReateViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3CD1DD57DB00CD6BF962532AA69AD209 /* NSNotificationCenter+LJKeyBroad.m in Sources */ = {isa = PBXBuildFile; fileRef = 4942940B71B6E51297DBB4846AE223F6 /* NSNotificationCenter+LJKeyBroad.m */; };
-		3F04D85F67C03E09046C450540D884DB /* UIViewController+KeyBoradManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 58F05978A20F9D9D470FEA1633426C37 /* UIViewController+KeyBoradManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		447B37176BDC65A350219617B1B63B0C /* LJKeyBroadArcReleaseResponerArrayManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 36C47114484AA9FBE1AF6C92519F70E3 /* LJKeyBroadArcReleaseResponerArrayManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		46CDD03BDDA2AC7E40F249DDED334FAF /* LJViewControllerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F3A911DAC660C063925BAEDACDDD976 /* LJViewControllerManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4AB088BD77AFAB1E71B4ED48604DF00F /* UIView+LJView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E57709B20A3DFC816D6555C4042F2EB /* UIView+LJView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4B79F87AA4A666863FBC0946B8B2BB2E /* LJKeyBroadEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D99FB89DFDBBF815D949D0D95C3E47 /* LJKeyBroadEvent.m */; };
-		4BB0E978843CAF366011D2455212CD97 /* LJKeyBroadNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 898211B963B31F7964E4316AEDC2C92F /* LJKeyBroadNotificationManager.m */; };
-		4FFC65260360F8AC41237D42984E1EAB /* LJViewKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6224E6D2AF9C4CD554E95BE23B85FE18 /* LJViewKit-dummy.m */; };
-		51FC7C47C48B503796C322F3DF37B730 /* NSObject+LJKeyBroadArcRelease.h in Headers */ = {isa = PBXBuildFile; fileRef = B57721AA9C7B6BAB7F417D9ACE28A25F /* NSObject+LJKeyBroadArcRelease.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		529B61E82C5899B125BE922060391D99 /* Pods-LJKeyBroadEventManager-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C48A379A813F2FE8C70C69F2A27DB2 /* Pods-LJKeyBroadEventManager-dummy.m */; };
-		552053DF7F4AF1FA861F93DBDA2EF476 /* LJKeyboardToolBar.h in Headers */ = {isa = PBXBuildFile; fileRef = F1B5B278EFCF011ADDA4C237133902D9 /* LJKeyboardToolBar.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		565B146D08CB66550EAEAD93F9AFF892 /* LJKeyboardReloadToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 34235347CF6AC73ECA82B74B88EBD33B /* LJKeyboardReloadToolBar.m */; };
-		59203EB10134177A6CA50C51DDD631DB /* UIViewController+LJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3B38AF9D4C56E1937AAF63048BAE0F /* UIViewController+LJViewController.m */; };
-		5FD5F8E7ABBCA008BA54808A0AA01A6C /* LJKeyBroadRegisterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F511EB953B901A655923ED02875A451 /* LJKeyBroadRegisterManager.m */; };
-		65ACEA2EAF79E81B0B9B3569C943F6A2 /* LJKeyBroadEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 383108FA18E00357B74A54B4ED376623 /* LJKeyBroadEventManager.m */; };
-		6D9DDC033E6AC7D23D961CA834B703A5 /* UIView+ReateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE4554DB23BF524BE347426E66AD4F0 /* UIView+ReateViewController.m */; };
-		73A39C3B059ACA102BBD21DFD9403805 /* UIResponder+becomeFirstResponderCallBack.h in Headers */ = {isa = PBXBuildFile; fileRef = C527AFFE879240A6812DCAE4FA63765F /* UIResponder+becomeFirstResponderCallBack.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		7DADF52F0F7A812DEF3FAFBDF4F22E36 /* LJKeyBroadArcReleaseModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 81819BA3405932914125869FA5B46ED5 /* LJKeyBroadArcReleaseModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		81AE189FB0AEFDDE8B0EEDCF5E276C86 /* LJViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A308DC9C4E851FD5B46E807FC41CE2 /* LJViewModel.m */; };
-		853B35AB0813F55E0E1A90BF26F96180 /* LJKeyBroadRespoderNextSet.h in Headers */ = {isa = PBXBuildFile; fileRef = ABC4A292E6391A5A8B5B101AE0C724FF /* LJKeyBroadRespoderNextSet.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		86325BF8C99F67D3CB1B0C56FE6F20A5 /* LJViewKit.h in Headers */ = {isa = PBXBuildFile; fileRef = FD752112A5F9E25484CF0E70D97BDABB /* LJViewKit.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		894B45BAB6D945FAC7C242894B2627FC /* LJKeyBroadRespoderModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EF16DA8D346D4D67E0CB89BF87CF402 /* LJKeyBroadRespoderModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8A32BDF3016C3693E735458A48B294A8 /* LJkeyBroadConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CE4FF9300F09464463ACA6760CFE6F /* LJkeyBroadConfig.m */; };
-		8DF34C6EB6E22D35E42556531B005790 /* LJKeyBroadNotificationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AB7471652D73A139B4E83997D05DCD2 /* LJKeyBroadNotificationManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		919CEF7EC54D59C63EBC676DEA2EB4F5 /* LJViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 011BDAC0CD27A0ECB667C1458F5F0731 /* LJViewModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		99D205FC0B7BD0D83D2CE802C0A48B59 /* LJView_info_ViewController_ViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 5CE21EFB20BF19302B74BBC31742F71D /* LJView_info_ViewController_ViewModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9CF3F7D26CF2FCD00C2E52D351BC0B99 /* LJKeyboardToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CF781130CF6B1981832CBFD769A2982F /* LJKeyboardToolBar.m */; };
-		A4AE0371B6A123E33E254A3CD0E1F76D /* LJKeyBroadRegisterManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 765B0337573AAE5B4C79746848FD111E /* LJKeyBroadRegisterManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A847F8997673EEBEB1EE623776D6E40A /* LJKeyBroadEventManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DEA3561E65E182ECC0960C209CCF9A4 /* LJKeyBroadEventManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A9B4C6AED63C74F197E34DE73FE279B2 /* LJKeyBoradEventResponderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D51EDB3EBB23D4817E0B368CA5671198 /* LJKeyBoradEventResponderModel.m */; };
-		AAC7C8E16915C4CE0DE268ED068B0AC4 /* LJViewMethodExchangeUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 841E4D68A5246AC067ED3E66BDA9929F /* LJViewMethodExchangeUtil.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		AC6B6AECD008B009949886F6E3906F98 /* LJKeyboardReloadToolBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 469295CDDF7C3D38B058E7855FC0F772 /* LJKeyboardReloadToolBar.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B2FA32ED9BFE50376AB981A348FBB536 /* FirstResponderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 980468EFA0080F0C0F221E2696575AED /* FirstResponderModel.m */; };
-		BA8AB7482AC70EC778AE60C6E5A40F92 /* UIView+LJView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD46D0640E05A78BE82262715CCDEDB8 /* UIView+LJView.m */; };
-		BF1D67DA6D266221AA0C592C0C33C177 /* FirstResponderModel.h in Headers */ = {isa = PBXBuildFile; fileRef = C6A9D7AF9824E99EB53D5D6D6DB8484B /* FirstResponderModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C05242CF5C4470C6A16FA8F78EDAEE9E /* LJKeyBroadMoveOffsetManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E65BE5A055036317A04552B423293A7 /* LJKeyBroadMoveOffsetManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C4F24381D6ACEC3059DB44C22223B7B4 /* LJKeyBroadEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 679BEDA7FB2BE7117292142E5EF77F06 /* LJKeyBroadEvent.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D14C6191B5F48FF37A309FD0A795E44B /* LJKeyBroadResponderArray.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC854E2BEDF5444A9855AF4E316B6F1 /* LJKeyBroadResponderArray.m */; };
-		D27A1447603DB8E5970505A7A73B12AB /* LJKeyBroadArcReleaseResponerArrayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFE838070A6BA335A16FBD8B3D5A53E /* LJKeyBroadArcReleaseResponerArrayManager.m */; };
-		D36D93FB30E795DD4CDB2FA69B10DB2F /* UIResponder+becomeFirstResponderCallBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D804D3B35196C1167BA411EF450D26 /* UIResponder+becomeFirstResponderCallBack.m */; };
-		D3AD8EFDA2788AF7D0C101D1A315ECEB /* LJViewKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF336139B8327499C292956F1052FBC /* LJViewKit.m */; };
-		DF2070227C5787530CB57AD06D2C55BA /* UIViewController+KeyBoradManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 813939A9E61A47380909BA8738CCB902 /* UIViewController+KeyBoradManager.m */; };
-		E1C9FECE7D386BFE93E117211D1011C2 /* LJKeyBroadResponderArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B431A7E970CEDCAA725BDC96B85EFED /* LJKeyBroadResponderArray.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E5E06F3EA453F3B5D0B1D7A250E9BD3A /* LJViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7313CA2F3E662B5F40CCA33C22A717 /* LJViewControllerManager.m */; };
-		E7D5D99B376A1A2385CDAC88852321DB /* LJKeyBraodResponderCallBlockModel.h in Headers */ = {isa = PBXBuildFile; fileRef = B9BF0BFDA593A3C60270BCE992843C72 /* LJKeyBraodResponderCallBlockModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EBF10ED524F5F83605DC6E0ED360F981 /* LJKeyBroadManager.h in Headers */ = {isa = PBXBuildFile; fileRef = A82B174F00A1DD173FCE85D95F31E6B6 /* LJKeyBroadManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F18E76B2F08A884025D409D815217920 /* UIViewController+LJViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 72C609D7F1768F6F6569B9C3935643F0 /* UIViewController+LJViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		FD064CA5B66CBFAC315DBDF449CF80BA /* LJKeyBroadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E384DE0961BCE96A51A0E7FAA5EA487C /* LJKeyBroadManager.m */; };
-		FD82B0EEA82E9222D68961229C7FDC01 /* LJKeyBoradEventResponderModel.h in Headers */ = {isa = PBXBuildFile; fileRef = BCD266644410A9A455FC44B12CA37F10 /* LJKeyBoradEventResponderModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		01D691479124F458124954FD3DBC976B /* UIView+LJView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E57709B20A3DFC816D6555C4042F2EB /* UIView+LJView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		02E5989D25F28E42E3C283F4AB6D7763 /* LJViewMethodExchangeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4E275F7DCEDBCA4CC1188CB98DF7A0 /* LJViewMethodExchangeUtil.m */; };
+		07B860B9CFEE7C0342DAB1EA6B2D1DA8 /* LJKeyBroadNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 898211B963B31F7964E4316AEDC2C92F /* LJKeyBroadNotificationManager.m */; };
+		07D01CD8E093879CB4299C43C246BE73 /* LJKeyBroadRespoderModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EF16DA8D346D4D67E0CB89BF87CF402 /* LJKeyBroadRespoderModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		08E5384975C62AD300E8EC56FD07F8BA /* Pods-LJKeyBroadEventManager-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C48A379A813F2FE8C70C69F2A27DB2 /* Pods-LJKeyBroadEventManager-dummy.m */; };
+		09B5D74129CBBD3D3A32F68BD70B020E /* LJViewKit.h in Headers */ = {isa = PBXBuildFile; fileRef = FD752112A5F9E25484CF0E70D97BDABB /* LJViewKit.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1A9F9B231ECAD60FCF25F114800145E6 /* LJKeyBroadRespoderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F1CF47DF0463AB83BBB1A81C1BEFCD51 /* LJKeyBroadRespoderModel.m */; };
+		25CAA1A4D33AC96F352C523503B1E862 /* LJKeyBroadEventManager-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 905D189C8BD2636EA2473013102D557B /* LJKeyBroadEventManager-dummy.m */; };
+		2EA75EEEFF00EEE36B75FCC6CEC8046F /* LJKeyBraodResponderCallBlockModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F918D14FC8C21A5605DB631C8B8C5F9A /* LJKeyBraodResponderCallBlockModel.m */; };
+		2EDD935910CDDC2A2CFB6207D5549AFD /* LJKeyboardReloadToolBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 469295CDDF7C3D38B058E7855FC0F772 /* LJKeyboardReloadToolBar.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3001DDB91D7DF144BC6E8ACB2C7F8481 /* LJKeyBroadEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D99FB89DFDBBF815D949D0D95C3E47 /* LJKeyBroadEvent.m */; };
+		339DE718CCDE669784C613719DB2FFB0 /* LJKeyBroadMoveOffsetManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E65BE5A055036317A04552B423293A7 /* LJKeyBroadMoveOffsetManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		35C5D3334398CA2DA30177B04DC7CD23 /* NSObject+LJKeyBroadArcRelease.h in Headers */ = {isa = PBXBuildFile; fileRef = B57721AA9C7B6BAB7F417D9ACE28A25F /* NSObject+LJKeyBroadArcRelease.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		364712F836787684F2D6AFE19A2E1C9C /* LJKeyBroadRespoderNextSet.h in Headers */ = {isa = PBXBuildFile; fileRef = ABC4A292E6391A5A8B5B101AE0C724FF /* LJKeyBroadRespoderNextSet.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3793A3DF7C6CEE6E7048AFA22FBDCBF2 /* LJKeyBroadEventManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DEA3561E65E182ECC0960C209CCF9A4 /* LJKeyBroadEventManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3C8C48661655CD1AFEC01F10CA6155C2 /* LJViewKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF336139B8327499C292956F1052FBC /* LJViewKit.m */; };
+		3CBAF83B262F7F2F5B8D138ED54B35D4 /* UIViewController+LJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3B38AF9D4C56E1937AAF63048BAE0F /* UIViewController+LJViewController.m */; };
+		3D8C79A0DE9D060E2EE8BFA0B6AB1AB9 /* LJKeyBroadNotificationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AB7471652D73A139B4E83997D05DCD2 /* LJKeyBroadNotificationManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4A5793C3664875FD3E98A22E4DA24953 /* LJKeyBoradEventResponderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D51EDB3EBB23D4817E0B368CA5671198 /* LJKeyBoradEventResponderModel.m */; };
+		4AD6682D690515BDA8772B21AF3B0642 /* LJKeyBroadRegisterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F511EB953B901A655923ED02875A451 /* LJKeyBroadRegisterManager.m */; };
+		4CB316CA027C736209F05F9CE8E996A8 /* LJViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 011BDAC0CD27A0ECB667C1458F5F0731 /* LJViewModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		51C1FB39D42B04FE439D85BE293886B4 /* LJKeyboardReloadToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 34235347CF6AC73ECA82B74B88EBD33B /* LJKeyboardReloadToolBar.m */; };
+		61A18C035C9A1507F0B6DC70DC04F4EA /* NSNotificationCenter+LJKeyBroad.m in Sources */ = {isa = PBXBuildFile; fileRef = 4942940B71B6E51297DBB4846AE223F6 /* NSNotificationCenter+LJKeyBroad.m */; };
+		61CA7D27598C89994E08D554A8517803 /* FirstResponderModel.h in Headers */ = {isa = PBXBuildFile; fileRef = C6A9D7AF9824E99EB53D5D6D6DB8484B /* FirstResponderModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		61E54C228EDA1633FFC3E7F940AFD837 /* LJViewControllerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F3A911DAC660C063925BAEDACDDD976 /* LJViewControllerManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6A0C1D36E37569B1F2C6CBB1023E1A4F /* LJKeyBroadArcReleaseModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 81819BA3405932914125869FA5B46ED5 /* LJKeyBroadArcReleaseModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6CB3A774E0890A11DA15B5BC02BD2939 /* LJKeyBraodResponderCallBlockModel.h in Headers */ = {isa = PBXBuildFile; fileRef = B9BF0BFDA593A3C60270BCE992843C72 /* LJKeyBraodResponderCallBlockModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		703A7201155DBF8C6D53488AE1FA3322 /* LJViewMethodExchangeUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 841E4D68A5246AC067ED3E66BDA9929F /* LJViewMethodExchangeUtil.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7172781A1712FA1A46D9A03ED567405B /* LJViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A308DC9C4E851FD5B46E807FC41CE2 /* LJViewModel.m */; };
+		73CF5BAD1D49BE4822D669F2969C9783 /* LJkeyBroadConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CE4FF9300F09464463ACA6760CFE6F /* LJkeyBroadConfig.m */; };
+		7D92446AC8F26F90F010A4949A858623 /* LJKeyBroadResponderArray.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC854E2BEDF5444A9855AF4E316B6F1 /* LJKeyBroadResponderArray.m */; };
+		818D6F47C96C5C8ED0717CB1385D215C /* LJkeyBroadConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B23014E7CA5978C6982AC041D260547 /* LJkeyBroadConfig.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		83BB3BDCC62C2547843B5BFAE8681637 /* LJKeyBroadArcReleaseResponerArrayManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 36C47114484AA9FBE1AF6C92519F70E3 /* LJKeyBroadArcReleaseResponerArrayManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		856C29DEC19C5D4405C59BC675745CC2 /* UIViewController+KeyBoradManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 813939A9E61A47380909BA8738CCB902 /* UIViewController+KeyBoradManager.m */; };
+		864D33C67D9D3FE7A1EAF174E1D2D99A /* NSNotificationCenter+LJKeyBroad.h in Headers */ = {isa = PBXBuildFile; fileRef = B908488FE98E3D3B4BA521E4F7449C5D /* NSNotificationCenter+LJKeyBroad.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		89553F23DDFCDA1497C24241916C6EA5 /* UIResponder+becomeFirstResponderCallBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D804D3B35196C1167BA411EF450D26 /* UIResponder+becomeFirstResponderCallBack.m */; };
+		8A1924D212602C78F20970BC74C8A09B /* LJKeyBoradEventResponderModel.h in Headers */ = {isa = PBXBuildFile; fileRef = BCD266644410A9A455FC44B12CA37F10 /* LJKeyBoradEventResponderModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		959A648F6ED7D9E2D2C1E7E601773316 /* LJViewKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6224E6D2AF9C4CD554E95BE23B85FE18 /* LJViewKit-dummy.m */; };
+		98E963C053C8EBFCCEC5DAB35B894129 /* LJKeyBroadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E384DE0961BCE96A51A0E7FAA5EA487C /* LJKeyBroadManager.m */; };
+		9C8E0BC5BA28FD19BF9866C9A4C47AA5 /* LJKeyBroadRespoderNextSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AD8AF2DBF6AAB82E9E7B9F1AC2906 /* LJKeyBroadRespoderNextSet.m */; };
+		A56BDA62B3D0415FCE29F4467019B03B /* LJKeyBroadEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 679BEDA7FB2BE7117292142E5EF77F06 /* LJKeyBroadEvent.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		AB250E620667A9746C00F1FBD823F756 /* LJKeyboardToolBar.h in Headers */ = {isa = PBXBuildFile; fileRef = F1B5B278EFCF011ADDA4C237133902D9 /* LJKeyboardToolBar.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		AE387B02822B90C5A5624580922819F1 /* KeyBroadRandString.m in Sources */ = {isa = PBXBuildFile; fileRef = B6AB8181F053CBF9498DCB312C947241 /* KeyBroadRandString.m */; };
+		B225EA690B9C5281ABBDD90590CEAF91 /* LJView_info_ViewController_ViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 5CE21EFB20BF19302B74BBC31742F71D /* LJView_info_ViewController_ViewModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B28242E1D2653D72E7260E2D9700E6B7 /* FirstResponderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 980468EFA0080F0C0F221E2696575AED /* FirstResponderModel.m */; };
+		B69E6140F572E39766DDCAE0C4857DB5 /* UIView+LJView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD46D0640E05A78BE82262715CCDEDB8 /* UIView+LJView.m */; };
+		B769A41A22071B6F6406C149A0ABB267 /* LJViewController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 111BE3D05E80079E6C0C4FADB57C554F /* LJViewController-dummy.m */; };
+		BC45534BD48DF8B7265BF1F96B8F61A0 /* LJKeyBroadArcReleaseResponerArrayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFE838070A6BA335A16FBD8B3D5A53E /* LJKeyBroadArcReleaseResponerArrayManager.m */; };
+		C211391D261F0774D10F97292FECE490 /* LJKeyBroadResponderArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B431A7E970CEDCAA725BDC96B85EFED /* LJKeyBroadResponderArray.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C382DED00AF01A9F026A2EE2BCB0EACC /* LJKeyBroadMoveOffsetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEE73E6F483B744637F2BC27B91C5EC /* LJKeyBroadMoveOffsetManager.m */; };
+		C47617720FC537592EFBAAD86BCC9031 /* LJKeyBroadManager.h in Headers */ = {isa = PBXBuildFile; fileRef = A82B174F00A1DD173FCE85D95F31E6B6 /* LJKeyBroadManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C8E136A4295867435D0409B3A0ED7A03 /* LJKeyboardToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CF781130CF6B1981832CBFD769A2982F /* LJKeyboardToolBar.m */; };
+		C99317A66BDF6EE1C53A88CC8DAC5A10 /* LJKeyBroadArcReleaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37769AE0B20857679CEA79F2D1EF0C45 /* LJKeyBroadArcReleaseModel.m */; };
+		C9F4FE8D2CEF5E90260AF8C5BCEB9C4C /* LJKeyBroadEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 383108FA18E00357B74A54B4ED376623 /* LJKeyBroadEventManager.m */; };
+		D8A5D99F48E1197E7661260D5DB98DE7 /* LJView_info_ViewController_ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5605AA9F4756DC8CD015ACA7F27A18 /* LJView_info_ViewController_ViewModel.m */; };
+		E1CF4E7FDB88669299579A033F6CD5C3 /* UIView+ReateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE4554DB23BF524BE347426E66AD4F0 /* UIView+ReateViewController.m */; };
+		E6A8685A6CBAEDCAE6653603423F4861 /* UIViewController+KeyBoradManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 58F05978A20F9D9D470FEA1633426C37 /* UIViewController+KeyBoradManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		EAB5C2C6D0E1B583A3F09F1856EAB833 /* LJKeyBroadRegisterManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 765B0337573AAE5B4C79746848FD111E /* LJKeyBroadRegisterManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F499508247F8F2EEF81698C2A1E0F55F /* NSObject+LJKeyBroadArcRelease.m in Sources */ = {isa = PBXBuildFile; fileRef = 06666BD7AAD87AA75F367AFCB0574043 /* NSObject+LJKeyBroadArcRelease.m */; };
+		F574F5EB4EB51E2BB43728A2A86BAC4D /* LJViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7313CA2F3E662B5F40CCA33C22A717 /* LJViewControllerManager.m */; };
+		F6D13CB3FFA8338370F6015357BA6EF3 /* UIView+ReateViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B23D12BA4ED53E06202DD89FC88A656C /* UIView+ReateViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F7434D06D215FC050954B51B557B9849 /* UIViewController+LJViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 72C609D7F1768F6F6569B9C3935643F0 /* UIViewController+LJViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F75EE8D691C63E3F396AD9FC2E7AD758 /* UIResponder+becomeFirstResponderCallBack.h in Headers */ = {isa = PBXBuildFile; fileRef = C527AFFE879240A6812DCAE4FA63765F /* UIResponder+becomeFirstResponderCallBack.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FA93C6820C4A243A97C6541A9E8DAFE9 /* KeyBroadRandString.h in Headers */ = {isa = PBXBuildFile; fileRef = 1612148EB26E0815911384E02BF98DCF /* KeyBroadRandString.h */; settings = {ATTRIBUTES = (Project, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		07C55089BCAE858021A5CA62AB372F4A /* PBXContainerItemProxy */ = {
+		2A5C2DAA98C84D2BF298570C79B8EF7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8388784D06D65499923C22F2C3F173E1;
+			remoteInfo = LJViewKit;
+		};
+		2F6F521DB835E096746472F0BA518A22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8388784D06D65499923C22F2C3F173E1;
+			remoteInfo = LJViewKit;
+		};
+		77689239F3384FBD3000301EE61F311B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 73605A3F25BB0D778284F5830F5E1C15;
 			remoteInfo = LJViewController;
 		};
-		0F7136EAB7F19E048A77B9B0B2329ACD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8388784D06D65499923C22F2C3F173E1;
-			remoteInfo = LJViewKit;
-		};
-		3B050B8910352DDC8544DB852E4D7F70 /* PBXContainerItemProxy */ = {
+		B90565D138E63220D8F78888CF878BF2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7A30948FA53B3988656CCDF9BAD1136E;
 			remoteInfo = LJKeyBroadEventManager;
 		};
-		855E660B76023845C05809EFCD800DF4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8388784D06D65499923C22F2C3F173E1;
-			remoteInfo = LJViewKit;
-		};
-		A4A61206BA943A8568EC26F44AB4CE95 /* PBXContainerItemProxy */ = {
+		D82EB407C696238BC899BABBA8D169A5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -124,6 +124,7 @@
 		2B431A7E970CEDCAA725BDC96B85EFED /* LJKeyBroadResponderArray.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LJKeyBroadResponderArray.h; sourceTree = "<group>"; };
 		32D99FB89DFDBBF815D949D0D95C3E47 /* LJKeyBroadEvent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LJKeyBroadEvent.m; sourceTree = "<group>"; };
 		34235347CF6AC73ECA82B74B88EBD33B /* LJKeyboardReloadToolBar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LJKeyboardReloadToolBar.m; sourceTree = "<group>"; };
+		34D02C79C196DE57E6AC5FA64B719245 /* libLJViewController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libLJViewController.a; path = libLJViewController.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		36C47114484AA9FBE1AF6C92519F70E3 /* LJKeyBroadArcReleaseResponerArrayManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LJKeyBroadArcReleaseResponerArrayManager.h; sourceTree = "<group>"; };
 		37769AE0B20857679CEA79F2D1EF0C45 /* LJKeyBroadArcReleaseModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LJKeyBroadArcReleaseModel.m; sourceTree = "<group>"; };
 		383108FA18E00357B74A54B4ED376623 /* LJKeyBroadEventManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LJKeyBroadEventManager.m; sourceTree = "<group>"; };
@@ -148,11 +149,12 @@
 		7491A4DD211F1E45AF180CC5A1098BCE /* LJKeyBroadEventManager-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LJKeyBroadEventManager-prefix.pch"; sourceTree = "<group>"; };
 		765B0337573AAE5B4C79746848FD111E /* LJKeyBroadRegisterManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LJKeyBroadRegisterManager.h; sourceTree = "<group>"; };
 		77CE4FF9300F09464463ACA6760CFE6F /* LJkeyBroadConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LJkeyBroadConfig.m; sourceTree = "<group>"; };
+		79F1DE160038E2423CA7D6C3E3365766 /* libLJViewKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libLJViewKit.a; path = libLJViewKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E4AFBC1AAC6060A98306D38F65C8AC6 /* libPods-LJKeyBroadEventManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-LJKeyBroadEventManager.a"; path = "libPods-LJKeyBroadEventManager.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F511EB953B901A655923ED02875A451 /* LJKeyBroadRegisterManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LJKeyBroadRegisterManager.m; sourceTree = "<group>"; };
 		813939A9E61A47380909BA8738CCB902 /* UIViewController+KeyBoradManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KeyBoradManager.m"; sourceTree = "<group>"; };
 		81819BA3405932914125869FA5B46ED5 /* LJKeyBroadArcReleaseModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LJKeyBroadArcReleaseModel.h; sourceTree = "<group>"; };
 		81A308DC9C4E851FD5B46E807FC41CE2 /* LJViewModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LJViewModel.m; path = LJViewKit/Classes/LJViewModel.m; sourceTree = "<group>"; };
-		835C7869545C4AF4810AE5F7D28D5004 /* libPods-LJKeyBroadEventManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-LJKeyBroadEventManager.a"; path = "libPods-LJKeyBroadEventManager.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		841E4D68A5246AC067ED3E66BDA9929F /* LJViewMethodExchangeUtil.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LJViewMethodExchangeUtil.h; path = LJViewKit/Classes/LJViewMethodExchangeUtil.h; sourceTree = "<group>"; };
 		898211B963B31F7964E4316AEDC2C92F /* LJKeyBroadNotificationManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LJKeyBroadNotificationManager.m; sourceTree = "<group>"; };
 		8B23014E7CA5978C6982AC041D260547 /* LJkeyBroadConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LJkeyBroadConfig.h; sourceTree = "<group>"; };
@@ -162,13 +164,11 @@
 		980468EFA0080F0C0F221E2696575AED /* FirstResponderModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = FirstResponderModel.m; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9EF16DA8D346D4D67E0CB89BF87CF402 /* LJKeyBroadRespoderModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LJKeyBroadRespoderModel.h; sourceTree = "<group>"; };
-		A572B5C8C2B7EDFC5CD410B1FBB1A8A4 /* libLJViewController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libLJViewController.a; path = libLJViewController.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A82B174F00A1DD173FCE85D95F31E6B6 /* LJKeyBroadManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LJKeyBroadManager.h; sourceTree = "<group>"; };
 		AAE4554DB23BF524BE347426E66AD4F0 /* UIView+ReateViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+ReateViewController.m"; path = "LJViewController/Classes/UIView+ReateViewController.m"; sourceTree = "<group>"; };
 		ABC4A292E6391A5A8B5B101AE0C724FF /* LJKeyBroadRespoderNextSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LJKeyBroadRespoderNextSet.h; sourceTree = "<group>"; };
 		ACF509FF68D1A63F62086F2A8770723C /* Pods-LJKeyBroadEventManager-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LJKeyBroadEventManager-acknowledgements.plist"; sourceTree = "<group>"; };
 		B23D12BA4ED53E06202DD89FC88A656C /* UIView+ReateViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+ReateViewController.h"; path = "LJViewController/Classes/UIView+ReateViewController.h"; sourceTree = "<group>"; };
-		B465F8057CA18B8707EA638D1D4AEF46 /* libLJKeyBroadEventManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libLJKeyBroadEventManager.a; path = libLJKeyBroadEventManager.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B57721AA9C7B6BAB7F417D9ACE28A25F /* NSObject+LJKeyBroadArcRelease.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+LJKeyBroadArcRelease.h"; sourceTree = "<group>"; };
 		B690E9603F5E4024EEFD663D169F36CB /* LJViewKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LJViewKit-prefix.pch"; sourceTree = "<group>"; };
 		B6AB8181F053CBF9498DCB312C947241 /* KeyBroadRandString.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = KeyBroadRandString.m; sourceTree = "<group>"; };
@@ -184,9 +184,9 @@
 		CD46D0640E05A78BE82262715CCDEDB8 /* UIView+LJView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+LJView.m"; path = "LJViewKit/Classes/UIView+LJView.m"; sourceTree = "<group>"; };
 		CDEE73E6F483B744637F2BC27B91C5EC /* LJKeyBroadMoveOffsetManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LJKeyBroadMoveOffsetManager.m; sourceTree = "<group>"; };
 		CF781130CF6B1981832CBFD769A2982F /* LJKeyboardToolBar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LJKeyboardToolBar.m; sourceTree = "<group>"; };
+		D02770CBB0FE50D40058AFEE09D460A8 /* libLJKeyBroadEventManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libLJKeyBroadEventManager.a; path = libLJKeyBroadEventManager.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51EDB3EBB23D4817E0B368CA5671198 /* LJKeyBoradEventResponderModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LJKeyBoradEventResponderModel.m; sourceTree = "<group>"; };
 		E384DE0961BCE96A51A0E7FAA5EA487C /* LJKeyBroadManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LJKeyBroadManager.m; sourceTree = "<group>"; };
-		E447332B857B5C81895323FFF344D3AE /* libLJViewKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libLJViewKit.a; path = libLJViewKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E85C3E605D3959D470C32F5CDB9E3079 /* LJKeyBroadEventManager.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LJKeyBroadEventManager.xcconfig; sourceTree = "<group>"; };
 		ECFE838070A6BA335A16FBD8B3D5A53E /* LJKeyBroadArcReleaseResponerArrayManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LJKeyBroadArcReleaseResponerArrayManager.m; sourceTree = "<group>"; };
 		F1A067A2A49B22E40356E7D17E5BE2B5 /* LJViewController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LJViewController.xcconfig; sourceTree = "<group>"; };
@@ -199,28 +199,28 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		01AE89D55CE354DEF02F6A38D6DDB73B /* Frameworks */ = {
+		0ABD6D0B5855BE503D0FE69FB2C04368 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		966B9BF172700CD312FBD6B0109282D3 /* Frameworks */ = {
+		889B9949B90D1B22FC959A2F5DDC9388 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B89654FC70F36428DFAA9ECCD8E6787E /* Frameworks */ = {
+		978A210454095E40CD6ADE7D4C4C6C85 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CAE024A801270BBB97E78907495E2F54 /* Frameworks */ = {
+		BC372545BE1FB36F966F8F2509FD1244 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -432,10 +432,10 @@
 		FBA1657FBA88858E8B880F0FFCF05AAF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B465F8057CA18B8707EA638D1D4AEF46 /* libLJKeyBroadEventManager.a */,
-				A572B5C8C2B7EDFC5CD410B1FBB1A8A4 /* libLJViewController.a */,
-				E447332B857B5C81895323FFF344D3AE /* libLJViewKit.a */,
-				835C7869545C4AF4810AE5F7D28D5004 /* libPods-LJKeyBroadEventManager.a */,
+				D02770CBB0FE50D40058AFEE09D460A8 /* libLJKeyBroadEventManager.a */,
+				34D02C79C196DE57E6AC5FA64B719245 /* libLJViewController.a */,
+				79F1DE160038E2423CA7D6C3E3365766 /* libLJViewKit.a */,
+				7E4AFBC1AAC6060A98306D38F65C8AC6 /* libPods-LJKeyBroadEventManager.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -451,61 +451,61 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		0B6B32561C872D8FD98406D8B5F55869 /* Headers */ = {
+		58C42EF145D996ACF86E111595356D4A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF1D67DA6D266221AA0C592C0C33C177 /* FirstResponderModel.h in Headers */,
-				31D7E9A57C184212FF207E956662ACD6 /* KeyBroadRandString.h in Headers */,
-				AC6B6AECD008B009949886F6E3906F98 /* LJKeyboardReloadToolBar.h in Headers */,
-				552053DF7F4AF1FA861F93DBDA2EF476 /* LJKeyboardToolBar.h in Headers */,
-				FD82B0EEA82E9222D68961229C7FDC01 /* LJKeyBoradEventResponderModel.h in Headers */,
-				E7D5D99B376A1A2385CDAC88852321DB /* LJKeyBraodResponderCallBlockModel.h in Headers */,
-				7DADF52F0F7A812DEF3FAFBDF4F22E36 /* LJKeyBroadArcReleaseModel.h in Headers */,
-				447B37176BDC65A350219617B1B63B0C /* LJKeyBroadArcReleaseResponerArrayManager.h in Headers */,
-				27EBC3597ADA4AB8143F16D1FF6CD6A8 /* LJkeyBroadConfig.h in Headers */,
-				C4F24381D6ACEC3059DB44C22223B7B4 /* LJKeyBroadEvent.h in Headers */,
-				A847F8997673EEBEB1EE623776D6E40A /* LJKeyBroadEventManager.h in Headers */,
-				EBF10ED524F5F83605DC6E0ED360F981 /* LJKeyBroadManager.h in Headers */,
-				C05242CF5C4470C6A16FA8F78EDAEE9E /* LJKeyBroadMoveOffsetManager.h in Headers */,
-				8DF34C6EB6E22D35E42556531B005790 /* LJKeyBroadNotificationManager.h in Headers */,
-				A4AE0371B6A123E33E254A3CD0E1F76D /* LJKeyBroadRegisterManager.h in Headers */,
-				894B45BAB6D945FAC7C242894B2627FC /* LJKeyBroadRespoderModel.h in Headers */,
-				853B35AB0813F55E0E1A90BF26F96180 /* LJKeyBroadRespoderNextSet.h in Headers */,
-				E1C9FECE7D386BFE93E117211D1011C2 /* LJKeyBroadResponderArray.h in Headers */,
-				0AE588DA6AC2C57CBB684DE7EBA5A7AE /* NSNotificationCenter+LJKeyBroad.h in Headers */,
-				51FC7C47C48B503796C322F3DF37B730 /* NSObject+LJKeyBroadArcRelease.h in Headers */,
-				73A39C3B059ACA102BBD21DFD9403805 /* UIResponder+becomeFirstResponderCallBack.h in Headers */,
-				3F04D85F67C03E09046C450540D884DB /* UIViewController+KeyBoradManager.h in Headers */,
+				B225EA690B9C5281ABBDD90590CEAF91 /* LJView_info_ViewController_ViewModel.h in Headers */,
+				61E54C228EDA1633FFC3E7F940AFD837 /* LJViewControllerManager.h in Headers */,
+				F6D13CB3FFA8338370F6015357BA6EF3 /* UIView+ReateViewController.h in Headers */,
+				F7434D06D215FC050954B51B557B9849 /* UIViewController+LJViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		184017888D69276FF22967D5F499FD1E /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				86325BF8C99F67D3CB1B0C56FE6F20A5 /* LJViewKit.h in Headers */,
-				AAC7C8E16915C4CE0DE268ED068B0AC4 /* LJViewMethodExchangeUtil.h in Headers */,
-				919CEF7EC54D59C63EBC676DEA2EB4F5 /* LJViewModel.h in Headers */,
-				4AB088BD77AFAB1E71B4ED48604DF00F /* UIView+LJView.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A5583389A217C006485ED9EA879900E8 /* Headers */ = {
+		5CBB8828FC5FF30C532AD297495AE74A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E49FA122E3D308D08A9F1FDA595FA9DC /* Headers */ = {
+		999DE433CEA2CE2CA33C8A97F8B11F31 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99D205FC0B7BD0D83D2CE802C0A48B59 /* LJView_info_ViewController_ViewModel.h in Headers */,
-				46CDD03BDDA2AC7E40F249DDED334FAF /* LJViewControllerManager.h in Headers */,
-				3963A6EAFB0320C8CCD69962C5E91CF9 /* UIView+ReateViewController.h in Headers */,
-				F18E76B2F08A884025D409D815217920 /* UIViewController+LJViewController.h in Headers */,
+				09B5D74129CBBD3D3A32F68BD70B020E /* LJViewKit.h in Headers */,
+				703A7201155DBF8C6D53488AE1FA3322 /* LJViewMethodExchangeUtil.h in Headers */,
+				4CB316CA027C736209F05F9CE8E996A8 /* LJViewModel.h in Headers */,
+				01D691479124F458124954FD3DBC976B /* UIView+LJView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D12F15E40F04F801984A60A677939C48 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61CA7D27598C89994E08D554A8517803 /* FirstResponderModel.h in Headers */,
+				FA93C6820C4A243A97C6541A9E8DAFE9 /* KeyBroadRandString.h in Headers */,
+				2EDD935910CDDC2A2CFB6207D5549AFD /* LJKeyboardReloadToolBar.h in Headers */,
+				AB250E620667A9746C00F1FBD823F756 /* LJKeyboardToolBar.h in Headers */,
+				8A1924D212602C78F20970BC74C8A09B /* LJKeyBoradEventResponderModel.h in Headers */,
+				6CB3A774E0890A11DA15B5BC02BD2939 /* LJKeyBraodResponderCallBlockModel.h in Headers */,
+				6A0C1D36E37569B1F2C6CBB1023E1A4F /* LJKeyBroadArcReleaseModel.h in Headers */,
+				83BB3BDCC62C2547843B5BFAE8681637 /* LJKeyBroadArcReleaseResponerArrayManager.h in Headers */,
+				818D6F47C96C5C8ED0717CB1385D215C /* LJkeyBroadConfig.h in Headers */,
+				A56BDA62B3D0415FCE29F4467019B03B /* LJKeyBroadEvent.h in Headers */,
+				3793A3DF7C6CEE6E7048AFA22FBDCBF2 /* LJKeyBroadEventManager.h in Headers */,
+				C47617720FC537592EFBAAD86BCC9031 /* LJKeyBroadManager.h in Headers */,
+				339DE718CCDE669784C613719DB2FFB0 /* LJKeyBroadMoveOffsetManager.h in Headers */,
+				3D8C79A0DE9D060E2EE8BFA0B6AB1AB9 /* LJKeyBroadNotificationManager.h in Headers */,
+				EAB5C2C6D0E1B583A3F09F1856EAB833 /* LJKeyBroadRegisterManager.h in Headers */,
+				07D01CD8E093879CB4299C43C246BE73 /* LJKeyBroadRespoderModel.h in Headers */,
+				364712F836787684F2D6AFE19A2E1C9C /* LJKeyBroadRespoderNextSet.h in Headers */,
+				C211391D261F0774D10F97292FECE490 /* LJKeyBroadResponderArray.h in Headers */,
+				864D33C67D9D3FE7A1EAF174E1D2D99A /* NSNotificationCenter+LJKeyBroad.h in Headers */,
+				35C5D3334398CA2DA30177B04DC7CD23 /* NSObject+LJKeyBroadArcRelease.h in Headers */,
+				F75EE8D691C63E3F396AD9FC2E7AD758 /* UIResponder+becomeFirstResponderCallBack.h in Headers */,
+				E6A8685A6CBAEDCAE6653603423F4861 /* UIViewController+KeyBoradManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,11 +514,11 @@
 /* Begin PBXNativeTarget section */
 		73605A3F25BB0D778284F5830F5E1C15 /* LJViewController */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 10C932FA1D61FD13613E75130027D2A0 /* Build configuration list for PBXNativeTarget "LJViewController" */;
+			buildConfigurationList = 54D3A74F8F157801A388D0D315F77C85 /* Build configuration list for PBXNativeTarget "LJViewController" */;
 			buildPhases = (
-				E49FA122E3D308D08A9F1FDA595FA9DC /* Headers */,
-				8514BB5DCDE8B4EF017DE94F9A6BE394 /* Sources */,
-				B89654FC70F36428DFAA9ECCD8E6787E /* Frameworks */,
+				58C42EF145D996ACF86E111595356D4A /* Headers */,
+				DD5E3623D30C15C2495441C0043A2828 /* Sources */,
+				889B9949B90D1B22FC959A2F5DDC9388 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -526,35 +526,35 @@
 			);
 			name = LJViewController;
 			productName = LJViewController;
-			productReference = A572B5C8C2B7EDFC5CD410B1FBB1A8A4 /* libLJViewController.a */;
+			productReference = 34D02C79C196DE57E6AC5FA64B719245 /* libLJViewController.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		7A30948FA53B3988656CCDF9BAD1136E /* LJKeyBroadEventManager */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9E797FB7CD0941560E9C84DA6D25E756 /* Build configuration list for PBXNativeTarget "LJKeyBroadEventManager" */;
+			buildConfigurationList = E37407AE41C6E0F3291E1F147B1240FC /* Build configuration list for PBXNativeTarget "LJKeyBroadEventManager" */;
 			buildPhases = (
-				0B6B32561C872D8FD98406D8B5F55869 /* Headers */,
-				EC0D7D6C574BE9F20069F490CAA02ABF /* Sources */,
-				01AE89D55CE354DEF02F6A38D6DDB73B /* Frameworks */,
+				D12F15E40F04F801984A60A677939C48 /* Headers */,
+				9BA9F519D0602A267120FD3A798B6C13 /* Sources */,
+				0ABD6D0B5855BE503D0FE69FB2C04368 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				19B7D593CCA70745A1E66C31371FA85A /* PBXTargetDependency */,
-				5BB103B7E4F55F8E552EED00FF688204 /* PBXTargetDependency */,
+				9BCC642EF80ED718B8F1AD490FD45698 /* PBXTargetDependency */,
+				1BC8ED28710F948B1706B96B99A0074A /* PBXTargetDependency */,
 			);
 			name = LJKeyBroadEventManager;
 			productName = LJKeyBroadEventManager;
-			productReference = B465F8057CA18B8707EA638D1D4AEF46 /* libLJKeyBroadEventManager.a */;
+			productReference = D02770CBB0FE50D40058AFEE09D460A8 /* libLJKeyBroadEventManager.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		8388784D06D65499923C22F2C3F173E1 /* LJViewKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A881D1F5D0602C15E225DB563E89FD8F /* Build configuration list for PBXNativeTarget "LJViewKit" */;
+			buildConfigurationList = FCB1E1413A700AC8BC840DF436629355 /* Build configuration list for PBXNativeTarget "LJViewKit" */;
 			buildPhases = (
-				184017888D69276FF22967D5F499FD1E /* Headers */,
-				4046166B57D8B97C37CBFE4FED2DD688 /* Sources */,
-				CAE024A801270BBB97E78907495E2F54 /* Frameworks */,
+				999DE433CEA2CE2CA33C8A97F8B11F31 /* Headers */,
+				13DF6D0E437663DC83F3E2C5C52AFF4D /* Sources */,
+				978A210454095E40CD6ADE7D4C4C6C85 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -562,27 +562,27 @@
 			);
 			name = LJViewKit;
 			productName = LJViewKit;
-			productReference = E447332B857B5C81895323FFF344D3AE /* libLJViewKit.a */;
+			productReference = 79F1DE160038E2423CA7D6C3E3365766 /* libLJViewKit.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		CC8338EF74834E6C53F4BF5A9F5F9922 /* Pods-LJKeyBroadEventManager */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 71415B76CFE2625A9E180C4F44F7C87C /* Build configuration list for PBXNativeTarget "Pods-LJKeyBroadEventManager" */;
+			buildConfigurationList = 0FEFDAA307C21817C2CB9B9D71F10639 /* Build configuration list for PBXNativeTarget "Pods-LJKeyBroadEventManager" */;
 			buildPhases = (
-				A5583389A217C006485ED9EA879900E8 /* Headers */,
-				AC204A3D2C6DCBE74B31643ECA08DE6C /* Sources */,
-				966B9BF172700CD312FBD6B0109282D3 /* Frameworks */,
+				5CBB8828FC5FF30C532AD297495AE74A /* Headers */,
+				45382703CA5A32BD9CC26075A24283A2 /* Sources */,
+				BC372545BE1FB36F966F8F2509FD1244 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				2993E6A434845FEDBA31D7CE3A5F0748 /* PBXTargetDependency */,
-				8BB528214EE91CFF29801793E2289671 /* PBXTargetDependency */,
-				67DD1AE721F54FFFDB2ABDCDE9E15A25 /* PBXTargetDependency */,
+				7BBE2EB19A82567DE626E3A1B56288F8 /* PBXTargetDependency */,
+				21E4B424BD731C1D6A94DA078E1D0856 /* PBXTargetDependency */,
+				015E47DCA4DA9CA1F1B75ABB350FB4DB /* PBXTargetDependency */,
 			);
 			name = "Pods-LJKeyBroadEventManager";
 			productName = "Pods-LJKeyBroadEventManager";
-			productReference = 835C7869545C4AF4810AE5F7D28D5004 /* libPods-LJKeyBroadEventManager.a */;
+			productReference = 7E4AFBC1AAC6060A98306D38F65C8AC6 /* libPods-LJKeyBroadEventManager.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -591,12 +591,12 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 10.0";
-			developmentRegion = en;
+			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -615,150 +615,105 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		4046166B57D8B97C37CBFE4FED2DD688 /* Sources */ = {
+		13DF6D0E437663DC83F3E2C5C52AFF4D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FFC65260360F8AC41237D42984E1EAB /* LJViewKit-dummy.m in Sources */,
-				D3AD8EFDA2788AF7D0C101D1A315ECEB /* LJViewKit.m in Sources */,
-				12C4D3F723E0BF84D360F0122F5D1663 /* LJViewMethodExchangeUtil.m in Sources */,
-				81AE189FB0AEFDDE8B0EEDCF5E276C86 /* LJViewModel.m in Sources */,
-				BA8AB7482AC70EC778AE60C6E5A40F92 /* UIView+LJView.m in Sources */,
+				959A648F6ED7D9E2D2C1E7E601773316 /* LJViewKit-dummy.m in Sources */,
+				3C8C48661655CD1AFEC01F10CA6155C2 /* LJViewKit.m in Sources */,
+				02E5989D25F28E42E3C283F4AB6D7763 /* LJViewMethodExchangeUtil.m in Sources */,
+				7172781A1712FA1A46D9A03ED567405B /* LJViewModel.m in Sources */,
+				B69E6140F572E39766DDCAE0C4857DB5 /* UIView+LJView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8514BB5DCDE8B4EF017DE94F9A6BE394 /* Sources */ = {
+		45382703CA5A32BD9CC26075A24283A2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A0F246215EEB8455FA172ABA96E4C46 /* LJView_info_ViewController_ViewModel.m in Sources */,
-				331A72A10090CA69F4B6DDD05E2CD1DF /* LJViewController-dummy.m in Sources */,
-				E5E06F3EA453F3B5D0B1D7A250E9BD3A /* LJViewControllerManager.m in Sources */,
-				6D9DDC033E6AC7D23D961CA834B703A5 /* UIView+ReateViewController.m in Sources */,
-				59203EB10134177A6CA50C51DDD631DB /* UIViewController+LJViewController.m in Sources */,
+				08E5384975C62AD300E8EC56FD07F8BA /* Pods-LJKeyBroadEventManager-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AC204A3D2C6DCBE74B31643ECA08DE6C /* Sources */ = {
+		9BA9F519D0602A267120FD3A798B6C13 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				529B61E82C5899B125BE922060391D99 /* Pods-LJKeyBroadEventManager-dummy.m in Sources */,
+				B28242E1D2653D72E7260E2D9700E6B7 /* FirstResponderModel.m in Sources */,
+				AE387B02822B90C5A5624580922819F1 /* KeyBroadRandString.m in Sources */,
+				51C1FB39D42B04FE439D85BE293886B4 /* LJKeyboardReloadToolBar.m in Sources */,
+				C8E136A4295867435D0409B3A0ED7A03 /* LJKeyboardToolBar.m in Sources */,
+				4A5793C3664875FD3E98A22E4DA24953 /* LJKeyBoradEventResponderModel.m in Sources */,
+				2EA75EEEFF00EEE36B75FCC6CEC8046F /* LJKeyBraodResponderCallBlockModel.m in Sources */,
+				C99317A66BDF6EE1C53A88CC8DAC5A10 /* LJKeyBroadArcReleaseModel.m in Sources */,
+				BC45534BD48DF8B7265BF1F96B8F61A0 /* LJKeyBroadArcReleaseResponerArrayManager.m in Sources */,
+				73CF5BAD1D49BE4822D669F2969C9783 /* LJkeyBroadConfig.m in Sources */,
+				3001DDB91D7DF144BC6E8ACB2C7F8481 /* LJKeyBroadEvent.m in Sources */,
+				25CAA1A4D33AC96F352C523503B1E862 /* LJKeyBroadEventManager-dummy.m in Sources */,
+				C9F4FE8D2CEF5E90260AF8C5BCEB9C4C /* LJKeyBroadEventManager.m in Sources */,
+				98E963C053C8EBFCCEC5DAB35B894129 /* LJKeyBroadManager.m in Sources */,
+				C382DED00AF01A9F026A2EE2BCB0EACC /* LJKeyBroadMoveOffsetManager.m in Sources */,
+				07B860B9CFEE7C0342DAB1EA6B2D1DA8 /* LJKeyBroadNotificationManager.m in Sources */,
+				4AD6682D690515BDA8772B21AF3B0642 /* LJKeyBroadRegisterManager.m in Sources */,
+				1A9F9B231ECAD60FCF25F114800145E6 /* LJKeyBroadRespoderModel.m in Sources */,
+				9C8E0BC5BA28FD19BF9866C9A4C47AA5 /* LJKeyBroadRespoderNextSet.m in Sources */,
+				7D92446AC8F26F90F010A4949A858623 /* LJKeyBroadResponderArray.m in Sources */,
+				61A18C035C9A1507F0B6DC70DC04F4EA /* NSNotificationCenter+LJKeyBroad.m in Sources */,
+				F499508247F8F2EEF81698C2A1E0F55F /* NSObject+LJKeyBroadArcRelease.m in Sources */,
+				89553F23DDFCDA1497C24241916C6EA5 /* UIResponder+becomeFirstResponderCallBack.m in Sources */,
+				856C29DEC19C5D4405C59BC675745CC2 /* UIViewController+KeyBoradManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EC0D7D6C574BE9F20069F490CAA02ABF /* Sources */ = {
+		DD5E3623D30C15C2495441C0043A2828 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2FA32ED9BFE50376AB981A348FBB536 /* FirstResponderModel.m in Sources */,
-				1B86975B67F368B30DC943AFA1FA6008 /* KeyBroadRandString.m in Sources */,
-				565B146D08CB66550EAEAD93F9AFF892 /* LJKeyboardReloadToolBar.m in Sources */,
-				9CF3F7D26CF2FCD00C2E52D351BC0B99 /* LJKeyboardToolBar.m in Sources */,
-				A9B4C6AED63C74F197E34DE73FE279B2 /* LJKeyBoradEventResponderModel.m in Sources */,
-				025E4E8076DB60E8B67832C6749A42CE /* LJKeyBraodResponderCallBlockModel.m in Sources */,
-				1A6D727851ACD402B3591E219A33C5BB /* LJKeyBroadArcReleaseModel.m in Sources */,
-				D27A1447603DB8E5970505A7A73B12AB /* LJKeyBroadArcReleaseResponerArrayManager.m in Sources */,
-				8A32BDF3016C3693E735458A48B294A8 /* LJkeyBroadConfig.m in Sources */,
-				4B79F87AA4A666863FBC0946B8B2BB2E /* LJKeyBroadEvent.m in Sources */,
-				1605E29D1DB4B161D459FCE6C3A6B83B /* LJKeyBroadEventManager-dummy.m in Sources */,
-				65ACEA2EAF79E81B0B9B3569C943F6A2 /* LJKeyBroadEventManager.m in Sources */,
-				FD064CA5B66CBFAC315DBDF449CF80BA /* LJKeyBroadManager.m in Sources */,
-				22A7BB3FD948A7D5BB50876738D27318 /* LJKeyBroadMoveOffsetManager.m in Sources */,
-				4BB0E978843CAF366011D2455212CD97 /* LJKeyBroadNotificationManager.m in Sources */,
-				5FD5F8E7ABBCA008BA54808A0AA01A6C /* LJKeyBroadRegisterManager.m in Sources */,
-				3129F2B5363169435D37A2599E44BEC5 /* LJKeyBroadRespoderModel.m in Sources */,
-				2BAD36D0DA5506250355D347743F3ACC /* LJKeyBroadRespoderNextSet.m in Sources */,
-				D14C6191B5F48FF37A309FD0A795E44B /* LJKeyBroadResponderArray.m in Sources */,
-				3CD1DD57DB00CD6BF962532AA69AD209 /* NSNotificationCenter+LJKeyBroad.m in Sources */,
-				02608D7A29142DD724C0DCE4DA49CFD8 /* NSObject+LJKeyBroadArcRelease.m in Sources */,
-				D36D93FB30E795DD4CDB2FA69B10DB2F /* UIResponder+becomeFirstResponderCallBack.m in Sources */,
-				DF2070227C5787530CB57AD06D2C55BA /* UIViewController+KeyBoradManager.m in Sources */,
+				D8A5D99F48E1197E7661260D5DB98DE7 /* LJView_info_ViewController_ViewModel.m in Sources */,
+				B769A41A22071B6F6406C149A0ABB267 /* LJViewController-dummy.m in Sources */,
+				F574F5EB4EB51E2BB43728A2A86BAC4D /* LJViewControllerManager.m in Sources */,
+				E1CF4E7FDB88669299579A033F6CD5C3 /* UIView+ReateViewController.m in Sources */,
+				3CBAF83B262F7F2F5B8D138ED54B35D4 /* UIViewController+LJViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		19B7D593CCA70745A1E66C31371FA85A /* PBXTargetDependency */ = {
+		015E47DCA4DA9CA1F1B75ABB350FB4DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LJViewKit;
+			target = 8388784D06D65499923C22F2C3F173E1 /* LJViewKit */;
+			targetProxy = 2A5C2DAA98C84D2BF298570C79B8EF7B /* PBXContainerItemProxy */;
+		};
+		1BC8ED28710F948B1706B96B99A0074A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LJViewKit;
+			target = 8388784D06D65499923C22F2C3F173E1 /* LJViewKit */;
+			targetProxy = 2F6F521DB835E096746472F0BA518A22 /* PBXContainerItemProxy */;
+		};
+		21E4B424BD731C1D6A94DA078E1D0856 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = LJViewController;
 			target = 73605A3F25BB0D778284F5830F5E1C15 /* LJViewController */;
-			targetProxy = 07C55089BCAE858021A5CA62AB372F4A /* PBXContainerItemProxy */;
+			targetProxy = 77689239F3384FBD3000301EE61F311B /* PBXContainerItemProxy */;
 		};
-		2993E6A434845FEDBA31D7CE3A5F0748 /* PBXTargetDependency */ = {
+		7BBE2EB19A82567DE626E3A1B56288F8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = LJKeyBroadEventManager;
 			target = 7A30948FA53B3988656CCDF9BAD1136E /* LJKeyBroadEventManager */;
-			targetProxy = 3B050B8910352DDC8544DB852E4D7F70 /* PBXContainerItemProxy */;
+			targetProxy = B90565D138E63220D8F78888CF878BF2 /* PBXContainerItemProxy */;
 		};
-		5BB103B7E4F55F8E552EED00FF688204 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = LJViewKit;
-			target = 8388784D06D65499923C22F2C3F173E1 /* LJViewKit */;
-			targetProxy = 855E660B76023845C05809EFCD800DF4 /* PBXContainerItemProxy */;
-		};
-		67DD1AE721F54FFFDB2ABDCDE9E15A25 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = LJViewKit;
-			target = 8388784D06D65499923C22F2C3F173E1 /* LJViewKit */;
-			targetProxy = 0F7136EAB7F19E048A77B9B0B2329ACD /* PBXContainerItemProxy */;
-		};
-		8BB528214EE91CFF29801793E2289671 /* PBXTargetDependency */ = {
+		9BCC642EF80ED718B8F1AD490FD45698 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = LJViewController;
 			target = 73605A3F25BB0D778284F5830F5E1C15 /* LJViewController */;
-			targetProxy = A4A61206BA943A8568EC26F44AB4CE95 /* PBXContainerItemProxy */;
+			targetProxy = D82EB407C696238BC899BABBA8D169A5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		3192E551C386B5FFCE7AD695D8FED2A1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C1AB765C654C2E56475497A263FC2CBE /* Pods-LJKeyBroadEventManager.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		32482905D31CA6DF642F649EE8B59F69 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73CBA39A23E194B32E372E0D82F7BA58 /* LJViewKit.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/LJViewKit/LJViewKit-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = LJViewKit;
-				PRODUCT_NAME = LJViewKit;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		8F17DC3A99F99FBAD606CE6963886315 /* Release */ = {
+		05DF210AC65EBB0E593AAF976B2C2177 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -806,19 +761,42 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
 		};
-		916E0404255105F480DC4950B7625F7A /* Debug */ = {
+		2102E06316FDD6400C062824C8C64DA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73CBA39A23E194B32E372E0D82F7BA58 /* LJViewKit.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/LJViewKit/LJViewKit-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = LJViewKit;
+				PRODUCT_NAME = LJViewKit;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		421ECB1396280A8D83853C3DDBED1700 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -869,7 +847,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -877,12 +855,104 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
 		};
-		96CD325BD6C3B11BB41786F9C554446E /* Release */ = {
+		5C47F43DFF224936087BFBA780D48B63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1A067A2A49B22E40356E7D17E5BE2B5 /* LJViewController.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/LJViewController/LJViewController-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = LJViewController;
+				PRODUCT_NAME = LJViewController;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5E708050E09105E9285F04B436C63322 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EDC9F84C553ECEE98252301DA93A0C2 /* Pods-LJKeyBroadEventManager.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6B3B869D454688E0BA2AC02AB267B372 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E85C3E605D3959D470C32F5CDB9E3079 /* LJKeyBroadEventManager.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/LJKeyBroadEventManager/LJKeyBroadEventManager-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = LJKeyBroadEventManager;
+				PRODUCT_NAME = LJKeyBroadEventManager;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8182679F851E62AFD9E8FF3B37E3BACD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1A067A2A49B22E40356E7D17E5BE2B5 /* LJViewController.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/LJViewController/LJViewController-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = LJViewController;
+				PRODUCT_NAME = LJViewController;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A9338B158FD4972DEABB4FC460856025 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E85C3E605D3959D470C32F5CDB9E3079 /* LJKeyBroadEventManager.xcconfig */;
 			buildSettings = {
@@ -906,53 +976,7 @@
 			};
 			name = Release;
 		};
-		9E09FB152FF0FE4DB41B3A3CEFED217A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E85C3E605D3959D470C32F5CDB9E3079 /* LJKeyBroadEventManager.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/LJKeyBroadEventManager/LJKeyBroadEventManager-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = LJKeyBroadEventManager;
-				PRODUCT_NAME = LJKeyBroadEventManager;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		A849A24F56B87A37537D97479ACC1C10 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F1A067A2A49B22E40356E7D17E5BE2B5 /* LJViewController.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/LJViewController/LJViewController-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = LJViewController;
-				PRODUCT_NAME = LJViewController;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		C216D759B528FA321B1028F47AC55DC5 /* Debug */ = {
+		BCB0D9BA4E9C9CBBA9792EED0DF3FF74 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 73CBA39A23E194B32E372E0D82F7BA58 /* LJViewKit.xcconfig */;
 			buildSettings = {
@@ -972,43 +996,20 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		E28A9FCC3E77DBF636472A2AED2AA2AB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F1A067A2A49B22E40356E7D17E5BE2B5 /* LJViewController.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/LJViewController/LJViewController-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = LJViewController;
-				PRODUCT_NAME = LJViewController;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		EF4BE7911B1C6346C95E48045BAA7AE7 /* Release */ = {
+		ECFC10C280E55B2B69490927B6D63416 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8EDC9F84C553ECEE98252301DA93A0C2 /* Pods-LJKeyBroadEventManager.release.xcconfig */;
+			baseConfigurationReference = C1AB765C654C2E56475497A263FC2CBE /* Pods-LJKeyBroadEventManager.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -1017,18 +1018,17 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		10C932FA1D61FD13613E75130027D2A0 /* Build configuration list for PBXNativeTarget "LJViewController" */ = {
+		0FEFDAA307C21817C2CB9B9D71F10639 /* Build configuration list for PBXNativeTarget "Pods-LJKeyBroadEventManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A849A24F56B87A37537D97479ACC1C10 /* Debug */,
-				E28A9FCC3E77DBF636472A2AED2AA2AB /* Release */,
+				ECFC10C280E55B2B69490927B6D63416 /* Debug */,
+				5E708050E09105E9285F04B436C63322 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1036,35 +1036,35 @@
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				916E0404255105F480DC4950B7625F7A /* Debug */,
-				8F17DC3A99F99FBAD606CE6963886315 /* Release */,
+				421ECB1396280A8D83853C3DDBED1700 /* Debug */,
+				05DF210AC65EBB0E593AAF976B2C2177 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		71415B76CFE2625A9E180C4F44F7C87C /* Build configuration list for PBXNativeTarget "Pods-LJKeyBroadEventManager" */ = {
+		54D3A74F8F157801A388D0D315F77C85 /* Build configuration list for PBXNativeTarget "LJViewController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3192E551C386B5FFCE7AD695D8FED2A1 /* Debug */,
-				EF4BE7911B1C6346C95E48045BAA7AE7 /* Release */,
+				8182679F851E62AFD9E8FF3B37E3BACD /* Debug */,
+				5C47F43DFF224936087BFBA780D48B63 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9E797FB7CD0941560E9C84DA6D25E756 /* Build configuration list for PBXNativeTarget "LJKeyBroadEventManager" */ = {
+		E37407AE41C6E0F3291E1F147B1240FC /* Build configuration list for PBXNativeTarget "LJKeyBroadEventManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9E09FB152FF0FE4DB41B3A3CEFED217A /* Debug */,
-				96CD325BD6C3B11BB41786F9C554446E /* Release */,
+				6B3B869D454688E0BA2AC02AB267B372 /* Debug */,
+				A9338B158FD4972DEABB4FC460856025 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A881D1F5D0602C15E225DB563E89FD8F /* Build configuration list for PBXNativeTarget "LJViewKit" */ = {
+		FCB1E1413A700AC8BC840DF436629355 /* Build configuration list for PBXNativeTarget "LJViewKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C216D759B528FA321B1028F47AC55DC5 /* Debug */,
-				32482905D31CA6DF642F649EE8B59F69 /* Release */,
+				2102E06316FDD6400C062824C8C64DA0 /* Debug */,
+				BCB0D9BA4E9C9CBBA9792EED0DF3FF74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

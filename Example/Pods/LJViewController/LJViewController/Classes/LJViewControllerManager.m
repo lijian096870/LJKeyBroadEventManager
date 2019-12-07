@@ -8,6 +8,7 @@
 
 #import "LJViewControllerManager.h"
 #import "UIView+ReateViewController.h"
+#import "UIViewController+LJViewController.h"
 
 BOOL viewIsControllerView(UIView *view){
     return view.isControllerView_viewController_info;
@@ -26,4 +27,9 @@ UIViewController* viewGetAPPCurrentController(UIWindow *window){
     }else{
         return nil;
     }
+}
+void addViewControllerLoadViewBlock(LJViewControllerLoadViewBlock block){
+    
+    [UIViewController addViewControllerLoadViewBlock:block];
+    
 }

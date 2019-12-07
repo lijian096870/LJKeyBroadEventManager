@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
-NS_ASSUME_NONNULL_BEGIN
+#import "LJViewControllerManager.h"
 
 @interface UIViewController (LJViewController)
 
 +(void)configDidloadMethod_reateView;
 
++(void)addViewControllerLoadViewBlock:(LJViewControllerLoadViewBlock)block;
 
 @end
 
-NS_ASSUME_NONNULL_END
+
