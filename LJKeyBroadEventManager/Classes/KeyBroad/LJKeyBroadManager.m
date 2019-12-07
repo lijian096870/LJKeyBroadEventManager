@@ -86,11 +86,29 @@
     }
 }
 
-- (void)ShowKeyBroadAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
+- (void)ShowKeyBroadWillAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight{
+    
+    if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]])) && [self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
+
+        
+        if([self.responderNextSet isCurrentBecomeFirstNecessaryMove]){
+            
+        }else{
+            [self keyBroadFrameChange:view andkeyBroadHeight:keyBroadHeight];
+        }
+
+    }
+
+}
+- (void)ShowKeyBroadDidAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
+    
+
     [self keyBroadFrameChange:view andkeyBroadHeight:keyBroadHeight];
 }
 
 - (void)keyBroadFrameChange:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
+    
+    
     if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]])) && [self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
         if ([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]] && self.object_keyBroad.isViewLoaded) {
             [self.responderNextSet responderArrayRenewResponderLocation];
@@ -135,8 +153,28 @@
     }];
 
     [responderNextSet setReloadBarBlock:^{
-        if (weakself && [weakself.responderNextSet isValid]) {
-            [weakself.reloadTooBarUtil reloadLJKeyboardToolBarAndResponderModel:weakself.responderNextSet];
+        if([weakself isKindOfClass:LJKeyBroadManager.class]){
+            if([weakself.responderNextSet isValid]){
+                 [weakself.reloadTooBarUtil reloadLJKeyboardToolBarAndResponderModel:weakself.responderNextSet];
+                
+            }else{
+
+                LJKeyBroadRespoderModel *model = weakself.responderNextSet.currentResponderModel;
+                
+                weakself.responderNextSet = nil;
+                if([model.view isKindOfClass:UIView.class]){
+                    
+                    [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+
+                        [weakself.moveOffsetManager endEditResponderModel:model];
+                        
+                    } completion:^(BOOL finished) {
+                        
+                    }];
+                    
+                }
+                
+            }
         }
     }];
 }

@@ -14,6 +14,9 @@
 
 + (void)responderArrayRenewResponderLocation:(NSMutableArray *)responderArray AndDontMove:(LJKeyBroadRespoderModel *)model andRootView:(UIView *)rootView;
 
++ (BOOL)LocationJudegSuitView:(UIView *)view andWindow:(UIView *)window andRootView:(UIView *)rootView AndisStrict:(BOOL)strict;
+
+
 + (LJKeyBroadRespoderModel *)CanLeftArrowButton:(LJKeyBroadRespoderModel *)currentModel AndResponderArray:(NSArray *)array AndViewController:(UIViewController *)viewController;
 
 + (LJKeyBroadRespoderModel *)CanRightArrowButton:(LJKeyBroadRespoderModel *)currentModel AndResponderArray:(NSArray *)array AndViewController:(UIViewController *)viewController;

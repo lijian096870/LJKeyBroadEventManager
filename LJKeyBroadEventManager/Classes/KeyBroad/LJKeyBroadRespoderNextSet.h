@@ -29,6 +29,10 @@
 - (BOOL)CanLeftArrow;
 - (BOOL)CanRightArrow;
 
+
+- (BOOL)isCurrentBecomeFirstNecessaryMove;
+
+
 - (LJKeyBroadRespoderModel *)MoveLeftArrow;
 - (LJKeyBroadRespoderModel *)MoveRightArrow;
 

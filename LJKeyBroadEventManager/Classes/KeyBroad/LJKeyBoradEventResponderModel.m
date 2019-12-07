@@ -85,15 +85,29 @@
         }
     }
 }
-
-- (void)ShowKeyBroadAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
+-(void)ShowKeyBroadWillAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight{
+    
     if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]) {
         if ([self.currentView isKindOfClass:UIView.class] && (self.currentView == view)) {
             self.cancelView = nil;
-            [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroadAnimation:view andkeyBroadHeight:keyBroadHeight];
+            [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroadWillAnimation:view andkeyBroadHeight:keyBroadHeight];
         }
     }
+    
+    
 }
+
+- (void)ShowKeyBroadDidAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight{
+    
+    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]) {
+        if ([self.currentView isKindOfClass:UIView.class] && (self.currentView == view)) {
+            self.cancelView = nil;
+            [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroadDidAnimation:view andkeyBroadHeight:keyBroadHeight];
+        }
+    }
+    
+}
+
 
 - (void)keyBroadFrameChange:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
     if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]) {

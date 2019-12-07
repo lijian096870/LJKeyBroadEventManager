@@ -45,7 +45,29 @@
 
     return self;
 }
+- (BOOL)isCurrentBecomeFirstNecessaryMove{
+    if([self.model.view isKindOfClass:UIView.class]&&[self isValid]){
+        if([self.object_keyBroad isKindOfClass:UIViewController.class]&&[self.object_keyBroad isViewLoaded]){
+            UIView *window = [self getSuperWindows:self.object_keyBroad.view];
+            if([window isKindOfClass:UIView.class]){
+                
+               return [LJKeyBroadResponderArray LocationJudegSuitView:self.model.view andWindow:window andRootView:self.object_keyBroad.view AndisStrict:YES];
+                
+            }else{
+                return YES;
+            }
+            
+        }else{
+            
+            return YES;
+            
+        }
+        
+    }else{
+        return YES;
+    }
 
+}
 - (void)releaseResponder:(LJKeyBroadRespoderModel *)model {
     if ([model isKindOfClass:LJKeyBroadRespoderModel.class]) {
         NSUInteger index = [self.ResponderArray indexOfObject:model];

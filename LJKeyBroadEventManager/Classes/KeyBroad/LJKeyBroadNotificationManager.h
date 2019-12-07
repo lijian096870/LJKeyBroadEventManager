@@ -11,7 +11,9 @@ typedef void (^ KeyBroadNotificationBlock)(UIView *view, CGFloat keyBroadHeight)
 
 @interface LJKeyBroadNotificationManager : NSObject
 
-- (void)addKeyBroadNotificationShowBlock:(KeyBroadNotificationBlock)block;
+- (void)addKeyBroadNotificationWillShowBlock:(KeyBroadNotificationBlock)block;
+
+- (void)addKeyBroadNotificationDidShowBlock:(KeyBroadNotificationBlock)block;
 
 - (void)addKeyBroadNotificationFrameChangeBlock:(KeyBroadNotificationBlock)block;
 

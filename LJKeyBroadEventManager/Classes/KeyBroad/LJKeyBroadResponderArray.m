@@ -190,6 +190,13 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewConfirmResult) {
     }
 }
 
++ (BOOL)LocationJudegSuitView:(UIView *)view andWindow:(UIView *)window andRootView:(UIView *)rootView AndisStrict:(BOOL)strict{
+    
+    
+  return  ([self isOutLocation:view AndWindow:window andRootView:rootView AndisStrict:strict] || [self isCoverInputView:view AndWindow:window andRootView:rootView AndisStrict:strict]);
+    
+}
+
 + (BOOL)canBeEditResponder:(UIView *)view andWindow:(UIView *)window andRootView:(UIView *)rootView AndisStrict:(BOOL)strict {
     if ([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]]) {
         if ([self canBeFirstResponder:view] && [self view:view superView:rootView]) {

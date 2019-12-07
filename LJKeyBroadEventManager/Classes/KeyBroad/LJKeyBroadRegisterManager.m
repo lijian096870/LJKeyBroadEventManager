@@ -77,7 +77,16 @@
 
             if ([viewController isKindOfClass:[UIViewController class]]) {
                 if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
-                    [viewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowKeyBroadAnimation:view andkeyBroadHeight:keyBroadHeight];
+                    [viewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowKeyBroadWillAnimation:view andkeyBroadHeight:keyBroadHeight];
+                }
+            }
+            
+        }  AndViewAnimationBlock:^(UIView *view, CGFloat keyBroadHeight) {
+            UIViewController *viewController = viewGetSuperController(view);
+            
+            if ([viewController isKindOfClass:[UIViewController class]]) {
+                if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
+                    [viewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowKeyBroadDidAnimation:view andkeyBroadHeight:keyBroadHeight];
                 }
             }
         } AndFrameChangeBlock:^(UIView *view, CGFloat keyBroadHeight) {
