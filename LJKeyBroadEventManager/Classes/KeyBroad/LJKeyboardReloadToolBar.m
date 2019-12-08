@@ -8,6 +8,10 @@
 #import "LJKeyboardReloadToolBar.h"
 #import "LJKeyBroadEventManager.h"
 #import "LJkeyBroadConfig.h"
+#import "LJViewKit.h"
+#import "UIView+LJKeyBroadInputAccessoryViewRelateResponderView.h"
+#import "UIViewController+KeyBoradManager.h"
+#import "LJViewControllerManager.h"
 @interface UIViewController () <LJKeyboardManagerDelegate>
 
 @end
@@ -80,6 +84,85 @@
             }
         }
     }
+    
+    [self KeyboardToolBarLister:responderNextSet.currentResponderModel];
+    
+}
+
+-(void)KeyboardToolBarLister:(LJKeyBroadRespoderModel*)model{
+    
+    UIView *view = model.view;
+    
+    if([view isKindOfClass:UIView.class]){
+        
+        UIView *inputAccessoryView = nil;
+        
+        if ([view isKindOfClass:UITextField.class]) {
+            UITextField *textField = (UITextField*)view;
+            if([textField.inputAccessoryView isKindOfClass:UIView.class]){
+                inputAccessoryView = textField.inputAccessoryView;
+            }else{
+                
+                inputAccessoryView = [self madeInputAccessoryView:model.window.bounds.size.width];
+                
+                textField.inputAccessoryView = inputAccessoryView;
+            }
+        }
+        if ([view isKindOfClass:UITextView.class]) {
+            UITextView *textField = (UITextView*)view;
+            if([textField.inputAccessoryView isKindOfClass:UIView.class]){
+                inputAccessoryView = textField.inputAccessoryView;
+            }else{
+                
+                inputAccessoryView = [self madeInputAccessoryView:model.window.bounds.size.width];
+                
+                textField.inputAccessoryView = inputAccessoryView;
+            }
+        }
+        if([model.view isKindOfClass:UIView.class]){
+            
+            [inputAccessoryView setKeyBroadInputAccessoryViewRelateResponderView:model.view];
+            AddWindowDidAddKeyBlock(inputAccessoryView, @"_LJKeyboardReloadToolBar", ^(UIView *view) {
+                
+                UIView *responderView = [view keyBroadInputAccessoryViewRelateResponderView];
+               
+                if([responderView isKindOfClass:UITextField.class]||[responderView isKindOfClass:UITextView.class]){
+                    UIViewController *responderViewController = viewGetSuperController(responderView);
+                    if([responderViewController isKindOfClass:UIViewController.class]){
+                        [responderViewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowkeyBroadInputAccessoryViewRelateCallBlock:responderView];
+                    }
+                }
+                
+            });
+            
+            AddWindowDidMoveKeyBlock(inputAccessoryView, @"_LJKeyboardReloadToolBar", ^(UIView *view) {
+                
+                UIView *responderView = [view keyBroadInputAccessoryViewRelateResponderView];
+                [view setKeyBroadInputAccessoryViewRelateResponderView:nil];
+                if([responderView isKindOfClass:UITextField.class]||[responderView isKindOfClass:UITextView.class]){
+                    UIViewController *responderViewController = viewGetSuperController(responderView);
+                    if([responderViewController isKindOfClass:UIViewController.class]){
+                        [responderViewController.NSObject_KeyBoradEventResponderModel_viewController_info HiddenkeyBroadInputAccessoryViewRelateCallBlock:responderView];
+                    }
+                }
+                
+                
+            });
+
+        }
+        
+       
+    }
+}
+
+
+
+-(UIView*)madeInputAccessoryView:(CGFloat)width{
+    
+    UIView *view = [[UIView alloc]init];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
+    
 }
 
 - (void)reloadLJKeyboardToolBarAndResponderModel:(LJKeyBroadRespoderNextSet *)responderNextSet {

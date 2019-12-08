@@ -31,7 +31,7 @@
             }
         }];
         
-        AddWindowDidMoveBlock(model.view, ^(UIView *view) {
+        AddWindowDidMoveKeyBlock(model.view, @"_LJKeyBroadArcReleaseResponerArrayManager", ^(UIView *view) {
             if (block) {
                 UIViewController *vc = viewGetSuperController(view);
                 if([vc isKindOfClass:UIViewController.class]){

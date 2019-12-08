@@ -22,14 +22,15 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if([self.textField.text isEqualToString:@"14"]){
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if([self.textField.text isEqualToString:@"9"]){
             [self.textField removeFromSuperview];
         }
     });
     
     
 }
+
 +(instancetype)allocWithZone:(struct _NSZone *)zone{
     
     TestTableViewCell *text = [super allocWithZone:zone];

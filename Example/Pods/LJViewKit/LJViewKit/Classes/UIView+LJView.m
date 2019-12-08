@@ -9,10 +9,17 @@
 #import "UIView+LJView.h"
 #import "LJViewModel.h"
 #import <objc/runtime.h>
-
+#import "LJViewSuperViewFrameChangeRuner.h"
 @implementation UIView (LJView)
 
-
+-(void)LJView_customer_addSubview:(UIView *)view{
+    
+    [self LJView_customer_addSubview:view];
+    if([view isKindOfClass:UIView.class]){
+        [LJViewSuperViewFrameChangeRuner addSubView:view AndBeAddView:self];
+    }
+    
+}
 
 - (void)LJView_customer_setFrame:(CGRect)frame {
     CGRect oldFrame = self.frame;
@@ -27,21 +34,27 @@
                 model.willChangeBlock(self, oldFrame, frame);
             }
             
-            for (viewFrameChangeBlock block in model.willChangeArray) {
+            for (viewFrameChangeBlock block in model._willChangeArray) {
                 block(self, oldFrame, frame);
             }
-            
+            [LJViewSuperViewFrameChangeRuner viewWillChange:self AndOldFrame:oldFrame AndNewFrame:frame];
             [self LJView_customer_setFrame:frame];
             
             if (model.didChangeBlock) {
                 model.didChangeBlock(self, oldFrame, frame);
             }
             
-            for (viewFrameChangeBlock block in model.didChangeArray) {
+            for (viewFrameChangeBlock block in model._didChangeArray) {
                 block(self, oldFrame, frame);
             }
+            [LJViewSuperViewFrameChangeRuner viewDidChange:self AndOldFrame:oldFrame AndNewFrame:frame];
         } else {
+            
+            [LJViewSuperViewFrameChangeRuner viewWillChange:self AndOldFrame:oldFrame AndNewFrame:frame];
+            
             [self LJView_customer_setFrame:frame];
+            
+            [LJViewSuperViewFrameChangeRuner viewDidChange:self AndOldFrame:oldFrame AndNewFrame:frame];
         }
     }
 }

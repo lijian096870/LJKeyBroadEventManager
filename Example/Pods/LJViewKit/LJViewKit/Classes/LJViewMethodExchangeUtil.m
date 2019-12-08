@@ -23,9 +23,47 @@ static BOOL run2 = YES;
 
 - (void)custmoer_methodMoveChangeBlock_didMoveToWindow;
 
+- (void)LJView_customer_addSubview:(UIView *)view;
+
+- (void)dealloc_content;
+
 @end
 
 @implementation LJViewMethodExchangeUtil
+
++ (void)methodViewDelloc_MethodExchang{
+    
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        SEL sel = sel_registerName("dealloc_content");
+        
+        SEL NewSel = sel_registerName("dealloc");
+        
+        Method originalMethod = class_getInstanceMethod(UIView.class, sel);
+        Method swizzlingMethod = class_getInstanceMethod(UIView.class, NewSel);
+        
+        method_exchangeImplementations(originalMethod, swizzlingMethod);
+    });
+    
+}
+
++ (void)methodAddsubViewBlock_MethodExchang{
+    
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        SEL sel = sel_registerName("addSubview:");
+        
+        SEL NewSel = sel_registerName("LJView_customer_addSubview:");
+        
+        Method originalMethod = class_getInstanceMethod(UIView.class, sel);
+        Method swizzlingMethod = class_getInstanceMethod(UIView.class, NewSel);
+        
+        method_exchangeImplementations(originalMethod, swizzlingMethod);
+    });
+    
+}
 
 + (void)methodFrameChangeBlock_MethodExchang {
     static dispatch_once_t onceToken;
@@ -178,7 +216,7 @@ static BOOL run2 = YES;
                                 model.didAddBlock(self);
                             }
                             
-                            for (viewWindowChangeBlock block in model.didAddArray) {
+                            for (viewWindowChangeBlock block in model._didAddArray) {
                                 if (block) {
                                     block(self);
                                 }
@@ -189,7 +227,7 @@ static BOOL run2 = YES;
                                 model.didMoveBlock(self);
                             }
                             
-                            for (viewWindowChangeBlock block in model.didMoveArray) {
+                            for (viewWindowChangeBlock block in model._didMoveArray) {
                                 if (block) {
                                     block(self);
                                 }
@@ -247,7 +285,7 @@ static BOOL run2 = YES;
                             model.willAddBlock(self);
                         }
                         
-                        for (viewWindowChangeBlock block in model.willAddArray) {
+                        for (viewWindowChangeBlock block in model._willAddArray) {
                             if (block) {
                                 block(self);
                             }
@@ -260,7 +298,7 @@ static BOOL run2 = YES;
                             model.willMoveBlock(self);
                         }
                         
-                        for (viewWindowChangeBlock block in model.willMoveArray) {
+                        for (viewWindowChangeBlock block in model._willMoveArray) {
                             if (block) {
                                 block(self);
                             }

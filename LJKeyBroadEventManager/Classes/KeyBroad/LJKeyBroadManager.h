@@ -17,10 +17,14 @@
 - (void)ShowKeyBroadWillAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
 - (void)ShowKeyBroadDidAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
 
+- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView*)view;
+
 - (void)keyBroadFrameChange:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
 
 - (void)HiddenKeyBroad:(UIView *)view;
 
 - (void)HiddenBroadAnimation:(UIView *)view;
+
+- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView*)view;
 
 @end

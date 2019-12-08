@@ -146,7 +146,32 @@
     }
 }
 
+- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView*)view{
+    
+    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]&&[view isKindOfClass:UIView.class]) {
+        
+        
+        if ([[LJKeyBroadRegisterManager sharedInstance] isRegister:self.object_keyBroad.keyBroad_mess_uniqueID]) {
+            
+            [self.object_keyBroad.NSObject_KeyBoradManager_info ShowkeyBroadInputAccessoryViewRelateCallBlock:view];
+        }
+    }
+}
+
+- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView*)view{
+    
+    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]&&[view isKindOfClass:UIView.class]) {
+        
+        if ([[LJKeyBroadRegisterManager sharedInstance] isRegister:self.object_keyBroad.keyBroad_mess_uniqueID]) {
+            
+            [self.object_keyBroad.NSObject_KeyBoradManager_info HiddenkeyBroadInputAccessoryViewRelateCallBlock:view];
+            
+            
+        }
+    }
+}
 - (void)configDestroyBlock:(dispatch_block_t)dellocBlock {
+    
     self.dellocBlock = dellocBlock;
 }
 

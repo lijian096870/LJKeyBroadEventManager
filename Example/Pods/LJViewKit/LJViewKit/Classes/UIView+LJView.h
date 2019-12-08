@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "LJViewModel.h"
-#import "LJViewKit.h"
 
 @interface UIView (LJView)
 

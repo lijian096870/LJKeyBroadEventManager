@@ -21,23 +21,32 @@ typedef NS_ENUM(NSInteger, LJViewModelStyle) {
 
 @property(nonatomic,assign)LJViewModelStyle style;
 
+@property(nonatomic, copy) viewAddSubView addSubViewBlock;
+@property(nonatomic, strong,readonly) NSArray     *_viewAddSubViewArray;
+
+@property(nonatomic, copy) viewSuperFrameChangeBlock superWillChangeBlock;
+@property(nonatomic, strong,readonly) NSArray     *_superWillChangeArray;
+
+@property(nonatomic, copy) viewSuperFrameChangeBlock superDidChangeBlock;
+@property(nonatomic, strong,readonly) NSArray     *_superDidChangeArray;
+
 @property(nonatomic, copy) viewFrameChangeBlock willChangeBlock;
-@property(nonatomic, strong) NSMutableArray     *willChangeArray;
+@property(nonatomic, strong,readonly) NSArray     *_willChangeArray;
 
 @property(nonatomic, copy) viewFrameChangeBlock didChangeBlock;
-@property(nonatomic, strong) NSMutableArray     *didChangeArray;
+@property(nonatomic, strong,readonly) NSArray     *_didChangeArray;
 
 @property(nonatomic, copy) viewWindowChangeBlock    willMoveBlock;
-@property(nonatomic, strong) NSMutableArray         *willMoveArray;
+@property(nonatomic, strong,readonly) NSArray         *_willMoveArray;
 
 @property(nonatomic, copy) viewWindowChangeBlock    didMoveBlock;
-@property(nonatomic, strong) NSMutableArray         *didMoveArray;
+@property(nonatomic, strong,readonly) NSArray         *_didMoveArray;
 
 @property(nonatomic, copy) viewWindowChangeBlock    willAddBlock;
-@property(nonatomic, strong) NSMutableArray         *willAddArray;
+@property(nonatomic, strong,readonly) NSArray         *_willAddArray;
 
 @property(nonatomic, copy) viewWindowChangeBlock    didAddBlock;
-@property(nonatomic, strong) NSMutableArray         *didAddArray;
+@property(nonatomic, strong,readonly) NSArray         *_didAddArray;
 
 - (void)SetFrameWillChangeBlock:(viewFrameChangeBlock)block;
 - (void)AddFrameWillChangeBlock:(viewFrameChangeBlock)block;
@@ -56,6 +65,32 @@ typedef NS_ENUM(NSInteger, LJViewModelStyle) {
 
 - (void)SetWindowDidAddBlock:(viewWindowChangeBlock)block;
 - (void)AddWindowDidAddBlock:(viewWindowChangeBlock)block;
+
+
+- (void)AddWindowDidAddKeyBlock:(viewWindowChangeBlock)block AndKey:(NSString*)key;
+- (void)AddWindowDidMoveKeyBlock:(viewWindowChangeBlock)block AndKey:(NSString*)key;
+- (void)AddWindowWillAddKeyBlock:(viewWindowChangeBlock)block AndKey:(NSString*)key;
+- (void)AddWindowWillMoveKeyBlock:(viewWindowChangeBlock)block AndKey:(NSString*)key;
+- (void)AddFrameDidChangeKeyBlock:(viewFrameChangeBlock)block AndKey:(NSString*)key;
+- (void)AddFrameWillChangeKeyBlock:(viewFrameChangeBlock)block AndKey:(NSString*)key;
+
+
+
+- (void)SetSuperViewFrameWillChangeBlock:(viewSuperFrameChangeBlock)block;
+- (void)AddSuperViewFrameWillChangeBlock:(viewSuperFrameChangeBlock)block;
+- (void)AddSuperViewFrameWillChangeKeyBlock:(viewSuperFrameChangeBlock)block AndKey:(NSString*)key;
+- (void)SetSuperViewFrameDidChangeBlock:(viewSuperFrameChangeBlock)block;
+- (void)AddSuperViewFrameDidChangeBlock:(viewSuperFrameChangeBlock)block;
+- (void)AddSuperViewFrameDidChangeKeyBlock:(viewSuperFrameChangeBlock)block AndKey:(NSString*)key;
+
+-(void)SetViewAddSubViewBlock:(viewAddSubView)block;
+
+-(void)AddViewAddSubViewBlock:(viewAddSubView)block;
+
+-(void)AddViewAddSubViewKeyBlock:(viewAddSubView)block AndKey:(NSString*)key;
+
+
+
 
 - (instancetype)initWithView:(UIView *)view AndWindow:(UIWindow *)window;
 

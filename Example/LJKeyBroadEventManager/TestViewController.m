@@ -9,6 +9,7 @@
 #import "TestViewController.h"
 #import "TestTableViewCell.h"
 #import "LJKeyBroadEventManager.h"
+#import "LJViewKit.h"
 @interface TestViewController ()<UITableViewDelegate,UITableViewDataSource,LJKeyboardManagerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -34,6 +35,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"TestTableViewCell" bundle:nil] forCellReuseIdentifier:NSStringFromClass(TestTableViewCell.class)];
+
     
     registerKeyBroadResponder(self);
     
@@ -82,7 +84,7 @@
 -(BOOL)ShowExtensionToolBar:(UIView*)Responder{
     
    
-    return true;
+    return YES;
     
 }
 -(BOOL)canBecomeFirstResponder:(UIView *)Responder{

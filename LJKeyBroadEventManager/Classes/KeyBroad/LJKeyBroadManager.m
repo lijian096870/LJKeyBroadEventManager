@@ -88,6 +88,7 @@
 
 - (void)ShowKeyBroadWillAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight{
     
+    
     if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]])) && [self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
 
         
@@ -105,7 +106,12 @@
 
     [self keyBroadFrameChange:view andkeyBroadHeight:keyBroadHeight];
 }
-
+- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView*)view{
+    
+    
+    
+    
+}
 - (void)keyBroadFrameChange:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
     
     
@@ -123,6 +129,7 @@
 - (void)HiddenKeyBroad:(UIView *)view {}
 
 - (void)HiddenBroadAnimation:(UIView *)view {
+    
     if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]])) && [self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
         LJKeyBroadRespoderModel *model = self.responderNextSet.currentResponderModel;
         self.responderNextSet = nil;
@@ -130,7 +137,26 @@
         [self.moveOffsetManager endEditResponderModel:model];
     }
 }
-
+- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView*)view{
+    
+    if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]])) && [self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view] && self.moveOffsetManager.moveOffset > 0) {
+        LJKeyBroadRespoderModel *model = self.responderNextSet.currentResponderModel;
+        self.responderNextSet = nil;
+        
+        [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            
+            [self.moveOffsetManager endEditResponderModel:model];
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+    
+   
+    
+    
+    
+}
 - (instancetype)initWithMaster_object_keyBroad:(UIViewController *)object
 {
     self = [super init];

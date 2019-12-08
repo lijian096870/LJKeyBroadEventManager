@@ -9,6 +9,10 @@
 
 @interface LJViewMethodExchangeUtil : NSObject
 
++ (void)methodViewDelloc_MethodExchang;
+
++ (void)methodAddsubViewBlock_MethodExchang;
+
 + (void)methodFrameChangeBlock_MethodExchang;
 
 + (void)methodMoveChangeBlock_MethodExchange:(Class)calss;
