@@ -9,9 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "LJViewKit.h"
 
+typedef NS_ENUM(NSInteger, LJViewModelStyle) {
+    LJViewModelNone,
+    LJViewModelAdd,
+    LJViewModelMove,
+};
+
+
 @interface LJViewModel : NSObject
 
-@property(nonatomic, weak) UIWindow *window;
+
+@property(nonatomic,assign)LJViewModelStyle style;
 
 @property(nonatomic, copy) viewFrameChangeBlock willChangeBlock;
 @property(nonatomic, strong) NSMutableArray     *willChangeArray;

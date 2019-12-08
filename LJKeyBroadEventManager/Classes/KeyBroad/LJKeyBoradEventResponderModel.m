@@ -141,11 +141,8 @@
 }
 
 - (void)HiddenBroadAnimation:(UIView *)view {
-    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]) {
-        if ([self.cancelView isKindOfClass:UIView.class] && (self.cancelView == view)) {
-            self.cancelView = nil;
-            [self.object_keyBroad.NSObject_KeyBoradManager_info HiddenBroadAnimation:view];
-        }
+    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]&&[view isKindOfClass:UIView.class]) {
+       [self.object_keyBroad.NSObject_KeyBoradManager_info HiddenBroadAnimation:view];
     }
 }
 

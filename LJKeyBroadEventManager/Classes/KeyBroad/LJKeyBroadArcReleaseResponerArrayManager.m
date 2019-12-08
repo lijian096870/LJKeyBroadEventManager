@@ -31,7 +31,7 @@
             }
         }];
         
-        AddWindowDidMoveBlock(model.view, ^(UIView *view, UIWindow *window) {
+        AddWindowDidMoveBlock(model.view, ^(UIView *view) {
             if (block) {
                 UIViewController *vc = viewGetSuperController(view);
                 if([vc isKindOfClass:UIViewController.class]){

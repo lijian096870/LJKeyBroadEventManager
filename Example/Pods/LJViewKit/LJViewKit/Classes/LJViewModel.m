@@ -46,9 +46,6 @@
         self.willMoveBlock = block;
     }
 
-    if ([self.view.window isKindOfClass:UIWindow.class]) {
-        self.window = self.view.window;
-    }
 }
 
 - (void)AddWindowWillMoveBlock:(viewWindowChangeBlock)block {
@@ -56,9 +53,6 @@
         [self.willMoveArray addObject:block];
     }
 
-    if ([self.view.window isKindOfClass:UIWindow.class]) {
-        self.window = self.view.window;
-    }
 }
 
 - (void)SetWindowDidMoveBlock:(viewWindowChangeBlock)block {
@@ -66,9 +60,6 @@
         self.didMoveBlock = block;
     }
 
-    if ([self.view.window isKindOfClass:UIWindow.class]) {
-        self.window = self.view.window;
-    }
 }
 
 - (void)AddWindowDidMoveBlock:(viewWindowChangeBlock)block {
@@ -76,9 +67,6 @@
         [self.didMoveArray addObject:block];
     }
 
-    if ([self.view.window isKindOfClass:UIWindow.class]) {
-        self.window = self.view.window;
-    }
 }
 
 - (void)SetWindowWillAddBlock:(viewWindowChangeBlock)block {
@@ -86,9 +74,6 @@
         self.willAddBlock = block;
     }
 
-    if ([self.view.window isKindOfClass:UIWindow.class]) {
-        self.window = self.view.window;
-    }
 }
 
 - (void)AddWindowWillAddBlock:(viewWindowChangeBlock)block {
@@ -96,9 +81,6 @@
         [self.willAddArray addObject:block];
     }
 
-    if ([self.view.window isKindOfClass:UIWindow.class]) {
-        self.window = self.view.window;
-    }
 }
 
 - (void)SetWindowDidAddBlock:(viewWindowChangeBlock)block {
@@ -106,9 +88,6 @@
         self.didAddBlock = block;
     }
 
-    if ([self.view.window isKindOfClass:UIWindow.class]) {
-        self.window = self.view.window;
-    }
 }
 
 - (void)AddWindowDidAddBlock:(viewWindowChangeBlock)block {
@@ -117,9 +96,6 @@
         [self.didAddArray addObject:block];
     }
 
-    if ([self.view.window isKindOfClass:UIWindow.class]) {
-        self.window = self.view.window;
-    }
 }
 
 - (instancetype)initWithView:(UIView *)view AndWindow:(UIWindow *)window
@@ -128,22 +104,11 @@
 
     if (self) {
         self.view = view;
+        self.style = LJViewModelNone;
 
-        if ([window isKindOfClass:UIWindow.class]) {
-            self.window = window;
-        }
     }
 
     return self;
-}
-
-- (UIWindow *)window {
-    UIWindow *superWindow = self.view.window;
-    if ([superWindow isKindOfClass:UIWindow.class]) {
-        return superWindow;
-    } else {
-        return _window;
-    }
 }
 
 - (NSMutableArray *)willChangeArray {

@@ -10,7 +10,7 @@
 
 typedef void(^viewFrameChangeBlock)(UIView *view,CGRect oldFrame,CGRect newFrame);
 
-typedef void(^viewWindowChangeBlock)(UIView *view,UIWindow *window);
+typedef void(^viewWindowChangeBlock)(UIView *view);
 
 
 FOUNDATION_EXTERN void viewsetFrameChangeBlock(UIView *view,viewFrameChangeBlock block);

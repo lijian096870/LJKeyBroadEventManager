@@ -29,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -94,4 +94,10 @@
     return true;
     
 }
+
+- (void)dealloc
+{
+    NSLog(@"%@",self);
+}
+
 @end

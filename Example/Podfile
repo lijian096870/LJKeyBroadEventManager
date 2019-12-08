@@ -7,6 +7,8 @@ target 'LJKeyBroadEventManager' do
 
 	pod 'LJKeyBroadEventManager', :path => '../'
 
+
+pod 'LJViewKit', '~> 2.1.4'
   # Pods for LJKeyBroadEventManager
 
 end

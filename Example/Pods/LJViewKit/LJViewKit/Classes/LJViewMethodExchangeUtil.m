@@ -168,32 +168,35 @@ static BOOL run2 = YES;
                 [self custmoer_methodMoveChangeBlock_didMoveToWindow];
                 
                 LJViewModel *model = [self viewFrameChangeMoveWindowChangeModelMayBenil];
+    
                 
                 if ([model isKindOfClass:LJViewModel.class]) {
-                    UIWindow *window = self.window;
                     
-                    if ([window isKindOfClass:UIWindow.class]) {
-                        model.window = window;
-                        
-                        if (model.didAddBlock) {
-                            model.didAddBlock(self, window);
-                        }
-                        
-                        for (viewWindowChangeBlock block in model.didAddArray) {
-                            if (block) {
-                                block(self, window);
+                    switch (model.style) {
+                        case LJViewModelAdd :
+                            if (model.didAddBlock) {
+                                model.didAddBlock(self);
                             }
-                        }
-                    } else {
-                        if (model.didMoveBlock) {
-                            model.didMoveBlock(self, model.window);
-                        }
-                        
-                        for (viewWindowChangeBlock block in model.didMoveArray) {
-                            if (block) {
-                                block(self, model.window);
+                            
+                            for (viewWindowChangeBlock block in model.didAddArray) {
+                                if (block) {
+                                    block(self);
+                                }
                             }
-                        }
+                            break;
+                        case LJViewModelMove :
+                            if (model.didMoveBlock) {
+                                model.didMoveBlock(self);
+                            }
+                            
+                            for (viewWindowChangeBlock block in model.didMoveArray) {
+                                if (block) {
+                                    block(self);
+                                }
+                            }
+                            break;
+                        default:
+                            break;
                     }
                 }
                 run1 = YES;
@@ -237,31 +240,29 @@ static BOOL run2 = YES;
                 
                 if ([model isKindOfClass:LJViewModel.class]) {
                     if ([newWindow isKindOfClass:UIWindow.class]) {
-                        model.window = newWindow;
+                        
+                        model.style = LJViewModelAdd;
                         
                         if (model.willAddBlock) {
-                            model.willAddBlock(self, newWindow);
+                            model.willAddBlock(self);
                         }
                         
                         for (viewWindowChangeBlock block in model.willAddArray) {
                             if (block) {
-                                block(self, newWindow);
+                                block(self);
                             }
                         }
                     } else {
-                        UIWindow *window = model.window;
                         
-                        if ([window isKindOfClass:UIWindow.class]) {
-                           
-
-                            if (model.willMoveBlock) {
-                                model.willMoveBlock(self, window);
-                            }
-                            
-                            for (viewWindowChangeBlock block in model.willMoveArray) {
-                                if (block) {
-                                    block(self, window);
-                                }
+                        model.style = LJViewModelMove;
+                        
+                        if (model.willMoveBlock) {
+                            model.willMoveBlock(self);
+                        }
+                        
+                        for (viewWindowChangeBlock block in model.willMoveArray) {
+                            if (block) {
+                                block(self);
                             }
                         }
                     }
