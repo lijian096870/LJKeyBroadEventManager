@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		24D523642395FD3A009C9A37 /* LJTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D523632395FD3A009C9A37 /* LJTableView.m */; };
-		308B8BCD239CEF6A0043DB53 /* LJKeyBroadAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 308B8BCC239CEF6A0043DB53 /* LJKeyBroadAnimationView.m */; };
 		30D946622392A86A006720AD /* LJTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D946612392A86A006720AD /* LJTextField.m */; };
 		30FB4F1F2306787700D23ED0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FB4F1E2306787700D23ED0 /* AppDelegate.m */; };
 		30FB4F252306787700D23ED0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30FB4F232306787700D23ED0 /* Main.storyboard */; };
@@ -27,8 +26,6 @@
 		1835CB1CFAB393E0877B801F /* Pods-LJKeyBroadEventManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LJKeyBroadEventManager.debug.xcconfig"; path = "Target Support Files/Pods-LJKeyBroadEventManager/Pods-LJKeyBroadEventManager.debug.xcconfig"; sourceTree = "<group>"; };
 		24D523622395FD3A009C9A37 /* LJTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJTableView.h; sourceTree = "<group>"; };
 		24D523632395FD3A009C9A37 /* LJTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJTableView.m; sourceTree = "<group>"; };
-		308B8BCB239CEF6A0043DB53 /* LJKeyBroadAnimationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJKeyBroadAnimationView.h; sourceTree = "<group>"; };
-		308B8BCC239CEF6A0043DB53 /* LJKeyBroadAnimationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJKeyBroadAnimationView.m; sourceTree = "<group>"; };
 		30D946602392A86A006720AD /* LJTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJTextField.h; sourceTree = "<group>"; };
 		30D946612392A86A006720AD /* LJTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJTextField.m; sourceTree = "<group>"; };
 		30FB4F1A2306787700D23ED0 /* LJKeyBroadEventManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LJKeyBroadEventManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,8 +100,6 @@
 				30D946612392A86A006720AD /* LJTextField.m */,
 				24D523622395FD3A009C9A37 /* LJTableView.h */,
 				24D523632395FD3A009C9A37 /* LJTableView.m */,
-				308B8BCB239CEF6A0043DB53 /* LJKeyBroadAnimationView.h */,
-				308B8BCC239CEF6A0043DB53 /* LJKeyBroadAnimationView.m */,
 			);
 			path = LJKeyBroadEventManager;
 			sourceTree = "<group>";
@@ -248,7 +243,6 @@
 				30D946622392A86A006720AD /* LJTextField.m in Sources */,
 				24D523642395FD3A009C9A37 /* LJTableView.m in Sources */,
 				30FB4F3B230679C900D23ED0 /* TestViewController.m in Sources */,
-				308B8BCD239CEF6A0043DB53 /* LJKeyBroadAnimationView.m in Sources */,
 				30FB4F1F2306787700D23ED0 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

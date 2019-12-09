@@ -11,6 +11,8 @@
 
 @property(nonatomic,strong)UIView *responderView;
 
+- (instancetype)initWithKeyeBroadInputViewController:(UIViewController*)viewController;
+
 @end
 
 

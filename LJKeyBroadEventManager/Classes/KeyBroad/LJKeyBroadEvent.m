@@ -139,42 +139,42 @@
             }
         }];
 
-        [self.keyBroadNotManager addKeyBroadNotificationFrameChangeBlock:^(UIView *view, CGFloat keyBroadHeight) {
-            if ([view isKindOfClass:UIView.class]) {
-                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
-                    if (model.frameChangeBlock) {
-                        model.frameChangeBlock(view, keyBroadHeight);
-                    }
-                }
-            }
-        }];
-        [self.keyBroadNotManager addKeyBroadNotificationWillShowBlock:^(UIView *view, CGFloat keyBroadHeight) {
-            if ([view isKindOfClass:UIView.class]) {
-                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
-                    if (model.animationWillShowBlock) {
-                        model.animationWillShowBlock(view, keyBroadHeight);
-                    }
-                }
-            }
-        }];
-        [self.keyBroadNotManager addKeyBroadNotificationDidShowBlock:^(UIView *view, CGFloat keyBroadHeight) {
-            if ([view isKindOfClass:UIView.class]) {
-                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
-                    if (model.animationDidShowBlock) {
-                        model.animationDidShowBlock(view, keyBroadHeight);
-                    }
-                }
-            }
-        }];
-        [self.keyBroadNotManager addKeyBroadNotificationHideBlock:^(UIView *view, CGFloat keyBroadHeight) {
-            if ([view isKindOfClass:UIView.class]) {
-                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
-                    if (model.animationHidenBlock) {
-                        model.animationHidenBlock(view, keyBroadHeight);
-                    }
-                }
-            }
-        }];
+//        [self.keyBroadNotManager addKeyBroadNotificationFrameChangeBlock:^(UIView *view, CGFloat keyBroadHeight) {
+//            if ([view isKindOfClass:UIView.class]) {
+//                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
+//                    if (model.frameChangeBlock) {
+//                        model.frameChangeBlock(view, keyBroadHeight);
+//                    }
+//                }
+//            }
+//        }];
+//        [self.keyBroadNotManager addKeyBroadNotificationWillShowBlock:^(UIView *view, CGFloat keyBroadHeight) {
+//            if ([view isKindOfClass:UIView.class]) {
+//                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
+//                    if (model.animationWillShowBlock) {
+//                        model.animationWillShowBlock(view, keyBroadHeight);
+//                    }
+//                }
+//            }
+//        }];
+//        [self.keyBroadNotManager addKeyBroadNotificationDidShowBlock:^(UIView *view, CGFloat keyBroadHeight) {
+//            if ([view isKindOfClass:UIView.class]) {
+//                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
+//                    if (model.animationDidShowBlock) {
+//                        model.animationDidShowBlock(view, keyBroadHeight);
+//                    }
+//                }
+//            }
+//        }];
+//        [self.keyBroadNotManager addKeyBroadNotificationHideBlock:^(UIView *view, CGFloat keyBroadHeight) {
+//            if ([view isKindOfClass:UIView.class]) {
+//                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
+//                    if (model.animationHidenBlock) {
+//                        model.animationHidenBlock(view, keyBroadHeight);
+//                    }
+//                }
+//            }
+//        }];
     });
 }
 

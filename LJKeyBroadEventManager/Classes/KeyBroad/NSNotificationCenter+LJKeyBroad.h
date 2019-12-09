@@ -11,6 +11,17 @@ typedef void (^ NotificationAfterBeforeBlock)(NSNotificationName aName, id anObj
 
 @interface NSNotificationCenter (LJKeyBroad)
 
+
++ (void)registerNotificationMostBeforeBlock:(NotificationAfterBeforeBlock)block AndName:(NSString *)aName anyKey:(NSString *)deletkey;
+
++ (void)registerNotificationMostAfterBlock:(NotificationAfterBeforeBlock)block AndName:(NSString *)aName anyKey:(NSString *)deletkey;
+
++ (void)removeNotificationMostBeforeName:(NSNotificationName)aName anyKey:(NSString *)deletkey;
+
++ (void)removeNotificationMostAftereName:(NSNotificationName)aName anyKey:(NSString *)deletkey;
+
+
+
 + (void)registerNotificationBeforeBlock:(NotificationAfterBeforeBlock)block AndName:(NSString *)aName anyKey:(NSString *)deletkey;
 
 + (void)registerNotificationAfterBlock:(NotificationAfterBeforeBlock)block AndName:(NSString *)aName anyKey:(NSString *)deletkey;

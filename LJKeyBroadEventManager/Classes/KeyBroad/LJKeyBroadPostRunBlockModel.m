@@ -7,7 +7,6 @@
 //
 
 #import "LJKeyBroadPostRunBlockModel.h"
-#import "UIViewController+KeyBroadPost.h"
 
 @interface LJKeyBroadPostRunBlockModel ()
 
@@ -19,35 +18,30 @@
 
 - (void)addKeyBroadNotificationWillShowBlock:(KeyBroadNotificationBlock)block {
     if (block) {
-        [UIViewController change_post_keyBroadMoveEvent];
         [self addKeyBroadNotificationBlock:block AndaName:UIKeyboardWillShowNotification];
     }
 }
 
 - (void)addKeyBroadNotificationDidShowBlock:(KeyBroadNotificationBlock)block {
     if (block) {
-        [UIViewController change_post_keyBroadMoveEvent];
         [self addKeyBroadNotificationBlock:block AndaName:UIKeyboardDidShowNotification];
     }
 }
 
 - (void)addKeyBroadNotificationWillHidenBlock:(KeyBroadNotificationBlock)block {
     if (block) {
-        [UIViewController change_post_keyBroadMoveEvent];
         [self addKeyBroadNotificationBlock:block AndaName:UIKeyboardWillHideNotification];
     }
 }
 
 - (void)addKeyBroadNotificationDidHidenBlock:(KeyBroadNotificationBlock)block {
     if (block) {
-        [UIViewController change_post_keyBroadMoveEvent];
         [self addKeyBroadNotificationBlock:block AndaName:UIKeyboardDidHideNotification];
     }
 }
 
 - (void)addKeyBroadNotificationFrameChangeBlock:(KeyBroadNotificationBlock)block {
     if (block) {
-        [UIViewController change_post_keyBroadMoveEvent];
         [self addKeyBroadNotificationBlock:block AndaName:UIKeyboardWillChangeFrameNotification];
     }
 }

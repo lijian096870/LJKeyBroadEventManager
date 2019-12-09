@@ -96,7 +96,7 @@
     if ([obj isKindOfClass:[LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel class]]) {
         obj.responderView = view;
     } else {
-        LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *mess = [[LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel alloc]init];
+        LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *mess = [[LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel alloc]initWithKeyeBroadInputViewController:self];
         objc_setAssociatedObject(self, @selector(keyBroadInputAccessoryViewRelateResponderView), mess, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         mess.responderView = view;
     }

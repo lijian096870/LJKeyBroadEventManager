@@ -11,6 +11,9 @@
 static NSMutableDictionary  *DictionaryBeforeBlock;
 static NSMutableDictionary  *DictionaryAfterBlock;
 
+static NSMutableDictionary  *DictionaryMostBeforeBlock;
+static NSMutableDictionary  *DictionaryMostAfterBlock;
+
 @interface UIViewController ()
 
 + (void)KeyBroad_runPostBlockBefore:(NSDictionary *)dictionary AndPostName:(NSString *)Name;
@@ -26,6 +29,91 @@ static NSMutableDictionary  *DictionaryAfterBlock;
 @end
 
 @implementation NSNotificationCenter (LJKeyBroad)
+
++ (void)registerNotificationMostBeforeBlock:(NotificationAfterBeforeBlock)block AndName:(NSString *)aName anyKey:(NSString *)deletkey {
+    if (block && [aName isKindOfClass:NSString.class] && (aName.length > 0)) {
+        [self exchange_notificationCenterPostMethod];
+
+        if (DictionaryMostBeforeBlock == nil) {
+            DictionaryMostBeforeBlock = [NSMutableDictionary dictionary];
+        }
+
+        for (NSString *key in DictionaryMostBeforeBlock.allKeys) {
+            if ([key isEqualToString:aName]) {
+                NSMutableArray                          *array = [DictionaryMostBeforeBlock objectForKey:key];
+                NSNotificationCenterAfterBeforeModel    *model = [[NSNotificationCenterAfterBeforeModel alloc] init];
+                model.block = block;
+                model.deletkey = deletkey;
+                [array addObject:model];
+                return;
+            }
+        }
+
+        NSMutableArray                          *array = [NSMutableArray array];
+        NSNotificationCenterAfterBeforeModel    *model = [[NSNotificationCenterAfterBeforeModel alloc] init];
+        model.block = block;
+        model.deletkey = deletkey;
+        [array addObject:model];
+        [DictionaryMostBeforeBlock setObject:array forKey:aName];
+    }
+}
+
++ (void)registerNotificationMostAfterBlock:(NotificationAfterBeforeBlock)block AndName:(NSString *)aName anyKey:(NSString *)deletkey {
+    if (block && [aName isKindOfClass:NSString.class] && (aName.length > 0)) {
+        [self exchange_notificationCenterPostMethod];
+
+        if (DictionaryMostAfterBlock == nil) {
+            DictionaryMostAfterBlock = [NSMutableDictionary dictionary];
+        }
+
+        for (NSString *key in DictionaryMostAfterBlock.allKeys) {
+            if ([key isEqualToString:aName]) {
+                NSMutableArray                          *array = [DictionaryMostAfterBlock objectForKey:key];
+                NSNotificationCenterAfterBeforeModel    *model = [[NSNotificationCenterAfterBeforeModel alloc] init];
+                model.block = block;
+                model.deletkey = deletkey;
+                [array addObject:model];
+                return;
+            }
+        }
+
+        NSMutableArray                          *array = [NSMutableArray array];
+        NSNotificationCenterAfterBeforeModel    *model = [[NSNotificationCenterAfterBeforeModel alloc] init];
+        model.block = block;
+        model.deletkey = deletkey;
+        [array addObject:model];
+        [DictionaryMostAfterBlock setObject:array forKey:aName];
+    }
+}
++ (void)removeNotificationMostBeforeName:(NSNotificationName)aName anyKey:(NSString *)deletkey {
+    for (NSString *key in DictionaryMostBeforeBlock.allKeys) {
+        if ([key isEqualToString:aName]) {
+            NSMutableArray  *array = [DictionaryMostBeforeBlock objectForKey:key];
+            NSArray         *temp = [NSArray arrayWithArray:array];
+
+            for (NSNotificationCenterAfterBeforeModel *model in temp) {
+                if ([model.deletkey isEqualToString:deletkey]) {
+                    [array removeObject:model];
+                }
+            }
+        }
+    }
+}
+
++ (void)removeNotificationMostAftereName:(NSNotificationName)aName anyKey:(NSString *)deletkey {
+    for (NSString *key in DictionaryMostAfterBlock.allKeys) {
+        if ([key isEqualToString:aName]) {
+            NSMutableArray  *array = [DictionaryMostAfterBlock objectForKey:key];
+            NSArray         *temp = [NSArray arrayWithArray:array];
+
+            for (NSNotificationCenterAfterBeforeModel *model in temp) {
+                if ([model.deletkey isEqualToString:deletkey]) {
+                    [array removeObject:model];
+                }
+            }
+        }
+    }
+}
 
 + (void)registerNotificationBeforeBlock:(NotificationAfterBeforeBlock)block AndName:(NSString *)aName anyKey:(NSString *)deletkey {
     if (block && [aName isKindOfClass:NSString.class] && (aName.length > 0)) {
@@ -132,7 +220,19 @@ static NSMutableDictionary  *DictionaryAfterBlock;
     if ([UIViewController respondsToSelector:@selector(KeyBroad_runPostBlockBefore:AndPostName:)]) {
         [UIViewController KeyBroad_runPostBlockBefore:aUserInfo AndPostName:aName];
     }
-   
+
+    for (NSString *key in DictionaryMostBeforeBlock.allKeys) {
+        if ([key isEqualToString:aName]) {
+            NSArray *array = [DictionaryMostBeforeBlock objectForKey:key];
+
+            for (NSNotificationCenterAfterBeforeModel *model in array) {
+                if (model.block) {
+                    model.block(aName, anObject, aUserInfo);
+                }
+            }
+        }
+    }
+
     for (NSString *key in DictionaryBeforeBlock.allKeys) {
         if ([key isEqualToString:aName]) {
             NSArray *array = [DictionaryBeforeBlock objectForKey:key];
@@ -158,10 +258,22 @@ static NSMutableDictionary  *DictionaryAfterBlock;
             }
         }
     }
-    if ([UIViewController respondsToSelector:@selector(KeyBroad_runPostBlockAfter:AndPostName:)]) {
-           [UIViewController KeyBroad_runPostBlockAfter:aUserInfo AndPostName:aName];
+
+    for (NSString *key in DictionaryMostAfterBlock.allKeys) {
+        if ([key isEqualToString:aName]) {
+            NSArray *array = [DictionaryMostAfterBlock objectForKey:key];
+
+            for (NSNotificationCenterAfterBeforeModel *model in array) {
+                if (model.block) {
+                    model.block(aName, anObject, aUserInfo);
+                }
+            }
+        }
     }
-    
+
+    if ([UIViewController respondsToSelector:@selector(KeyBroad_runPostBlockAfter:AndPostName:)]) {
+        [UIViewController KeyBroad_runPostBlockAfter:aUserInfo AndPostName:aName];
+    }
 }
 
 @end
