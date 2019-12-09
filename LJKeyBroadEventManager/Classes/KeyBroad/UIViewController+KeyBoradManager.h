@@ -20,4 +20,9 @@
 
 - (CGFloat)claculateScrollerViewOffset:(CGFloat)offset;
 
+
+
+- (void)setKeyBroadInputAccessoryViewRelateResponderView:(UIView *)view;
+- (UIView *)keyBroadInputAccessoryViewRelateResponderView;
+
 @end

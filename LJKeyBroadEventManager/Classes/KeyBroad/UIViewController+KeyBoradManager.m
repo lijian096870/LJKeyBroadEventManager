@@ -9,7 +9,7 @@
 #import "UIViewController+KeyBoradManager.h"
 #import <objc/runtime.h>
 #import "KeyBroadRandString.h"
-
+#import "LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel.h"
 @interface LJKeyBroadManager ()
 
 - (instancetype)initWithMaster_object_keyBroad:(UIViewController *)object;
@@ -83,4 +83,22 @@
     }
 }
 
+
+- (UIView *)keyBroadInputAccessoryViewRelateResponderView {
+    LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *obj = objc_getAssociatedObject(self, @selector(keyBroadInputAccessoryViewRelateResponderView));
+
+    return obj.responderView;
+}
+
+- (void)setKeyBroadInputAccessoryViewRelateResponderView:(UIView *)view {
+    LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *obj = objc_getAssociatedObject(self, @selector(keyBroadInputAccessoryViewRelateResponderView));
+
+    if ([obj isKindOfClass:[LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel class]]) {
+        obj.responderView = view;
+    } else {
+        LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *mess = [[LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel alloc]init];
+        objc_setAssociatedObject(self, @selector(keyBroadInputAccessoryViewRelateResponderView), mess, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        mess.responderView = view;
+    }
+}
 @end

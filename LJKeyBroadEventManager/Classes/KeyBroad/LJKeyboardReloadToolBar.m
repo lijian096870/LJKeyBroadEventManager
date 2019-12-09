@@ -12,6 +12,7 @@
 #import "UIView+LJKeyBroadInputAccessoryViewRelateResponderView.h"
 #import "UIViewController+KeyBoradManager.h"
 #import "LJViewControllerManager.h"
+#import "UIViewController+KeyBoradManager.h"
 @interface UIViewController () <LJKeyboardManagerDelegate>
 
 @end
@@ -122,6 +123,9 @@
             AddWindowDidAddKeyBlock(inputAccessoryView, @"_LJKeyboardReloadToolBar", ^(UIView *view) {
                 UIView *responderView = [view keyBroadInputAccessoryViewRelateResponderView];
 
+                UIViewController *inputWindowViewController = viewGetSuperController(view);
+                [inputWindowViewController setKeyBroadInputAccessoryViewRelateResponderView:responderView];
+
                 if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
                     UIViewController *responderViewController = viewGetSuperController(responderView);
 
@@ -129,6 +133,11 @@
                         [responderViewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowkeyBroadInputAccessoryViewRelateCallBlock:responderView];
                     }
                 }
+            });
+
+            AddWindowWillMoveKeyBlock(inputAccessoryView, @"_LJKeyboardReloadToolBar", ^(UIView *view) {
+                UIViewController *inputWindowViewController = viewGetSuperController(view);
+                [inputWindowViewController setKeyBroadInputAccessoryViewRelateResponderView:nil];
             });
 
             AddWindowDidMoveKeyBlock(inputAccessoryView, @"_LJKeyboardReloadToolBar", ^(UIView *view) {

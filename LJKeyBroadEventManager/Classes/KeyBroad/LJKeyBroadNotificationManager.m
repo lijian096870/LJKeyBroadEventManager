@@ -42,11 +42,9 @@
     [NSNotificationCenter registerNotificationAfterBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
         if ([weakself isKindOfClass:LJKeyBroadNotificationManager.class]) {
             [weakself keyboardDidShow:aUserInfo];
-            
         }
     } AndName:UIKeyboardDidShowNotification anyKey:self.randStringID];
-    
-    
+
     [NSNotificationCenter registerNotificationBeforeBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
         if ([weakself isKindOfClass:LJKeyBroadNotificationManager.class]) {
             [weakself keyboardHide:aUserInfo];
@@ -60,28 +58,27 @@
     } AndName:UIKeyboardWillChangeFrameNotification anyKey:self.randStringID];
 }
 
-- (void)keyboardWillShow:(NSDictionary *)aUserInfo{
-    
+- (void)keyboardWillShow:(NSDictionary *)aUserInfo {
     if ([aUserInfo isKindOfClass:NSDictionary.class]) {
         UIView *view = (UIView *)[UIResponder lj_currentFirstResponder];
-        
+
         if ([view isKindOfClass:UITextField.class] || [view isKindOfClass:UITextView.class]) {
             for (NSString *Key in self.keyBroadNotificationBlockDictionary.allKeys) {
                 if ([Key isEqualToString:UIKeyboardWillShowNotification]) {
                     NSArray *array = [self.keyBroadNotificationBlockDictionary objectForKey:Key];
-                    
+
                     for (NSString *NotKey in aUserInfo.allKeys) {
                         if ([NotKey isEqualToString:UIKeyboardFrameEndUserInfoKey]) {
                             NSValue *aValue = [aUserInfo objectForKey:NotKey];
                             CGRect  keyboardRect = [aValue CGRectValue];
                             CGFloat height = keyboardRect.size.height;
-                            
+
                             for (KeyBroadNotificationBlock block in array) {
                                 if (block) {
                                     block(view, height);
                                 }
                             }
-                            
+
                             break;
                         }
                     }
@@ -89,7 +86,6 @@
             }
         }
     }
-    
 }
 
 - (void)keyboardDidShow:(NSDictionary *)aUserInfo {
@@ -176,13 +172,10 @@
     }
 }
 
-
-- (void)addKeyBroadNotificationWillShowBlock:(KeyBroadNotificationBlock)block{
-    
+- (void)addKeyBroadNotificationWillShowBlock:(KeyBroadNotificationBlock)block {
     if (block) {
         [self addKeyBroadNotificationBlock:block AndNotName:UIKeyboardWillShowNotification];
     }
-    
 }
 
 - (void)addKeyBroadNotificationDidShowBlock:(KeyBroadNotificationBlock)block {
@@ -240,8 +233,8 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     [NSNotificationCenter removeNotificationAftereName:UIKeyboardDidShowNotification anyKey:self.randStringID];
     [NSNotificationCenter removeNotificationAftereName:UIKeyboardWillShowNotification anyKey:self.randStringID];
-    [NSNotificationCenter removeNotificationAftereName:UIKeyboardWillHideNotification anyKey:self.randStringID];
-    [NSNotificationCenter removeNotificationAftereName:UIKeyboardWillChangeFrameNotification anyKey:self.randStringID];
+    [NSNotificationCenter removeNotificationBeforeName:UIKeyboardWillHideNotification anyKey:self.randStringID];
+    [NSNotificationCenter removeNotificationBeforeName:UIKeyboardWillChangeFrameNotification anyKey:self.randStringID];
 }
 
 @end

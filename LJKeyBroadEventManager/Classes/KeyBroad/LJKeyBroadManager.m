@@ -98,8 +98,6 @@
     [self keyBroadFrameChange:view andkeyBroadHeight:keyBroadHeight];
 }
 
-- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {}
-
 - (void)keyBroadFrameChange:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
     if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]])) && [self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
         if ([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]] && self.object_keyBroad.isViewLoaded) {
@@ -123,16 +121,9 @@
     }
 }
 
-- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {
-    if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]])) && [self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view] && (self.moveOffsetManager.moveOffset > 0)) {
-        LJKeyBroadRespoderModel *model = self.responderNextSet.currentResponderModel;
-        self.responderNextSet = nil;
+- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {}
 
-        [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            [self.moveOffsetManager endEditResponderModel:model];
-        } completion:^(BOOL finished) {}];
-    }
-}
+- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {}
 
 - (instancetype)initWithMaster_object_keyBroad:(UIViewController *)object
 {
