@@ -32,38 +32,38 @@
 - (instancetype)initWithMaster_object_keyBroad:(UIViewController *)object
 {
     self = [super init];
-
+    
     if (self) {
         self.object_keyBroad = object;
-
+        
     }
-
+    
     return self;
 }
 
 - (BOOL)ShowKeyBroad:(UIView *)view {
     if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]) {
         if ([view isKindOfClass:UITextView.class] || [view isKindOfClass:UITextField.class]) {
-        
+            
             if ([self.currentView isKindOfClass:UIView.class]) {
                 if (self.currentView == view) {
                     return YES;
                 } else {
                     BOOL result = [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroad:view];
-
+                    
                     if (result) {
                         self.currentView = view;
                     }
-
+                    
                     return result;
                 }
             } else {
                 BOOL result = [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroad:view];
-
+                
                 if (result) {
                     self.currentView = view;
                 }
-
+                
                 return result;
             }
         } else {
@@ -78,7 +78,7 @@
     if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]) {
         if ([view isKindOfClass:UITextView.class] || [view isKindOfClass:UITextField.class]) {
             if ([self.currentView isKindOfClass:UIView.class] && (self.currentView == view)) {
-               
+                
                 [self.object_keyBroad.NSObject_KeyBoradManager_info ShowkeyBroadResult:view AndResult:result];
             }
         }
@@ -87,37 +87,26 @@
 
 - (void)ShowKeyBroadWillAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
     if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]) {
-        if ([self.currentView isKindOfClass:UIView.class] && (self.currentView == view)) {
-          
-            [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroadWillAnimation:view andkeyBroadHeight:keyBroadHeight];
-        }
+        [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroadWillAnimation:view andkeyBroadHeight:keyBroadHeight];
     }
 }
 
 - (void)ShowKeyBroadDidAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
     if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]) {
-        if ([self.currentView isKindOfClass:UIView.class] && (self.currentView == view)) {
-          
-            [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroadDidAnimation:view andkeyBroadHeight:keyBroadHeight];
-        }
+        [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroadDidAnimation:view andkeyBroadHeight:keyBroadHeight];
     }
 }
 
 - (void)keyBroadFrameChange:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
     if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]) {
-        if ([self.currentView isKindOfClass:UIView.class] && (self.currentView == view)) {
-            [self.object_keyBroad.NSObject_KeyBoradManager_info keyBroadFrameChange:view andkeyBroadHeight:keyBroadHeight];
-        }
+        [self.object_keyBroad.NSObject_KeyBoradManager_info keyBroadFrameChange:view andkeyBroadHeight:keyBroadHeight];
     }
 }
 
 - (void)HiddenKeyBroad:(UIView *)view {
     if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]) {
-        if ([self.currentView isKindOfClass:UIView.class] && (self.currentView == view)) {
-           
-            self.currentView = nil;
-            [self.object_keyBroad.NSObject_KeyBoradManager_info HiddenKeyBroad:view];
-        }
+        [self.object_keyBroad.NSObject_KeyBoradManager_info HiddenKeyBroad:view];
+        self.currentView = nil;
     }
 }
 
