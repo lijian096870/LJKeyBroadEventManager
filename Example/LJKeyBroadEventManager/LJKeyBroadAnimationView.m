@@ -31,26 +31,18 @@
     
     addViewControllerLoadViewBlock(^(UIViewController *viewController) {
         
-        if([viewController isKindOfClass:UIInputViewController.class]){
+        if([NSStringFromClass(viewController.class) isEqualToString:@"UIInputWindowController"]){
             
-            AddWindowDidAddKeyBlock(viewController.view, @"UIInputViewController.view", ^(UIView *view) {
+    
+            AddWindowDidAddKeyBlock(viewController.view, @"UIInputWindowController.view", ^(UIView *view) {
                 
-                UIView *inputView = [self lookForRootView:view.window and:@"UIKBInputBackdropView"];
+//                UIView *inputView = [self lookForRootView:view and:@"UIKBInputBackdropView"];
               
-                if([inputView isKindOfClass:UIView.class]){
+                AddViewAddSubViewBlock(view, ^(UIView *view, UIView *subView) {
+                   
+                    NSLog(@"%@",subView);
                     
-                    [self findedView:inputView];
-                    
-                }else{
-                    AddViewAddSubViewKeyBlock(view.window, @"UIKBInputBackdropView", ^(UIView *view, UIView *subView) {
-                        
-                        if([NSStringFromClass(subView.class) isEqualToString:@"UIKBInputBackdropView"]){
-                            
-                           [self findedView:inputView];
-                            
-                        }
-                    });
-                }
+                });
                 
               
             });
@@ -61,13 +53,13 @@
 }
 +(UIView*)lookForRootView:(UIView*)view and:(NSString*)Name{
     
-//    NSLog(@"%@",view);
+    NSLog(@"%@",view);
     
-    if([NSStringFromClass(view.class) isEqualToString:Name]){
-
-        return view;
-
-    }
+//    if([NSStringFromClass(view.class) isEqualToString:Name]){
+//
+//        return view;
+//
+//    }
     NSArray *array = [NSArray arrayWithArray:view.subviews];
     for (UIView *subView in array) {
         return [self lookForRootView:subView and:Name];

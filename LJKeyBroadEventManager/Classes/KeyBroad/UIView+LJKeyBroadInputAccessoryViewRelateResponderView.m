@@ -10,20 +10,15 @@
 #import "LJKeyBroadInputAccessoryViewRelateResponderViewModel.h"
 @implementation UIView (LJKeyBroadInputAccessoryViewRelateResponderView)
 
-
-
--(UIView*)keyBroadInputAccessoryViewRelateResponderView{
-    
+- (UIView *)keyBroadInputAccessoryViewRelateResponderView {
     LJKeyBroadInputAccessoryViewRelateResponderViewModel *obj = objc_getAssociatedObject(self, @selector(keyBroadInputAccessoryViewRelateResponderView));
-    
+
     return obj.responderView;
-    
 }
 
--(void)setKeyBroadInputAccessoryViewRelateResponderView:(UIView*)view{
-    
+- (void)setKeyBroadInputAccessoryViewRelateResponderView:(UIView *)view {
     LJKeyBroadInputAccessoryViewRelateResponderViewModel *obj = objc_getAssociatedObject(self, @selector(keyBroadInputAccessoryViewRelateResponderView));
-    
+
     if ([obj isKindOfClass:[LJKeyBroadInputAccessoryViewRelateResponderViewModel class]]) {
         obj.responderView = view;
     } else {
@@ -32,6 +27,5 @@
         mess.responderView = view;
     }
 }
-
 
 @end

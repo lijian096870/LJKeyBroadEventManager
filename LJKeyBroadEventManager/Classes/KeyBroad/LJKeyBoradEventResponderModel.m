@@ -8,6 +8,8 @@
 #import "LJKeyBoradEventResponderModel.h"
 #import "UIViewController+KeyBoradManager.h"
 #import "LJKeyBroadRegisterManager.h"
+#import "NSNotificationCenter+LJKeyBroad.h"
+#import "KeyBroadRandString.h"
 
 @interface LJKeyBroadRegisterManager ()
 
@@ -24,6 +26,7 @@
 @property(nonatomic, weak) UIView   *currentView;
 @property(nonatomic, weak) UIView   *cancelView;
 
+@property(nonatomic, strong) NSString *randStringID;
 @end
 
 @implementation LJKeyBoradEventResponderModel
@@ -34,7 +37,13 @@
 
     if (self) {
         self.object_keyBroad = object;
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBroadDidHidenHeight) name:UIKeyboardDidHideNotification object:nil];
+
+        __weak LJKeyBoradEventResponderModel *weakself = self;
+        [NSNotificationCenter registerNotificationAfterBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
+            if (weakself && [weakself isKindOfClass:LJKeyBoradEventResponderModel.class]) {
+                [weakself keyBroadDidHidenHeight];
+            }
+        } AndName:UIKeyboardWillHideNotification anyKey:self.randStringID];
     }
 
     return self;
@@ -85,29 +94,24 @@
         }
     }
 }
--(void)ShowKeyBroadWillAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight{
-    
+
+- (void)ShowKeyBroadWillAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
     if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]) {
         if ([self.currentView isKindOfClass:UIView.class] && (self.currentView == view)) {
             self.cancelView = nil;
             [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroadWillAnimation:view andkeyBroadHeight:keyBroadHeight];
         }
     }
-    
-    
 }
 
-- (void)ShowKeyBroadDidAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight{
-    
+- (void)ShowKeyBroadDidAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
     if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]) {
         if ([self.currentView isKindOfClass:UIView.class] && (self.currentView == view)) {
             self.cancelView = nil;
             [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroadDidAnimation:view andkeyBroadHeight:keyBroadHeight];
         }
     }
-    
 }
-
 
 - (void)keyBroadFrameChange:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
     if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]) {
@@ -141,38 +145,37 @@
 }
 
 - (void)HiddenBroadAnimation:(UIView *)view {
-    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]&&[view isKindOfClass:UIView.class]) {
-       [self.object_keyBroad.NSObject_KeyBoradManager_info HiddenBroadAnimation:view];
+    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class] && [view isKindOfClass:UIView.class]) {
+        [self.object_keyBroad.NSObject_KeyBoradManager_info HiddenBroadAnimation:view];
     }
 }
 
-- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView*)view{
-    
-    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]&&[view isKindOfClass:UIView.class]) {
-        
-        
+- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {
+    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class] && [view isKindOfClass:UIView.class]) {
         if ([[LJKeyBroadRegisterManager sharedInstance] isRegister:self.object_keyBroad.keyBroad_mess_uniqueID]) {
-            
             [self.object_keyBroad.NSObject_KeyBoradManager_info ShowkeyBroadInputAccessoryViewRelateCallBlock:view];
         }
     }
 }
 
-- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView*)view{
-    
-    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]&&[view isKindOfClass:UIView.class]) {
-        
+- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {
+    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class] && [view isKindOfClass:UIView.class]) {
         if ([[LJKeyBroadRegisterManager sharedInstance] isRegister:self.object_keyBroad.keyBroad_mess_uniqueID]) {
-            
             [self.object_keyBroad.NSObject_KeyBoradManager_info HiddenkeyBroadInputAccessoryViewRelateCallBlock:view];
-            
-            
         }
     }
 }
+
 - (void)configDestroyBlock:(dispatch_block_t)dellocBlock {
-    
     self.dellocBlock = dellocBlock;
+}
+
+- (NSString *)randStringID {
+    if (_randStringID == nil) {
+        _randStringID = [KeyBroadRandString randomStringNameWithLength:32];
+    }
+
+    return _randStringID;
 }
 
 - (void)dealloc
@@ -182,6 +185,7 @@
     }
 
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+    [NSNotificationCenter removeNotificationAftereName:UIKeyboardWillHideNotification anyKey:self.randStringID];
 }
 
 @end

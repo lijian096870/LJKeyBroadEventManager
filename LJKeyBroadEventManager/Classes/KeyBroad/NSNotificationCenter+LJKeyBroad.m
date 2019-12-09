@@ -122,6 +122,7 @@ static NSMutableDictionary  *DictionaryAfterBlock;
 }
 
 - (void)customer_AfterAndBefore_postNotificationName:(NSNotificationName)aName object:(id)anObject userInfo:(NSDictionary *)aUserInfo {
+    
     for (NSString *key in DictionaryBeforeBlock.allKeys) {
         if ([key isEqualToString:aName]) {
             NSArray *array = [DictionaryBeforeBlock objectForKey:key];
