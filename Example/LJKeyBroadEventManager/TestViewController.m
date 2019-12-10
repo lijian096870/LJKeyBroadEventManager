@@ -37,6 +37,19 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"TestTableViewCell" bundle:nil] forCellReuseIdentifier:NSStringFromClass(TestTableViewCell.class)];
 
     
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        AddFrameWillChangeBlock(self.view.window, ^(UIView *view, CGRect oldFrame, CGRect newFrame) {
+           
+            NSLog(@"%@,%@",NSStringFromCGRect(oldFrame),NSStringFromCGRect(newFrame));
+            
+        });
+        AddFrameDidChangeBlock(self.view.window, ^(UIView *view, CGRect oldFrame, CGRect newFrame) {
+           
+            NSLog(@"%@,%@",NSStringFromCGRect(oldFrame),NSStringFromCGRect(newFrame));
+            
+        });
+    });
+    
     registerKeyBroadResponder(self);
     
     

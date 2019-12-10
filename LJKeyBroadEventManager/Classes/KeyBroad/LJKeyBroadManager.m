@@ -16,6 +16,7 @@
 #import "LJKeyBroadMoveOffsetManager.h"
 #import "LJKeyboardReloadToolBar.h"
 #import "LJKeyBroadRespoderNextSet.h"
+#import "LJKeyBroadInterfaceOrientationManager.h"
 @interface UIViewController () <LJKeyboardManagerDelegate>
 
 @end
@@ -28,11 +29,50 @@
 
 @property(nonatomic, strong) LJKeyboardReloadToolBar *reloadTooBarUtil;
 
-@property(nonatomic, strong) LJKeyBroadRespoderNextSet *responderNextSet;
+@property(nonatomic, strong) LJKeyBroadRespoderNextSet              *responderNextSet;
+@property(nonatomic, strong) LJKeyBroadInterfaceOrientationManager  *orientationManager;
 
 @end
 
 @implementation LJKeyBroadManager
+
+- (instancetype)initWithMaster_object_keyBroad:(UIViewController *)object
+{
+    self = [super init];
+
+    if (self) {
+        self.object_keyBroad = object;
+        __weak LJKeyBroadManager *weakSelf = self;
+        [self.orientationManager configWillOrientationBlock:^{
+            if (weakSelf && [weakSelf isKindOfClass:LJKeyBroadManager.class]) {
+                [weakSelf WillOrientation];
+            }
+        } didOrientationBlock:^{
+            if (weakSelf && [weakSelf isKindOfClass:LJKeyBroadManager.class]) {
+                [weakSelf didOrientation];
+            }
+        }];
+    }
+
+    return self;
+}
+
+- (void)WillOrientation {
+    if ([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && ([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] floatValue] > 0.0)) {
+        [self.moveOffsetManager endEditResponderModel:self.responderNextSet.currentResponderModel];
+
+        if ([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]]) {
+            self.orientationManager.cacheKeyBroadHeight = self.moveOffsetManager.keyBroadHeight;
+            [self.responderNextSet responderArrayRenewResponderLocation];
+        }
+    }
+}
+
+- (void)didOrientation {
+    if ([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && (self.orientationManager.cacheKeyBroadHeight > 0.0)) {
+        [self.moveOffsetManager moveOffsetKeyBroadHeight:self.orientationManager.cacheKeyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
+    }
+}
 
 - (BOOL)ShowKeyBroad:(UIView *)view {
     if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]]))) {
@@ -146,17 +186,6 @@
     }
 }
 
-- (instancetype)initWithMaster_object_keyBroad:(UIViewController *)object
-{
-    self = [super init];
-
-    if (self) {
-        self.object_keyBroad = object;
-    }
-
-    return self;
-}
-
 - (void)configLJKeyboardToolBar:(LJKeyBroadRespoderNextSet *)responderNextSet {
     [self.reloadTooBarUtil configLJKeyboardToolBar:responderNextSet andNewToolBar:[self MadeToolBar:CGRectMake(0, 0, responderNextSet.currentResponderModel.window.bounds.size.width, 40)]];
 
@@ -258,6 +287,14 @@
     }
 
     return _reloadTooBarUtil;
+}
+
+- (LJKeyBroadInterfaceOrientationManager *)orientationManager {
+    if (_orientationManager == nil) {
+        _orientationManager = [[LJKeyBroadInterfaceOrientationManager alloc]initWithMaster_object_keyBroad:self.object_keyBroad];
+    }
+
+    return _orientationManager;
 }
 
 @end
