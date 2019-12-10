@@ -9,7 +9,7 @@
 #import "LJKeyboardToolBar.h"
 #import "LJKeyBroadRespoderNextSet.h"
 
-@interface LJKeyboardReloadToolBar : NSObject
+@interface LJKeyboardReloadToolBar : LJKeyboardAccessViewRetainResponderView
 
 - (instancetype)initWithMaster_object_keyBroad:(UIViewController *)object;
 

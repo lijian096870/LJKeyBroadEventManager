@@ -9,27 +9,30 @@
 
 @implementation LJKeyBraodResponderCallBlockModel
 
-- (instancetype)initWithBroadEventShowEvent:(KeyBroadEventBecomeFirstCallBlock)Showblock BroadEventShowResult:(KeyBroadEventBecomeFirstResultCallBlock)ShowResultBlock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationWillShowBlock
-                      AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationDidShowBlock
-                        AndFrameChangeBlock:(KeyBroadEventNotificationViewAnimationBlock)frameChangeBlock HidenEvent:(KeyBroadEventreginFirstCallBlock)Hidenblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationHidenBlock {
+- (instancetype)initWithBroadEventShowEvent :(KeyBroadEventBecomeFirstCallBlock)Showblock BroadEventShowResult:(KeyBroadEventBecomeFirstResultCallBlock)ShowResultBlock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationWillShowBlock
+                AndViewAnimationBlock       :(KeyBroadEventNotificationViewAnimationBlock)animationDidShowBlock
+                AndFrameChangeBlock         :(KeyBroadEventNotificationViewAnimationBlock)frameChangeBlock HidenEvent:(KeyBroadEventreginFirstCallBlock)Hidenblock AndViewWillHidenAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationWillHidenBlock AndViewDidHidenAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationDidHidenBlock {
     self = [super init];
-    
+
     if (self) {
         _Showblock = Showblock;
-        
+
         _ShowResultBlock = ShowResultBlock;
-        
+
         _animationWillShowBlock = animationWillShowBlock;
-        
+
         _animationDidShowBlock = animationDidShowBlock;
-        
-        
+
         _frameChangeBlock = frameChangeBlock;
-        
+
         _Hidenblock = Hidenblock;
-        _animationHidenBlock = animationHidenBlock;
+        
+        
+        _animationWillHidenBlock = animationWillHidenBlock;
+        
+        _animationDidHidenBlock = animationDidHidenBlock;
     }
-    
+
     return self;
 }
 

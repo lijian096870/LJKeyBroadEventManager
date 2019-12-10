@@ -17,6 +17,8 @@ typedef void (^ KeyBroadNotificationBlock)(UIView *view, CGFloat keyBroadHeight)
 
 - (void)addKeyBroadNotificationFrameChangeBlock:(KeyBroadNotificationBlock)block;
 
-- (void)addKeyBroadNotificationHideBlock:(KeyBroadNotificationBlock)block;
+- (void)addKeyBroadNotificationWillHideBlock:(KeyBroadNotificationBlock)block;
+
+- (void)addKeyBroadNotificationDidHideBlock:(KeyBroadNotificationBlock)block;
 
 @end

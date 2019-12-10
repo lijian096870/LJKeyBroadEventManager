@@ -80,10 +80,9 @@
                     [viewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowKeyBroadWillAnimation:view andkeyBroadHeight:keyBroadHeight];
                 }
             }
-            
         }  AndViewAnimationBlock:^(UIView *view, CGFloat keyBroadHeight) {
             UIViewController *viewController = viewGetSuperController(view);
-            
+
             if ([viewController isKindOfClass:[UIViewController class]]) {
                 if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
                     [viewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowKeyBroadDidAnimation:view andkeyBroadHeight:keyBroadHeight];
@@ -105,12 +104,20 @@
                     [viewController.NSObject_KeyBoradEventResponderModel_viewController_info HiddenKeyBroad:view];
                 }
             }
-        } AndViewAnimationBlock:^(UIView *view, CGFloat keyBroadHeight) {
+        } AndViewWillHidenAnimationBlock:^(UIView *view, CGFloat keyBroadHeight) {
             UIViewController *viewController = viewGetSuperController(view);
 
             if ([viewController isKindOfClass:[UIViewController class]]) {
                 if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
-                    [viewController.NSObject_KeyBoradEventResponderModel_viewController_info HiddenBroadAnimation:view];
+                    [viewController.NSObject_KeyBoradEventResponderModel_viewController_info HiddenBroadWillAnimation:view];
+                }
+            }
+        } AndViewDidHidenAnimationBlock:^(UIView *view, CGFloat keyBroadHeight) {
+            UIViewController *viewController = viewGetSuperController(view);
+
+            if ([viewController isKindOfClass:[UIViewController class]]) {
+                if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
+                    [viewController.NSObject_KeyBoradEventResponderModel_viewController_info HiddenBroadDidAnimation:view];
                 }
             }
         }];

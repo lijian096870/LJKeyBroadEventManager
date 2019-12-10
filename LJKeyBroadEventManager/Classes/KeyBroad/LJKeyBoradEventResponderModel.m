@@ -7,15 +7,10 @@
 
 #import "LJKeyBoradEventResponderModel.h"
 #import "UIViewController+KeyBoradManager.h"
-#import "LJKeyBroadRegisterManager.h"
 #import "NSNotificationCenter+LJKeyBroad.h"
 #import "KeyBroadRandString.h"
 
-@interface LJKeyBroadRegisterManager ()
 
-- (BOOL)isRegister:(NSString *)key;
-
-@end
 
 @interface LJKeyBoradEventResponderModel ()
 
@@ -23,7 +18,7 @@
 
 @property(nonatomic, copy) dispatch_block_t dellocBlock;
 
-@property(nonatomic, weak) UIView   *currentView;
+@property(nonatomic, weak) UIView *currentView;
 
 @end
 
@@ -32,38 +27,36 @@
 - (instancetype)initWithMaster_object_keyBroad:(UIViewController *)object
 {
     self = [super init];
-    
+
     if (self) {
         self.object_keyBroad = object;
-        
     }
-    
+
     return self;
 }
 
 - (BOOL)ShowKeyBroad:(UIView *)view {
     if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]) {
         if ([view isKindOfClass:UITextView.class] || [view isKindOfClass:UITextField.class]) {
-            
             if ([self.currentView isKindOfClass:UIView.class]) {
                 if (self.currentView == view) {
                     return YES;
                 } else {
                     BOOL result = [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroad:view];
-                    
+
                     if (result) {
                         self.currentView = view;
                     }
-                    
+
                     return result;
                 }
             } else {
                 BOOL result = [self.object_keyBroad.NSObject_KeyBoradManager_info ShowKeyBroad:view];
-                
+
                 if (result) {
                     self.currentView = view;
                 }
-                
+
                 return result;
             }
         } else {
@@ -78,7 +71,6 @@
     if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class]) {
         if ([view isKindOfClass:UITextView.class] || [view isKindOfClass:UITextField.class]) {
             if ([self.currentView isKindOfClass:UIView.class] && (self.currentView == view)) {
-                
                 [self.object_keyBroad.NSObject_KeyBoradManager_info ShowkeyBroadResult:view AndResult:result];
             }
         }
@@ -110,35 +102,23 @@
     }
 }
 
-
-- (void)HiddenBroadAnimation:(UIView *)view {
+- (void)HiddenBroadWillAnimation:(UIView *)view {
     if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class] && [view isKindOfClass:UIView.class]) {
-        [self.object_keyBroad.NSObject_KeyBoradManager_info HiddenBroadAnimation:view];
+        [self.object_keyBroad.NSObject_KeyBoradManager_info HiddenBroadWillAnimation:view];
+    }
+}
+
+- (void)HiddenBroadDidAnimation:(UIView *)view {
+    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class] && [view isKindOfClass:UIView.class]) {
+        [self.object_keyBroad.NSObject_KeyBoradManager_info HiddenBroadDidAnimation:view];
     }
 }
 
 
-
-- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {
-    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class] && [view isKindOfClass:UIView.class]) {
-        if ([[LJKeyBroadRegisterManager sharedInstance] isRegister:self.object_keyBroad.keyBroad_mess_uniqueID]) {
-            [self.object_keyBroad.NSObject_KeyBoradManager_info ShowkeyBroadInputAccessoryViewRelateCallBlock:view];
-        }
-    }
-}
-
-- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {
-    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class] && [view isKindOfClass:UIView.class]) {
-        if ([[LJKeyBroadRegisterManager sharedInstance] isRegister:self.object_keyBroad.keyBroad_mess_uniqueID]) {
-            [self.object_keyBroad.NSObject_KeyBoradManager_info HiddenkeyBroadInputAccessoryViewRelateCallBlock:view];
-        }
-    }
-}
 
 - (void)configDestroyBlock:(dispatch_block_t)dellocBlock {
     self.dellocBlock = dellocBlock;
 }
-
 
 - (void)dealloc
 {

@@ -21,10 +21,12 @@
 
 @property(nonatomic, copy) KeyBroadEventreginFirstCallBlock Hidenblock;
 
-@property(nonatomic, copy) KeyBroadEventNotificationViewAnimationBlock animationHidenBlock;
+@property(nonatomic, copy) KeyBroadEventNotificationViewAnimationBlock animationWillHidenBlock;
 
-- (instancetype)initWithBroadEventShowEvent:(KeyBroadEventBecomeFirstCallBlock)Showblock BroadEventShowResult:(KeyBroadEventBecomeFirstResultCallBlock)ShowResultBlock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationWillShowBlock
-                      AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationDidShowBlock
-                        AndFrameChangeBlock:(KeyBroadEventNotificationViewAnimationBlock)frameChangeBlock HidenEvent:(KeyBroadEventreginFirstCallBlock)Hidenblock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationHidenBlock;
+@property(nonatomic, copy) KeyBroadEventNotificationViewAnimationBlock animationDidHidenBlock;
+
+- (instancetype)initWithBroadEventShowEvent :(KeyBroadEventBecomeFirstCallBlock)Showblock BroadEventShowResult:(KeyBroadEventBecomeFirstResultCallBlock)ShowResultBlock AndViewAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationWillShowBlock
+                AndViewAnimationBlock       :(KeyBroadEventNotificationViewAnimationBlock)animationDidShowBlock
+                AndFrameChangeBlock         :(KeyBroadEventNotificationViewAnimationBlock)frameChangeBlock HidenEvent:(KeyBroadEventreginFirstCallBlock)Hidenblock AndViewWillHidenAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationWillHidenBlock AndViewDidHidenAnimationBlock:(KeyBroadEventNotificationViewAnimationBlock)animationDidHidenBlock;
 
 @end

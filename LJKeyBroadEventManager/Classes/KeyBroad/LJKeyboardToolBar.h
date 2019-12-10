@@ -6,12 +6,12 @@
 //  Copyright © 2019 李健. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "LJKeyboardAccessViewRetainResponderView.h"
 
 @class LJKeyboardToolBar;
 typedef void (^ KeyboardToolBar)(LJKeyboardToolBar *bar);
 
-@interface LJKeyboardToolBar : UIToolbar
+@interface LJKeyboardToolBar : LJKeyboardAccessViewRetainResponderView
 
 - (instancetype)initWithFrame   :(CGRect)frame
                 leftBtnBlock    :(KeyboardToolBar)leftblock

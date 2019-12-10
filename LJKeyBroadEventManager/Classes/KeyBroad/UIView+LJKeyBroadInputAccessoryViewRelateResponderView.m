@@ -7,23 +7,35 @@
 
 #import "UIView+LJKeyBroadInputAccessoryViewRelateResponderView.h"
 #import <objc/runtime.h>
-#import "LJKeyBroadInputAccessoryViewRelateResponderViewModel.h"
+#import "LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel.h"
 @implementation UIView (LJKeyBroadInputAccessoryViewRelateResponderView)
 
-- (UIView *)keyBroadInputAccessoryViewRelateResponderView {
-    LJKeyBroadInputAccessoryViewRelateResponderViewModel *obj = objc_getAssociatedObject(self, @selector(keyBroadInputAccessoryViewRelateResponderView));
-
-    return obj.responderView;
+- (LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *)KeyBroadInputAccessoryViewRelateResponderModel_view{
+    
+    return objc_getAssociatedObject(self, @selector(keyBroadInputAccessoryViewRelateResponderView_view));
+    
 }
 
-- (void)setKeyBroadInputAccessoryViewRelateResponderView:(UIView *)view {
-    LJKeyBroadInputAccessoryViewRelateResponderViewModel *obj = objc_getAssociatedObject(self, @selector(keyBroadInputAccessoryViewRelateResponderView));
+- (UIView *)keyBroadInputAccessoryViewRelateResponderView_view {
+    LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *obj = [self KeyBroadInputAccessoryViewRelateResponderModel_view];
 
-    if ([obj isKindOfClass:[LJKeyBroadInputAccessoryViewRelateResponderViewModel class]]) {
+   UIView *result = obj.responderView;
+
+      if ([result isKindOfClass:UIView.class]) {
+          return result;
+      } else {
+          return obj.weakResponderView;
+      }
+}
+
+- (void)setKeyBroadInputAccessoryViewRelateResponderView_view:(UIView *)view {
+    LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *obj = objc_getAssociatedObject(self, @selector(keyBroadInputAccessoryViewRelateResponderView_view));
+
+    if ([obj isKindOfClass:[LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel class]]) {
         obj.responderView = view;
     } else {
-        LJKeyBroadInputAccessoryViewRelateResponderViewModel *mess = [[LJKeyBroadInputAccessoryViewRelateResponderViewModel alloc]init];
-        objc_setAssociatedObject(self, @selector(keyBroadInputAccessoryViewRelateResponderView), mess, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *mess = [[LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel alloc]initWithKeyeBroadInputViewController:self];
+        objc_setAssociatedObject(self, @selector(keyBroadInputAccessoryViewRelateResponderView_view), mess, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         mess.responderView = view;
     }
 }

@@ -22,7 +22,4 @@
 
 
 
-- (void)setKeyBroadInputAccessoryViewRelateResponderView:(UIView *)view;
-- (UIView *)keyBroadInputAccessoryViewRelateResponderView;
-
 @end

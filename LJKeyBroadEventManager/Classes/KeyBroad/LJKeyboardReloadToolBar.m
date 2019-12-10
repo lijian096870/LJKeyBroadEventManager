@@ -9,10 +9,10 @@
 #import "LJKeyBroadEventManager.h"
 #import "LJkeyBroadConfig.h"
 #import "LJViewKit.h"
-#import "UIView+LJKeyBroadInputAccessoryViewRelateResponderView.h"
 #import "UIViewController+KeyBoradManager.h"
 #import "LJViewControllerManager.h"
 #import "UIViewController+KeyBoradManager.h"
+#import "UIView+LJKeyBroadInputAccessoryViewRelateResponderView.h"
 @interface UIViewController () <LJKeyboardManagerDelegate>
 
 @end
@@ -118,46 +118,37 @@
             }
         }
 
-        if ([model.view isKindOfClass:UIView.class]) {
-            [inputAccessoryView setKeyBroadInputAccessoryViewRelateResponderView:model.view];
-            AddWindowDidAddKeyBlock(inputAccessoryView, @"_LJKeyboardReloadToolBar", ^(UIView *view) {
-                UIView *responderView = [view keyBroadInputAccessoryViewRelateResponderView];
+        if ([model.view isKindOfClass:UIView.class] && inputAccessoryView) {
+            if (NO) {
+                [(LJKeyboardAccessViewRetainResponderView *)inputAccessoryView configResponderView:model.view];
+            } else {
+                
+                
+                [inputAccessoryView setKeyBroadInputAccessoryViewRelateResponderView_view:model.view];
 
-                UIViewController *inputWindowViewController = viewGetSuperController(view);
-                [inputWindowViewController setKeyBroadInputAccessoryViewRelateResponderView:responderView];
+                AddWindowDidAddKeyBlock(inputAccessoryView, @"_LJKeyboardReloadToolBar", ^(UIView *view) {
+                    NSLog(@"1111111111,%@", [view keyBroadInputAccessoryViewRelateResponderView_view]);
 
-                if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
-                    UIViewController *responderViewController = viewGetSuperController(responderView);
+                    UIView *responderView = [view keyBroadInputAccessoryViewRelateResponderView_view];
 
-                    if ([responderViewController isKindOfClass:UIViewController.class]) {
-                        [responderViewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowkeyBroadInputAccessoryViewRelateCallBlock:responderView];
+                    if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
+                        [view.KeyBroadInputAccessoryViewRelateResponderModel_view startLister];
                     }
-                }
-            });
+                });
 
-            AddWindowWillMoveKeyBlock(inputAccessoryView, @"_LJKeyboardReloadToolBar", ^(UIView *view) {
-                UIViewController *inputWindowViewController = viewGetSuperController(view);
-                [inputWindowViewController setKeyBroadInputAccessoryViewRelateResponderView:nil];
-            });
+                AddWindowDidMoveKeyBlock(inputAccessoryView, @"_LJKeyboardReloadToolBar", ^(UIView *view) {
+                    NSLog(@"22222222222");
 
-            AddWindowDidMoveKeyBlock(inputAccessoryView, @"_LJKeyboardReloadToolBar", ^(UIView *view) {
-                UIView *responderView = [view keyBroadInputAccessoryViewRelateResponderView];
-                [view setKeyBroadInputAccessoryViewRelateResponderView:nil];
-
-                if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
-                    UIViewController *responderViewController = viewGetSuperController(responderView);
-
-                    if ([responderViewController isKindOfClass:UIViewController.class]) {
-                        [responderViewController.NSObject_KeyBoradEventResponderModel_viewController_info HiddenkeyBroadInputAccessoryViewRelateCallBlock:responderView];
-                    }
-                }
-            });
+                    [view.KeyBroadInputAccessoryViewRelateResponderModel_view endLister];
+                    [view setKeyBroadInputAccessoryViewRelateResponderView_view:nil];
+                });
+            }
         }
     }
 }
 
 - (UIView *)madeInputAccessoryView:(CGFloat)width {
-    UIView *view = [[UIView alloc]init];
+    UIView *view = [[LJKeyboardAccessViewRetainResponderView alloc]init];
 
     view.backgroundColor = [UIColor clearColor];
     return view;

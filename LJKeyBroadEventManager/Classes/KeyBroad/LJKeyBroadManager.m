@@ -112,7 +112,7 @@
 
 - (void)HiddenKeyBroad:(UIView *)view {}
 
-- (void)HiddenBroadAnimation:(UIView *)view {
+- (void)HiddenBroadWillAnimation:(UIView *)view {
     if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]])) && [self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
         LJKeyBroadRespoderModel *model = self.responderNextSet.currentResponderModel;
         self.responderNextSet = nil;
@@ -121,9 +121,14 @@
     }
 }
 
-- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {}
+- (void)HiddenBroadDidAnimation:(UIView *)view {
+    if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]])) && [self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
+        LJKeyBroadRespoderModel *model = self.responderNextSet.currentResponderModel;
+        self.responderNextSet = nil;
 
-- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {}
+        [self.moveOffsetManager endEditResponderModel:model];
+    }
+}
 
 - (instancetype)initWithMaster_object_keyBroad:(UIViewController *)object
 {
