@@ -38,8 +38,9 @@
 
     [self registerKeyBroadEventBecomeFirst:^BOOL (UIView *view) {
         BOOL result = YES;
+        NSSet *set = [NSSet setWithSet:[LJKeyBroadEvent sharedInstance].responderSet];
 
-        for (LJKeyBraodResponderCallBlockModel *model in self.responderSet) {
+        for (LJKeyBraodResponderCallBlockModel *model in set) {
             if (model.Showblock) {
                 result = model.Showblock(view) && result;
             }
@@ -49,7 +50,9 @@
     }];
 
     [self registerKeyBroadEventReginsFirst:^(UIView *view) {
-        for (LJKeyBraodResponderCallBlockModel *model in self.responderSet) {
+        NSSet *set = [NSSet setWithSet:[LJKeyBroadEvent sharedInstance].responderSet];
+
+        for (LJKeyBraodResponderCallBlockModel *model in set) {
             if (model.Hidenblock) {
                 model.Hidenblock(view);
             }
@@ -57,7 +60,9 @@
     }];
 
     [self registerKeyBroadEventBecomeFirstResult:^(UIView *view, BOOL result) {
-        for (LJKeyBraodResponderCallBlockModel *model in self.responderSet) {
+        NSSet *set = [NSSet setWithSet:[LJKeyBroadEvent sharedInstance].responderSet];
+
+        for (LJKeyBraodResponderCallBlockModel *model in set) {
             if (model.ShowResultBlock) {
                 model.ShowResultBlock(view, result);
             }
@@ -99,7 +104,9 @@
     dispatch_once(&onceToken, ^{
         [[LJKeyBroadPostRunBlockModel sharedInstance] addKeyBroadNotificationDidShowBlock:^(UIView *view, CGFloat keyBroadHeight) {
             if ([view isKindOfClass:UIView.class]) {
-                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
+                NSSet *set = [NSSet setWithSet:[LJKeyBroadEvent sharedInstance].responderSet];
+
+                for (LJKeyBraodResponderCallBlockModel *model in set) {
                     if (model.animationDidShowBlock) {
                         model.animationDidShowBlock(view, keyBroadHeight);
                     }
@@ -109,7 +116,9 @@
 
         [[LJKeyBroadPostRunBlockModel sharedInstance]addKeyBroadNotificationDidHidenBlock:^(UIView *view, CGFloat keyBroadHeight) {
             if ([view isKindOfClass:UIView.class]) {
-                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
+                NSSet *set = [NSSet setWithSet:[LJKeyBroadEvent sharedInstance].responderSet];
+
+                for (LJKeyBraodResponderCallBlockModel *model in set) {
                     if (model.animationDidHidenBlock) {
                         model.animationDidHidenBlock(view, keyBroadHeight);
                     }
@@ -119,7 +128,9 @@
 
         [[LJKeyBroadPostRunBlockModel sharedInstance]addKeyBroadNotificationFrameChangeBlock:^(UIView *view, CGFloat keyBroadHeight) {
             if ([view isKindOfClass:UIView.class]) {
-                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
+                NSSet *set = [NSSet setWithSet:[LJKeyBroadEvent sharedInstance].responderSet];
+
+                for (LJKeyBraodResponderCallBlockModel *model in set) {
                     if (model.frameChangeBlock) {
                         model.frameChangeBlock(view, keyBroadHeight);
                     }
@@ -129,7 +140,9 @@
 
         [[LJKeyBroadPostRunBlockModel sharedInstance]addKeyBroadNotificationWillShowBlock:^(UIView *view, CGFloat keyBroadHeight) {
             if ([view isKindOfClass:UIView.class]) {
-                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
+                NSSet *set = [NSSet setWithSet:[LJKeyBroadEvent sharedInstance].responderSet];
+
+                for (LJKeyBraodResponderCallBlockModel *model in set) {
                     if (model.animationWillShowBlock) {
                         model.animationWillShowBlock(view, keyBroadHeight);
                     }
@@ -139,7 +152,9 @@
 
         [[LJKeyBroadPostRunBlockModel sharedInstance]addKeyBroadNotificationWillHidenBlock:^(UIView *view, CGFloat keyBroadHeight) {
             if ([view isKindOfClass:UIView.class]) {
-                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
+                NSSet *set = [NSSet setWithSet:[LJKeyBroadEvent sharedInstance].responderSet];
+
+                for (LJKeyBraodResponderCallBlockModel *model in set) {
                     if (model.animationWillHidenBlock) {
                         model.animationWillHidenBlock(view, keyBroadHeight);
                     }
@@ -147,42 +162,61 @@
             }
         }];
 
-        //        [self.keyBroadNotManager addKeyBroadNotificationFrameChangeBlock:^(UIView *view, CGFloat keyBroadHeight) {
-        //            if ([view isKindOfClass:UIView.class]) {
-        //                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
-        //                    if (model.frameChangeBlock) {
-        //                        model.frameChangeBlock(view, keyBroadHeight);
-        //                    }
-        //                }
-        //            }
-        //        }];
-        //        [self.keyBroadNotManager addKeyBroadNotificationWillShowBlock:^(UIView *view, CGFloat keyBroadHeight) {
-        //            if ([view isKindOfClass:UIView.class]) {
-        //                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
-        //                    if (model.animationWillShowBlock) {
-        //                        model.animationWillShowBlock(view, keyBroadHeight);
-        //                    }
-        //                }
-        //            }
-        //        }];
-        //        [self.keyBroadNotManager addKeyBroadNotificationDidShowBlock:^(UIView *view, CGFloat keyBroadHeight) {
-        //            if ([view isKindOfClass:UIView.class]) {
-        //                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
-        //                    if (model.animationDidShowBlock) {
-        //                        model.animationDidShowBlock(view, keyBroadHeight);
-        //                    }
-        //                }
-        //            }
-        //        }];
-        //        [self.keyBroadNotManager addKeyBroadNotificationHideBlock:^(UIView *view, CGFloat keyBroadHeight) {
-        //            if ([view isKindOfClass:UIView.class]) {
-        //                for (LJKeyBraodResponderCallBlockModel *model in [LJKeyBroadEvent sharedInstance].responderSet) {
-        //                    if (model.animationHidenBlock) {
-        //                        model.animationHidenBlock(view, keyBroadHeight);
-        //                    }
-        //                }
-        //            }
-        //        }];
+        [self.keyBroadNotManager addKeyBroadNotificationFrameChangeBlock:^(UIView *view, CGFloat keyBroadHeight) {
+            if ([view isKindOfClass:UIView.class]) {
+                NSSet *set = [NSSet setWithSet:[LJKeyBroadEvent sharedInstance].responderSet];
+
+                for (LJKeyBraodResponderCallBlockModel *model in set) {
+                    if (model.frameChangeBlock) {
+                        model.frameChangeBlock(view, keyBroadHeight);
+                    }
+                }
+            }
+        }];
+        [self.keyBroadNotManager addKeyBroadNotificationWillShowBlock:^(UIView *view, CGFloat keyBroadHeight) {
+            if ([view isKindOfClass:UIView.class]) {
+                NSSet *set = [NSSet setWithSet:[LJKeyBroadEvent sharedInstance].responderSet];
+
+                for (LJKeyBraodResponderCallBlockModel *model in set) {
+                    if (model.animationWillShowBlock) {
+                        model.animationWillShowBlock(view, keyBroadHeight);
+                    }
+                }
+            }
+        }];
+        [self.keyBroadNotManager addKeyBroadNotificationDidShowBlock:^(UIView *view, CGFloat keyBroadHeight) {
+            if ([view isKindOfClass:UIView.class]) {
+                NSSet *set = [NSSet setWithSet:[LJKeyBroadEvent sharedInstance].responderSet];
+
+                for (LJKeyBraodResponderCallBlockModel *model in set) {
+                    if (model.animationDidShowBlock) {
+                        model.animationDidShowBlock(view, keyBroadHeight);
+                    }
+                }
+            }
+        }];
+        [self.keyBroadNotManager addKeyBroadNotificationWillHideBlock:^(UIView *view, CGFloat keyBroadHeight) {
+            if ([view isKindOfClass:UIView.class]) {
+                NSSet *set = [NSSet setWithSet:[LJKeyBroadEvent sharedInstance].responderSet];
+
+                for (LJKeyBraodResponderCallBlockModel *model in set) {
+                    if (model.animationWillHidenBlock) {
+                        model.animationWillHidenBlock(view, keyBroadHeight);
+                    }
+                }
+            }
+        }];
+        [self.keyBroadNotManager addKeyBroadNotificationDidHideBlock:^(UIView *view, CGFloat keyBroadHeight) {
+            if ([view isKindOfClass:UIView.class]) {
+                NSSet *set = [NSSet setWithSet:[LJKeyBroadEvent sharedInstance].responderSet];
+
+                for (LJKeyBraodResponderCallBlockModel *model in set) {
+                    if (model.animationDidHidenBlock) {
+                        model.animationDidHidenBlock(view, keyBroadHeight);
+                    }
+                }
+            }
+        }];
     });
 }
 
@@ -205,8 +239,9 @@
         [UIResponder configbecomeFirstResponderCallBackBlock:^BOOL (UIView *_Nonnull view) {
             if ([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]]) {
                 BOOL result = YES;
+                NSSet *set = [NSSet setWithSet:self.becomeFirstSet];
 
-                for (KeyBroadEventBecomeFirstCallBlock block in self.becomeFirstSet) {
+                for (KeyBroadEventBecomeFirstCallBlock block in set) {
                     result = block(view) && result;
                 }
 
@@ -217,7 +252,9 @@
         }];
         [UIResponder configresignFirstResponderCallBackBlock:^(UIView *_Nonnull view) {
             if ([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]]) {
-                for (KeyBroadEventreginFirstCallBlock Block in self.reginFirstSet) {
+                NSSet *set = [NSSet setWithSet:self.reginFirstSet];
+
+                for (KeyBroadEventreginFirstCallBlock Block in set) {
                     Block(view);
                 }
             }
@@ -225,7 +262,9 @@
 
         [UIResponder configbecomeFirstResponderResultCallBackBlock:^(UIView *view, BOOL result) {
             if ([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]]) {
-                for (KeyBroadEventBecomeFirstResultCallBlock Block in self.becomeFirstResultSet) {
+                NSSet *set = [NSSet setWithSet:self.becomeFirstResultSet];
+
+                for (KeyBroadEventBecomeFirstResultCallBlock Block in set) {
                     Block(view, result);
                 }
             }

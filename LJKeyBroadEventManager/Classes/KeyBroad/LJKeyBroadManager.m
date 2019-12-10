@@ -87,8 +87,14 @@
 }
 
 - (void)ShowKeyBroadWillAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
-    if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]])) && [self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
-        if ([self.responderNextSet isCurrentBecomeFirstNecessaryMove]) {} else {
+    if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]]))) {
+        if ([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]) {
+            if ([self.responderNextSet isCurrentView:view]) {
+                if ([self.responderNextSet isCurrentBecomeFirstNecessaryMove]) {} else {
+                    [self keyBroadFrameChange:view andkeyBroadHeight:keyBroadHeight];
+                }
+            }
+        } else {
             [self keyBroadFrameChange:view andkeyBroadHeight:keyBroadHeight];
         }
     }
@@ -99,14 +105,24 @@
 }
 
 - (void)keyBroadFrameChange:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
-    if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]])) && [self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
-        if ([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]] && self.object_keyBroad.isViewLoaded) {
-            [self.responderNextSet responderArrayRenewResponderLocation];
+    if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]]))) {
+        if ([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]) {
+            if ([self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
+                if ([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]] && self.object_keyBroad.isViewLoaded) {
+                    [self.responderNextSet responderArrayRenewResponderLocation];
 
-            [self.reloadTooBarUtil reloadLJKeyboardToolBarAndResponderModel:self.responderNextSet];
+                    [self.reloadTooBarUtil reloadLJKeyboardToolBarAndResponderModel:self.responderNextSet];
+                }
+
+                [self.moveOffsetManager moveOffsetKeyBroadHeight:keyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
+            }
+        } else {
+            BOOL result = [self ShowKeyBroad:view];
+
+            if (result) {
+                [self ShowKeyBroadWillAnimation:view andkeyBroadHeight:keyBroadHeight];
+            }
         }
-
-        [self.moveOffsetManager moveOffsetKeyBroadHeight:keyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
     }
 }
 

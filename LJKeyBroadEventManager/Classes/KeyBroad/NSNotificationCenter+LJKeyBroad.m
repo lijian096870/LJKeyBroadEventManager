@@ -85,6 +85,7 @@ static NSMutableDictionary  *DictionaryMostAfterBlock;
         [DictionaryMostAfterBlock setObject:array forKey:aName];
     }
 }
+
 + (void)removeNotificationMostBeforeName:(NSNotificationName)aName anyKey:(NSString *)deletkey {
     for (NSString *key in DictionaryMostBeforeBlock.allKeys) {
         if ([key isEqualToString:aName]) {
@@ -223,7 +224,7 @@ static NSMutableDictionary  *DictionaryMostAfterBlock;
 
     for (NSString *key in DictionaryMostBeforeBlock.allKeys) {
         if ([key isEqualToString:aName]) {
-            NSArray *array = [DictionaryMostBeforeBlock objectForKey:key];
+            NSArray *array = [NSArray arrayWithArray:[DictionaryMostBeforeBlock objectForKey:key]];
 
             for (NSNotificationCenterAfterBeforeModel *model in array) {
                 if (model.block) {
@@ -235,7 +236,7 @@ static NSMutableDictionary  *DictionaryMostAfterBlock;
 
     for (NSString *key in DictionaryBeforeBlock.allKeys) {
         if ([key isEqualToString:aName]) {
-            NSArray *array = [DictionaryBeforeBlock objectForKey:key];
+            NSArray *array = [NSArray arrayWithArray:[DictionaryBeforeBlock objectForKey:key]];
 
             for (NSNotificationCenterAfterBeforeModel *model in array) {
                 if (model.block) {
@@ -249,7 +250,7 @@ static NSMutableDictionary  *DictionaryMostAfterBlock;
 
     for (NSString *key in DictionaryAfterBlock.allKeys) {
         if ([key isEqualToString:aName]) {
-            NSArray *array = [DictionaryAfterBlock objectForKey:key];
+            NSArray *array = [NSArray arrayWithArray:[DictionaryBeforeBlock objectForKey:key]];
 
             for (NSNotificationCenterAfterBeforeModel *model in array) {
                 if (model.block) {
@@ -261,7 +262,7 @@ static NSMutableDictionary  *DictionaryMostAfterBlock;
 
     for (NSString *key in DictionaryMostAfterBlock.allKeys) {
         if ([key isEqualToString:aName]) {
-            NSArray *array = [DictionaryMostAfterBlock objectForKey:key];
+            NSArray *array = [NSArray arrayWithArray:[DictionaryMostAfterBlock objectForKey:key]];
 
             for (NSNotificationCenterAfterBeforeModel *model in array) {
                 if (model.block) {

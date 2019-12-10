@@ -59,10 +59,11 @@
                 responderNextSet.currentResponderModel.ExtensionToolBarHeight = 40;
             } else {
                 if ([textView.inputAccessoryView isKindOfClass:[LJKeyboardToolBar class]]) {
-                    textView.inputAccessoryView = [self reloadLJKeyboardToolBar:bar and:responderNextSet];
+                    textView.inputAccessoryView = [self reloadLJKeyboardToolBar:(LJKeyboardToolBar *)(textView.inputAccessoryView) and:responderNextSet];
                     responderNextSet.currentResponderModel.ExtensionToolBarHeight = 40;
                 } else {
-                    responderNextSet.currentResponderModel.ExtensionToolBarHeight = textView.inputAccessoryView.bounds.size.height;
+                    textView.inputAccessoryView = [self reloadLJKeyboardToolBar:bar and:responderNextSet];
+                    responderNextSet.currentResponderModel.ExtensionToolBarHeight = 40;
                 }
             }
         }
@@ -76,10 +77,11 @@
                 responderNextSet.currentResponderModel.ExtensionToolBarHeight = 40;
             } else {
                 if ([textView.inputAccessoryView isKindOfClass:[LJKeyboardToolBar class]]) {
-                    textView.inputAccessoryView = [self reloadLJKeyboardToolBar:bar and:responderNextSet];
+                    textView.inputAccessoryView = [self reloadLJKeyboardToolBar:(LJKeyboardToolBar *)(textView.inputAccessoryView) and:responderNextSet];
                     responderNextSet.currentResponderModel.ExtensionToolBarHeight = 40;
                 } else {
-                    responderNextSet.currentResponderModel.ExtensionToolBarHeight = textView.inputAccessoryView.bounds.size.height;
+                    textView.inputAccessoryView = [self reloadLJKeyboardToolBar:bar and:responderNextSet];
+                    responderNextSet.currentResponderModel.ExtensionToolBarHeight = 40;
                 }
             }
         }
@@ -119,26 +121,21 @@
         }
 
         if ([model.view isKindOfClass:UIView.class] && inputAccessoryView) {
-            if (NO) {
+            if ([inputAccessoryView isKindOfClass:LJKeyboardAccessViewRetainResponderView.class]) {
                 [(LJKeyboardAccessViewRetainResponderView *)inputAccessoryView configResponderView:model.view];
             } else {
-                
-                
                 [inputAccessoryView setKeyBroadInputAccessoryViewRelateResponderView_view:model.view];
 
-                AddWindowDidAddKeyBlock(inputAccessoryView, @"_LJKeyboardReloadToolBar", ^(UIView *view) {
-                    NSLog(@"1111111111,%@", [view keyBroadInputAccessoryViewRelateResponderView_view]);
-
+                AddWindowWillAddKeyBlock(inputAccessoryView, @"_LJKeyboardReloadToolBar", ^(UIView *view) {
                     UIView *responderView = [view keyBroadInputAccessoryViewRelateResponderView_view];
 
                     if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
+                        [view setKeyBroadInputAccessoryViewRelateResponderView_view:responderView];
                         [view.KeyBroadInputAccessoryViewRelateResponderModel_view startLister];
                     }
                 });
 
                 AddWindowDidMoveKeyBlock(inputAccessoryView, @"_LJKeyboardReloadToolBar", ^(UIView *view) {
-                    NSLog(@"22222222222");
-
                     [view.KeyBroadInputAccessoryViewRelateResponderModel_view endLister];
                     [view setKeyBroadInputAccessoryViewRelateResponderView_view:nil];
                 });

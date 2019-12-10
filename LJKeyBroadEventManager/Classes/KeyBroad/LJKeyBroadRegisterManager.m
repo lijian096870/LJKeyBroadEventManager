@@ -140,7 +140,7 @@
         }
     }
 
-    return false;
+    return NO;
 }
 
 - (NSMutableSet *)set {

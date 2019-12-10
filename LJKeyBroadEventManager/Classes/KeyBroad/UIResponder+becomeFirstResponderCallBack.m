@@ -115,7 +115,7 @@ static __weak UIResponder *lj_currentFirstResponder;
                 } else {
                     BOOL canBeFirst = YES;
 
-                    for (becomeFirstResponderCallBackBlock block in becomeFirstResponderCallBackBlockArray) {
+                    for (becomeFirstResponderCallBackBlock block in [NSArray arrayWithArray:becomeFirstResponderCallBackBlockArray]) {
                         canBeFirst = block((UIView *)self) && canBeFirst;
                     }
 
@@ -126,7 +126,7 @@ static __weak UIResponder *lj_currentFirstResponder;
 
                         self.keyBroad_FirstResponder_info.isFirstResponder = result;
 
-                        for (becomeFirstResponderResultCallBackBlock block in becomeFirstResponderResultCallBackBlockArray) {
+                        for (becomeFirstResponderResultCallBackBlock block in [NSArray arrayWithArray:becomeFirstResponderResultCallBackBlockArray]) {
                             if (block) {
                                 block((UIView *)self, result);
                             }
@@ -147,7 +147,7 @@ static __weak UIResponder *lj_currentFirstResponder;
             } else {
                 BOOL canBeFirst = YES;
 
-                for (becomeFirstResponderCallBackBlock block in becomeFirstResponderCallBackBlockArray) {
+                for (becomeFirstResponderCallBackBlock block in [NSArray arrayWithArray:becomeFirstResponderCallBackBlockArray]) {
                     canBeFirst = block((UIView *)self) && canBeFirst;
                 }
 
@@ -172,7 +172,7 @@ static __weak UIResponder *lj_currentFirstResponder;
         if (self.keyBroad_FirstResponder_info.isFirstResponder) {
             self.keyBroad_FirstResponder_info.isFirstResponder = false;
 
-            for (resignFirstResponderCallBackBlock block in resignFirstResponderCallBackBlockArray) {
+            for (resignFirstResponderCallBackBlock block in [NSArray arrayWithArray:resignFirstResponderCallBackBlockArray]) {
                 block((UIView *)self);
             }
         }

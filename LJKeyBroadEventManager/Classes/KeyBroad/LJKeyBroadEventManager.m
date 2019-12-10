@@ -52,3 +52,22 @@ void configShowExtensionToolBar(BOOL show)
 {
     [LJkeyBroadConfig sharedInstance].showExtensionToolBar = show;
 }
+
+@interface LJKeyBroadEventManager : NSObject
+
+@end
+
+@implementation LJKeyBroadEventManager
+
++(void)registerKeyBroadResponder:(UIViewController <LJKeyboardManagerDelegate> *)viewController{
+    
+    registerKeyBroadResponder(viewController);
+    
+}
+
++(void)removeKeyBroadResponder:(UIViewController <LJKeyboardManagerDelegate> *)viewController{
+    
+    registerKeyBroadResponder(viewController);
+}
+
+@end

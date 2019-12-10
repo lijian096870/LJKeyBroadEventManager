@@ -65,9 +65,9 @@
 - (void)receivePostBefore:(NSString *)aName aUserInfo:(NSDictionary *)dictionary AndResponderView:(UIView *)responder {
     if ([responder isKindOfClass:UIView.class]) {
         if ([aName isEqualToString:UIKeyboardWillHideNotification] || [aName isEqualToString:UIKeyboardDidHideNotification] || [aName isEqualToString:UIKeyboardWillChangeFrameNotification]) {
-            for (NSString *key in self.postBlockDictionary.allKeys) {
+            for (NSString *key in [NSArray arrayWithArray:self.postBlockDictionary.allKeys]) {
                 if ([key isEqualToString:aName]) {
-                    NSArray *array = [self.postBlockDictionary objectForKey:key];
+                    NSArray *array = [NSArray arrayWithArray:[self.postBlockDictionary objectForKey:key]];
 
                     if (array.count > 0) {
                         for (NSString *NotKey in dictionary.allKeys) {
@@ -98,9 +98,9 @@
     if ([responder isKindOfClass:UIView.class]) {
         if ([aName isEqualToString:UIKeyboardWillShowNotification] || [aName isEqualToString:UIKeyboardDidShowNotification]) {
         
-            for (NSString *key in self.postBlockDictionary.allKeys) {
+            for (NSString *key in [NSArray arrayWithArray:self.postBlockDictionary.allKeys]) {
                 if ([key isEqualToString:aName]) {
-                    NSArray *array = [self.postBlockDictionary objectForKey:key];
+                    NSArray *array = [NSArray arrayWithArray:[self.postBlockDictionary objectForKey:key]];
 
                     if (array.count > 0) {
                         for (NSString *NotKey in dictionary.allKeys) {

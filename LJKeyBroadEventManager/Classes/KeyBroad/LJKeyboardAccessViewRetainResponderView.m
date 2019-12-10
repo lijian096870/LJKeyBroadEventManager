@@ -57,20 +57,21 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
     }
 }
 
-- (void)viewDidAdd {
-    UIView *responderView = [self keyBroadInputAccessoryViewRelateResponderView];
-
-    if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
-        [self.KeyBroadInputAccessoryViewRelateResponderModel startLister];
-    }
-}
+- (void)viewDidAdd {}
 
 - (void)viewDidMove {
     [self.KeyBroadInputAccessoryViewRelateResponderModel endLister];
     [self setKeyBroadInputAccessoryViewRelateResponderView:nil];
 }
 
-- (void)viewWillAdd {}
+- (void)viewWillAdd {
+    UIView *responderView = [self keyBroadInputAccessoryViewRelateResponderView];
+
+    if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
+        [self setKeyBroadInputAccessoryViewRelateResponderView:responderView];
+        [self.KeyBroadInputAccessoryViewRelateResponderModel startLister];
+    }
+}
 
 - (void)viewWillMove {}
 
