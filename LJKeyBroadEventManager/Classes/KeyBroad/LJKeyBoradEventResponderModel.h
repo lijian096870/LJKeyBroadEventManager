@@ -29,6 +29,10 @@
 - (void)HiddenBroadDidAnimation:(UIView *)view;
 
 
+- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view;
+
+- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view;
+
 - (void)configDestroyBlock:(dispatch_block_t)dellocBlock;
 
 @end

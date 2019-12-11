@@ -186,6 +186,16 @@
     }
 }
 
+- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view{
+    
+}
+
+- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view{
+    
+    
+    
+}
+
 - (void)configLJKeyboardToolBar:(LJKeyBroadRespoderNextSet *)responderNextSet {
     [self.reloadTooBarUtil configLJKeyboardToolBar:responderNextSet andNewToolBar:[self MadeToolBar:CGRectMake(0, 0, responderNextSet.currentResponderModel.window.bounds.size.width, 40)]];
 

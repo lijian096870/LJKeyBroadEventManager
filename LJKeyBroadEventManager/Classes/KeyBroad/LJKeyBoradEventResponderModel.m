@@ -10,8 +10,6 @@
 #import "NSNotificationCenter+LJKeyBroad.h"
 #import "KeyBroadRandString.h"
 
-
-
 @interface LJKeyBoradEventResponderModel ()
 
 @property(nonatomic, weak) UIViewController *object_keyBroad;
@@ -114,7 +112,17 @@
     }
 }
 
+- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {
+    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class] && [view isKindOfClass:UIView.class]) {
+        [self.object_keyBroad.NSObject_KeyBoradManager_info ShowkeyBroadInputAccessoryViewRelateCallBlock:view];
+    }
+}
 
+- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {
+    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class] && [view isKindOfClass:UIView.class]) {
+        [self.object_keyBroad.NSObject_KeyBoradManager_info HiddenkeyBroadInputAccessoryViewRelateCallBlock:view];
+    }
+}
 
 - (void)configDestroyBlock:(dispatch_block_t)dellocBlock {
     self.dellocBlock = dellocBlock;

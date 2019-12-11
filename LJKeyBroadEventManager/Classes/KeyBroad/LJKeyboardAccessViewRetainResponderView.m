@@ -7,11 +7,20 @@
 
 #import "LJKeyboardAccessViewRetainResponderView.h"
 #import "LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel.h"
+#import "LJKeyBroadRegisterManager.h"
 typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
     LJKeyBroadViewNone,
     LJKeyBroadViewAdd,
     LJKeyBroadViewMove,
 };
+
+@interface LJKeyBroadRegisterManager ()
+
+- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view;
+
+- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view;
+
+@end
 
 @interface LJKeyboardAccessViewRetainResponderView ()
 
@@ -60,6 +69,12 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
 - (void)viewDidAdd {}
 
 - (void)viewDidMove {
+    UIView *responderView = [self keyBroadInputAccessoryViewRelateResponderView];
+
+    if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
+        [[LJKeyBroadRegisterManager sharedInstance] HiddenkeyBroadInputAccessoryViewRelateCallBlock:responderView];
+    }
+
     [self.KeyBroadInputAccessoryViewRelateResponderModel endLister];
     [self setKeyBroadInputAccessoryViewRelateResponderView:nil];
 }
@@ -68,6 +83,8 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
     UIView *responderView = [self keyBroadInputAccessoryViewRelateResponderView];
 
     if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
+        [[LJKeyBroadRegisterManager sharedInstance]ShowkeyBroadInputAccessoryViewRelateCallBlock:responderView];
+
         [self setKeyBroadInputAccessoryViewRelateResponderView:responderView];
         [self.KeyBroadInputAccessoryViewRelateResponderModel startLister];
     }

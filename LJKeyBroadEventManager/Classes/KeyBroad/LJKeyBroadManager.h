@@ -27,4 +27,8 @@
 - (void)HiddenBroadDidAnimation:(UIView *)view;
 
 
+- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view;
+
+- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view;
+
 @end

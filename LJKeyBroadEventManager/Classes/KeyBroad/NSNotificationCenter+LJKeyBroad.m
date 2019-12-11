@@ -14,13 +14,6 @@ static NSMutableDictionary  *DictionaryAfterBlock;
 static NSMutableDictionary  *DictionaryMostBeforeBlock;
 static NSMutableDictionary  *DictionaryMostAfterBlock;
 
-@interface UIViewController ()
-
-+ (void)KeyBroad_runPostBlockBefore:(NSDictionary *)dictionary AndPostName:(NSString *)Name;
-+ (void)KeyBroad_runPostBlockAfter:(NSDictionary *)dictionary AndPostName:(NSString *)Name;
-
-@end
-
 @interface NSNotificationCenterAfterBeforeModel : NSObject
 
 @property(nonatomic, copy) NotificationAfterBeforeBlock block;
@@ -218,10 +211,6 @@ static NSMutableDictionary  *DictionaryMostAfterBlock;
 }
 
 - (void)customer_AfterAndBefore_postNotificationName:(NSNotificationName)aName object:(id)anObject userInfo:(NSDictionary *)aUserInfo {
-    if ([UIViewController respondsToSelector:@selector(KeyBroad_runPostBlockBefore:AndPostName:)]) {
-        [UIViewController KeyBroad_runPostBlockBefore:aUserInfo AndPostName:aName];
-    }
-
     for (NSString *key in DictionaryMostBeforeBlock.allKeys) {
         if ([key isEqualToString:aName]) {
             NSArray *array = [NSArray arrayWithArray:[DictionaryMostBeforeBlock objectForKey:key]];
@@ -270,10 +259,6 @@ static NSMutableDictionary  *DictionaryMostAfterBlock;
                 }
             }
         }
-    }
-
-    if ([UIViewController respondsToSelector:@selector(KeyBroad_runPostBlockAfter:AndPostName:)]) {
-        [UIViewController KeyBroad_runPostBlockAfter:aUserInfo AndPostName:aName];
     }
 }
 

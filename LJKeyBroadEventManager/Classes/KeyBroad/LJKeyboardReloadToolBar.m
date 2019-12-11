@@ -12,8 +12,17 @@
 #import "UIViewController+KeyBoradManager.h"
 #import "LJViewControllerManager.h"
 #import "UIViewController+KeyBoradManager.h"
+#import "LJKeyBroadRegisterManager.h"
 #import "UIView+LJKeyBroadInputAccessoryViewRelateResponderView.h"
 @interface UIViewController () <LJKeyboardManagerDelegate>
+
+@end
+
+@interface LJKeyBroadRegisterManager ()
+
+- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view;
+
+- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view;
 
 @end
 
@@ -130,12 +139,20 @@
                     UIView *responderView = [view keyBroadInputAccessoryViewRelateResponderView_view];
 
                     if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
+                        [[LJKeyBroadRegisterManager sharedInstance] ShowkeyBroadInputAccessoryViewRelateCallBlock:responderView];
+
                         [view setKeyBroadInputAccessoryViewRelateResponderView_view:responderView];
                         [view.KeyBroadInputAccessoryViewRelateResponderModel_view startLister];
                     }
                 });
 
                 AddWindowDidMoveKeyBlock(inputAccessoryView, @"_LJKeyboardReloadToolBar", ^(UIView *view) {
+                    UIView *responderView = [view keyBroadInputAccessoryViewRelateResponderView_view];
+
+                    if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
+                        [[LJKeyBroadRegisterManager sharedInstance] HiddenkeyBroadInputAccessoryViewRelateCallBlock:responderView];
+                    }
+
                     [view.KeyBroadInputAccessoryViewRelateResponderModel_view endLister];
                     [view setKeyBroadInputAccessoryViewRelateResponderView_view:nil];
                 });

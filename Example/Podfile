@@ -1,4 +1,5 @@
-# Uncomment the next line to define a global platform for your project
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://gitee.com/1358756992lijian/lijianPrivateSpecs.git'
 # platform :ios, '8.0'
 
 target 'LJKeyBroadEventManager' do
@@ -9,6 +10,7 @@ target 'LJKeyBroadEventManager' do
 
 
 pod 'LJViewKit', '~> 2.1.10'
+
   # Pods for LJKeyBroadEventManager
 
 end

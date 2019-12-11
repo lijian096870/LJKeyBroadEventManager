@@ -133,6 +133,30 @@
     }
 }
 
+- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {
+    if ([view isKindOfClass:UITextField.class] || [view isKindOfClass:UITextView.class]) {
+        UIViewController *responderViewController = viewGetSuperController(view);
+
+        if ([responderViewController isKindOfClass:UIViewController.class]) {
+            if ([self isRegister:responderViewController.keyBroad_mess_uniqueID]) {
+                [responderViewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowkeyBroadInputAccessoryViewRelateCallBlock:view];
+            }
+        }
+    }
+}
+
+- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {
+    if ([view isKindOfClass:UITextField.class] || [view isKindOfClass:UITextView.class]) {
+        UIViewController *responderViewController = viewGetSuperController(view);
+
+        if ([responderViewController isKindOfClass:UIViewController.class]) {
+            if ([self isRegister:responderViewController.keyBroad_mess_uniqueID]) {
+                [responderViewController.NSObject_KeyBoradEventResponderModel_viewController_info HiddenkeyBroadInputAccessoryViewRelateCallBlock:view];
+            }
+        }
+    }
+}
+
 - (BOOL)isRegister:(NSString *)key {
     for (NSString *object in self.set) {
         if ([key isEqualToString:object]) {
