@@ -26,16 +26,24 @@
 
 @property(nonatomic, strong) NSNumber *listerStatue;
 
+@property(nonatomic, strong) NSNumber *lockShowNot;
+
 @end
 
 @implementation LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel
 
 - (void)startLister {
     self.listerStatue = [NSNumber numberWithBool:YES];
+    self.lockShowNot = [NSNumber numberWithBool:YES];
+}
+
+- (void)lockCantShowStatue {
+    self.lockShowNot = [NSNumber numberWithBool:NO];
 }
 
 - (void)endLister {
     self.listerStatue = [NSNumber numberWithBool:NO];
+    self.lockShowNot = [NSNumber numberWithBool:NO];
 }
 
 - (instancetype)initWithKeyeBroadInputViewController:(UIView *)rootView
@@ -55,7 +63,7 @@
 
     [NSNotificationCenter registerNotificationMostAfterBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
         if (weakSelf && [weakSelf isKindOfClass:LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel.class]) {
-            if (weakSelf.responderView && [weakSelf.responderView isKindOfClass:UIView.class] && [weakSelf.rootView isKindOfClass:UIView.class] && [weakSelf.listerStatue boolValue]) {
+            if (weakSelf.responderView && [weakSelf.responderView isKindOfClass:UIView.class] && [weakSelf.rootView isKindOfClass:UIView.class] && [weakSelf.listerStatue boolValue] && [weakSelf.lockShowNot boolValue]) {
                 [[LJKeyBroadPostRunBlockModel sharedInstance] receivePostAfter:aName aUserInfo:aUserInfo AndResponderView:weakSelf.responderView];
             }
         }
@@ -70,7 +78,7 @@
     } AndName:UIKeyboardWillHideNotification anyKey:self.randStringID];
     [NSNotificationCenter registerNotificationMostAfterBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
         if (weakSelf && [weakSelf isKindOfClass:LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel.class]) {
-            if (weakSelf.responderView && [weakSelf.responderView isKindOfClass:UIView.class] && [weakSelf.rootView isKindOfClass:UIView.class] && [weakSelf.listerStatue boolValue]) {
+            if (weakSelf.responderView && [weakSelf.responderView isKindOfClass:UIView.class] && [weakSelf.rootView isKindOfClass:UIView.class] && [weakSelf.listerStatue boolValue] && [weakSelf.lockShowNot boolValue]) {
                 [[LJKeyBroadPostRunBlockModel sharedInstance] receivePostAfter:aName aUserInfo:aUserInfo AndResponderView:weakSelf.responderView];
             }
         }
@@ -78,7 +86,7 @@
 
     [NSNotificationCenter registerNotificationMostAfterBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
         if (weakSelf && [weakSelf isKindOfClass:LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel.class]) {
-            if (weakSelf.responderView && [weakSelf.responderView isKindOfClass:UIView.class] && [weakSelf.rootView isKindOfClass:UIView.class] && [weakSelf.listerStatue boolValue]) {
+            if (weakSelf.responderView && [weakSelf.responderView isKindOfClass:UIView.class] && [weakSelf.rootView isKindOfClass:UIView.class] && [weakSelf.listerStatue boolValue] && [weakSelf.lockShowNot boolValue]) {
                 [[LJKeyBroadPostRunBlockModel sharedInstance] receivePostAfter:aName aUserInfo:aUserInfo AndResponderView:weakSelf.responderView];
             }
         }
@@ -93,7 +101,7 @@
     } AndName:UIKeyboardDidHideNotification anyKey:self.randStringID];
     [NSNotificationCenter registerNotificationMostAfterBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
         if (weakSelf && [weakSelf isKindOfClass:LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel.class]) {
-            if (weakSelf.responderView && [weakSelf.responderView isKindOfClass:UIView.class] && [weakSelf.rootView isKindOfClass:UIView.class] && [weakSelf.listerStatue boolValue]) {
+            if (weakSelf.responderView && [weakSelf.responderView isKindOfClass:UIView.class] && [weakSelf.rootView isKindOfClass:UIView.class] && [weakSelf.listerStatue boolValue] && [weakSelf.lockShowNot boolValue]) {
                 [[LJKeyBroadPostRunBlockModel sharedInstance] receivePostAfter:aName aUserInfo:aUserInfo AndResponderView:weakSelf.responderView];
             }
         }
@@ -101,7 +109,7 @@
 
     [NSNotificationCenter registerNotificationMostBeforeBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
         if (weakSelf && [weakSelf isKindOfClass:LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel.class]) {
-            if (weakSelf.responderView && [weakSelf.responderView isKindOfClass:UIView.class] && [weakSelf.rootView isKindOfClass:UIView.class] && [weakSelf.listerStatue boolValue]) {
+            if (weakSelf.responderView && [weakSelf.responderView isKindOfClass:UIView.class] && [weakSelf.rootView isKindOfClass:UIView.class] && [weakSelf.listerStatue boolValue] && [weakSelf.lockShowNot boolValue]) {
                 [[LJKeyBroadPostRunBlockModel sharedInstance] receivePostBefore:aName aUserInfo:aUserInfo AndResponderView:weakSelf.responderView];
             }
         }
@@ -116,7 +124,7 @@
     } AndName:UIKeyboardWillHideNotification anyKey:self.randStringID];
     [NSNotificationCenter registerNotificationMostBeforeBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
         if (weakSelf && [weakSelf isKindOfClass:LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel.class]) {
-            if (weakSelf.responderView && [weakSelf.responderView isKindOfClass:UIView.class] && [weakSelf.rootView isKindOfClass:UIView.class] && [weakSelf.listerStatue boolValue]) {
+            if (weakSelf.responderView && [weakSelf.responderView isKindOfClass:UIView.class] && [weakSelf.rootView isKindOfClass:UIView.class] && [weakSelf.listerStatue boolValue] && [weakSelf.lockShowNot boolValue]) {
                 [[LJKeyBroadPostRunBlockModel sharedInstance] receivePostBefore:aName aUserInfo:aUserInfo AndResponderView:weakSelf.responderView];
             }
         }
@@ -124,7 +132,7 @@
 
     [NSNotificationCenter registerNotificationMostBeforeBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
         if (weakSelf && [weakSelf isKindOfClass:LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel.class]) {
-            if (weakSelf.responderView && [weakSelf.responderView isKindOfClass:UIView.class] && [weakSelf.rootView isKindOfClass:UIView.class] && [weakSelf.listerStatue boolValue]) {
+            if (weakSelf.responderView && [weakSelf.responderView isKindOfClass:UIView.class] && [weakSelf.rootView isKindOfClass:UIView.class] && [weakSelf.listerStatue boolValue] && [weakSelf.lockShowNot boolValue]) {
                 [[LJKeyBroadPostRunBlockModel sharedInstance] receivePostBefore:aName aUserInfo:aUserInfo AndResponderView:weakSelf.responderView];
             }
         }
@@ -140,7 +148,7 @@
 
     [NSNotificationCenter registerNotificationMostBeforeBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
         if (weakSelf && [weakSelf isKindOfClass:LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel.class]) {
-            if (weakSelf.responderView && [weakSelf.responderView isKindOfClass:UIView.class] && [weakSelf.rootView isKindOfClass:UIView.class] && [weakSelf.listerStatue boolValue]) {
+            if (weakSelf.responderView && [weakSelf.responderView isKindOfClass:UIView.class] && [weakSelf.rootView isKindOfClass:UIView.class] && [weakSelf.listerStatue boolValue] && [weakSelf.lockShowNot boolValue]) {
                 [[LJKeyBroadPostRunBlockModel sharedInstance] receivePostBefore:aName aUserInfo:aUserInfo AndResponderView:weakSelf.responderView];
             }
         }
@@ -161,6 +169,14 @@
     }
 
     return _listerStatue;
+}
+
+- (NSNumber *)lockShowNot {
+    if (_lockShowNot == nil) {
+        _lockShowNot = [NSNumber numberWithBool:NO];
+    }
+
+    return _lockShowNot;
 }
 
 - (void)setResponderView:(UIView *)responderView {

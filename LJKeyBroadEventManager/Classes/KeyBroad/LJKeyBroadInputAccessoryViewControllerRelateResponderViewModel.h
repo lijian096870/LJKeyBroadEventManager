@@ -17,6 +17,8 @@
 
 - (void)startLister;
 
+- (void)lockCantShowStatue;
+
 - (void)endLister;
 
 @end

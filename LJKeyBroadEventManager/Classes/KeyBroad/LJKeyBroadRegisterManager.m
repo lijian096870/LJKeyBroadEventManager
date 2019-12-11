@@ -11,9 +11,8 @@
 #import "LJKeyBroadEvent.h"
 #import "LJKeyBroadEventManager.h"
 #import "LJkeyBroadConfig.h"
-#import "UIResponder+becomeFirstResponderCallBack.h"
 #import "LJViewControllerManager.h"
-
+#import "UIView+LJKeyBroadInputAccessoryViewRelateResponderView.h"
 @interface LJKeyBroadRegisterManager ()
 
 @property(nonatomic, strong) NSMutableSet *set;
@@ -73,27 +72,33 @@
                 }
             }
         } AndViewAnimationBlock:^(UIView *view, CGFloat keyBroadHeight) {
-            UIViewController *viewController = viewGetSuperController(view);
+            if ([self canShowEvent:view]) {
+                UIViewController *viewController = viewGetSuperController(view);
 
-            if ([viewController isKindOfClass:[UIViewController class]]) {
-                if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
-                    [viewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowKeyBroadWillAnimation:view andkeyBroadHeight:keyBroadHeight];
+                if ([viewController isKindOfClass:[UIViewController class]]) {
+                    if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
+                        [viewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowKeyBroadWillAnimation:view andkeyBroadHeight:keyBroadHeight];
+                    }
                 }
             }
         }  AndViewAnimationBlock:^(UIView *view, CGFloat keyBroadHeight) {
-            UIViewController *viewController = viewGetSuperController(view);
+            if ([self canShowEvent:view]) {
+                UIViewController *viewController = viewGetSuperController(view);
 
-            if ([viewController isKindOfClass:[UIViewController class]]) {
-                if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
-                    [viewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowKeyBroadDidAnimation:view andkeyBroadHeight:keyBroadHeight];
+                if ([viewController isKindOfClass:[UIViewController class]]) {
+                    if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
+                        [viewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowKeyBroadDidAnimation:view andkeyBroadHeight:keyBroadHeight];
+                    }
                 }
             }
         } AndFrameChangeBlock:^(UIView *view, CGFloat keyBroadHeight) {
-            UIViewController *viewController = viewGetSuperController(view);
+            if ([self canShowEvent:view]) {
+                UIViewController *viewController = viewGetSuperController(view);
 
-            if ([viewController isKindOfClass:[UIViewController class]]) {
-                if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
-                    [viewController.NSObject_KeyBoradEventResponderModel_viewController_info keyBroadFrameChange:view andkeyBroadHeight:keyBroadHeight];
+                if ([viewController isKindOfClass:[UIViewController class]]) {
+                    if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
+                        [viewController.NSObject_KeyBoradEventResponderModel_viewController_info keyBroadFrameChange:view andkeyBroadHeight:keyBroadHeight];
+                    }
                 }
             }
         } HidenEvent:^(UIView *view) {
@@ -105,19 +110,23 @@
                 }
             }
         } AndViewWillHidenAnimationBlock:^(UIView *view, CGFloat keyBroadHeight) {
-            UIViewController *viewController = viewGetSuperController(view);
+            if ([self canHidenEvent:view]) {
+                UIViewController *viewController = viewGetSuperController(view);
 
-            if ([viewController isKindOfClass:[UIViewController class]]) {
-                if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
-                    [viewController.NSObject_KeyBoradEventResponderModel_viewController_info HiddenBroadWillAnimation:view];
+                if ([viewController isKindOfClass:[UIViewController class]]) {
+                    if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
+                        [viewController.NSObject_KeyBoradEventResponderModel_viewController_info HiddenBroadWillAnimation:view];
+                    }
                 }
             }
         } AndViewDidHidenAnimationBlock:^(UIView *view, CGFloat keyBroadHeight) {
-            UIViewController *viewController = viewGetSuperController(view);
+            if ([self canHidenEvent:view]) {
+                UIViewController *viewController = viewGetSuperController(view);
 
-            if ([viewController isKindOfClass:[UIViewController class]]) {
-                if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
-                    [viewController.NSObject_KeyBoradEventResponderModel_viewController_info HiddenBroadDidAnimation:view];
+                if ([viewController isKindOfClass:[UIViewController class]]) {
+                    if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
+                        [viewController.NSObject_KeyBoradEventResponderModel_viewController_info HiddenBroadDidAnimation:view];
+                    }
                 }
             }
         }];
@@ -134,26 +143,46 @@
 }
 
 - (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {
-    if ([view isKindOfClass:UITextField.class] || [view isKindOfClass:UITextView.class]) {
-        UIViewController *responderViewController = viewGetSuperController(view);
+    if ([self canShowEvent:view]) {
+        if ([view isKindOfClass:UITextField.class] || [view isKindOfClass:UITextView.class]) {
+            UIViewController *responderViewController = viewGetSuperController(view);
 
-        if ([responderViewController isKindOfClass:UIViewController.class]) {
-            if ([self isRegister:responderViewController.keyBroad_mess_uniqueID]) {
-                [responderViewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowkeyBroadInputAccessoryViewRelateCallBlock:view];
+            if ([responderViewController isKindOfClass:UIViewController.class]) {
+                if ([self isRegister:responderViewController.keyBroad_mess_uniqueID]) {
+                    [responderViewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowkeyBroadInputAccessoryViewRelateCallBlock:view];
+                }
             }
         }
     }
 }
 
 - (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {
-    if ([view isKindOfClass:UITextField.class] || [view isKindOfClass:UITextView.class]) {
-        UIViewController *responderViewController = viewGetSuperController(view);
+    if ([self canHidenEvent:view]) {
+        if ([view isKindOfClass:UITextField.class] || [view isKindOfClass:UITextView.class]) {
+            UIViewController *responderViewController = viewGetSuperController(view);
 
-        if ([responderViewController isKindOfClass:UIViewController.class]) {
-            if ([self isRegister:responderViewController.keyBroad_mess_uniqueID]) {
-                [responderViewController.NSObject_KeyBoradEventResponderModel_viewController_info HiddenkeyBroadInputAccessoryViewRelateCallBlock:view];
+            if ([responderViewController isKindOfClass:UIViewController.class]) {
+                if ([self isRegister:responderViewController.keyBroad_mess_uniqueID]) {
+                    [responderViewController.NSObject_KeyBoradEventResponderModel_viewController_info HiddenkeyBroadInputAccessoryViewRelateCallBlock:view];
+                }
             }
         }
+    }
+}
+
+- (BOOL)canShowEvent:(UIView *)view {
+    if ([view isKindOfClass:UITextField.class] || [view isKindOfClass:UITextView.class]) {
+        return [view.keyBroadInputResponderViewEventControl_view canResponderShowEvent];
+    } else {
+        return NO;
+    }
+}
+
+- (BOOL)canHidenEvent:(UIView *)view {
+    if ([view isKindOfClass:UITextField.class] || [view isKindOfClass:UITextView.class]) {
+        return [view.keyBroadInputResponderViewEventControl_view canResponderHidenEvent];
+    } else {
+        return NO;
     }
 }
 

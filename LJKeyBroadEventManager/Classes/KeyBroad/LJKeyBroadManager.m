@@ -186,14 +186,21 @@
     }
 }
 
-- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view{
-    
+- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {
+    if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]]))) {
+        if ([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]) {} else {
+            [self ShowKeyBroad:view];
+        }
+    }
 }
 
-- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view{
-    
-    
-    
+- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {
+    if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]])) && [self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isCurrentView:view] && ([[NSNumber numberWithFloat:self.moveOffsetManager.keyBroadHeight] floatValue] > 0.0)) {
+        [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            [self.moveOffsetManager endEditResponderModel:self.responderNextSet.currentResponderModel];
+            self.responderNextSet = nil;
+        } completion:^(BOOL finished) {}];
+    }
 }
 
 - (void)configLJKeyboardToolBar:(LJKeyBroadRespoderNextSet *)responderNextSet {

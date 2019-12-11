@@ -10,7 +10,6 @@
 #import "TestTableViewCell.h"
 #import "LJKeyBroadEventManager.h"
 #import "LJViewKit.h"
-#import "LJAlertViewKit.h"
 #import "UIView+FromeXib.h"
 #import "LJkeyBroadtestView.h"
 @interface TestViewController ()<UITableViewDelegate,UITableViewDataSource,LJKeyboardManagerDelegate>
@@ -55,7 +54,7 @@
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         LJkeyBroadtestView *alertView = [LJkeyBroadtestView FromeXib];
-        PopViewAnimated(self.view.window, alertView, YES, NO, nil, 0.0, nil, nil);
+//        PopViewAnimated(self.view.window, alertView, YES, NO, nil, 0.0, nil, nil);
         
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
