@@ -170,9 +170,9 @@
                 if ([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]]) {
                     [self.responderNextSet responderArrayRenewResponderLocation];
                 }
-
-                [self.moveOffsetManager moveOffsetKeyBroadHeight:keyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
             }
+
+            [self.moveOffsetManager moveOffsetKeyBroadHeight:keyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
         }
     }
 }

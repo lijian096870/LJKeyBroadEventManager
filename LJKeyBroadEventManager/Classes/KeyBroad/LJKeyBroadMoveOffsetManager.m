@@ -129,7 +129,7 @@
 }
 
 - (CGFloat)moveOffset {
-    return [self.moveOffsetNumber floatValue];
+    return fabs([self.moveOffsetNumber floatValue]);
 }
 
 - (NSNumber *)keyBroadHeightNumber {
