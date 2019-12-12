@@ -9,6 +9,8 @@
 
 @interface LJKeyBroadInputResponderViewEventControl : NSObject
 
+- (instancetype)initWithmasterView:(UIView *)view;
+
 - (void)beginResponderAllEvent;
 
 - (void)endResponderAllEvent;
@@ -20,5 +22,9 @@
 - (BOOL)canResponderHidenEvent;
 
 - (BOOL)canResponderShowEvent;
+
+- (BOOL)canWindowRotateTimeHidenEvent;
+
+- (BOOL)canwindowRotateTimeShowEvent;
 
 @end

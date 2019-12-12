@@ -19,7 +19,6 @@
 
 - (void)ShowKeyBroadDidAnimation:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
 
-
 - (void)keyBroadFrameChange:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
 
 - (void)HiddenKeyBroad:(UIView *)view;
@@ -28,6 +27,13 @@
 
 - (void)HiddenBroadDidAnimation:(UIView *)view;
 
+- (void)windowRotateTimeKeyBroadWillShow:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
+
+- (void)windowRotateTimeKeyBroadDidShow:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
+
+- (void)windowRotateTimeKeyBroadChangeFrameShow:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight;
+
+- (void)windowRotateTimeKeyBroadHiden:(UIView *)view;
 
 - (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view;
 

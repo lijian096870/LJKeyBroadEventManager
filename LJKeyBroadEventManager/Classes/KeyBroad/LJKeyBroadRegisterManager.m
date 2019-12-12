@@ -80,6 +80,14 @@
                         [viewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowKeyBroadWillAnimation:view andkeyBroadHeight:keyBroadHeight];
                     }
                 }
+            } else if ([self canWindowRotateShowEvent:view]) {
+                UIViewController *viewController = viewGetSuperController(view);
+
+                if ([viewController isKindOfClass:[UIViewController class]]) {
+                    if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
+                        [viewController.NSObject_KeyBoradEventResponderModel_viewController_info windowRotateTimeKeyBroadWillShow:view andkeyBroadHeight:keyBroadHeight];
+                    }
+                }
             }
         }  AndViewAnimationBlock:^(UIView *view, CGFloat keyBroadHeight) {
             if ([self canShowEvent:view]) {
@@ -90,6 +98,14 @@
                         [viewController.NSObject_KeyBoradEventResponderModel_viewController_info ShowKeyBroadDidAnimation:view andkeyBroadHeight:keyBroadHeight];
                     }
                 }
+            } else if ([self canWindowRotateShowEvent:view]) {
+                UIViewController *viewController = viewGetSuperController(view);
+
+                if ([viewController isKindOfClass:[UIViewController class]]) {
+                    if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
+                        [viewController.NSObject_KeyBoradEventResponderModel_viewController_info windowRotateTimeKeyBroadDidShow:view andkeyBroadHeight:keyBroadHeight];
+                    }
+                }
             }
         } AndFrameChangeBlock:^(UIView *view, CGFloat keyBroadHeight) {
             if ([self canShowEvent:view]) {
@@ -98,6 +114,14 @@
                 if ([viewController isKindOfClass:[UIViewController class]]) {
                     if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
                         [viewController.NSObject_KeyBoradEventResponderModel_viewController_info keyBroadFrameChange:view andkeyBroadHeight:keyBroadHeight];
+                    }
+                }
+            } else if ([self canWindowRotateShowEvent:view]) {
+                UIViewController *viewController = viewGetSuperController(view);
+
+                if ([viewController isKindOfClass:[UIViewController class]]) {
+                    if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
+                        [viewController.NSObject_KeyBoradEventResponderModel_viewController_info windowRotateTimeKeyBroadChangeFrameShow:view andkeyBroadHeight:keyBroadHeight];
                     }
                 }
             }
@@ -118,6 +142,14 @@
                         [viewController.NSObject_KeyBoradEventResponderModel_viewController_info HiddenBroadWillAnimation:view];
                     }
                 }
+            } else if ([self canWindowRotateHidenEvent:view]) {
+                UIViewController *viewController = viewGetSuperController(view);
+
+                if ([viewController isKindOfClass:[UIViewController class]]) {
+                    if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
+                        [viewController.NSObject_KeyBoradEventResponderModel_viewController_info windowRotateTimeKeyBroadHiden:view];
+                    }
+                }
             }
         } AndViewDidHidenAnimationBlock:^(UIView *view, CGFloat keyBroadHeight) {
             if ([self canHidenEvent:view]) {
@@ -126,6 +158,14 @@
                 if ([viewController isKindOfClass:[UIViewController class]]) {
                     if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
                         [viewController.NSObject_KeyBoradEventResponderModel_viewController_info HiddenBroadDidAnimation:view];
+                    }
+                }
+            } else if ([self canWindowRotateHidenEvent:view]) {
+                UIViewController *viewController = viewGetSuperController(view);
+
+                if ([viewController isKindOfClass:[UIViewController class]]) {
+                    if ([self isRegister:viewController.keyBroad_mess_uniqueID]) {
+                        [viewController.NSObject_KeyBoradEventResponderModel_viewController_info windowRotateTimeKeyBroadHiden:view];
                     }
                 }
             }
@@ -178,9 +218,25 @@
     }
 }
 
+- (BOOL)canWindowRotateShowEvent:(UIView *)view {
+    if ([view isKindOfClass:UITextField.class] || [view isKindOfClass:UITextView.class]) {
+        return [view.keyBroadInputResponderViewEventControl_view canwindowRotateTimeShowEvent];
+    } else {
+        return NO;
+    }
+}
+
 - (BOOL)canHidenEvent:(UIView *)view {
     if ([view isKindOfClass:UITextField.class] || [view isKindOfClass:UITextView.class]) {
         return [view.keyBroadInputResponderViewEventControl_view canResponderHidenEvent];
+    } else {
+        return NO;
+    }
+}
+
+- (BOOL)canWindowRotateHidenEvent:(UIView *)view {
+    if ([view isKindOfClass:UITextField.class] || [view isKindOfClass:UITextView.class]) {
+        return [view.keyBroadInputResponderViewEventControl_view canWindowRotateTimeHidenEvent];
     } else {
         return NO;
     }

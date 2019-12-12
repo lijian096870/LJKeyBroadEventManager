@@ -44,7 +44,7 @@
     if ([obj isKindOfClass:[LJKeyBroadInputResponderViewEventControl class]]) {
         return obj;
     } else {
-        LJKeyBroadInputResponderViewEventControl *mess = [[LJKeyBroadInputResponderViewEventControl alloc]init];
+        LJKeyBroadInputResponderViewEventControl *mess = [[LJKeyBroadInputResponderViewEventControl alloc]initWithmasterView:self];
         objc_setAssociatedObject(self, @selector(keyBroadInputResponderViewEventControl_view), mess, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
         return mess;

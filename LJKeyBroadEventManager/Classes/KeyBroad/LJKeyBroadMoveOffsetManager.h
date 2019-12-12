@@ -14,6 +14,8 @@ typedef void (^ moveOffsetKeyBlock)(LJKeyBroadRespoderModel *model);
 
 - (instancetype)initWithMaster_object_keyBroad:(UIViewController *)object;
 
+@property(nonatomic, strong) NSNumber *windowRotateSingalValue;
+
 @property(nonatomic, assign, readonly) CGFloat keyBroadHeight;
 
 @property(nonatomic, assign, readonly) CGFloat moveOffset;

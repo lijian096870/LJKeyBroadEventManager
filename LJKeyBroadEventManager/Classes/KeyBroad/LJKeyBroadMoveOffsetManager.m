@@ -148,4 +148,12 @@
     return _moveOffsetNumber;
 }
 
+- (NSNumber *)windowRotateSingalValue {
+    if (_windowRotateSingalValue == nil) {
+        _windowRotateSingalValue = [NSNumber numberWithBool:NO];
+    }
+
+    return _windowRotateSingalValue;
+}
+
 @end

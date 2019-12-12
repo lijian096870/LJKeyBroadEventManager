@@ -112,6 +112,30 @@
     }
 }
 
+- (void)windowRotateTimeKeyBroadWillShow:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
+    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class] && [view isKindOfClass:UIView.class]) {
+        [self.object_keyBroad.NSObject_KeyBoradManager_info windowRotateTimeKeyBroadWillShow:view andkeyBroadHeight:keyBroadHeight];
+    }
+}
+
+- (void)windowRotateTimeKeyBroadDidShow:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
+    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class] && [view isKindOfClass:UIView.class]) {
+        [self.object_keyBroad.NSObject_KeyBoradManager_info windowRotateTimeKeyBroadDidShow:view andkeyBroadHeight:keyBroadHeight];
+    }
+}
+
+- (void)windowRotateTimeKeyBroadChangeFrameShow:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
+    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class] && [view isKindOfClass:UIView.class]) {
+        [self.object_keyBroad.NSObject_KeyBoradManager_info windowRotateTimeKeyBroadChangeFrameShow:view andkeyBroadHeight:keyBroadHeight];
+    }
+}
+
+- (void)windowRotateTimeKeyBroadHiden:(UIView *)view {
+    if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class] && [view isKindOfClass:UIView.class]) {
+        [self.object_keyBroad.NSObject_KeyBoradManager_info windowRotateTimeKeyBroadHiden:view];
+    }
+}
+
 - (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view {
     if ([self.object_keyBroad isViewLoaded] && [self.object_keyBroad isKindOfClass:UIViewController.class] && [view isKindOfClass:UIView.class]) {
         [self.object_keyBroad.NSObject_KeyBoradManager_info ShowkeyBroadInputAccessoryViewRelateCallBlock:view];

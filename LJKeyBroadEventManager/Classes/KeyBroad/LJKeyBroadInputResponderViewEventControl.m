@@ -14,30 +14,33 @@
 
 @property(nonatomic, strong) NSNumber *lockShowEvent;
 
-@property(nonatomic, strong) NSNumber *windowRotateLock;
+@property(nonatomic, assign) NSInteger windowRotateLockIndex;
+
+@property(nonatomic, weak) UIView *masterView;
 
 @end
 
 @implementation LJKeyBroadInputResponderViewEventControl
 
-- (instancetype)init
+- (instancetype)initWithmasterView:(UIView *)view
 {
     self = [super init];
 
     if (self) {
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(windowWillRotate) name:@"UIWindowWillRotateNotification" object:nil];
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(windowDidRotate) name:@"UIWindowDidRotateNotification" object:nil];
+        self.masterView = view;
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(windowWillRotate:) name:@"UIWindowWillRotateNotification" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(windowDidRotate:) name:@"UIWindowDidRotateNotification" object:nil];
     }
 
     return self;
 }
 
-- (void)windowWillRotate {
-    self.windowRotateLock = [NSNumber numberWithBool:YES];
+- (void)windowWillRotate:(NSNotification *)not {
+    self.windowRotateLockIndex++;
 }
 
-- (void)windowDidRotate {
-    self.windowRotateLock = [NSNumber numberWithBool:NO];
+- (void)windowDidRotate:(NSNotification *)not {
+    self.windowRotateLockIndex--;
 }
 
 - (void)beginResponderAllEvent {
@@ -59,23 +62,27 @@
 }
 
 - (BOOL)canResponderHidenEvent {
-    if ([self.windowRotateLock boolValue]) {
-        return NO;
-    } else {
+    if (self.windowRotateLockIndex == 0) {
         return [self.lockHidenEvent boolValue];
+    } else {
+        return NO;
     }
 }
 
 - (BOOL)canResponderShowEvent {
-    return [self.lockShowEvent boolValue];
+    if (self.windowRotateLockIndex == 0) {
+        return [self.lockShowEvent boolValue];
+    } else {
+        return NO;
+    }
 }
 
-- (BOOL)canResponderAllEvent {
-    return [self.lockHidenEvent boolValue] && [self.lockShowEvent boolValue];
+- (BOOL)canWindowRotateTimeHidenEvent {
+    return self.windowRotateLockIndex != 0;
 }
 
-- (BOOL)canresponderShowEvent {
-    return [self.lockShowEvent boolValue];
+- (BOOL)canwindowRotateTimeShowEvent {
+    return self.windowRotateLockIndex != 0;
 }
 
 - (NSNumber *)lockHidenEvent {
@@ -92,14 +99,6 @@
     }
 
     return _lockShowEvent;
-}
-
-- (NSNumber *)windowRotateLock {
-    if (_windowRotateLock == nil) {
-        _windowRotateLock = [NSNumber numberWithBool:NO];
-    }
-
-    return _windowRotateLock;
 }
 
 - (void)dealloc

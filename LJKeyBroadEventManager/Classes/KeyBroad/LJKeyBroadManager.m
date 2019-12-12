@@ -16,7 +16,6 @@
 #import "LJKeyBroadMoveOffsetManager.h"
 #import "LJKeyboardReloadToolBar.h"
 #import "LJKeyBroadRespoderNextSet.h"
-#import "LJKeyBroadInterfaceOrientationManager.h"
 @interface UIViewController () <LJKeyboardManagerDelegate>
 
 @end
@@ -29,8 +28,7 @@
 
 @property(nonatomic, strong) LJKeyboardReloadToolBar *reloadTooBarUtil;
 
-@property(nonatomic, strong) LJKeyBroadRespoderNextSet              *responderNextSet;
-@property(nonatomic, strong) LJKeyBroadInterfaceOrientationManager  *orientationManager;
+@property(nonatomic, strong) LJKeyBroadRespoderNextSet *responderNextSet;
 
 @end
 
@@ -42,38 +40,9 @@
 
     if (self) {
         self.object_keyBroad = object;
-        __weak LJKeyBroadManager *weakSelf = self;
-        [self.orientationManager configWillOrientationBlock:^{
-            if (weakSelf && [weakSelf isKindOfClass:LJKeyBroadManager.class]) {
-                [weakSelf WillOrientation];
-            }
-        } didOrientationBlock:^{
-            if (weakSelf && [weakSelf isKindOfClass:LJKeyBroadManager.class]) {
-                [weakSelf didOrientation];
-            }
-        }];
     }
 
     return self;
-}
-
-- (void)WillOrientation {
-    if ([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && ([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] floatValue] > 0.0)) {
-        [self.moveOffsetManager endEditResponderModel:self.responderNextSet.currentResponderModel];
-
-        if ([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]]) {
-            self.orientationManager.cacheKeyBroadHeight = self.moveOffsetManager.keyBroadHeight;
-        }
-    }
-}
-
-- (void)didOrientation {
-    if ([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && (self.orientationManager.cacheKeyBroadHeight > 0.0)) {
-        if ([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]]) {
-            [self.responderNextSet responderArrayRenewResponderLocation];
-            [self.moveOffsetManager moveOffsetKeyBroadHeight:self.orientationManager.cacheKeyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
-        }
-    }
 }
 
 - (BOOL)ShowKeyBroad:(UIView *)view {
@@ -185,6 +154,54 @@
         self.responderNextSet = nil;
 
         [self.moveOffsetManager endEditResponderModel:model];
+    }
+}
+
+- (void)windowRotateTimeKeyBroadWillShow:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
+    if ([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
+        if ([self.responderNextSet isCurrentBecomeFirstNecessaryMove]) {} else {
+            if ([self.moveOffsetManager.windowRotateSingalValue boolValue]) {
+                self.moveOffsetManager.windowRotateSingalValue = [NSNumber numberWithBool:NO];
+
+                if (([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] floatValue] > 0.0)) {
+                    [self.moveOffsetManager endEditResponderModel:self.responderNextSet.currentResponderModel];
+                }
+
+                if ([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]]) {
+                    [self.responderNextSet responderArrayRenewResponderLocation];
+                }
+
+                [self.moveOffsetManager moveOffsetKeyBroadHeight:keyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
+            }
+        }
+    }
+}
+
+- (void)windowRotateTimeKeyBroadChangeFrameShow:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
+    [self windowRotateTimeKeyBroadDidShow:view andkeyBroadHeight:keyBroadHeight];
+}
+
+- (void)windowRotateTimeKeyBroadDidShow:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
+    if ([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
+        if ([self.moveOffsetManager.windowRotateSingalValue boolValue]) {
+            self.moveOffsetManager.windowRotateSingalValue = [NSNumber numberWithBool:NO];
+
+            if (([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] floatValue] > 0.0)) {
+                [self.moveOffsetManager endEditResponderModel:self.responderNextSet.currentResponderModel];
+            }
+
+            if ([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]]) {
+                [self.responderNextSet responderArrayRenewResponderLocation];
+            }
+        }
+
+        [self.moveOffsetManager moveOffsetKeyBroadHeight:keyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
+    }
+}
+
+- (void)windowRotateTimeKeyBroadHiden:(UIView *)view {
+    if ([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
+        self.moveOffsetManager.windowRotateSingalValue = [NSNumber numberWithBool:YES];
     }
 }
 
@@ -306,14 +323,6 @@
     }
 
     return _reloadTooBarUtil;
-}
-
-- (LJKeyBroadInterfaceOrientationManager *)orientationManager {
-    if (_orientationManager == nil) {
-        _orientationManager = [[LJKeyBroadInterfaceOrientationManager alloc]initWithMaster_object_keyBroad:self.object_keyBroad];
-    }
-
-    return _orientationManager;
 }
 
 @end
