@@ -2,8 +2,10 @@
 //  LJViewMethodExchangeUtil.h
 //  FBSnapshotTestCase
 //
-//  Created by temp on 2019/12/6.
+//  Created by MacAir on 2018/5/18.
+//  Copyright © 2018年 LJ. All rights reserved.
 //
+
 
 #import <UIKit/UIKit.h>
 
@@ -17,5 +19,3 @@
 
 + (void)methodMoveChangeBlock_MethodExchange:(Class)calss;
 @end
-
-

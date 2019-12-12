@@ -22,7 +22,7 @@ pod 'LJViewKit'
 
 ## Author
 
-1358756992@qq.com, enigma.lj@webi.com.cn
+1358756992@qq.com
 
 ## License
 

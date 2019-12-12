@@ -26,9 +26,6 @@ FOUNDATION_EXTERN void viewAddFrameChangeBlock(UIView *view,viewFrameChangeBlock
 
 
 
-
-
-
 FOUNDATION_EXTERN void SetFrameWillChangeBlock(UIView *view,viewFrameChangeBlock block);
 FOUNDATION_EXTERN void AddFrameWillChangeBlock(UIView *view,viewFrameChangeBlock block);
 FOUNDATION_EXTERN void AddFrameWillChangeKeyBlock(UIView *view,NSString *key,viewFrameChangeBlock block);
