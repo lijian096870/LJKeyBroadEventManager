@@ -246,14 +246,16 @@
 }
 
 - (void)dealloc_content {
-    if ([self viewModel_content].isAddLister) {
-        [self removeObserver:[self viewModel_content] forKeyPath:@"frame"];
-    }
+    if ([self isKindOfClass:UIView.class]) {
+        if ([self viewModel_content].isAddLister) {
+            [self removeObserver:[self viewModel_content] forKeyPath:@"frame"];
+        }
 
-    [[self viewModel_content]setBlock:nil];
-    [[self viewModel_content].blockArray removeAllObjects];
-    [[self viewModel_content] setBlockArray:nil];
-    [self dealloc_content];
+        [[self viewModel_content]setBlock:nil];
+        [[self viewModel_content].blockArray removeAllObjects];
+        [[self viewModel_content] setBlockArray:nil];
+        [self dealloc_content];
+    }
 }
 
 @end

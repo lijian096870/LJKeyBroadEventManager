@@ -63,14 +63,16 @@
 
         if ([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]]) {
             self.orientationManager.cacheKeyBroadHeight = self.moveOffsetManager.keyBroadHeight;
-            [self.responderNextSet responderArrayRenewResponderLocation];
         }
     }
 }
 
 - (void)didOrientation {
     if ([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && (self.orientationManager.cacheKeyBroadHeight > 0.0)) {
-        [self.moveOffsetManager moveOffsetKeyBroadHeight:self.orientationManager.cacheKeyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
+        if ([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]]) {
+            [self.responderNextSet responderArrayRenewResponderLocation];
+            [self.moveOffsetManager moveOffsetKeyBroadHeight:self.orientationManager.cacheKeyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
+        }
     }
 }
 

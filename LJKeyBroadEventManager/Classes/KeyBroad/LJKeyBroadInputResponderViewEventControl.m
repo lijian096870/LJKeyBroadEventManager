@@ -14,9 +14,31 @@
 
 @property(nonatomic, strong) NSNumber *lockShowEvent;
 
+@property(nonatomic, strong) NSNumber *windowRotateLock;
+
 @end
 
 @implementation LJKeyBroadInputResponderViewEventControl
+
+- (instancetype)init
+{
+    self = [super init];
+
+    if (self) {
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(windowWillRotate) name:@"UIWindowWillRotateNotification" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(windowDidRotate) name:@"UIWindowDidRotateNotification" object:nil];
+    }
+
+    return self;
+}
+
+- (void)windowWillRotate {
+    self.windowRotateLock = [NSNumber numberWithBool:YES];
+}
+
+- (void)windowDidRotate {
+    self.windowRotateLock = [NSNumber numberWithBool:NO];
+}
 
 - (void)beginResponderAllEvent {
     self.lockHidenEvent = [NSNumber numberWithBool:YES];
@@ -37,7 +59,11 @@
 }
 
 - (BOOL)canResponderHidenEvent {
-    return [self.lockHidenEvent boolValue];
+    if ([self.windowRotateLock boolValue]) {
+        return NO;
+    } else {
+        return [self.lockHidenEvent boolValue];
+    }
 }
 
 - (BOOL)canResponderShowEvent {
@@ -66,6 +92,19 @@
     }
 
     return _lockShowEvent;
+}
+
+- (NSNumber *)windowRotateLock {
+    if (_windowRotateLock == nil) {
+        _windowRotateLock = [NSNumber numberWithBool:NO];
+    }
+
+    return _windowRotateLock;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 @end
