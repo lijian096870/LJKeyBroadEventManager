@@ -106,7 +106,11 @@
                 }
             }
         } else {
-            [self keyBroadFrameChange:view andkeyBroadHeight:keyBroadHeight];
+            BOOL result = [self ShowKeyBroad:view];
+
+            if (result) {
+                [self ShowKeyBroadWillAnimation:view andkeyBroadHeight:keyBroadHeight];
+            }
         }
     }
 }
@@ -131,7 +135,7 @@
             BOOL result = [self ShowKeyBroad:view];
 
             if (result) {
-                [self ShowKeyBroadWillAnimation:view andkeyBroadHeight:keyBroadHeight];
+                [self ShowKeyBroadDidAnimation:view andkeyBroadHeight:keyBroadHeight];
             }
         }
     }
