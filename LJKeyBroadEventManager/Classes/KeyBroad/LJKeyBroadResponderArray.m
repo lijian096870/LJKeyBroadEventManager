@@ -190,11 +190,8 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewConfirmResult) {
     }
 }
 
-+ (BOOL)LocationJudegSuitView:(UIView *)view andWindow:(UIView *)window andRootView:(UIView *)rootView AndisStrict:(BOOL)strict{
-    
-    
-  return  ([self isOutLocation:view AndWindow:window andRootView:rootView AndisStrict:strict] || [self isCoverInputView:view AndWindow:window andRootView:rootView AndisStrict:strict]);
-    
++ (BOOL)LocationJudegSuitView:(UIView *)view andWindow:(UIView *)window andRootView:(UIView *)rootView AndisStrict:(BOOL)strict {
+    return [self isOutLocation:view AndWindow:window andRootView:rootView AndisStrict:strict] || [self isCoverInputView:view AndWindow:window andRootView:rootView AndisStrict:strict];
 }
 
 + (BOOL)canBeEditResponder:(UIView *)view andWindow:(UIView *)window andRootView:(UIView *)rootView AndisStrict:(BOOL)strict {
@@ -379,12 +376,12 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewConfirmResult) {
 
 + (LJKeyBroadViewConfirmResult)confirmDisCorrect:(LJKeyBroadRespoderModel *)ahead andNext:(LJKeyBroadRespoderModel *)Next andRootView:(UIView *)rootView {
     if ([ahead.nextView isKindOfClass:UIView.class] && [Next.aheadView isKindOfClass:UIView.class] && [Next.view isKindOfClass:UIView.class] && [ahead.view isKindOfClass:UIView.class] && [Next.window isKindOfClass:UIView.class]) {
-        if ((ahead.nextView == Next.view) && (Next.aheadView == ahead.view) && ahead.view.frame.origin.y >= Next.view.frame.origin.y) {
+        if ((ahead.nextView == Next.view) && (Next.aheadView == ahead.view)) {
             CGFloat dis = [self dis:ahead.view and:Next.view and:Next.window];
 
             NSNumber *disNumber = [NSNumber numberWithFloat:dis];
 
-            if ([[NSNumber numberWithFloat:ahead.nextDis] isEqualToNumber:disNumber] && [[NSNumber numberWithFloat:Next.aheadDis] isEqualToNumber:disNumber]) {
+            if ([[NSNumber numberWithFloat:ahead.nextDis] isEqualToNumber:disNumber] && [[NSNumber numberWithFloat:Next.aheadDis] isEqualToNumber:disNumber] && [self location:ahead.view andNextView:Next.view and:Next.window]) {
                 CGRect loaction = [Next.view convertRect:Next.view.bounds toView:Next.window];
 
                 UIView *window = Next.window;
@@ -503,6 +500,17 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewConfirmResult) {
     CGRect  loaction2 = [view2 convertRect:view2.bounds toView:window];
 
     return fabs(loaction1.origin.y - loaction2.origin.y);
+}
+
++ (BOOL)location:(UIView *)currentView andNextView:(UIView *)nextView and:(UIView *)window {
+    CGRect  loaction1 = [currentView convertRect:currentView.bounds toView:window];
+    CGRect  loaction2 = [nextView convertRect:nextView.bounds toView:window];
+
+    if (loaction2.origin.y >= loaction1.origin.y) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 @end
