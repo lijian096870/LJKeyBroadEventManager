@@ -379,7 +379,7 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewConfirmResult) {
 
 + (LJKeyBroadViewConfirmResult)confirmDisCorrect:(LJKeyBroadRespoderModel *)ahead andNext:(LJKeyBroadRespoderModel *)Next andRootView:(UIView *)rootView {
     if ([ahead.nextView isKindOfClass:UIView.class] && [Next.aheadView isKindOfClass:UIView.class] && [Next.view isKindOfClass:UIView.class] && [ahead.view isKindOfClass:UIView.class] && [Next.window isKindOfClass:UIView.class]) {
-        if ((ahead.nextView == Next.view) && (Next.aheadView == ahead.view)) {
+        if ((ahead.nextView == Next.view) && (Next.aheadView == ahead.view) && ahead.view.frame.origin.y >= Next.view.frame.origin.y) {
             CGFloat dis = [self dis:ahead.view and:Next.view and:Next.window];
 
             NSNumber *disNumber = [NSNumber numberWithFloat:dis];

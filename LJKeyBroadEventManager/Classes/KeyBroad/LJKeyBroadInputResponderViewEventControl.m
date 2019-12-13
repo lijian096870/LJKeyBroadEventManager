@@ -7,7 +7,8 @@
 //
 
 #import "LJKeyBroadInputResponderViewEventControl.h"
-
+#import "NSNotificationCenter+LJKeyBroad.h"
+#import "KeyBroadRandString.h"
 @interface LJKeyBroadInputResponderViewEventControl ()
 
 @property(nonatomic, strong) NSNumber *lockHidenEvent;
@@ -17,6 +18,8 @@
 @property(nonatomic, assign) NSInteger windowRotateLockIndex;
 
 @property(nonatomic, weak) UIView *masterView;
+
+@property(nonatomic, strong) NSString *randStringID;
 
 @end
 
@@ -28,18 +31,54 @@
 
     if (self) {
         self.masterView = view;
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(windowWillRotate:) name:@"UIWindowWillRotateNotification" object:nil];
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(windowDidRotate:) name:@"UIWindowDidRotateNotification" object:nil];
+
+        __weak LJKeyBroadInputResponderViewEventControl *weakself = self;
+
+        [NSNotificationCenter registerNotificationMostBeforeBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
+            if (weakself && [weakself isKindOfClass:LJKeyBroadInputResponderViewEventControl.class]) {
+                [weakself windowWillRotate:aUserInfo];
+            }
+        } AndName:@"UIWindowWillRotateNotification" anyKey:self.randStringID];
+
+        [NSNotificationCenter registerNotificationMostAfterBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
+            if (weakself && [weakself isKindOfClass:LJKeyBroadInputResponderViewEventControl.class]) {
+                [weakself windowDidRotate:aUserInfo];
+            }
+        } AndName:@"UIWindowDidRotateNotification" anyKey:self.randStringID];
+
+        [NSNotificationCenter registerNotificationMostBeforeBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
+            if (weakself && [weakself isKindOfClass:LJKeyBroadInputResponderViewEventControl.class]) {
+                [weakself windowWillRotate:aUserInfo];
+            }
+        } AndName:@"UIApplication_Customer_WillRotateNotification" anyKey:self.randStringID];
+
+        [NSNotificationCenter registerNotificationMostAfterBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
+            if (weakself && [weakself isKindOfClass:LJKeyBroadInputResponderViewEventControl.class]) {
+                [weakself windowDidRotate:aUserInfo];
+            }
+        } AndName:@"UIApplication_Customer_DidRotateNotification" anyKey:self.randStringID];
+
+        [NSNotificationCenter registerNotificationMostBeforeBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
+            if (weakself && [weakself isKindOfClass:LJKeyBroadInputResponderViewEventControl.class]) {
+                [weakself windowWillRotate:aUserInfo];
+            }
+        } AndName:UIDeviceOrientationDidChangeNotification anyKey:self.randStringID];
+
+        [NSNotificationCenter registerNotificationMostAfterBlock:^(NSNotificationName aName, id anObject, NSDictionary *aUserInfo) {
+            if (weakself && [weakself isKindOfClass:LJKeyBroadInputResponderViewEventControl.class]) {
+                [weakself windowDidRotate:aUserInfo];
+            }
+        } AndName:UIDeviceOrientationDidChangeNotification anyKey:self.randStringID];
     }
 
     return self;
 }
 
-- (void)windowWillRotate:(NSNotification *)not {
+- (void)windowWillRotate:(NSDictionary *)aUserInfo {
     self.windowRotateLockIndex++;
 }
 
-- (void)windowDidRotate:(NSNotification *)not {
+- (void)windowDidRotate:(NSDictionary *)aUserInfo {
     self.windowRotateLockIndex--;
 }
 
@@ -101,9 +140,22 @@
     return _lockShowEvent;
 }
 
+- (NSString *)randStringID {
+    if (_randStringID == nil) {
+        _randStringID = [KeyBroadRandString randomStringNameWithLength:32];
+    }
+
+    return _randStringID;
+}
+
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
+    [NSNotificationCenter removeNotificationMostBeforeName:@"UIWindowWillRotateNotification" anyKey:self.randStringID];
+    [NSNotificationCenter removeNotificationMostAftereName:@"UIWindowDidRotateNotification" anyKey:self.randStringID];
+    [NSNotificationCenter removeNotificationMostBeforeName:@"UIApplication_Customer_WillRotateNotification" anyKey:self.randStringID];
+    [NSNotificationCenter removeNotificationMostAftereName:@"UIApplication_Customer_DidRotateNotification" anyKey:self.randStringID];
+    [NSNotificationCenter removeNotificationMostBeforeName:UIDeviceOrientationDidChangeNotification anyKey:self.randStringID];
+    [NSNotificationCenter removeNotificationMostAftereName:UIDeviceOrientationDidChangeNotification anyKey:self.randStringID];
 }
 
 @end

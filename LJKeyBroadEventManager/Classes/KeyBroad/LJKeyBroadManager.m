@@ -158,21 +158,31 @@
 }
 
 - (void)windowRotateTimeKeyBroadWillShow:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
-    if ([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
-        if ([self.responderNextSet isCurrentBecomeFirstNecessaryMove]) {} else {
-            if ([self.moveOffsetManager.windowRotateSingalValue boolValue]) {
-                self.moveOffsetManager.windowRotateSingalValue = [NSNumber numberWithBool:NO];
+    if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]]))) {
+        if ([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]) {
+            if ([self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
+                if ([self.responderNextSet isCurrentBecomeFirstNecessaryMove]) {} else {
+                    if ([self.moveOffsetManager.windowRotateSingalValue boolValue]) {
+                        self.moveOffsetManager.windowRotateSingalValue = [NSNumber numberWithBool:NO];
 
-                if (([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] floatValue] > 0.0)) {
-                    [self.moveOffsetManager endEditResponderModel:self.responderNextSet.currentResponderModel];
-                }
+                        if (([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] floatValue] > 0.0)) {
+                            [self.moveOffsetManager endEditResponderModel:self.responderNextSet.currentResponderModel];
+                        }
 
-                if ([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]]) {
-                    [self.responderNextSet responderArrayRenewResponderLocation];
+                        if ([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]]) {
+                            [self.responderNextSet responderArrayRenewResponderLocation];
+                        }
+                    }
+
+                    [self.moveOffsetManager moveOffsetKeyBroadHeight:keyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
                 }
             }
+        } else {
+            BOOL result = [self ShowKeyBroad:view];
 
-            [self.moveOffsetManager moveOffsetKeyBroadHeight:keyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
+            if (result) {
+                [self windowRotateTimeKeyBroadWillShow:view andkeyBroadHeight:keyBroadHeight];
+            }
         }
     }
 }
@@ -182,26 +192,38 @@
 }
 
 - (void)windowRotateTimeKeyBroadDidShow:(UIView *)view andkeyBroadHeight:(CGFloat)keyBroadHeight {
-    if ([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
-        if ([self.moveOffsetManager.windowRotateSingalValue boolValue]) {
-            self.moveOffsetManager.windowRotateSingalValue = [NSNumber numberWithBool:NO];
+    if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]]))) {
+        if ([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class]) {
+            if ([self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
+                if ([self.moveOffsetManager.windowRotateSingalValue boolValue]) {
+                    self.moveOffsetManager.windowRotateSingalValue = [NSNumber numberWithBool:NO];
 
-            if (([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] floatValue] > 0.0)) {
-                [self.moveOffsetManager endEditResponderModel:self.responderNextSet.currentResponderModel];
+                    if (([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] floatValue] > 0.0)) {
+                        [self.moveOffsetManager endEditResponderModel:self.responderNextSet.currentResponderModel];
+                    }
+
+                    if ([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]]) {
+                        [self.responderNextSet responderArrayRenewResponderLocation];
+                    }
+                }
+
+                [self.moveOffsetManager moveOffsetKeyBroadHeight:keyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
             }
+        } else {
+            BOOL result = [self ShowKeyBroad:view];
 
-            if ([[NSNumber numberWithFloat:self.moveOffsetManager.moveOffset] isEqualToNumber:[NSNumber numberWithFloat:0.0]]) {
-                [self.responderNextSet responderArrayRenewResponderLocation];
+            if (result) {
+                [self windowRotateTimeKeyBroadDidShow:view andkeyBroadHeight:keyBroadHeight];
             }
         }
-
-        [self.moveOffsetManager moveOffsetKeyBroadHeight:keyBroadHeight ResponderModel:self.responderNextSet.currentResponderModel];
     }
 }
 
 - (void)windowRotateTimeKeyBroadHiden:(UIView *)view {
-    if ([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
-        self.moveOffsetManager.windowRotateSingalValue = [NSNumber numberWithBool:YES];
+    if ([self.object_keyBroad isKindOfClass:[UIViewController class]] && [self.object_keyBroad isViewLoaded] && (([view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UITextField class]]))) {
+        if ([self.responderNextSet isKindOfClass:LJKeyBroadRespoderNextSet.class] && [self.responderNextSet isValid] && [self.responderNextSet isCurrentView:view]) {
+            self.moveOffsetManager.windowRotateSingalValue = [NSNumber numberWithBool:YES];
+        }
     }
 }
 

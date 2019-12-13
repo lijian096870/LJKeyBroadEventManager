@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		242CAB1A23A078AA007B0579 /* LJkeyBroadtestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 242CAB1923A078AA007B0579 /* LJkeyBroadtestView.m */; };
-		242CAB1C23A078B6007B0579 /* LJkeyBroadtestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242CAB1B23A078B6007B0579 /* LJkeyBroadtestView.xib */; };
-		242CAB1F23A0795C007B0579 /* UIView+FromeXib.m in Sources */ = {isa = PBXBuildFile; fileRef = 242CAB1D23A0795C007B0579 /* UIView+FromeXib.m */; };
 		24D523642395FD3A009C9A37 /* LJTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D523632395FD3A009C9A37 /* LJTableView.m */; };
 		30D946622392A86A006720AD /* LJTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D946612392A86A006720AD /* LJTextField.m */; };
 		30FB4F1F2306787700D23ED0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FB4F1E2306787700D23ED0 /* AppDelegate.m */; };
@@ -27,11 +24,6 @@
 
 /* Begin PBXFileReference section */
 		1835CB1CFAB393E0877B801F /* Pods-LJKeyBroadEventManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LJKeyBroadEventManager.debug.xcconfig"; path = "Target Support Files/Pods-LJKeyBroadEventManager/Pods-LJKeyBroadEventManager.debug.xcconfig"; sourceTree = "<group>"; };
-		242CAB1823A078AA007B0579 /* LJkeyBroadtestView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJkeyBroadtestView.h; sourceTree = "<group>"; };
-		242CAB1923A078AA007B0579 /* LJkeyBroadtestView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJkeyBroadtestView.m; sourceTree = "<group>"; };
-		242CAB1B23A078B6007B0579 /* LJkeyBroadtestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LJkeyBroadtestView.xib; sourceTree = "<group>"; };
-		242CAB1D23A0795C007B0579 /* UIView+FromeXib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FromeXib.m"; sourceTree = "<group>"; };
-		242CAB1E23A0795C007B0579 /* UIView+FromeXib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FromeXib.h"; sourceTree = "<group>"; };
 		24D523622395FD3A009C9A37 /* LJTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJTableView.h; sourceTree = "<group>"; };
 		24D523632395FD3A009C9A37 /* LJTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJTableView.m; sourceTree = "<group>"; };
 		30D946602392A86A006720AD /* LJTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJTextField.h; sourceTree = "<group>"; };
@@ -108,11 +100,6 @@
 				30D946612392A86A006720AD /* LJTextField.m */,
 				24D523622395FD3A009C9A37 /* LJTableView.h */,
 				24D523632395FD3A009C9A37 /* LJTableView.m */,
-				242CAB1823A078AA007B0579 /* LJkeyBroadtestView.h */,
-				242CAB1923A078AA007B0579 /* LJkeyBroadtestView.m */,
-				242CAB1B23A078B6007B0579 /* LJkeyBroadtestView.xib */,
-				242CAB1E23A0795C007B0579 /* UIView+FromeXib.h */,
-				242CAB1D23A0795C007B0579 /* UIView+FromeXib.m */,
 			);
 			path = LJKeyBroadEventManager;
 			sourceTree = "<group>";
@@ -194,7 +181,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				30FB4F2A2306787900D23ED0 /* LaunchScreen.storyboard in Resources */,
-				242CAB1C23A078B6007B0579 /* LJkeyBroadtestView.xib in Resources */,
 				30FB4F272306787900D23ED0 /* Assets.xcassets in Resources */,
 				30FB4F3C230679C900D23ED0 /* TestViewController.xib in Resources */,
 				30FB4F4123067A4A00D23ED0 /* TestTableViewCell.xib in Resources */,
@@ -252,11 +238,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				30FB4F36230679AD00D23ED0 /* ViewController.m in Sources */,
-				242CAB1A23A078AA007B0579 /* LJkeyBroadtestView.m in Sources */,
 				30FB4F4023067A4A00D23ED0 /* TestTableViewCell.m in Sources */,
 				30FB4F2D2306787900D23ED0 /* main.m in Sources */,
 				30D946622392A86A006720AD /* LJTextField.m in Sources */,
-				242CAB1F23A0795C007B0579 /* UIView+FromeXib.m in Sources */,
 				24D523642395FD3A009C9A37 /* LJTableView.m in Sources */,
 				30FB4F3B230679C900D23ED0 /* TestViewController.m in Sources */,
 				30FB4F1F2306787700D23ED0 /* AppDelegate.m in Sources */,
