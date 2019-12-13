@@ -73,18 +73,22 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
     [self.KeyBroadInputAccessoryViewRelateResponderModel lockCantShowStatue];
     UIView *responderView = [self keyBroadInputAccessoryViewRelateResponderView];
     [responderView.keyBroadInputResponderViewEventControl_view endShowEvent];
+    [self.KeyBroadInputAccessoryViewRelateResponderModel lockCanRunHidenBlock:YES];
     dispatch_async(dispatch_get_main_queue(), ^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            UIView *responderView = [self keyBroadInputAccessoryViewRelateResponderView];
+            if ([self.KeyBroadInputAccessoryViewRelateResponderModel canRunHidenBlockQuery]) {
+                [self.KeyBroadInputAccessoryViewRelateResponderModel lockCanRunHidenBlock:NO];
+                UIView *responderView = [self keyBroadInputAccessoryViewRelateResponderView];
 
-            if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
-                [[LJKeyBroadRegisterManager sharedInstance] HiddenkeyBroadInputAccessoryViewRelateCallBlock:responderView];
+                if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
+                    [[LJKeyBroadRegisterManager sharedInstance] HiddenkeyBroadInputAccessoryViewRelateCallBlock:responderView];
+                }
+
+                [responderView.keyBroadInputResponderViewEventControl_view endResponderAllEvent];
+
+                [self.KeyBroadInputAccessoryViewRelateResponderModel endLister];
+                [self setKeyBroadInputAccessoryViewRelateResponderView:nil];
             }
-
-            [responderView.keyBroadInputResponderViewEventControl_view endResponderAllEvent];
-
-            [self.KeyBroadInputAccessoryViewRelateResponderModel endLister];
-            [self setKeyBroadInputAccessoryViewRelateResponderView:nil];
         });
     });
 }
@@ -94,6 +98,7 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
 
     if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
         [self setKeyBroadInputAccessoryViewRelateResponderView:responderView];
+        [self.KeyBroadInputAccessoryViewRelateResponderModel lockCanRunHidenBlock:NO];
         [responderView.keyBroadInputResponderViewEventControl_view beginResponderAllEvent];
         [self.KeyBroadInputAccessoryViewRelateResponderModel startLister];
         [[LJKeyBroadRegisterManager sharedInstance]ShowkeyBroadInputAccessoryViewRelateCallBlock:responderView];

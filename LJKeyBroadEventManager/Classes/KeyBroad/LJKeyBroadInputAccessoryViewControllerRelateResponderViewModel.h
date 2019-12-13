@@ -21,4 +21,7 @@
 
 - (void)endLister;
 
+- (void)lockCanRunHidenBlock:(BOOL)canRunBlock;
+- (BOOL)canRunHidenBlockQuery;
+
 @end

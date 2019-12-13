@@ -140,6 +140,7 @@
 
                     if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
                         [view setKeyBroadInputAccessoryViewRelateResponderView_view:responderView];
+                        [[view KeyBroadInputAccessoryViewRelateResponderModel_view] lockCanRunHidenBlock:NO];
                         [responderView.keyBroadInputResponderViewEventControl_view beginResponderAllEvent];
                         [view.KeyBroadInputAccessoryViewRelateResponderModel_view startLister];
 
@@ -151,19 +152,23 @@
                     UIView *responderView = [view keyBroadInputAccessoryViewRelateResponderView_view];
                     [responderView.keyBroadInputResponderViewEventControl_view endShowEvent];
                     [view.KeyBroadInputAccessoryViewRelateResponderModel_view lockCantShowStatue];
+                    [[view KeyBroadInputAccessoryViewRelateResponderModel_view] lockCanRunHidenBlock:YES];
 
                     dispatch_async(dispatch_get_main_queue(), ^{
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            UIView *responderView = [view keyBroadInputAccessoryViewRelateResponderView_view];
+                            if ([[view KeyBroadInputAccessoryViewRelateResponderModel_view] canRunHidenBlockQuery]) {
+                                [[view KeyBroadInputAccessoryViewRelateResponderModel_view] lockCanRunHidenBlock:NO];
+                                UIView *responderView = [view keyBroadInputAccessoryViewRelateResponderView_view];
 
-                            if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
-                                [[LJKeyBroadRegisterManager sharedInstance] HiddenkeyBroadInputAccessoryViewRelateCallBlock:responderView];
+                                if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
+                                    [[LJKeyBroadRegisterManager sharedInstance] HiddenkeyBroadInputAccessoryViewRelateCallBlock:responderView];
+                                }
+
+                                [responderView.keyBroadInputResponderViewEventControl_view endResponderAllEvent];
+                                [view.KeyBroadInputAccessoryViewRelateResponderModel_view endLister];
+
+                                [view setKeyBroadInputAccessoryViewRelateResponderView_view:nil];
                             }
-
-                            [responderView.keyBroadInputResponderViewEventControl_view endResponderAllEvent];
-                            [view.KeyBroadInputAccessoryViewRelateResponderModel_view endLister];
-
-                            [view setKeyBroadInputAccessoryViewRelateResponderView_view:nil];
                         });
                     });
                 });

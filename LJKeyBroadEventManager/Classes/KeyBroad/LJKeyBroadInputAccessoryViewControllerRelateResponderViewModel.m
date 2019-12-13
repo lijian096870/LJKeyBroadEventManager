@@ -28,9 +28,19 @@
 
 @property(nonatomic, strong) NSNumber *lockShowNot;
 
+@property(nonatomic, strong) NSNumber *canRunHidenBlock;
+
 @end
 
 @implementation LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel
+
+- (BOOL)canRunHidenBlockQuery {
+    return [self.canRunHidenBlock boolValue];
+}
+
+- (void)lockCanRunHidenBlock:(BOOL)canRunBlock {
+    self.canRunHidenBlock = [NSNumber numberWithBool:canRunBlock];
+}
 
 - (void)startLister {
     self.listerStatue = [NSNumber numberWithBool:YES];
@@ -177,6 +187,14 @@
     }
 
     return _lockShowNot;
+}
+
+- (NSNumber *)canRunHidenBlock {
+    if (_canRunHidenBlock == nil) {
+        _canRunHidenBlock = [NSNumber numberWithBool:NO];
+    }
+
+    return _canRunHidenBlock;
 }
 
 - (void)setResponderView:(UIView *)responderView {

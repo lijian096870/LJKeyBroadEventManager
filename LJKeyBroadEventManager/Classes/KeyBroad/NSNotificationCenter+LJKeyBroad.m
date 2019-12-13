@@ -239,7 +239,7 @@ static NSMutableDictionary  *DictionaryMostAfterBlock;
 
     for (NSString *key in DictionaryAfterBlock.allKeys) {
         if ([key isEqualToString:aName]) {
-            NSArray *array = [NSArray arrayWithArray:[DictionaryBeforeBlock objectForKey:key]];
+            NSArray *array = [NSArray arrayWithArray:[DictionaryAfterBlock objectForKey:key]];
 
             for (NSNotificationCenterAfterBeforeModel *model in array) {
                 if (model.block) {
