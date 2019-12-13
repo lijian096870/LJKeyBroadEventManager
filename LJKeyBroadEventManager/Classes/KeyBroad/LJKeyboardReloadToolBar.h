@@ -13,6 +13,8 @@
 
 - (instancetype)initWithMaster_object_keyBroad:(UIViewController *)object;
 
++ (BOOL)keybroadheightEqueThenAccessViewHeight:(UIView *)responderView andKeybroad:(CGFloat)keyBroadHeight;
+
 - (void)configLJKeyboardToolBar:(LJKeyBroadRespoderNextSet *)responderNextSet andNewToolBar:(LJKeyboardToolBar *)bar;
 
 - (void)reloadLJKeyboardToolBarAndResponderModel:(LJKeyBroadRespoderNextSet *)responderNextSet;

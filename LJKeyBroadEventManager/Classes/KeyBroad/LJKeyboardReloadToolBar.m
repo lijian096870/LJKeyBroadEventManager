@@ -45,6 +45,46 @@
     return self;
 }
 
++ (BOOL)keybroadheightEqueThenAccessViewHeight:(UIView *)responderView andKeybroad:(CGFloat)keyBroadHeight {
+    if (keyBroadHeight > 0.0) {
+        if ([responderView isKindOfClass:UITextView.class]) {
+            UITextView  *textView = (UITextView *)responderView;
+            UIView      *inputAccessoryView = textView.inputAccessoryView;
+
+            if ([inputAccessoryView isKindOfClass:UIView.class]) {
+                CGFloat inputAccessoryViewHeight = inputAccessoryView.bounds.size.height;
+
+                if (inputAccessoryViewHeight < keyBroadHeight) {
+                    return YES;
+                } else {
+                    return NO;
+                }
+            } else {
+                return YES;
+            }
+        } else if ([responderView isKindOfClass:UITextField.class]) {
+            UITextField *textView = (UITextField *)responderView;
+            UIView      *inputAccessoryView = textView.inputAccessoryView;
+
+            if ([inputAccessoryView isKindOfClass:UIView.class]) {
+                CGFloat inputAccessoryViewHeight = inputAccessoryView.bounds.size.height;
+
+                if (inputAccessoryViewHeight < keyBroadHeight) {
+                    return YES;
+                } else {
+                    return NO;
+                }
+            } else {
+                return YES;
+            }
+        } else {
+            return NO;
+        }
+    } else {
+        return NO;
+    }
+}
+
 - (void)configLJKeyboardToolBar:(LJKeyBroadRespoderNextSet *)responderNextSet andNewToolBar:(LJKeyboardToolBar *)bar {
     if ([self.object_keyBroad respondsToSelector:@selector(TopSpacingToFirstResponder:)]) {
         responderNextSet.currentResponderModel.topSpacingToFirstResponder = [self.object_keyBroad TopSpacingToFirstResponder:responderNextSet.currentResponderModel.view];
