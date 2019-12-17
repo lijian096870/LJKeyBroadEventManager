@@ -31,7 +31,6 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         PopViewAnimated(self.view.window, [PopView FromeXib], YES, YES, nil, 0.0, ^{}, ^{});
 
-        PopViewAnimated(self.view.window, [PopView FromeXib], YES, YES, nil, 0.0, ^{}, ^{});
     });
 }
 -(void)NextPage{
