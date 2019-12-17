@@ -3,7 +3,7 @@ IOS开发键盘上移的一个工具,实现方法独特,比较可靠.保持了�
 
 ## Example
 
-<video src="https://github.com/lijian096870/LJKeyBroadEventManager/blob/master/out.mp4" controls="controls" width="500" height="300">您的浏览器不支持播放该视频！</video>
+
 
 
 
