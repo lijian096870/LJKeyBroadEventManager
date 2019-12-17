@@ -4,7 +4,7 @@ IOS开发键盘上移的一个工具,实现方法独特,比较可靠.保持了�
 ## Example
 
 
-
+![image](https://github.com/lijian096870/LJKeyBroadEventManager/blob/master/vl5qa-kejt5.gif)
 
 
 ## Requirements
