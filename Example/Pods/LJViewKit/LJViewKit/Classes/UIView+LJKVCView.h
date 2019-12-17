@@ -12,7 +12,7 @@
 
 @interface UIView (LJKVCView)
 
-- (void)setFrameChangeBlock:(viewFrameChangeBlock)block;
-- (void)addFrameChangeBlock:(viewFrameChangeBlock)block;
+- (void)setFrameChangeBlock_kvcView:(viewFrameChangeBlock)block;
+- (void)addFrameChangeBlock_kvcView:(viewFrameChangeBlock)block;
 
 @end

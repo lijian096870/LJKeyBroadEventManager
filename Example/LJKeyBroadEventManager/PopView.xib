@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="PopView">
+            <rect key="frame" x="0.0" y="0.0" width="269" height="216"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TKT-mH-uIe">
+                    <rect key="frame" x="86" y="32" width="97" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="97" id="IZ5-qD-FJX"/>
+                        <constraint firstAttribute="height" constant="34" id="bSS-9v-Vzc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sgJ-GJ-WWk">
+                    <rect key="frame" x="86" y="91" width="97" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="105-7b-pXv"/>
+                        <constraint firstAttribute="width" constant="97" id="rRX-m8-Njx"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P5e-En-RVt">
+                    <rect key="frame" x="86" y="150" width="97" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="1u4-7l-2Md"/>
+                        <constraint firstAttribute="width" constant="97" id="giQ-9z-EMB"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="P5e-En-RVt" firstAttribute="top" secondItem="sgJ-GJ-WWk" secondAttribute="bottom" constant="25" id="4Vf-fm-vqO"/>
+                <constraint firstItem="sgJ-GJ-WWk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="EDj-6t-4UX"/>
+                <constraint firstItem="P5e-En-RVt" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="M1D-AJ-R2N"/>
+                <constraint firstItem="sgJ-GJ-WWk" firstAttribute="width" secondItem="TKT-mH-uIe" secondAttribute="width" id="M93-Lr-Yld"/>
+                <constraint firstItem="sgJ-GJ-WWk" firstAttribute="height" secondItem="TKT-mH-uIe" secondAttribute="height" id="PBS-Cx-GCD"/>
+                <constraint firstItem="sgJ-GJ-WWk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Yah-ce-mKE"/>
+                <constraint firstItem="P5e-En-RVt" firstAttribute="height" secondItem="TKT-mH-uIe" secondAttribute="height" id="Ybl-4b-2cL"/>
+                <constraint firstItem="sgJ-GJ-WWk" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="a4R-1L-flY"/>
+                <constraint firstItem="TKT-mH-uIe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ad0-XN-fwe"/>
+                <constraint firstItem="P5e-En-RVt" firstAttribute="width" secondItem="TKT-mH-uIe" secondAttribute="width" id="qin-6T-AHN"/>
+                <constraint firstItem="sgJ-GJ-WWk" firstAttribute="top" secondItem="TKT-mH-uIe" secondAttribute="bottom" constant="25" id="tWd-pM-Rrn"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-55.797101449275367" y="-114.50892857142857"/>
+        </view>
+    </objects>
+</document>

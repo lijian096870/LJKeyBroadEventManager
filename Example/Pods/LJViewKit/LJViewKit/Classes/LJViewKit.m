@@ -13,14 +13,14 @@
 void viewSetFrameChangeBlock(UIView *view, viewFrameChangeBlock block)
 {
     if ([view isKindOfClass:UIView.class]) {
-        [view setFrameChangeBlock:block];
+        [view setFrameChangeBlock_kvcView:block];
     }
 }
 
 void viewAddFrameChangeBlock(UIView *view, viewFrameChangeBlock block)
 {
     if ([view isKindOfClass:UIView.class] && block) {
-        [view addFrameChangeBlock:block];
+        [view addFrameChangeBlock_kvcView:block];
     }
 }
 

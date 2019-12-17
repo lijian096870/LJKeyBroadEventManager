@@ -9,6 +9,7 @@
 #import "TestViewController.h"
 #import "TestTableViewCell.h"
 #import "LJKeyBroadEventManager.h"
+#import "TestTwoViewController.h"
 @interface TestViewController () <UITableViewDelegate, UITableViewDataSource, LJKeyboardManagerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -21,11 +22,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.navigationItem.hidesBackButton = false;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"next" style:UIBarButtonItemStylePlain target:self action:@selector(NextPage)];
+    
     registerKeyBroadResponder(self);
 
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"TestTableViewCell" bundle:nil] forCellReuseIdentifier:NSStringFromClass(TestTableViewCell.class)];
+}
+
+-(void)NextPage{
+    
+    TestTwoViewController *page = [[TestTwoViewController alloc]init];
+    [self.navigationController pushViewController:page animated:YES];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -55,21 +66,6 @@
 
 - (BOOL)ShowExtensionToolBar:(UIView *)Responder {
     return YES;
-}
-
-- (BOOL)canBecomeFirstResponder:(UIView *)Responder {
-    UITextField *text = (UITextField *)Responder;
-
-    if ([text.text isEqualToString:@"12"]) {
-        return NO;
-    }
-
-    return true;
-}
-
-- (void)dealloc
-{
-    NSLog(@"%@", self);
 }
 
 @end

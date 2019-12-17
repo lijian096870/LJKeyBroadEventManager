@@ -10,24 +10,11 @@
 
 @implementation TestTableViewCell
 
-//-(void)loop{
-//
-//    NSLog(@"%@",self.textField.inputAccessoryViewController);
-//
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [self loop];
-//    });
-//
-//}
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if([self.textField.text isEqualToString:@"9"]){
-            [self.textField removeFromSuperview];
-        }
-    });
-    
+  
     
 }
 

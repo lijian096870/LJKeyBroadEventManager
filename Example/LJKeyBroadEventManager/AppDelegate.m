@@ -19,7 +19,7 @@
     // Override point for customization after application launch.
 
     
-    self.window.rootViewController = [[TestViewController alloc]init];
+    self.window.rootViewController = [[UINavigationController alloc]initWithRootViewController:[[TestViewController alloc]init]];
     
  
     return YES;

@@ -16,6 +16,9 @@ it, simply add the following line to your Podfile:
 pod 'LJKeyBroadEventManager'
 ```
 
+
+
+
 ## Author
 
 lijian, 1358756992@qq.com

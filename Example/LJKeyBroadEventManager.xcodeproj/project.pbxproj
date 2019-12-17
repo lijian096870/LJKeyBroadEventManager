@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		241A4B8823A88554006F0A64 /* TestTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 241A4B8623A88554006F0A64 /* TestTwoViewController.m */; };
+		241A4B8923A88554006F0A64 /* TestTwoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 241A4B8723A88554006F0A64 /* TestTwoViewController.xib */; };
+		241A4B8C23A886DB006F0A64 /* PopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 241A4B8B23A886DB006F0A64 /* PopView.m */; };
+		241A4B8E23A886E8006F0A64 /* PopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 241A4B8D23A886E8006F0A64 /* PopView.xib */; };
+		241A4B9523A888F2006F0A64 /* UIView+FromeXib.m in Sources */ = {isa = PBXBuildFile; fileRef = 241A4B9423A888F2006F0A64 /* UIView+FromeXib.m */; };
+		241A4B9723A8A261006F0A64 /* libLJAlertView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241A4B9623A8A261006F0A64 /* libLJAlertView.a */; };
 		24D523642395FD3A009C9A37 /* LJTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D523632395FD3A009C9A37 /* LJTableView.m */; };
 		30D946622392A86A006720AD /* LJTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D946612392A86A006720AD /* LJTextField.m */; };
 		30FB4F1F2306787700D23ED0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FB4F1E2306787700D23ED0 /* AppDelegate.m */; };
@@ -24,6 +30,16 @@
 
 /* Begin PBXFileReference section */
 		1835CB1CFAB393E0877B801F /* Pods-LJKeyBroadEventManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LJKeyBroadEventManager.debug.xcconfig"; path = "Target Support Files/Pods-LJKeyBroadEventManager/Pods-LJKeyBroadEventManager.debug.xcconfig"; sourceTree = "<group>"; };
+		241A4B8523A88554006F0A64 /* TestTwoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestTwoViewController.h; sourceTree = "<group>"; };
+		241A4B8623A88554006F0A64 /* TestTwoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTwoViewController.m; sourceTree = "<group>"; };
+		241A4B8723A88554006F0A64 /* TestTwoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestTwoViewController.xib; sourceTree = "<group>"; };
+		241A4B8A23A886DB006F0A64 /* PopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PopView.h; sourceTree = "<group>"; };
+		241A4B8B23A886DB006F0A64 /* PopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PopView.m; sourceTree = "<group>"; };
+		241A4B8D23A886E8006F0A64 /* PopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopView.xib; sourceTree = "<group>"; };
+		241A4B9323A888F2006F0A64 /* UIView+FromeXib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FromeXib.h"; sourceTree = "<group>"; };
+		241A4B9423A888F2006F0A64 /* UIView+FromeXib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FromeXib.m"; sourceTree = "<group>"; };
+		241A4B9623A8A261006F0A64 /* libLJAlertView.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLJAlertView.a; sourceTree = "<group>"; };
+		241A4B9823A8A2B8006F0A64 /* LJAlertViewKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJAlertViewKit.h; sourceTree = "<group>"; };
 		24D523622395FD3A009C9A37 /* LJTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJTableView.h; sourceTree = "<group>"; };
 		24D523632395FD3A009C9A37 /* LJTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJTableView.m; sourceTree = "<group>"; };
 		30D946602392A86A006720AD /* LJTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJTextField.h; sourceTree = "<group>"; };
@@ -54,6 +70,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4751177299FECA80878A863 /* libPods-LJKeyBroadEventManager.a in Frameworks */,
+				241A4B9723A8A261006F0A64 /* libLJAlertView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +98,8 @@
 		30FB4F1C2306787700D23ED0 /* LJKeyBroadEventManager */ = {
 			isa = PBXGroup;
 			children = (
+				241A4B9623A8A261006F0A64 /* libLJAlertView.a */,
+				241A4B9823A8A2B8006F0A64 /* LJAlertViewKit.h */,
 				30FB4F1D2306787700D23ED0 /* AppDelegate.h */,
 				30FB4F1E2306787700D23ED0 /* AppDelegate.m */,
 				30FB4F232306787700D23ED0 /* Main.storyboard */,
@@ -100,6 +119,14 @@
 				30D946612392A86A006720AD /* LJTextField.m */,
 				24D523622395FD3A009C9A37 /* LJTableView.h */,
 				24D523632395FD3A009C9A37 /* LJTableView.m */,
+				241A4B8523A88554006F0A64 /* TestTwoViewController.h */,
+				241A4B8623A88554006F0A64 /* TestTwoViewController.m */,
+				241A4B8723A88554006F0A64 /* TestTwoViewController.xib */,
+				241A4B9323A888F2006F0A64 /* UIView+FromeXib.h */,
+				241A4B9423A888F2006F0A64 /* UIView+FromeXib.m */,
+				241A4B8A23A886DB006F0A64 /* PopView.h */,
+				241A4B8B23A886DB006F0A64 /* PopView.m */,
+				241A4B8D23A886E8006F0A64 /* PopView.xib */,
 			);
 			path = LJKeyBroadEventManager;
 			sourceTree = "<group>";
@@ -183,8 +210,10 @@
 				30FB4F2A2306787900D23ED0 /* LaunchScreen.storyboard in Resources */,
 				30FB4F272306787900D23ED0 /* Assets.xcassets in Resources */,
 				30FB4F3C230679C900D23ED0 /* TestViewController.xib in Resources */,
+				241A4B8923A88554006F0A64 /* TestTwoViewController.xib in Resources */,
 				30FB4F4123067A4A00D23ED0 /* TestTableViewCell.xib in Resources */,
 				30FB4F252306787700D23ED0 /* Main.storyboard in Resources */,
+				241A4B8E23A886E8006F0A64 /* PopView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,9 +269,12 @@
 				30FB4F36230679AD00D23ED0 /* ViewController.m in Sources */,
 				30FB4F4023067A4A00D23ED0 /* TestTableViewCell.m in Sources */,
 				30FB4F2D2306787900D23ED0 /* main.m in Sources */,
+				241A4B8C23A886DB006F0A64 /* PopView.m in Sources */,
+				241A4B8823A88554006F0A64 /* TestTwoViewController.m in Sources */,
 				30D946622392A86A006720AD /* LJTextField.m in Sources */,
 				24D523642395FD3A009C9A37 /* LJTableView.m in Sources */,
 				30FB4F3B230679C900D23ED0 /* TestViewController.m in Sources */,
+				241A4B9523A888F2006F0A64 /* UIView+FromeXib.m in Sources */,
 				30FB4F1F2306787700D23ED0 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,11 +420,19 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9G4EP95MHN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LJKeyBroadEventManager",
+				);
 				INFOPLIST_FILE = LJKeyBroadEventManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LJKeyBroadEventManager",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = LJ.LJKeyBroadEventManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -407,11 +447,19 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9G4EP95MHN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LJKeyBroadEventManager",
+				);
 				INFOPLIST_FILE = LJKeyBroadEventManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LJKeyBroadEventManager",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = LJ.LJKeyBroadEventManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
