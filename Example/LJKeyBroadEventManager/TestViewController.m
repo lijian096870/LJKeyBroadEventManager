@@ -22,6 +22,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    
+
+    
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+       self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+   
+    
+    
     self.navigationItem.hidesBackButton = false;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"next" style:UIBarButtonItemStylePlain target:self action:@selector(NextPage)];
     
