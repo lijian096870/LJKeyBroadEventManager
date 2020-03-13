@@ -17,10 +17,10 @@ void addbecomeFirstResponderCallBackBlock(becomeFirstResponderCallBackBlock bloc
 {
     [UIResponder configbecomeFirstResponderCallBackBlock:^BOOL (UIView *view) {
         if (block) {
-            block(view);
+            return block(view);
+        } else {
+            return YES;
         }
-
-        return YES;
     }];
 }
 
@@ -59,14 +59,11 @@ void configShowExtensionToolBar(BOOL show)
 
 @implementation LJKeyBroadEventManager
 
-+(void)registerKeyBroadResponder:(UIViewController <LJKeyboardManagerDelegate> *)viewController{
-    
++ (void)registerKeyBroadResponder:(UIViewController <LJKeyboardManagerDelegate> *)viewController {
     registerKeyBroadResponder(viewController);
-    
 }
 
-+(void)removeKeyBroadResponder:(UIViewController <LJKeyboardManagerDelegate> *)viewController{
-    
++ (void)removeKeyBroadResponder:(UIViewController <LJKeyboardManagerDelegate> *)viewController {
     registerKeyBroadResponder(viewController);
 }
 

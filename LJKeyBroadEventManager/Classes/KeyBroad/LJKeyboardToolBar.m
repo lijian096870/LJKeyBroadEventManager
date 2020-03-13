@@ -58,8 +58,28 @@
 
     UIBarButtonItem *done = [[UIBarButtonItem alloc]initWithTitle:[self localizedStringForKey:@"Done" value:nil] style:UIBarButtonItemStyleDone target:self action:@selector(done)];
 
-    done.tintColor = UIColor.blackColor;
-    self.tintColor = UIColor.blackColor;
+    if (@available(iOS 13.0, *)) {
+        UIColor *color = [UIColor colorWithDynamicProvider:^UIColor *_Nonnull (UITraitCollection *_Nonnull trait) {
+                switch (trait.userInterfaceStyle) {
+                    case UIUserInterfaceStyleUnspecified:
+                        return UIColor.blackColor;
+
+                    case UIUserInterfaceStyleLight:
+                        return UIColor.blackColor;
+
+                    case UIUserInterfaceStyleDark:
+                        return UIColor.whiteColor;
+
+                    default:
+                        return UIColor.blackColor;
+                }
+            }];
+        done.tintColor = color;
+        self.tintColor = color;
+    } else {
+        done.tintColor = UIColor.blackColor;
+        self.tintColor = UIColor.blackColor;
+    }
 
     [super setItems:@[[[UIBarButtonItem alloc]initWithCustomView:self.leftbtn], [[UIBarButtonItem alloc]initWithCustomView:self.rightbtn], [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], done]];
 }
