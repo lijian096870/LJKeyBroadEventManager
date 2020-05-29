@@ -9,7 +9,7 @@
 #import "UIView+LJView.h"
 #import "LJViewMethodExchangeUtil.h"
 #import "UIView+LJKVCView.h"
-
+#import "NSObject+CustomerDealloc.h"
 void viewSetFrameChangeBlock(UIView *view, viewFrameChangeBlock block)
 {
     if ([view isKindOfClass:UIView.class]) {
@@ -21,6 +21,13 @@ void viewAddFrameChangeBlock(UIView *view, viewFrameChangeBlock block)
 {
     if ([view isKindOfClass:UIView.class] && block) {
         [view addFrameChangeBlock_kvcView:block];
+    }
+}
+
+void objectAddObjectDeallocBlock(NSObject *object, objectDeallocBlock block)
+{
+    if ([object isKindOfClass:NSObject.class] && block) {
+        [NSObject registerCustomerDeallocArrayObject:object block:block Key:@"LJViewKit"];
     }
 }
 

@@ -20,15 +20,11 @@
 
 @interface LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel ()
 
-@property(nonatomic, strong) NSString *randStringID;
-
-@property(nonatomic, weak) UIView *rootView;
-
-@property(nonatomic, strong) NSNumber *listerStatue;
-
-@property(nonatomic, strong) NSNumber *lockShowNot;
-
-@property(nonatomic, strong) NSNumber *canRunHidenBlock;
+@property(nonatomic, strong) NSString   *randStringID;
+@property(nonatomic, strong) NSNumber   *listerStatue;
+@property(nonatomic, strong) NSNumber   *lockShowNot;
+@property(nonatomic, strong) NSNumber   *canRunHidenBlock;
+@property(nonatomic, strong) NSNumber   *viewStateValue;
 
 @end
 
@@ -54,6 +50,18 @@
 - (void)endLister {
     self.listerStatue = [NSNumber numberWithBool:NO];
     self.lockShowNot = [NSNumber numberWithBool:NO];
+}
+
+- (void)didMove {
+    self.viewStateValue = [NSNumber numberWithInteger:LJKeyBroadInputAccessoryViewMove];
+}
+
+- (void)didAdd {
+    self.viewStateValue = [NSNumber numberWithInteger:LJKeyBroadInputAccessoryViewAdd];
+}
+
+- (LJKeyBroadInputAccessoryViewState)state {
+    return [self.viewStateValue integerValue];
 }
 
 - (instancetype)initWithKeyeBroadInputViewController:(UIView *)rootView
@@ -163,6 +171,14 @@
             }
         }
     } AndName:UIKeyboardDidChangeFrameNotification anyKey:self.randStringID];
+}
+
+- (NSNumber *)viewStateValue {
+    if (_viewStateValue == nil) {
+        _viewStateValue = [NSNumber numberWithInteger:LJKeyBroadInputAccessoryViewMove];
+    }
+
+    return _viewStateValue;
 }
 
 - (NSString *)randStringID {

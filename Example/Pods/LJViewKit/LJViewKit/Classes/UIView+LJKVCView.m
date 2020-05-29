@@ -9,6 +9,7 @@
 #import "UIView+LJKVCView.h"
 #import <objc/runtime.h>
 #import "LJViewMethodExchangeUtil.h"
+#import "NSObject+CustomerDealloc.h"
 
 #if defined(DEBUG) && !defined(NDEBUG)
   #define ol_keywordify autoreleasepool {}
@@ -225,7 +226,12 @@
         [self viewModel_content].isAddLister = YES;
     }
 
-    [LJViewMethodExchangeUtil methodViewDelloc_MethodExchang];
+    [NSObject registerCustomerDeallocOnceObject:self block:^(NSObject *object) {
+        if ([object isKindOfClass:UIView.class]) {
+            UIView *view = (UIView *)object;
+            [view dealloc_content_removeLister];
+        }
+    } Key:@"LJViewKit"];
 }
 
 - (LJKVCViewModel *)viewModel_content
@@ -268,7 +274,7 @@
     return array;
 }
 
-- (void)dealloc_content {
+- (void)dealloc_content_removeLister {
     if ([self isKindOfClass:UIView.class]) {
         if ([self viewModel_content].isAddLister) {
             [self removeObserver:[self viewModel_content] forKeyPath:@"frame"];
@@ -277,7 +283,6 @@
         [[self viewModel_content]setBlock:nil];
         [[self viewModel_content].blockArray removeAllObjects];
         [[self viewModel_content] setBlockArray:nil];
-        [self dealloc_content];
     }
 }
 

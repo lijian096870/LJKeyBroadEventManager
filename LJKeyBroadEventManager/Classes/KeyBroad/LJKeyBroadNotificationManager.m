@@ -24,7 +24,7 @@
     self = [super init];
 
     if (self) {
-        [self addlister];
+//        [self addlister];
     }
 
     return self;
