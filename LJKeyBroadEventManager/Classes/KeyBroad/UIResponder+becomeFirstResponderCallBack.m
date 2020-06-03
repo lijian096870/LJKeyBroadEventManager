@@ -8,8 +8,7 @@
 #import "UIResponder+becomeFirstResponderCallBack.h"
 #import <objc/runtime.h>
 #import "FirstResponderModel.h"
-#import "UITextField+AccessoryView.h"
-#import "UITextView+AccessoryView.h"
+
 static NSMutableArray   *becomeFirstResponderCallBackBlockArray;
 static NSMutableArray   *becomeFirstResponderResultCallBackBlockArray;
 static NSMutableArray   *resignFirstResponderCallBackBlockArray;
@@ -102,13 +101,6 @@ static __weak UIResponder *lj_currentFirstResponder;
             Method swizzlingMethod = class_getInstanceMethod(UIResponder.class, NewSel);
 
             method_exchangeImplementations(originalMethod, swizzlingMethod);
-        });
-    }
-    {
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            [UITextField InputAccessoryViewChangeCallBackMethodExchange];
-            [UITextView InputAccessoryViewChangeCallBackMethodExchange];
         });
     }
 }

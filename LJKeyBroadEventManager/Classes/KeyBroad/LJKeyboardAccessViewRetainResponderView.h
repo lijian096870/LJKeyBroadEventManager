@@ -7,6 +7,11 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface LJKeyboardAccessViewRetainResponderView : UIToolbar
 
+-(void)configResponderView:(UIView*)view;
+
 @end
+
+

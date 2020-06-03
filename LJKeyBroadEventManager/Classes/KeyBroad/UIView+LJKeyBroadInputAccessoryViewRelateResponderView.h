@@ -14,10 +14,13 @@
 
 - (void)setKeyBroadInputAccessoryViewRelateResponderView_view:(UIView *)view;
 
-- (void)setKeyBroadInputAccessoryViewRelateResponderView_view_model:(LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *)model;
-
 - (LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *)KeyBroadInputAccessoryViewRelateResponderModel_view;
 
-- (LJKeyBroadInputResponderViewEventControl *)keyBroadInputResponderViewEventControl_view;
+
+
+
+-(LJKeyBroadInputResponderViewEventControl*)keyBroadInputResponderViewEventControl_view;
 
 @end
+
+
