@@ -1,5 +1,5 @@
 PODS:
-  - LJKeyBroadEventManager (3.2.1):
+  - LJKeyBroadEventManager (3.2.2):
     - LJViewController
     - LJViewKit
   - LJViewController (1.1.0)
@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LJKeyBroadEventManager: 35f63fabd77e4bde319f25571d744df8b79ccdcf
+  LJKeyBroadEventManager: bc053428bba8fa5a48b6a568e1466c5e4278e1e5
   LJViewController: 0a66bf40896d706fd93b6aa0654d4a6a164405d0
   LJViewKit: cbc28dd740ea75dfe720ad2245255615fd4ba4ad
 
