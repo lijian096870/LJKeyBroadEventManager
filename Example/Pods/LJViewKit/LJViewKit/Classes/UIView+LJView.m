@@ -16,6 +16,7 @@
 - (void)LJView_customer_addSubview:(UIView *)view {
     if ([view isKindOfClass:UIView.class]) {
         if (self == view) {} else {
+            [LJViewSuperViewFrameChangeRuner WilladdSuperView:self AndBeAddView:view];
             [LJViewWindowChangeRuner willAddView:self andSubView:view];
         }
     }
@@ -24,7 +25,8 @@
 
     if ([view isKindOfClass:UIView.class]) {
         if (self == view) {} else {
-            [LJViewSuperViewFrameChangeRuner addSubView:view AndBeAddView:self];
+            [LJViewSuperViewFrameChangeRuner DidaddSuperView:self AndBeAddView:view];
+            [LJViewSuperViewFrameChangeRuner addSubView:self AndBeAddView:view];
             [LJViewWindowChangeRuner didAddView:self andSubView:view];
         }
     }
@@ -34,12 +36,14 @@
     UIView *superView = self.superview;
 
     if ([superView isKindOfClass:UIView.class]) {
+        [LJViewSuperViewFrameChangeRuner WillremovwSuperView:superView AndBeRemoveView:self];
         [LJViewWindowChangeRuner willMoveView:superView andSubView:self];
     }
 
     [self LJView_customer_removeFromSuperview];
 
     if ([superView isKindOfClass:UIView.class]) {
+        [LJViewSuperViewFrameChangeRuner DidremovwSuperView:superView AndBeRemoveView:self];
         [LJViewWindowChangeRuner didMoveView:superView andSubView:self];
     }
 }

@@ -32,8 +32,21 @@
 @property(nonatomic, strong) NSMutableArray *superWillChangeArray;
 @property(nonatomic, strong) NSMutableArray *superDidChangeArray;
 
+@property(nonatomic, strong) NSMutableArray         *DidAddSubViewArray;
+@property(nonatomic, strong) NSMutableDictionary    *DidAddSubViewDictionary;
+
+@property(nonatomic, strong) NSMutableArray         *WillAddSubViewArray;
+@property(nonatomic, strong) NSMutableDictionary    *WillAddSubViewDictionary;
+
+@property(nonatomic, strong) NSMutableArray         *DidRemoveViewArray;
+@property(nonatomic, strong) NSMutableDictionary    *DidRemoveViewDictionary;
+
+@property(nonatomic, strong) NSMutableArray         *WillRemoveViewArray;
+@property(nonatomic, strong) NSMutableDictionary    *WillRemoveViewDictionary;
+
 @property(nonatomic, strong) NSMutableArray         *AddSubViewArray;
 @property(nonatomic, strong) NSMutableDictionary    *AddSubViewDictionary;
+
 @end
 
 @implementation LJViewModel
@@ -55,6 +68,92 @@
         }
     } else {
         [self AddViewAddSubViewBlock:block];
+    }
+}
+
+- (void)SetViewWillAddSubViewBlock:(viewBeAddSubView)block {
+    if (block) {
+        self.WillremoveViewBlock = block;
+    }
+}
+
+- (void)AddViewWillAddSubViewBlock:(viewBeAddSubView)block {
+    if (block) {
+        [self.WillAddSubViewArray addObject:block];
+    }
+}
+
+- (void)AddViewWillAddSubViewKeyBlock:(viewBeAddSubView)block AndKey:(NSString *)key {
+    if ([key isKindOfClass:NSString.class] && (key.length > 0)) {
+        if (block) {
+            [self.WillAddSubViewDictionary setObject:block forKey:key];
+        }
+    } else {
+        [self AddViewWillAddSubViewBlock:block];
+    }
+}
+
+- (void)SetViewDidAddSubViewBlock:(viewBeAddSubView)block {
+    self.DidaddSubViewBlock = block;
+}
+
+- (void)AddViewDidAddSubViewBlock:(viewBeAddSubView)block {
+    if (block) {
+        [self.DidAddSubViewArray addObject:block];
+    }
+}
+
+- (void)AddViewDidAddSubViewKeyBlock:(viewBeAddSubView)block AndKey:(NSString *)key {
+    if ([key isKindOfClass:NSString.class] && (key.length > 0)) {
+        if (block) {
+            [self.DidAddSubViewDictionary setObject:block forKey:key];
+        }
+    } else {
+        [self AddViewDidAddSubViewBlock:block];
+    }
+}
+
+- (void)SetViewDidRemoveBlock:(viewRemoveView)block {
+    if (block) {
+        self.DidremoveViewBlock = block;
+    }
+}
+
+- (void)AddViewDidRemoveBlock:(viewRemoveView)block {
+    if (block) {
+        [self.DidRemoveViewArray addObject:block];
+    }
+}
+
+- (void)AddViewDidRemoveKeyBlock:(viewRemoveView)block AndKey:(NSString *)key {
+    if ([key isKindOfClass:NSString.class] && (key.length > 0)) {
+        if (block) {
+            [self.DidRemoveViewDictionary setObject:block forKey:key];
+        }
+    } else {
+        [self AddViewDidRemoveBlock:block];
+    }
+}
+
+- (void)SetViewWillRemoveBlock:(viewRemoveView)block {
+    if (block) {
+        self.WillremoveViewBlock = block;
+    }
+}
+
+- (void)AddViewWillRemoveBlock:(viewRemoveView)block {
+    if (block) {
+        self.WillremoveViewBlock = block;
+    }
+}
+
+- (void)AddViewWillRemoveKeyBlock:(viewRemoveView)block AndKey:(NSString *)key {
+    if ([key isKindOfClass:NSString.class] && (key.length > 0)) {
+        if (block) {
+            [self.WillRemoveViewDictionary setObject:block forKey:key];
+        }
+    } else {
+        [self AddViewWillRemoveBlock:block];
     }
 }
 
@@ -101,93 +200,55 @@
 }
 
 - (NSArray *)_viewAddSubViewArray {
-    NSMutableArray *array = [NSMutableArray arrayWithArray:self.AddSubViewArray];
+    return [self byDictionaryKey:self.AddSubViewDictionary AndArray:self.AddSubViewArray];
+}
 
-    if (self.AddSubViewDictionary.count > 0) {
-        [array addObjectsFromArray:self.AddSubViewDictionary.allValues];
-    }
+- (NSArray *)_viewWillRemoveViewArray {
+    return [self byDictionaryKey:self.WillRemoveViewDictionary AndArray:self.WillRemoveViewArray];
+}
 
-    return array;
+- (NSArray *)_viewDidRemoveViewArray {
+    return [self byDictionaryKey:self.DidRemoveViewDictionary AndArray:self.DidRemoveViewArray];
+}
+
+- (NSArray *)_viewWillAddSubViewArray {
+    return [self byDictionaryKey:self.WillAddSubViewDictionary AndArray:self.WillAddSubViewArray];
+}
+
+- (NSArray *)_viewDidAddSubViewArray {
+    return [self byDictionaryKey:self.DidAddSubViewDictionary AndArray:self.DidAddSubViewArray];
 }
 
 - (NSArray *)_superWillChangeArray {
-    NSMutableArray *array = [NSMutableArray arrayWithArray:self.superWillChangeArray];
-
-    if (self.willChangeDictionary.count > 0) {
-        [array addObjectsFromArray:self.superWillChangeDictionary.allValues];
-    }
-
-    return array;
+    return [self byDictionaryKey:self.superWillChangeDictionary AndArray:self.superWillChangeArray];
 }
 
 - (NSArray *)_superDidChangeArray {
-    NSMutableArray *array = [NSMutableArray arrayWithArray:self.superDidChangeArray];
-
-    if (self.willChangeDictionary.count > 0) {
-        [array addObjectsFromArray:self.superDidChangeDictionary.allValues];
-    }
-
-    return array;
+    return [self byDictionaryKey:self.superDidChangeDictionary AndArray:self.superDidChangeArray];
 }
 
 - (NSArray *)_willChangeArray {
-    NSMutableArray *array = [NSMutableArray arrayWithArray:self.willChangeArray];
-
-    if (self.willChangeDictionary.count > 0) {
-        [array addObjectsFromArray:self.willChangeDictionary.allValues];
-    }
-
-    return array;
+    return [self byDictionaryKey:self.willChangeDictionary AndArray:self.willChangeArray];
 }
 
 - (NSArray *)_didChangeArray {
-    NSMutableArray *array = [NSMutableArray arrayWithArray:self.didChangeArray];
-
-    if (self.didChangeDictionary.count > 0) {
-        [array addObjectsFromArray:self.didChangeDictionary.allValues];
-    }
-
-    return array;
+    return [self byDictionaryKey:self.didChangeDictionary AndArray:self.didChangeArray];
 }
 
 - (NSArray *)_willAddArray {
-    NSMutableArray *array = [NSMutableArray arrayWithArray:self.willAddArray];
-
-    if (self.willAddDictionary.count > 0) {
-        [array addObjectsFromArray:self.willAddDictionary.allValues];
-    }
-
-    return array;
+    return [self byDictionaryKey:self.willAddDictionary AndArray:self.willAddArray];
 }
 
 - (NSArray *)_didAddArray {
-    NSMutableArray *array = [NSMutableArray arrayWithArray:self.didAddArray];
-
-    if (self.didAddDictionary.count > 0) {
-        [array addObjectsFromArray:self.didAddDictionary.allValues];
-    }
-
-    return array;
+    return [self byDictionaryKey:self.didAddDictionary AndArray:self.didAddArray];
 }
 
 - (NSArray *)_willMoveArray {
-    NSMutableArray *array = [NSMutableArray arrayWithArray:self.willMoveArray];
-
-    if (self.willMoveDictionary.count > 0) {
-        [array addObjectsFromArray:self.willMoveDictionary.allValues];
-    }
-
-    return array;
+    return [self byDictionaryKey:self.willMoveDictionary AndArray:self.willMoveArray];
 }
 
 - (NSArray *)_didMoveArray {
-    NSMutableArray *array = [NSMutableArray arrayWithArray:self.didMoveArray];
-
-    if (self.didMoveDictionary.count > 0) {
-        [array addObjectsFromArray:self.didMoveDictionary.allValues];
-    }
-
-    return array;
+    return [self byDictionaryKey:self.didMoveDictionary AndArray:self.didMoveArray];
 }
 
 - (void)AddWindowDidAddKeyBlock:(viewWindowChangeBlock)block AndKey:(NSString *)key {
@@ -333,6 +394,71 @@
     return self;
 }
 
+- (NSMutableArray *)byDictionaryKey:(NSDictionary *)dictionary AndArray:(NSArray *)array {
+    if (dictionary.count > 0) {
+        NSMutableArray *keys = [NSMutableArray arrayWithArray:dictionary.allKeys];
+
+        [keys sortUsingComparator:^NSComparisonResult (NSString *obj1, NSString *obj2) {
+            if ([obj1 isKindOfClass:NSString.class] && (obj1.length > 0) && [obj2 isKindOfClass:NSString.class] && (obj2.length > 0)) {
+                return [self sortUsingComparator:obj1 and:obj2];
+            } else {
+                return NSOrderedSame;
+            }
+        }];
+
+        NSMutableArray *result = [NSMutableArray array];
+
+        for (NSObject *key in keys) {
+            [result addObject:[dictionary objectForKey:key]];
+        }
+
+        if (array.count > 0) {
+            [result addObjectsFromArray:array];
+        }
+
+        return result;
+    } else {
+        return [NSMutableArray arrayWithArray:array];
+    }
+}
+
+- (NSComparisonResult)sortUsingComparator:(NSString *)obj1 and:(NSString *)obj2 {
+    double  index1 = [self getStringIndex:obj1];
+    double  index2 = [self getStringIndex:obj2];
+
+    if (index1 > index2) {
+        return NSOrderedAscending;
+    } else if (index1 < index2) {
+        return NSOrderedDescending;
+    } else {
+        return NSOrderedSame;
+    }
+}
+
+- (double)getStringIndex:(NSString *)string {
+    if ([string isKindOfClass:NSString.class] && (string.length > 0)) {
+        NSMutableString *result = [NSMutableString string];
+
+        for (int i = 0; i < string.length; i++) {
+            char c = [string characterAtIndex:i];
+
+            if (((c <= '9') && (c >= '0')) || (c == '.')) {
+                [result appendFormat:@"%c", c];
+            } else {
+                break;
+            }
+        }
+
+        if (result.length > 0) {
+            return [result doubleValue];
+        } else {
+            return 0.0;
+        }
+    } else {
+        return 0.0;
+    }
+}
+
 - (NSMutableArray *)willChangeArray {
     if (_willChangeArray == nil) {
         _willChangeArray = [NSMutableArray array];
@@ -459,6 +585,70 @@
     }
 
     return _superWillChangeArray;
+}
+
+- (NSMutableArray *)DidAddSubViewArray {
+    if (_DidAddSubViewArray == nil) {
+        _DidAddSubViewArray = [NSMutableArray array];
+    }
+
+    return _DidAddSubViewArray;
+}
+
+- (NSMutableArray *)WillAddSubViewArray {
+    if (_WillAddSubViewArray == nil) {
+        _WillAddSubViewArray = [NSMutableArray array];
+    }
+
+    return _WillAddSubViewArray;
+}
+
+- (NSMutableDictionary *)WillAddSubViewDictionary {
+    if (_WillAddSubViewDictionary == nil) {
+        _WillAddSubViewDictionary = [NSMutableDictionary dictionary];
+    }
+
+    return _WillAddSubViewDictionary;
+}
+
+- (NSMutableDictionary *)DidAddSubViewDictionary {
+    if (_DidAddSubViewDictionary == nil) {
+        _DidAddSubViewDictionary = [NSMutableDictionary dictionary];
+    }
+
+    return _DidAddSubViewDictionary;
+}
+
+- (NSMutableArray *)WillRemoveViewArray {
+    if (_WillRemoveViewArray == nil) {
+        _WillRemoveViewArray = [NSMutableArray array];
+    }
+
+    return _WillRemoveViewArray;
+}
+
+- (NSMutableDictionary *)WillRemoveViewDictionary {
+    if (_WillRemoveViewDictionary == nil) {
+        _WillRemoveViewDictionary = [NSMutableDictionary dictionary];
+    }
+
+    return _WillRemoveViewDictionary;
+}
+
+- (NSMutableArray *)DidRemoveViewArray {
+    if (_DidRemoveViewArray == nil) {
+        _DidRemoveViewArray = [NSMutableArray array];
+    }
+
+    return _DidRemoveViewArray;
+}
+
+- (NSMutableDictionary *)DidRemoveViewDictionary {
+    if (_DidRemoveViewDictionary == nil) {
+        _DidRemoveViewDictionary = [NSMutableDictionary dictionary];
+    }
+
+    return _DidRemoveViewDictionary;
 }
 
 - (NSMutableArray *)AddSubViewArray {

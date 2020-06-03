@@ -13,6 +13,12 @@
 
 + (void)viewDidChange:(UIView *)view AndOldFrame:(CGRect)oldframe AndNewFrame:(CGRect)NewFrame;
 
++ (void)DidaddSuperView:(UIView *)view AndBeAddView:(UIView *)beAddView;
++ (void)WilladdSuperView:(UIView *)view AndBeAddView:(UIView *)beAddView;
+
++ (void)DidremovwSuperView:(UIView *)view AndBeRemoveView:(UIView *)beRemove;
++ (void)WillremovwSuperView:(UIView *)view AndBeRemoveView:(UIView *)beRemove;
+
 + (void)addSubView:(UIView *)view AndBeAddView:(UIView *)beAddView;
 
 @end
