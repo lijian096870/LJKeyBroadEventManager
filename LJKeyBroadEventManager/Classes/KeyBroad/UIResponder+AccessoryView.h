@@ -11,8 +11,6 @@
 
 + (void)InputAccessoryViewChangeCallBackMethodExchange_reloadInputViews;
 
-- (BOOL)customer_Responder_reloadInputViews_value;
-
 - (UIView *)LJKeyBroad_customer_inputAccessoryView;
 
 - (void)setAccessoryViewinputAccessoryViewFundation:(BOOL)state;

@@ -26,11 +26,7 @@
 }
 
 - (UIView *)LJKeyBroad_inputAccessoryView {
-    if ([self customer_Responder_reloadInputViews_value]) {
-        return [self LJKeyBroad_input_AccessoryViewAdd:[self LJKeyBroad_inputAccessoryView]];
-    } else {
-        return [self LJKeyBroad_input_AccessoryViewAdd:[self LJKeyBroad_inputAccessoryView]];
-    }
+    return [self LJKeyBroad_input_AccessoryViewAdd:[self LJKeyBroad_inputAccessoryView]];
 }
 
 - (UIView *)LJKeyBroad_input_AccessoryViewMov:(UIView *)AccessoryView {

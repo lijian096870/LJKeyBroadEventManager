@@ -115,9 +115,7 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
                 [self.model lockCanRunHidenBlock:NO];
                 UIView *responderView = self.model.responderView;
 
-                if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
-                    [[LJKeyBroadRegisterManager sharedInstance] HiddenkeyBroadInputAccessoryViewRelateCallBlock:responderView];
-                }
+                [[LJKeyBroadRegisterManager sharedInstance] HiddenkeyBroadInputAccessoryViewRelateCallBlock:responderView];
 
                 [responderView.keyBroadInputResponderViewEventControl_view endResponderAllEvent];
                 [self.model endLister];

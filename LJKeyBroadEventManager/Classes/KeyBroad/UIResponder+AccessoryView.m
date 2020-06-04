@@ -29,16 +29,9 @@
     {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            SEL sel = sel_registerName("reloadInputViews");
-            SEL NewSel = sel_registerName("LJKeyBroad_reloadInputViews_UIResponder");
-            Method originalMethod = class_getInstanceMethod(UIResponder.class, sel);
-            Method swizzlingMethod = class_getInstanceMethod(UIResponder.class, NewSel);
-            method_exchangeImplementations(originalMethod, swizzlingMethod);
+            [UITextField InputAccessoryViewChangeCallBackMethodExchange];
+            [UITextView InputAccessoryViewChangeCallBackMethodExchange];
         });
-    }
-    {
-        [UITextField InputAccessoryViewChangeCallBackMethodExchange];
-        [UITextView InputAccessoryViewChangeCallBackMethodExchange];
     }
 }
 
@@ -62,16 +55,6 @@
     [self customer_Responder_AccessoryViewFundation_value:state];
 }
 
-- (void)LJKeyBroad_reloadInputViews_UIResponder {
-    if ([self customer_Responder_AccessoryViewFundation_value]) {
-        [self customer_Responder_reloadInputViews_value:YES];
-        [self LJKeyBroad_reloadInputViews_UIResponder];
-        [self customer_Responder_reloadInputViews_value:NO];
-    } else {
-        [self LJKeyBroad_reloadInputViews_UIResponder];
-    }
-}
-
 - (void)customer_Responder_AccessoryViewFundation_value:(BOOL)value {
     objc_setAssociatedObject(self, @selector(customer_Responder_AccessoryViewFundation_value), [NSNumber numberWithBool:value], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
@@ -92,22 +75,6 @@
     } else {
         NSNumber *mess = [NSNumber numberWithBool:NO];
         objc_setAssociatedObject(self, @selector(customer_Responder_AccessoryViewFundation_value), mess, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        return [mess boolValue];
-    }
-}
-
-- (void)customer_Responder_reloadInputViews_value:(BOOL)value {
-    objc_setAssociatedObject(self, @selector(customer_Responder_reloadInputViews_value), [NSNumber numberWithBool:value], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (BOOL)customer_Responder_reloadInputViews_value {
-    NSNumber *obj = objc_getAssociatedObject(self, @selector(customer_Responder_reloadInputViews_value));
-
-    if ([obj isKindOfClass:[NSNumber class]]) {
-        return [obj boolValue];
-    } else {
-        NSNumber *mess = [NSNumber numberWithBool:NO];
-        objc_setAssociatedObject(self, @selector(customer_Responder_reloadInputViews_value), mess, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         return [mess boolValue];
     }
 }
