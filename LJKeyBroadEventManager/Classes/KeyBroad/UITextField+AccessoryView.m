@@ -29,13 +29,13 @@
     if ([self customer_Responder_reloadInputViews_value]) {
         return [self LJKeyBroad_input_AccessoryViewAdd:[self LJKeyBroad_inputAccessoryView]];
     } else {
-        return [self LJKeyBroad_input_AccessoryViewMov:[self LJKeyBroad_inputAccessoryView]];
+        return [self LJKeyBroad_input_AccessoryViewAdd:[self LJKeyBroad_inputAccessoryView]];
     }
 }
 
 - (UIView *)LJKeyBroad_input_AccessoryViewMov:(UIView *)AccessoryView {
     if ([AccessoryView isKindOfClass:LJKeyBroadAccessView.class]) {
-        return [[self LJKeyBroad_textField_AccessoryViewSuperView] currentAccessView];
+        return [(LJKeyBroadAccessView *)AccessoryView  currentAccessView];
     } else {
         return AccessoryView;
     }
