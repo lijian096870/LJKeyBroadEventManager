@@ -39,12 +39,16 @@
 }
 
 - (void)LJKeyBroad_setInputAccessoryView:(UIView *)inputAccessoryView {
-    [self LJKeyBroad_setInputAccessoryView:[self LJKeyBroad_input_AccessoryViewMov:inputAccessoryView]];
-    UIView *currentAccessView = [self LJKeyBroad_input_AccessoryViewMov:[self LJKeyBroad_inputAccessoryView]];
+    if ([inputAccessoryView isKindOfClass:UIView.class]) {
+        UIView *currentAccessView = [self LJKeyBroad_input_AccessoryViewMov:[self LJKeyBroad_inputAccessoryView]];
+        [self LJKeyBroad_setInputAccessoryView:[self LJKeyBroad_input_AccessoryViewMov:inputAccessoryView]];
 
-    if (currentAccessView == inputAccessoryView) {} else {
+        if (currentAccessView == inputAccessoryView) {} else {
+            objc_setAssociatedObject(self, @selector(LJKeyBroad_textField_AccessoryViewSuperView), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        }
+    } else {
+        [self LJKeyBroad_setInputAccessoryView:nil];
         objc_setAssociatedObject(self, @selector(LJKeyBroad_textField_AccessoryViewSuperView), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        [self LJKeyBroad_textField_AccessoryViewSuperView];
     }
 }
 

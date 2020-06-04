@@ -7,7 +7,6 @@
 
 #import "LJKeyBroadAccessView.h"
 #import "LJViewKit.h"
-#import "LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel.h"
 #import "UIView+LJKeyBroadInputAccessoryViewRelateResponderView.h"
 #import "LJKeyBroadRegisterManager.h"
 
@@ -27,10 +26,9 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
 
 @interface LJKeyBroadAccessView ()
 
-@property(nonatomic, weak) UIView                                                           *responder;
-@property(nonatomic, strong) UIView                                                         *accessoryView;
-@property(nonatomic, strong) NSNumber                                                       *numberViewStyle;
-@property(nonatomic, strong) LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *model;
+@property(nonatomic, weak) UIView       *responder;
+@property(nonatomic, strong) UIView     *accessoryView;
+@property(nonatomic, strong) NSNumber   *numberViewStyle;
 
 @end
 
@@ -42,7 +40,6 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
 
     if (self) {
         self.responder = responder;
-        [self.model setResponderView:responder];
     }
 
     return self;
@@ -69,9 +66,7 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
                 self.accessoryView = view;
                 view.frame = CGRectMake(0, 0, view.bounds.size.width, view.bounds.size.height);
                 self.frame = view.bounds;
-
                 [self addSubview:view];
-
                 AddFrameDidChangeKeyBlock(view, @"_LJKeyBroadAccessView", ^(UIView *view, CGRect oldFrame, CGRect newFrame) {
                     LJKeyBroadAccessView *superView = (LJKeyBroadAccessView *)[view superview];
 
@@ -103,35 +98,32 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
 - (void)viewDidAdd {}
 
 - (void)viewDidMove {
-    UIView *responderView = self.model.responderView;
+    UIView *responderView = self.responder;
 
     [responderView.keyBroadInputResponderViewEventControl_view endShowEvent];
-    [self.model lockCantShowStatue];
-    [self.model lockCanRunHidenBlock:YES];
+    [[responderView KeyBroadInputAccessoryViewRelateResponderModel] lockCantShowStatue];
+    [[responderView KeyBroadInputAccessoryViewRelateResponderModel] lockCanRunHidenBlock:YES];
 
     dispatch_async(dispatch_get_main_queue(), ^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            if ([self.model canRunHidenBlockQuery]) {
-                [self.model lockCanRunHidenBlock:NO];
-                UIView *responderView = self.model.responderView;
-
+            if ([[responderView KeyBroadInputAccessoryViewRelateResponderModel] canRunHidenBlockQuery]) {
+                [[responderView KeyBroadInputAccessoryViewRelateResponderModel] lockCanRunHidenBlock:NO];
                 [[LJKeyBroadRegisterManager sharedInstance] HiddenkeyBroadInputAccessoryViewRelateCallBlock:responderView];
-
                 [responderView.keyBroadInputResponderViewEventControl_view endResponderAllEvent];
-                [self.model endLister];
+                [[responderView KeyBroadInputAccessoryViewRelateResponderModel] endLister];
             }
         });
     });
 }
 
 - (void)viewWillAdd {
-    UIView *responderView = self.model.responderView;
+    UIView *responderView = self.responder;
 
     if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
         [self setResponder:responderView];
-        [self.model lockCanRunHidenBlock:NO];
+        [[responderView KeyBroadInputAccessoryViewRelateResponderModel] lockCanRunHidenBlock:NO];
         [responderView.keyBroadInputResponderViewEventControl_view beginResponderAllEvent];
-        [self.model startLister];
+        [[responderView KeyBroadInputAccessoryViewRelateResponderModel] startLister];
 
         [[LJKeyBroadRegisterManager sharedInstance] ShowkeyBroadInputAccessoryViewRelateCallBlock:responderView];
     }
@@ -187,14 +179,6 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
     }
 
     return _numberViewStyle;
-}
-
-- (LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *)model {
-    if (_model == nil) {
-        _model = [[LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel alloc]initWithKeyeBroadInputViewController:self];
-    }
-
-    return _model;
 }
 
 - (void)dealloc

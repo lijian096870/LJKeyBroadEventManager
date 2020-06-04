@@ -22,4 +22,17 @@
     }
 }
 
+- (LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *)KeyBroadInputAccessoryViewRelateResponderModel {
+    LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *model = objc_getAssociatedObject(self, @selector(KeyBroadInputAccessoryViewRelateResponderModel));
+
+    if ([model isKindOfClass:LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel.class]) {
+        return model;
+    } else {
+        LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *model = [[LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel alloc]initWithKeyeBroadInputViewController:self];
+        [model setResponderView:self];
+        objc_setAssociatedObject(self, @selector(KeyBroadInputAccessoryViewRelateResponderModel), model, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        return model;
+    }
+}
+
 @end
