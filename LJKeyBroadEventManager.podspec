@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = 'LJKeyBroadEventManager'
   s.summary      = '键盘弹出遮挡输入框解决方案'
-  s.version      = '3.2.6'
+  s.version      = '3.2.7'
   s.license       = { :type => 'MIT', :file => 'LICENSE' }
   
   
@@ -20,12 +20,12 @@ Pod::Spec.new do |s|
   
   s.public_header_files = 'LJKeyBroadEventManager/Classes/LJKeyBroadEventManager.h'
 
+  s.source_files = 'LJKeyBroadEventManager/Classes/LJKeyBroadEventManager.h'
+  
   s.subspec 'KeyBroad' do |ss|
-    ss.source_files = 'LJKeyBroadEventManager/Classes/KeyBroad/*.{h,m}'
+    ss.source_files = 'LJKeyBroadEventManager/Classes/KeyBroad/*.{h,m}','LJKeyBroadEventManager/Classes/ViewControllerReateView/*.{h,m}','LJKeyBroadEventManager/Classes/LJKeyBroadEventManager.h'
   end
  
-  s.source_files = 'LJKeyBroadEventManager/Classes/LJKeyBroadEventManager.h'
-
   s.resource   = 'LJKeyBroadEventManager/Assets/LJkeyBroadEventManager.bundle'
   
   s.frameworks = 'UIKit'

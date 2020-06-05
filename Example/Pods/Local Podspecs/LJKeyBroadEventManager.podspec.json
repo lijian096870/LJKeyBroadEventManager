@@ -34,7 +34,11 @@
   "subspecs": [
     {
       "name": "KeyBroad",
-      "source_files": "LJKeyBroadEventManager/Classes/KeyBroad/*.{h,m}"
+      "source_files": [
+        "LJKeyBroadEventManager/Classes/KeyBroad/*.{h,m}",
+        "LJKeyBroadEventManager/Classes/ViewControllerReateView/*.{h,m}",
+        "LJKeyBroadEventManager/Classes/LJKeyBroadEventManager.h"
+      ]
     }
   ]
 }
