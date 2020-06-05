@@ -32,11 +32,6 @@
     // Do any additional setup after loading the view from its nib.
     registerKeyBroadResponder(self);
 
-    self.index = indexC;
-
-    indexC++;
-
-    [self loop];
 
     self.navigationItem.hidesBackButton = false;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"next" style:UIBarButtonItemStylePlain target:self action:@selector(NextPage)];
@@ -52,30 +47,7 @@
     [self.navigationController pushViewController:page animated:YES];
 }
 
-static int indexC = 0;
-- (void)loop {
-    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    //        self.topView = nil;
-    //        indexC ++ ;
-    //        if(indexC % 5 ==0){
-    //            self.textView.inputAccessoryView = nil;
-    //        }else{
-    //            self.topView = nil;
-    //            self.textView.inputAccessoryView = self.topView;
-    //        }
-    //
-    //        [self loop];
-    //    });
-}
 
-- (UIView *)topView {
-    if (_topView == nil) {
-        _topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 40.0)];
-        _topView.backgroundColor = randomColor;
-    }
-
-    return _topView;
-}
 
 #pragma LJKeyboardManagerDelegate
 
