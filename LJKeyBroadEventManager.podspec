@@ -18,15 +18,15 @@ Pod::Spec.new do |s|
   
   s.requires_arc = true
   
-  
-  s.subspec 'KeyBroad' do |ss|
-      s.source_files = 'LJKeyBroadEventManager/Classes/KeyBroad/*.{h,m}','LJKeyBroadEventManager/Classes/ViewControllerReateView/*.{h,m}','LJKeyBroadEventManager/Classes/LJKeyBroadEventManager.h'
-  end
-  
- 
-  s.resource   = 'LJKeyBroadEventManager/Assets/LJkeyBroadEventManager.bundle'
-  
   s.public_header_files = 'LJKeyBroadEventManager/Classes/LJKeyBroadEventManager.h'
+
+  s.subspec 'KeyBroad' do |ss|
+    ss.source_files = 'LJKeyBroadEventManager/Classes/KeyBroad/*.{h,m}'
+  end
+ 
+  s.source_files = 'LJKeyBroadEventManager/Classes/LJKeyBroadEventManager.h'
+
+  s.resource   = 'LJKeyBroadEventManager/Assets/LJkeyBroadEventManager.bundle'
   
   s.frameworks = 'UIKit'
   
