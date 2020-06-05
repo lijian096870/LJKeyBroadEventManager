@@ -17,7 +17,7 @@
 
 - (void)LJView_customer_removeFromSuperview;
 
-- (void)dealloc_content;
+- (void)LJView_ViewFrameChange_layoutSubviews;
 
 @end
 
@@ -45,6 +45,24 @@
         SEL sel = sel_registerName("setFrame:");
 
         SEL NewSel = sel_registerName("LJView_customer_setFrame:");
+
+        Method originalMethod = class_getInstanceMethod(UIView.class, sel);
+        Method swizzlingMethod = class_getInstanceMethod(UIView.class, NewSel);
+
+        method_exchangeImplementations(originalMethod, swizzlingMethod);
+    });
+    
+    [self methodlayoutSubviewsChangeBlock_MethodExchange];
+    
+}
+
++ (void)methodlayoutSubviewsChangeBlock_MethodExchange {
+    static dispatch_once_t onceToken;
+
+    dispatch_once(&onceToken, ^{
+        SEL sel = sel_registerName("layoutSubviews");
+
+        SEL NewSel = sel_registerName("LJView_ViewFrameChange_layoutSubviews");
 
         Method originalMethod = class_getInstanceMethod(UIView.class, sel);
         Method swizzlingMethod = class_getInstanceMethod(UIView.class, NewSel);

@@ -18,6 +18,14 @@
 
 @end
 
+@interface LJKeyBroadLayoutConstraint : NSLayoutConstraint
+
+@end
+
+@implementation LJKeyBroadLayoutConstraint
+
+@end
+
 typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
     LJKeyBroadViewNone,
     LJKeyBroadViewAdd,
@@ -40,21 +48,21 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
 
     if (self) {
         self.responder = responder;
+
+        AddFrameDidChangeKeyBlock(self, @"_LJKeyBroadAccessView", ^(UIView *view, CGRect oldFrame, CGRect newFrame) {
+            LJKeyBroadAccessView *accessView = (LJKeyBroadAccessView *)view;
+
+            if ([accessView isKindOfClass:LJKeyBroadAccessView.class] && [accessView.accessoryView isKindOfClass:UIView.class]) {
+                CGRect newLocation = CGRectMake(0, 0, newFrame.size.width, accessView.accessoryView.bounds.size.height);
+
+                if (CGRectEqualToRect(accessView.accessoryView.frame, newLocation)) {} else {
+                    accessView.accessoryView.frame = newLocation;
+                }
+            }
+        });
     }
 
     return self;
-}
-
-- (void)setFrame:(CGRect)frame {
-    [super setFrame:frame];
-
-    if ([self.accessoryView superview] == self) {
-        CGRect newLocation = CGRectMake(0, 0, frame.size.width, frame.size.height);
-
-        if (CGRectEqualToRect(self.accessoryView.bounds, newLocation)) {} else {
-            self.accessoryView.frame = newLocation;
-        }
-    }
 }
 
 - (void)addAccessView:(UIView *)view {
@@ -64,21 +72,9 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
 
             if ([view isKindOfClass:UIView.class]) {
                 self.accessoryView = view;
-                view.frame = CGRectMake(0, 0, view.bounds.size.width, view.bounds.size.height);
+                view.frame = CGRectMake(0, 0, self.bounds.size.width, view.bounds.size.height);
                 self.frame = view.bounds;
                 [self addSubview:view];
-                AddFrameDidChangeKeyBlock(view, @"_LJKeyBroadAccessView", ^(UIView *view, CGRect oldFrame, CGRect newFrame) {
-                    LJKeyBroadAccessView *superView = (LJKeyBroadAccessView *)[view superview];
-
-                    if ([superView isKindOfClass:LJKeyBroadAccessView.class]) {
-                        CGRect newLocation = CGRectMake(0, 0, newFrame.size.width, newFrame.size.width);
-
-                        if (CGRectEqualToRect(view.frame, newLocation)) {} else {
-                            view.frame = CGRectMake(0, 0, newFrame.size.width, newFrame.size.width);
-                            superView.frame = view.bounds;
-                        }
-                    }
-                });
             } else {
                 self.accessoryView = nil;
                 self.frame = CGRectZero;

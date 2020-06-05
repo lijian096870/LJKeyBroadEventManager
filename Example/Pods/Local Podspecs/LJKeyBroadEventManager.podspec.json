@@ -1,7 +1,7 @@
 {
   "name": "LJKeyBroadEventManager",
   "summary": "键盘弹出遮挡输入框解决方案",
-  "version": "3.2.6",
+  "version": "3.2.7",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -16,7 +16,7 @@
   },
   "source": {
     "git": "https://github.com/lijian096870/LJKeyBroadEventManager.git",
-    "tag": "3.2.6"
+    "tag": "3.2.7"
   },
   "requires_arc": true,
   "public_header_files": "LJKeyBroadEventManager/Classes/LJKeyBroadEventManager.h",

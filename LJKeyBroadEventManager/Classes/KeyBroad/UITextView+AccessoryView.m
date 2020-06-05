@@ -8,7 +8,7 @@
 #import "UITextView+AccessoryView.h"
 #import <objc/runtime.h>
 #import "LJKeyBroadAccessView.h"
-
+#import "UIView+LJKeyBroadInputAccessoryViewRelateResponderView.h"
 @implementation UITextView (AccessoryView)
 
 + (void)InputAccessoryViewChangeCallBackMethodExchange {
@@ -54,9 +54,13 @@
 
 - (UIView *)LJKeyBroad_inputAccessoryView {
     if ([self customer_Responder_AccessoryViewFundation_value]) {
-        return [self LJKeyBroad_input_AccessoryViewAdd:[self LJKeyBroad_inputAccessoryView]];
+        UIView *result = [self LJKeyBroad_input_AccessoryViewAdd:[self LJKeyBroad_inputAccessoryView]];
+        [result customer_Responder_AccessoryView_relateInputView_value:YES];
+        return result;
     } else {
-        return [self LJKeyBroad_input_AccessoryViewMov:[self LJKeyBroad_inputAccessoryView]];
+        UIView *result = [self LJKeyBroad_input_AccessoryViewMov:[self LJKeyBroad_inputAccessoryView]];
+        [result customer_Responder_AccessoryView_relateInputView_value:YES];
+        return result;
     }
 }
 

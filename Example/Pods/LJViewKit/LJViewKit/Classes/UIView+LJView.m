@@ -11,6 +11,14 @@
 #import <objc/runtime.h>
 #import "LJViewSuperViewFrameChangeRuner.h"
 #import "LJViewWindowChangeRuner.h"
+#import "LJViewUpdateConstraintsModel.h"
+#import "LJViewFrameChangeNoRepeatModel.h"
+@interface UIView ()
+
+- (LJViewUpdateConstraintsModel *)LJView_UpdateConstraintsModel_customer_FrameChange;
+
+@end
+
 @implementation UIView (LJView)
 
 - (void)LJView_customer_addSubview:(UIView *)view {
@@ -48,43 +56,31 @@
     }
 }
 
-- (void)LJView_customer_setFrame:(CGRect)frame {
-    CGRect oldFrame = self.frame;
-
-    if (CGRectEqualToRect(oldFrame, frame)) {
-        [self LJView_customer_setFrame:frame];
-    } else {
+- (void)LJView_customer_FrameChangeNewFrame:(CGRect)newFrame OldFrame:(CGRect)oldFrame {
+    if (CGRectEqualToRect(oldFrame, newFrame)) {} else {
         LJViewModel *model = [self viewFrameChangeMoveWindowChangeModelMayBenil];
 
         if ([model isKindOfClass:LJViewModel.class]) {
-            if (model.willChangeBlock) {
-                model.willChangeBlock(self, oldFrame, frame);
-            }
-
-            for (viewFrameChangeBlock block in model._willChangeArray) {
-                block(self, oldFrame, frame);
-            }
-
-            [LJViewSuperViewFrameChangeRuner viewWillChange:self AndOldFrame:oldFrame AndNewFrame:frame];
-            [self LJView_customer_setFrame:frame];
-
             if (model.didChangeBlock) {
-                model.didChangeBlock(self, oldFrame, frame);
+                model.didChangeBlock(self, oldFrame, newFrame);
             }
 
             for (viewFrameChangeBlock block in model._didChangeArray) {
-                block(self, oldFrame, frame);
+                block(self, oldFrame, newFrame);
             }
 
-            [LJViewSuperViewFrameChangeRuner viewDidChange:self AndOldFrame:oldFrame AndNewFrame:frame];
+            [LJViewSuperViewFrameChangeRuner viewDidChange:self AndOldFrame:oldFrame AndNewFrame:newFrame];
         } else {
-            [LJViewSuperViewFrameChangeRuner viewWillChange:self AndOldFrame:oldFrame AndNewFrame:frame];
-
-            [self LJView_customer_setFrame:frame];
-
-            [LJViewSuperViewFrameChangeRuner viewDidChange:self AndOldFrame:oldFrame AndNewFrame:frame];
+            [LJViewSuperViewFrameChangeRuner viewDidChange:self AndOldFrame:oldFrame AndNewFrame:newFrame];
         }
     }
+}
+
+- (void)LJView_customer_setFrame:(CGRect)frame {
+    CGRect oldFrame = self.frame;
+
+    [self LJView_customer_setFrame:frame];
+    [self LJView_customer_FrameChangeNewFrame:frame OldFrame:oldFrame];
 }
 
 - (LJViewModel *)viewFrameChangeMoveWindowChangeModelMayBenil {
@@ -100,8 +96,15 @@
     } else {
         LJViewModel *mess = [[LJViewModel alloc]initWithView:self];
         objc_setAssociatedObject(self, @selector(viewFrameChangeMoveWindowChangeModel), mess, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+
+        if ([[self LJView_UpdateConstraintsModel_customer_FrameChange] isKindOfClass:LJViewUpdateConstraintsModel.class]) {} else {
+            objc_setAssociatedObject(self, @selector(LJView_UpdateConstraintsModel_customer_FrameChange), [[LJViewUpdateConstraintsModel alloc]init], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        }
+
         return mess;
     }
 }
+
+
 
 @end

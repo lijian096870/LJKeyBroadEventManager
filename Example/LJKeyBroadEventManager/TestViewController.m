@@ -18,8 +18,6 @@
 @interface TestViewController () <UITableViewDelegate, UITableViewDataSource, LJKeyboardManagerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-
-
 @end
 
 @implementation TestViewController
@@ -60,18 +58,13 @@
     return cell;
 }
 
-
 #pragma LJKeyboardManagerDelegate
 
-- (void)keyBroadOffset:(CGFloat)offset {
-}
+- (void)keyBroadOffset:(CGFloat)offset {}
 
 - (void)keyBroadOffset:(CGFloat)offset Responder:(UIView *)Responder {}
 
 - (void)keyBroadScrollOffset:(CGFloat)offset Responder:(UIView *)Responder {
-    
-  
-    
     self.tableView.contentOffset = CGPointMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y + offset);
 }
 

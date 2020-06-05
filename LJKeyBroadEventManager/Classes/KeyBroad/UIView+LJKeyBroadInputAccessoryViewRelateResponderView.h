@@ -14,4 +14,8 @@
 
 - (LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *)KeyBroadInputAccessoryViewRelateResponderModel;
 
+
+- (void)customer_Responder_AccessoryView_relateInputView_value:(BOOL)value;
+- (BOOL)customer_Responder_AccessoryView_relateInputView_value;
+
 @end

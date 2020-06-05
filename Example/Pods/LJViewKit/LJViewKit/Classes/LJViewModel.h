@@ -27,14 +27,8 @@
 @property(nonatomic, copy) viewBeAddSubView       DidaddSubViewBlock;
 @property(nonatomic, strong, readonly) NSArray  *_viewDidAddSubViewArray;
 
-@property(nonatomic, copy) viewSuperFrameChangeBlock    superWillChangeBlock;
-@property(nonatomic, strong, readonly) NSArray          *_superWillChangeArray;
-
 @property(nonatomic, copy) viewSuperFrameChangeBlock    superDidChangeBlock;
 @property(nonatomic, strong, readonly) NSArray          *_superDidChangeArray;
-
-@property(nonatomic, copy) viewFrameChangeBlock willChangeBlock;
-@property(nonatomic, strong, readonly) NSArray  *_willChangeArray;
 
 @property(nonatomic, copy) viewFrameChangeBlock didChangeBlock;
 @property(nonatomic, strong, readonly) NSArray  *_didChangeArray;
@@ -51,11 +45,11 @@
 @property(nonatomic, copy) viewWindowChangeBlock    didAddBlock;
 @property(nonatomic, strong, readonly) NSArray      *_didAddArray;
 
-- (void)SetFrameWillChangeBlock:(viewFrameChangeBlock)block;
-- (void)AddFrameWillChangeBlock:(viewFrameChangeBlock)block;
+
 
 - (void)SetFrameDidChangeBlock:(viewFrameChangeBlock)block;
 - (void)AddFrameDidChangeBlock:(viewFrameChangeBlock)block;
+- (void)AddFrameDidChangeKeyBlock:(viewFrameChangeBlock)block AndKey:(NSString *)key;
 
 - (void)SetWindowWillMoveBlock:(viewWindowChangeBlock)block;
 - (void)AddWindowWillMoveBlock:(viewWindowChangeBlock)block;
@@ -73,12 +67,8 @@
 - (void)AddWindowDidMoveKeyBlock:(viewWindowChangeBlock)block AndKey:(NSString *)key;
 - (void)AddWindowWillAddKeyBlock:(viewWindowChangeBlock)block AndKey:(NSString *)key;
 - (void)AddWindowWillMoveKeyBlock:(viewWindowChangeBlock)block AndKey:(NSString *)key;
-- (void)AddFrameDidChangeKeyBlock:(viewFrameChangeBlock)block AndKey:(NSString *)key;
-- (void)AddFrameWillChangeKeyBlock:(viewFrameChangeBlock)block AndKey:(NSString *)key;
 
-- (void)SetSuperViewFrameWillChangeBlock:(viewSuperFrameChangeBlock)block;
-- (void)AddSuperViewFrameWillChangeBlock:(viewSuperFrameChangeBlock)block;
-- (void)AddSuperViewFrameWillChangeKeyBlock:(viewSuperFrameChangeBlock)block AndKey:(NSString *)key;
+
 - (void)SetSuperViewFrameDidChangeBlock:(viewSuperFrameChangeBlock)block;
 - (void)AddSuperViewFrameDidChangeBlock:(viewSuperFrameChangeBlock)block;
 - (void)AddSuperViewFrameDidChangeKeyBlock:(viewSuperFrameChangeBlock)block AndKey:(NSString *)key;

@@ -35,4 +35,20 @@
     }
 }
 
+- (void)customer_Responder_AccessoryView_relateInputView_value:(BOOL)value {
+    objc_setAssociatedObject(self, @selector(customer_Responder_AccessoryView_relateInputView_value), [NSNumber numberWithBool:value], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)customer_Responder_AccessoryView_relateInputView_value {
+    NSNumber *obj = objc_getAssociatedObject(self, @selector(customer_Responder_AccessoryView_relateInputView_value));
+
+    if ([obj isKindOfClass:[NSNumber class]]) {
+        return [obj boolValue];
+    } else {
+        NSNumber *mess = [NSNumber numberWithBool:NO];
+        objc_setAssociatedObject(self, @selector(customer_Responder_AccessoryView_relateInputView_value), mess, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        return [mess boolValue];
+    }
+}
+
 @end

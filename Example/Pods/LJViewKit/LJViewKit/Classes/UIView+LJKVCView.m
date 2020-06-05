@@ -10,6 +10,13 @@
 #import <objc/runtime.h>
 #import "LJViewMethodExchangeUtil.h"
 #import "NSObject+CustomerDealloc.h"
+#import "LJViewUpdateConstraintsModel.h"
+
+@interface UIView ()
+
+- (LJViewUpdateConstraintsModel *)LJView_UpdateConstraintsModel_customer_FrameChange;
+
+@end
 
 #if defined(DEBUG) && !defined(NDEBUG)
   #define ol_keywordify autoreleasepool {}
@@ -140,6 +147,24 @@
     return result;
 }
 
+- (void)LJViewKVC_customer_FrameChangeNewFrame:(CGRect)newRect OldFrame:(CGRect)oldRect {
+    if (self.callbackOn) {
+        if (CGRectEqualToRect(oldRect, newRect)) {} else {
+            if (self.block) {
+                self.block(nil, CGRectMake(oldRect.origin.x, oldRect.origin.y, oldRect.size.width, oldRect.size.height), CGRectMake(newRect.origin.x, newRect.origin.y, newRect.size.width, newRect.size.height));
+            }
+
+            for (int i = 0; i < self.blockArray.count; i++) {
+                LJViewModel_blockModel *model = [self.blockArray objectAtIndex:i];
+
+                if ([model isKindOfClass:[LJViewModel_blockModel class]] && model.block) {
+                    model.block(nil, CGRectMake(oldRect.origin.x, oldRect.origin.y, oldRect.size.width, oldRect.size.height), CGRectMake(newRect.origin.x, newRect.origin.y, newRect.size.width, newRect.size.height));
+                }
+            }
+        }
+    }
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     @synchronized (self) {
@@ -147,19 +172,7 @@
             CGRect  oldRect = [[self class] getFrame:[NSString stringWithFormat:@"%@", [change objectForKey:@"old"]]];
             CGRect  newRect = [[self class] getFrame:[NSString stringWithFormat:@"%@", [change objectForKey:@"new"]]];
 
-            if (CGRectEqualToRect(oldRect, newRect)) {} else {
-                if (self.block) {
-                    self.block(nil, CGRectMake(oldRect.origin.x, oldRect.origin.y, oldRect.size.width, oldRect.size.height), CGRectMake(newRect.origin.x, newRect.origin.y, newRect.size.width, newRect.size.height));
-                }
-
-                for (int i = 0; i < self.blockArray.count; i++) {
-                    LJViewModel_blockModel *model = [self.blockArray objectAtIndex:i];
-
-                    if ([model isKindOfClass:[LJViewModel_blockModel class]] && model.block) {
-                        model.block(nil, CGRectMake(oldRect.origin.x, oldRect.origin.y, oldRect.size.width, oldRect.size.height), CGRectMake(newRect.origin.x, newRect.origin.y, newRect.size.width, newRect.size.height));
-                    }
-                }
-            }
+            [self LJViewKVC_customer_FrameChangeNewFrame:newRect OldFrame:oldRect];
         }
     }
 }
@@ -207,6 +220,14 @@
     [self addLister_block];
 }
 
+- (void)LJViewKVC_customer_FrameChangeNewFrame:(CGRect)newFrame OldFrame:(CGRect)oldFrame {
+    if (CGRectEqualToRect(oldFrame, newFrame)) {} else {
+        if ([self viewModel_content].isAddLister) {
+            [[self viewModel_content] LJViewKVC_customer_FrameChangeNewFrame:newFrame OldFrame:oldFrame];
+        }
+    }
+}
+
 - (void)setFrameChangeBlock_kvcView:(viewFrameChangeBlock)block {
     @weakify(self);
     [[self viewModel_content] setBlock:^(UIView *view, CGRect oldFrame, CGRect newFrame) {
@@ -229,7 +250,14 @@
     [NSObject registerCustomerDeallocOnceObject:self block:^(NSObject *object) {
         if ([object isKindOfClass:UIView.class]) {
             UIView *view = (UIView *)object;
-            [view dealloc_content_removeLister];
+
+            if ([view viewModel_content].isAddLister) {
+                [view removeObserver:[view viewModel_content] forKeyPath:@"frame"];
+            }
+
+            [[view viewModel_content]setBlock:nil];
+            [[view viewModel_content].blockArray removeAllObjects];
+            [[view viewModel_content] setBlockArray:nil];
         }
     } Key:@"LJViewKit"];
 }
@@ -240,49 +268,15 @@
 
     if (obj == nil) {
         LJKVCViewModel *Model = [[LJKVCViewModel alloc]init];
-        [self setViewModel_content:Model];
+        objc_setAssociatedObject(self, @selector(viewModel_content), Model, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+
+        if ([[self LJView_UpdateConstraintsModel_customer_FrameChange] isKindOfClass:LJViewUpdateConstraintsModel.class]) {} else {
+            objc_setAssociatedObject(self, @selector(LJView_UpdateConstraintsModel_customer_FrameChange), [[LJViewUpdateConstraintsModel alloc]init], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        }
+
         return Model;
     } else {
         return obj;
-    }
-}
-
-- (void)setViewModel_content:(LJKVCViewModel *)viewModel_content
-{
-    objc_setAssociatedObject(self, @selector(viewModel_content), viewModel_content, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (NSMutableArray *)SubClass_content:(Class)className and:(NSMutableArray *)array {
-    for (UIView *view in self.subviews) {
-        if ([view isKindOfClass:className]) {
-            [array addObject:view];
-        }
-    }
-
-    return array;
-}
-
-- (NSMutableArray *)SubAllClass_content:(Class)className and:(NSMutableArray *)array {
-    for (UIView *view in self.subviews) {
-        if ([view isKindOfClass:className]) {
-            [array addObject:view];
-        }
-
-        [view SubAllClass_content:className and:array];
-    }
-
-    return array;
-}
-
-- (void)dealloc_content_removeLister {
-    if ([self isKindOfClass:UIView.class]) {
-        if ([self viewModel_content].isAddLister) {
-            [self removeObserver:[self viewModel_content] forKeyPath:@"frame"];
-        }
-
-        [[self viewModel_content]setBlock:nil];
-        [[self viewModel_content].blockArray removeAllObjects];
-        [[self viewModel_content] setBlockArray:nil];
     }
 }
 

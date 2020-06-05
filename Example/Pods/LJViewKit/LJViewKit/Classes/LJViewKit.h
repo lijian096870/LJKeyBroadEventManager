@@ -52,7 +52,6 @@ FOUNDATION_EXTERN void AddWindowDidMoveKeyBlock(UIView *view,NSString *key,viewW
 
 
 
-
 FOUNDATION_EXTERN void SetWindowWillAddBlock(UIView *view,viewWindowChangeBlock block);
 FOUNDATION_EXTERN void AddWindowWillAddBlock(UIView *view,viewWindowChangeBlock block);
 FOUNDATION_EXTERN void AddWindowWillAddKeyBlock(UIView *view,NSString *key,viewWindowChangeBlock block);

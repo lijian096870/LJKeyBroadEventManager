@@ -11,32 +11,6 @@
 
 @implementation LJViewSuperViewFrameChangeRuner
 
-+ (void)viewWillChange:(UIView *)view AndOldFrame:(CGRect)oldframe AndNewFrame:(CGRect)NewFrame {
-    [self viewWillChangeloop:view AndOldFrame:oldframe AndNewFrame:NewFrame andSuperView:view];
-}
-
-+ (void)viewWillChangeloop:(UIView *)view AndOldFrame:(CGRect)oldframe AndNewFrame:(CGRect)NewFrame andSuperView:(UIView *)superView {
-    LJViewModel *model = [view viewFrameChangeMoveWindowChangeModelMayBenil];
-
-    if ([model isKindOfClass:LJViewModel.class]) {
-        if (model.superWillChangeBlock) {
-            model.superWillChangeBlock(view, superView, oldframe, NewFrame);
-        }
-
-        for (viewSuperFrameChangeBlock Block in model._superWillChangeArray) {
-            if (Block) {
-                Block(view, superView, oldframe, NewFrame);
-            }
-        }
-    }
-
-    NSArray *array = [NSArray arrayWithArray:view.subviews];
-
-    for (UIView *subView in array) {
-        [self viewWillChangeloop:subView AndOldFrame:oldframe AndNewFrame:NewFrame andSuperView:superView];
-    }
-}
-
 + (void)viewDidChange:(UIView *)view AndOldFrame:(CGRect)oldframe AndNewFrame:(CGRect)NewFrame {
     [self viewDidChangeLoop:view AndOldFrame:oldframe AndNewFrame:NewFrame andSuperView:view];
 }

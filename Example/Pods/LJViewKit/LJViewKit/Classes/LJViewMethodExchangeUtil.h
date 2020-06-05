@@ -15,4 +15,7 @@
 + (void)methodFrameChangeBlock_MethodExchang;
 
 + (void)methodMoveChangeBlock_MethodExchange:(Class)calss;
+
++ (void)methodlayoutSubviewsChangeBlock_MethodExchange;
+
 @end

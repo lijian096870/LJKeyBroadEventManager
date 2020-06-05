@@ -8,12 +8,31 @@
 
 #import "AppDelegate.h"
 #import "TestViewController.h"
+#import <objc/runtime.h>
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
 
+void MethodsOfClass(Class cls){
+    
+    NSLog(@"%@",cls);
+    
+    unsigned int methodCount = 0;
+    Method *methods = class_copyMethodList(cls, &methodCount);
+    if (methods) {
+        for (unsigned int i =0; i <methodCount; i++) {
+            SEL sel = method_getName(methods[i]);
+            const char *name = sel_getName(sel);
+            NSString *nameString ;
+            if (name) {
+                nameString = [NSString stringWithUTF8String:name];
+            }
+            NSLog(@"%@",nameString);
+        }
+    }
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -21,6 +40,9 @@
     
     self.window.rootViewController = [[UINavigationController alloc]initWithRootViewController:[[TestViewController alloc]init]];
     
+    
+    
+    MethodsOfClass(NSClassFromString(@"UIInputSetHostView"));
  
     return YES;
 }

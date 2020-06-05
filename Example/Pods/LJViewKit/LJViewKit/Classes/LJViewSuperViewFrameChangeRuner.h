@@ -9,8 +9,6 @@
 
 @interface LJViewSuperViewFrameChangeRuner : NSObject
 
-+ (void)viewWillChange:(UIView *)view AndOldFrame:(CGRect)oldframe AndNewFrame:(CGRect)NewFrame;
-
 + (void)viewDidChange:(UIView *)view AndOldFrame:(CGRect)oldframe AndNewFrame:(CGRect)NewFrame;
 
 + (void)DidaddSuperView:(UIView *)view AndBeAddView:(UIView *)beAddView;

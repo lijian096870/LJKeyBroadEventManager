@@ -12,24 +12,20 @@
 
 @property(nonatomic, weak) UIView *view;
 
-@property(nonatomic, strong) NSMutableDictionary    *willChangeDictionary;
 @property(nonatomic, strong) NSMutableDictionary    *didChangeDictionary;
 @property(nonatomic, strong) NSMutableDictionary    *willAddDictionary;
 @property(nonatomic, strong) NSMutableDictionary    *didAddDictionary;
 @property(nonatomic, strong) NSMutableDictionary    *willMoveDictionary;
 @property(nonatomic, strong) NSMutableDictionary    *didMoveDictionary;
 
-@property(nonatomic, strong) NSMutableDictionary    *superWillChangeDictionary;
-@property(nonatomic, strong) NSMutableDictionary    *superDidChangeDictionary;
+@property(nonatomic, strong) NSMutableDictionary *superDidChangeDictionary;
 
-@property(nonatomic, strong) NSMutableArray *willChangeArray;
 @property(nonatomic, strong) NSMutableArray *didChangeArray;
 @property(nonatomic, strong) NSMutableArray *willMoveArray;
 @property(nonatomic, strong) NSMutableArray *didMoveArray;
 @property(nonatomic, strong) NSMutableArray *willAddArray;
 @property(nonatomic, strong) NSMutableArray *didAddArray;
 
-@property(nonatomic, strong) NSMutableArray *superWillChangeArray;
 @property(nonatomic, strong) NSMutableArray *superDidChangeArray;
 
 @property(nonatomic, strong) NSMutableArray         *DidAddSubViewArray;
@@ -157,28 +153,6 @@
     }
 }
 
-- (void)SetSuperViewFrameWillChangeBlock:(viewSuperFrameChangeBlock)block {
-    if (block) {
-        self.superWillChangeBlock = block;
-    }
-}
-
-- (void)AddSuperViewFrameWillChangeBlock:(viewSuperFrameChangeBlock)block {
-    if (block) {
-        [self.superWillChangeArray addObject:block];
-    }
-}
-
-- (void)AddSuperViewFrameWillChangeKeyBlock:(viewSuperFrameChangeBlock)block AndKey:(NSString *)key {
-    if ([key isKindOfClass:NSString.class] && (key.length > 0)) {
-        if (block) {
-            [self.superWillChangeDictionary setObject:block forKey:key];
-        }
-    } else {
-        [self AddSuperViewFrameWillChangeBlock:block];
-    }
-}
-
 - (void)SetSuperViewFrameDidChangeBlock:(viewSuperFrameChangeBlock)block {
     self.superDidChangeBlock = block;
 }
@@ -219,16 +193,8 @@
     return [self byDictionaryKey:self.DidAddSubViewDictionary AndArray:self.DidAddSubViewArray];
 }
 
-- (NSArray *)_superWillChangeArray {
-    return [self byDictionaryKey:self.superWillChangeDictionary AndArray:self.superWillChangeArray];
-}
-
 - (NSArray *)_superDidChangeArray {
     return [self byDictionaryKey:self.superDidChangeDictionary AndArray:self.superDidChangeArray];
-}
-
-- (NSArray *)_willChangeArray {
-    return [self byDictionaryKey:self.willChangeDictionary AndArray:self.willChangeArray];
 }
 
 - (NSArray *)_didChangeArray {
@@ -298,28 +264,6 @@
         }
     } else {
         [self AddFrameDidChangeBlock:block];
-    }
-}
-
-- (void)AddFrameWillChangeKeyBlock:(viewFrameChangeBlock)block AndKey:(NSString *)key {
-    if ([key isKindOfClass:NSString.class] && (key.length > 0)) {
-        if (block) {
-            [self.willChangeDictionary setObject:block forKey:key];
-        }
-    } else {
-        [self AddFrameWillChangeBlock:block];
-    }
-}
-
-- (void)SetFrameWillChangeBlock:(viewFrameChangeBlock)block {
-    if (block) {
-        self.willChangeBlock = block;
-    }
-}
-
-- (void)AddFrameWillChangeBlock:(viewFrameChangeBlock)block {
-    if (block) {
-        [self.willChangeArray addObject:block];
     }
 }
 
@@ -459,14 +403,6 @@
     }
 }
 
-- (NSMutableArray *)willChangeArray {
-    if (_willChangeArray == nil) {
-        _willChangeArray = [NSMutableArray array];
-    }
-
-    return _willChangeArray;
-}
-
 - (NSMutableArray *)didChangeArray {
     if (_didChangeArray == nil) {
         _didChangeArray = [NSMutableArray array];
@@ -505,14 +441,6 @@
     }
 
     return _didAddArray;
-}
-
-- (NSMutableDictionary *)willChangeDictionary {
-    if (_willChangeDictionary == nil) {
-        _willChangeDictionary = [NSMutableDictionary dictionary];
-    }
-
-    return _willChangeDictionary;
 }
 
 - (NSMutableDictionary *)didChangeDictionary {
@@ -563,28 +491,12 @@
     return _superDidChangeDictionary;
 }
 
-- (NSMutableDictionary *)superWillChangeDictionary {
-    if (_superWillChangeDictionary == nil) {
-        _superWillChangeDictionary = [NSMutableDictionary dictionary];
-    }
-
-    return _superWillChangeDictionary;
-}
-
 - (NSMutableArray *)superDidChangeArray {
     if (_superDidChangeArray == nil) {
         _superDidChangeArray = [NSMutableArray array];
     }
 
     return _superDidChangeArray;
-}
-
-- (NSMutableArray *)superWillChangeArray {
-    if (_superWillChangeArray == nil) {
-        _superWillChangeArray = [NSMutableArray array];
-    }
-
-    return _superWillChangeArray;
 }
 
 - (NSMutableArray *)DidAddSubViewArray {
