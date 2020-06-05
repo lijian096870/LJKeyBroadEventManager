@@ -83,14 +83,6 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
     }
 }
 
-- (void)setAccessoryView:(UIView *)accessoryView {
-    if ([_accessoryView isKindOfClass:UIView.class]) {
-        AddFrameDidChangeKeyBlock(_accessoryView, @"_LJKeyBroadAccessView", ^(UIView *view, CGRect oldFrame, CGRect newFrame) {});
-    }
-
-    _accessoryView = accessoryView;
-}
-
 - (void)viewDidAdd {}
 
 - (void)viewDidMove {
@@ -175,13 +167,6 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
     }
 
     return _numberViewStyle;
-}
-
-- (void)dealloc
-{
-    if ([self.accessoryView isKindOfClass:UIView.class]) {
-        AddFrameDidChangeKeyBlock(self.accessoryView, @"_LJKeyBroadAccessView", ^(UIView *view, CGRect oldFrame, CGRect newFrame) {});
-    }
 }
 
 @end
