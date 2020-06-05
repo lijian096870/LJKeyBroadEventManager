@@ -100,31 +100,31 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
 - (void)viewDidMove {
     UIView *responderView = self.responder;
 
-    [responderView.keyBroadInputResponderViewEventControl_view endShowEvent];
-    [[responderView KeyBroadInputAccessoryViewRelateResponderModel] lockCantShowStatue];
-    [[responderView KeyBroadInputAccessoryViewRelateResponderModel] lockCanRunHidenBlock:YES];
+    if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
+        [responderView.keyBroadInputResponderViewEventControl_view endShowEvent];
+        [[responderView KeyBroadInputAccessoryViewRelateResponderModel] lockCantShowStatue];
+        [[responderView KeyBroadInputAccessoryViewRelateResponderModel] lockCanRunHidenBlock:YES];
 
-    dispatch_async(dispatch_get_main_queue(), ^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            if ([[responderView KeyBroadInputAccessoryViewRelateResponderModel] canRunHidenBlockQuery]) {
-                [[responderView KeyBroadInputAccessoryViewRelateResponderModel] lockCanRunHidenBlock:NO];
-                [[LJKeyBroadRegisterManager sharedInstance] HiddenkeyBroadInputAccessoryViewRelateCallBlock:responderView];
-                [responderView.keyBroadInputResponderViewEventControl_view endResponderAllEvent];
-                [[responderView KeyBroadInputAccessoryViewRelateResponderModel] endLister];
-            }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if ([[responderView KeyBroadInputAccessoryViewRelateResponderModel] canRunHidenBlockQuery]) {
+                    [[responderView KeyBroadInputAccessoryViewRelateResponderModel] lockCanRunHidenBlock:NO];
+                    [[LJKeyBroadRegisterManager sharedInstance] HiddenkeyBroadInputAccessoryViewRelateCallBlock:responderView];
+                    [responderView.keyBroadInputResponderViewEventControl_view endResponderAllEvent];
+                    [[responderView KeyBroadInputAccessoryViewRelateResponderModel] endLister];
+                }
+            });
         });
-    });
+    }
 }
 
 - (void)viewWillAdd {
     UIView *responderView = self.responder;
 
     if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
-        [self setResponder:responderView];
         [[responderView KeyBroadInputAccessoryViewRelateResponderModel] lockCanRunHidenBlock:NO];
         [responderView.keyBroadInputResponderViewEventControl_view beginResponderAllEvent];
         [[responderView KeyBroadInputAccessoryViewRelateResponderModel] startLister];
-
         [[LJKeyBroadRegisterManager sharedInstance] ShowkeyBroadInputAccessoryViewRelateCallBlock:responderView];
     }
 }

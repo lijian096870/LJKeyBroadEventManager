@@ -8,7 +8,6 @@
 #import "LJKeyboardReloadToolBar.h"
 #import "LJKeyBroadEventManager.h"
 #import "LJkeyBroadConfig.h"
-#import "LJViewKit.h"
 #import "UIViewController+KeyBoradManager.h"
 #import "LJViewControllerManager.h"
 #import "UIViewController+KeyBoradManager.h"

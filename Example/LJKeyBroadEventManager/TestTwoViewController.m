@@ -84,10 +84,7 @@ static int indexC = 0;
 - (void)keyBroadOffset:(CGFloat)offset Responder:(UIView *)Responder {}
 
 - (void)keyBroadScrollOffset:(CGFloat)offset Responder:(UIView *)Responder {
-    if (self.index == 0) {
-        NSLog(@"%f", offset);
-    }
-
+   
     [self.midle setConstant:self.midle.constant - offset];
 
     [self.view layoutIfNeeded];
