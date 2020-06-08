@@ -17,9 +17,9 @@ static NSMutableArray   *resignFirstResponderCallBackBlockArray;
 @interface UIResponder ()
 
 - (void)Customer_becomeFirstResponder_Before;
-- (void)Customer_becomeFirstResponder_after;
+- (void)Customer_becomeFirstResponder_after:(BOOL)result;
 - (void)Customer_resignFirstResponder_before;
-- (void)Customer_resignFirstResponder_after;
+- (void)Customer_resignFirstResponder_after:(BOOL)result;
 @end
 
 typedef BOOL (^ customer_responder_block)(UIResponder *responder);
@@ -32,8 +32,8 @@ BOOL customer_becomeFirstResponder_method(customer_responder_block block, UIResp
 
     BOOL result = block(responder);
 
-    if ([responder respondsToSelector:@selector(Customer_becomeFirstResponder_after)]) {
-        [responder Customer_becomeFirstResponder_after];
+    if ([responder respondsToSelector:@selector(Customer_becomeFirstResponder_after:)]) {
+        [responder Customer_becomeFirstResponder_after:result];
     }
 
     return result;
@@ -47,8 +47,8 @@ BOOL customer_resignFirstResponder_method(customer_responder_block block, UIResp
 
     BOOL result = block(responder);
 
-    if ([responder respondsToSelector:@selector(Customer_resignFirstResponder_after)]) {
-        [responder Customer_resignFirstResponder_after];
+    if ([responder respondsToSelector:@selector(Customer_resignFirstResponder_after:)]) {
+        [responder Customer_resignFirstResponder_after:result];
     }
 
     return result;

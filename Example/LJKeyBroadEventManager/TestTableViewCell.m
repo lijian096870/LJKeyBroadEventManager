@@ -15,7 +15,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
   
-    
 }
 
 +(instancetype)allocWithZone:(struct _NSZone *)zone{

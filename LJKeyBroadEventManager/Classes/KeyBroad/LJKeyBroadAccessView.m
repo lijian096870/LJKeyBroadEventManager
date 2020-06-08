@@ -18,14 +18,6 @@
 
 @end
 
-@interface LJKeyBroadLayoutConstraint : NSLayoutConstraint
-
-@end
-
-@implementation LJKeyBroadLayoutConstraint
-
-@end
-
 typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
     LJKeyBroadViewNone,
     LJKeyBroadViewAdd,
@@ -83,7 +75,21 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
     }
 }
 
+- (void)viewWillAdd {
+  
+    UIView *responderView = self.responder;
+
+    if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
+        [[responderView KeyBroadInputAccessoryViewRelateResponderModel] lockCanRunHidenBlock:NO];
+        [responderView.keyBroadInputResponderViewEventControl_view beginResponderAllEvent];
+        [[responderView KeyBroadInputAccessoryViewRelateResponderModel] startLister];
+        [[LJKeyBroadRegisterManager sharedInstance] ShowkeyBroadInputAccessoryViewRelateCallBlock:responderView];
+    }
+}
+
 - (void)viewDidAdd {}
+
+- (void)viewWillMove {}
 
 - (void)viewDidMove {
     UIView *responderView = self.responder;
@@ -105,19 +111,6 @@ typedef NS_ENUM (NSInteger, LJKeyBroadViewStyle) {
         });
     }
 }
-
-- (void)viewWillAdd {
-    UIView *responderView = self.responder;
-
-    if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
-        [[responderView KeyBroadInputAccessoryViewRelateResponderModel] lockCanRunHidenBlock:NO];
-        [responderView.keyBroadInputResponderViewEventControl_view beginResponderAllEvent];
-        [[responderView KeyBroadInputAccessoryViewRelateResponderModel] startLister];
-        [[LJKeyBroadRegisterManager sharedInstance] ShowkeyBroadInputAccessoryViewRelateCallBlock:responderView];
-    }
-}
-
-- (void)viewWillMove {}
 
 - (void)willMoveToWindow:(UIWindow *)newWindow {
     if ([newWindow isKindOfClass:UIView.class]) {

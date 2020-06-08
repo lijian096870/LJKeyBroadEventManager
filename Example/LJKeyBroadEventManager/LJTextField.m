@@ -31,7 +31,6 @@
     self.inputAccessoryView = view;
     
     [self reloadInputViews];
-        
     
 }
 
