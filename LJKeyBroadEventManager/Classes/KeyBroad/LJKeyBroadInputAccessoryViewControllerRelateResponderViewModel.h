@@ -9,7 +9,9 @@
 
 @interface LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel : NSObject
 
-@property(nonatomic, weak) UIView *responderView;
+@property(nonatomic, strong) UIView *responderView;
+
+@property(nonatomic, weak) UIView *weakResponderView;
 
 - (instancetype)initWithKeyeBroadInputViewController:(UIView *)rootView;
 

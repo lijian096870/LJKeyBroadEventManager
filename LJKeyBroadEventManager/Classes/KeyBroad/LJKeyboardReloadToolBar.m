@@ -8,14 +8,21 @@
 #import "LJKeyboardReloadToolBar.h"
 #import "LJKeyBroadEventManager.h"
 #import "LJkeyBroadConfig.h"
+#import "LJViewKit.h"
 #import "UIViewController+KeyBoradManager.h"
 #import "LJViewControllerManager.h"
 #import "UIViewController+KeyBoradManager.h"
 #import "LJKeyBroadRegisterManager.h"
 #import "UIView+LJKeyBroadInputAccessoryViewRelateResponderView.h"
-#import "UIResponder+AccessoryView.h"
-
 @interface UIViewController () <LJKeyboardManagerDelegate>
+
+@end
+
+@interface LJKeyBroadRegisterManager ()
+
+- (void)ShowkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view;
+
+- (void)HiddenkeyBroadInputAccessoryViewRelateCallBlock:(UIView *)view;
 
 @end
 
@@ -42,7 +49,7 @@
     if (keyBroadHeight > 0.0) {
         if ([responderView isKindOfClass:UITextView.class]) {
             UITextView  *textView = (UITextView *)responderView;
-            UIView      *inputAccessoryView = [textView LJKeyBroad_customer_inputAccessoryView];
+            UIView      *inputAccessoryView = textView.inputAccessoryView;
 
             if ([inputAccessoryView isKindOfClass:UIView.class]) {
                 CGFloat inputAccessoryViewHeight = inputAccessoryView.bounds.size.height;
@@ -57,7 +64,7 @@
             }
         } else if ([responderView isKindOfClass:UITextField.class]) {
             UITextField *textView = (UITextField *)responderView;
-            UIView      *inputAccessoryView = [textView LJKeyBroad_customer_inputAccessoryView];
+            UIView      *inputAccessoryView = textView.inputAccessoryView;
 
             if ([inputAccessoryView isKindOfClass:UIView.class]) {
                 CGFloat inputAccessoryViewHeight = inputAccessoryView.bounds.size.height;
@@ -95,13 +102,13 @@
         if ([responderNextSet.currentResponderModel.view isKindOfClass:[UITextField class]]) {
             UITextField *textView = ((UITextField *)responderNextSet.currentResponderModel.view);
 
-            if ([textView LJKeyBroad_customer_inputAccessoryView] == nil) {
+            if (textView.inputAccessoryView == nil) {
                 textView.inputAccessoryView = [self reloadLJKeyboardToolBar:bar and:responderNextSet];
 
                 responderNextSet.currentResponderModel.ExtensionToolBarHeight = 40;
             } else {
-                if ([[textView LJKeyBroad_customer_inputAccessoryView] isKindOfClass:[LJKeyboardToolBar class]]) {
-                    textView.inputAccessoryView = [self reloadLJKeyboardToolBar:(LJKeyboardToolBar *)([textView LJKeyBroad_customer_inputAccessoryView]) and:responderNextSet];
+                if ([textView.inputAccessoryView isKindOfClass:[LJKeyboardToolBar class]]) {
+                    textView.inputAccessoryView = [self reloadLJKeyboardToolBar:(LJKeyboardToolBar *)(textView.inputAccessoryView) and:responderNextSet];
                     responderNextSet.currentResponderModel.ExtensionToolBarHeight = 40;
                 } else {
                     textView.inputAccessoryView = [self reloadLJKeyboardToolBar:bar and:responderNextSet];
@@ -113,13 +120,13 @@
         if ([responderNextSet.currentResponderModel.view isKindOfClass:[UITextView class]]) {
             UITextView *textView = ((UITextView *)responderNextSet.currentResponderModel.view);
 
-            if ([textView LJKeyBroad_customer_inputAccessoryView] == nil) {
+            if (textView.inputAccessoryView == nil) {
                 textView.inputAccessoryView = [self reloadLJKeyboardToolBar:bar and:responderNextSet];
 
                 responderNextSet.currentResponderModel.ExtensionToolBarHeight = 40;
             } else {
-                if ([[textView LJKeyBroad_customer_inputAccessoryView] isKindOfClass:[LJKeyboardToolBar class]]) {
-                    textView.inputAccessoryView = [self reloadLJKeyboardToolBar:(LJKeyboardToolBar *)([textView LJKeyBroad_customer_inputAccessoryView]) and:responderNextSet];
+                if ([textView.inputAccessoryView isKindOfClass:[LJKeyboardToolBar class]]) {
+                    textView.inputAccessoryView = [self reloadLJKeyboardToolBar:(LJKeyboardToolBar *)(textView.inputAccessoryView) and:responderNextSet];
                     responderNextSet.currentResponderModel.ExtensionToolBarHeight = 40;
                 } else {
                     textView.inputAccessoryView = [self reloadLJKeyboardToolBar:bar and:responderNextSet];
@@ -141,8 +148,8 @@
         if ([view isKindOfClass:UITextField.class]) {
             UITextField *textField = (UITextField *)view;
 
-            if ([[textField LJKeyBroad_customer_inputAccessoryView] isKindOfClass:UIView.class]) {
-                inputAccessoryView = [textField LJKeyBroad_customer_inputAccessoryView];
+            if ([textField.inputAccessoryView isKindOfClass:UIView.class]) {
+                inputAccessoryView = textField.inputAccessoryView;
             } else {
                 inputAccessoryView = [self madeInputAccessoryView:model.window.bounds.size.width];
 
@@ -153,8 +160,8 @@
         if ([view isKindOfClass:UITextView.class]) {
             UITextView *textField = (UITextView *)view;
 
-            if ([[textField LJKeyBroad_customer_inputAccessoryView] isKindOfClass:UIView.class]) {
-                inputAccessoryView = [textField LJKeyBroad_customer_inputAccessoryView];
+            if ([textField.inputAccessoryView isKindOfClass:UIView.class]) {
+                inputAccessoryView = textField.inputAccessoryView;
             } else {
                 inputAccessoryView = [self madeInputAccessoryView:model.window.bounds.size.width];
 
@@ -162,11 +169,51 @@
             }
         }
 
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            inputAccessoryView.frame = CGRectMake(0, 0, inputAccessoryView.bounds.size.width, 50);
-        });
-        
-        [view setAccessoryViewinputAccessoryViewFundation:YES];
+        if ([model.view isKindOfClass:UIView.class] && inputAccessoryView) {
+            if ([inputAccessoryView isKindOfClass:LJKeyboardAccessViewRetainResponderView.class]) {
+                [(LJKeyboardAccessViewRetainResponderView *)inputAccessoryView configResponderView:model.view];
+            } else {
+                [inputAccessoryView setKeyBroadInputAccessoryViewRelateResponderView_view:model.view];
+
+                AddWindowWillAddKeyBlock(inputAccessoryView, @"_LJKeyboardReloadToolBar", ^(UIView *view) {
+                    UIView *responderView = [view keyBroadInputAccessoryViewRelateResponderView_view];
+
+                    if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
+                        [view setKeyBroadInputAccessoryViewRelateResponderView_view:responderView];
+                        [[view KeyBroadInputAccessoryViewRelateResponderModel_view] lockCanRunHidenBlock:NO];
+                        [responderView.keyBroadInputResponderViewEventControl_view beginResponderAllEvent];
+                        [view.KeyBroadInputAccessoryViewRelateResponderModel_view startLister];
+
+                        [[LJKeyBroadRegisterManager sharedInstance] ShowkeyBroadInputAccessoryViewRelateCallBlock:responderView];
+                    }
+                });
+
+                AddWindowDidMoveKeyBlock(inputAccessoryView, @"_LJKeyboardReloadToolBar", ^(UIView *view) {
+                    UIView *responderView = [view keyBroadInputAccessoryViewRelateResponderView_view];
+                    [responderView.keyBroadInputResponderViewEventControl_view endShowEvent];
+                    [view.KeyBroadInputAccessoryViewRelateResponderModel_view lockCantShowStatue];
+                    [[view KeyBroadInputAccessoryViewRelateResponderModel_view] lockCanRunHidenBlock:YES];
+
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            if ([[view KeyBroadInputAccessoryViewRelateResponderModel_view] canRunHidenBlockQuery]) {
+                                [[view KeyBroadInputAccessoryViewRelateResponderModel_view] lockCanRunHidenBlock:NO];
+                                UIView *responderView = [view keyBroadInputAccessoryViewRelateResponderView_view];
+
+                                if ([responderView isKindOfClass:UITextField.class] || [responderView isKindOfClass:UITextView.class]) {
+                                    [[LJKeyBroadRegisterManager sharedInstance] HiddenkeyBroadInputAccessoryViewRelateCallBlock:responderView];
+                                }
+
+                                [responderView.keyBroadInputResponderViewEventControl_view endResponderAllEvent];
+                                [view.KeyBroadInputAccessoryViewRelateResponderModel_view endLister];
+
+                                [view setKeyBroadInputAccessoryViewRelateResponderView_view:nil];
+                            }
+                        });
+                    });
+                });
+            }
+        }
     }
 }
 
@@ -183,12 +230,12 @@
 
         if ([responderNextSet.currentResponderModel.view isKindOfClass:[UITextView class]]) {
             UITextView *textView = ((UITextView *)responderNextSet.currentResponderModel.view);
-            bar = [textView LJKeyBroad_customer_inputAccessoryView];
+            bar = textView.inputAccessoryView;
         }
 
         if ([responderNextSet.currentResponderModel.view isKindOfClass:[UITextField class]]) {
             UITextField *textView = ((UITextField *)responderNextSet.currentResponderModel.view);
-            bar = [textView LJKeyBroad_customer_inputAccessoryView];
+            bar = textView.inputAccessoryView;
         }
 
         if ([bar isKindOfClass:LJKeyboardToolBar.class]) {

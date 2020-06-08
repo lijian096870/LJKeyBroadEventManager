@@ -1,1 +1,0 @@
-../../../LJViewKit/LJViewKit/Classes/LJViewFrameChangeNoRepeatModel.h

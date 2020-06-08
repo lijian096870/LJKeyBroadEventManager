@@ -13,7 +13,6 @@
 		241A4B8E23A886E8006F0A64 /* PopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 241A4B8D23A886E8006F0A64 /* PopView.xib */; };
 		241A4B9523A888F2006F0A64 /* UIView+FromeXib.m in Sources */ = {isa = PBXBuildFile; fileRef = 241A4B9423A888F2006F0A64 /* UIView+FromeXib.m */; };
 		241A4B9723A8A261006F0A64 /* libLJAlertView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241A4B9623A8A261006F0A64 /* libLJAlertView.a */; };
-		243A2EB1248DC50200DB8232 /* LJTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 243A2EB0248DC50200DB8232 /* LJTextView.m */; };
 		24D523642395FD3A009C9A37 /* LJTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D523632395FD3A009C9A37 /* LJTableView.m */; };
 		30D946622392A86A006720AD /* LJTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D946612392A86A006720AD /* LJTextField.m */; };
 		30FB4F1F2306787700D23ED0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FB4F1E2306787700D23ED0 /* AppDelegate.m */; };
@@ -41,8 +40,6 @@
 		241A4B9423A888F2006F0A64 /* UIView+FromeXib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FromeXib.m"; sourceTree = "<group>"; };
 		241A4B9623A8A261006F0A64 /* libLJAlertView.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLJAlertView.a; sourceTree = "<group>"; };
 		241A4B9823A8A2B8006F0A64 /* LJAlertViewKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJAlertViewKit.h; sourceTree = "<group>"; };
-		243A2EAF248DC50200DB8232 /* LJTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJTextView.h; sourceTree = "<group>"; };
-		243A2EB0248DC50200DB8232 /* LJTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJTextView.m; sourceTree = "<group>"; };
 		24D523622395FD3A009C9A37 /* LJTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJTableView.h; sourceTree = "<group>"; };
 		24D523632395FD3A009C9A37 /* LJTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJTableView.m; sourceTree = "<group>"; };
 		30D946602392A86A006720AD /* LJTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJTextField.h; sourceTree = "<group>"; };
@@ -120,8 +117,6 @@
 				30FB4F3F23067A4A00D23ED0 /* TestTableViewCell.xib */,
 				30D946602392A86A006720AD /* LJTextField.h */,
 				30D946612392A86A006720AD /* LJTextField.m */,
-				243A2EAF248DC50200DB8232 /* LJTextView.h */,
-				243A2EB0248DC50200DB8232 /* LJTextView.m */,
 				24D523622395FD3A009C9A37 /* LJTableView.h */,
 				24D523632395FD3A009C9A37 /* LJTableView.m */,
 				241A4B8523A88554006F0A64 /* TestTwoViewController.h */,
@@ -276,7 +271,6 @@
 				30FB4F2D2306787900D23ED0 /* main.m in Sources */,
 				241A4B8C23A886DB006F0A64 /* PopView.m in Sources */,
 				241A4B8823A88554006F0A64 /* TestTwoViewController.m in Sources */,
-				243A2EB1248DC50200DB8232 /* LJTextView.m in Sources */,
 				30D946622392A86A006720AD /* LJTextField.m in Sources */,
 				24D523642395FD3A009C9A37 /* LJTableView.m in Sources */,
 				30FB4F3B230679C900D23ED0 /* TestViewController.m in Sources */,

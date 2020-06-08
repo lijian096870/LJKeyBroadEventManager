@@ -8,51 +8,10 @@
 #import "UIResponder+becomeFirstResponderCallBack.h"
 #import <objc/runtime.h>
 #import "FirstResponderModel.h"
-#import "UIResponder+AccessoryView.h"
 
 static NSMutableArray   *becomeFirstResponderCallBackBlockArray;
 static NSMutableArray   *becomeFirstResponderResultCallBackBlockArray;
 static NSMutableArray   *resignFirstResponderCallBackBlockArray;
-
-@interface UIResponder ()
-
-- (void)Customer_becomeFirstResponder_Before;
-- (void)Customer_becomeFirstResponder_after:(BOOL)result;
-- (void)Customer_resignFirstResponder_before;
-- (void)Customer_resignFirstResponder_after:(BOOL)result;
-@end
-
-typedef BOOL (^ customer_responder_block)(UIResponder *responder);
-
-BOOL customer_becomeFirstResponder_method(customer_responder_block block, UIResponder *responder)
-{
-    if ([responder respondsToSelector:@selector(Customer_becomeFirstResponder_Before)]) {
-        [responder Customer_becomeFirstResponder_Before];
-    }
-
-    BOOL result = block(responder);
-
-    if ([responder respondsToSelector:@selector(Customer_becomeFirstResponder_after:)]) {
-        [responder Customer_becomeFirstResponder_after:result];
-    }
-
-    return result;
-}
-
-BOOL customer_resignFirstResponder_method(customer_responder_block block, UIResponder *responder)
-{
-    if ([responder respondsToSelector:@selector(Customer_resignFirstResponder_before)]) {
-        [responder Customer_resignFirstResponder_before];
-    }
-
-    BOOL result = block(responder);
-
-    if ([responder respondsToSelector:@selector(Customer_resignFirstResponder_after:)]) {
-        [responder Customer_resignFirstResponder_after:result];
-    }
-
-    return result;
-}
 
 static canBecomeFirstResponderCallBackBlock canBecomeFirstResponder = nil;
 
@@ -144,12 +103,6 @@ static __weak UIResponder *lj_currentFirstResponder;
             method_exchangeImplementations(originalMethod, swizzlingMethod);
         });
     }
-    {
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            [UIResponder InputAccessoryViewChangeCallBackMethodExchange_reloadInputViews];
-        });
-    }
 }
 
 - (BOOL)Customer_becomeFirstResponder {
@@ -157,9 +110,7 @@ static __weak UIResponder *lj_currentFirstResponder;
         if (canBecomeFirstResponder) {
             if (canBecomeFirstResponder((UIView *)self)) {
                 if (self.keyBroad_FirstResponder_info.isFirstResponder) {
-                    BOOL result = customer_becomeFirstResponder_method (^BOOL (UIResponder *responder) {
-                        return [responder Customer_becomeFirstResponder];
-                    }, self);
+                    BOOL result = [self Customer_becomeFirstResponder];
                     return result;
                 } else {
                     BOOL canBeFirst = YES;
@@ -171,9 +122,7 @@ static __weak UIResponder *lj_currentFirstResponder;
                     if (canBeFirst) {
                         self.keyBroad_FirstResponder_info.isFirstResponder = true;
 
-                        BOOL result = customer_becomeFirstResponder_method (^BOOL (UIResponder *responder) {
-                            return [responder Customer_becomeFirstResponder];
-                        }, self);
+                        BOOL result = [self Customer_becomeFirstResponder];
 
                         self.keyBroad_FirstResponder_info.isFirstResponder = result;
 
@@ -193,9 +142,7 @@ static __weak UIResponder *lj_currentFirstResponder;
             }
         } else {
             if (self.keyBroad_FirstResponder_info.isFirstResponder) {
-                BOOL result = customer_becomeFirstResponder_method (^BOOL (UIResponder *responder) {
-                    return [responder Customer_becomeFirstResponder];
-                }, self);
+                BOOL result = [self Customer_becomeFirstResponder];
                 return result;
             } else {
                 BOOL canBeFirst = YES;
@@ -207,9 +154,7 @@ static __weak UIResponder *lj_currentFirstResponder;
                 if (canBeFirst) {
                     self.keyBroad_FirstResponder_info.isFirstResponder = true;
 
-                    BOOL result = customer_becomeFirstResponder_method (^BOOL (UIResponder *responder) {
-                        return [responder Customer_becomeFirstResponder];
-                    }, self);
+                    BOOL result = [self Customer_becomeFirstResponder];
 
                     return result;
                 } else {
@@ -218,9 +163,7 @@ static __weak UIResponder *lj_currentFirstResponder;
             }
         }
     } else {
-        return customer_becomeFirstResponder_method (^BOOL (UIResponder *responder) {
-            return [responder Customer_becomeFirstResponder];
-        }, self);
+        return [self Customer_becomeFirstResponder];
     }
 }
 
@@ -235,9 +178,7 @@ static __weak UIResponder *lj_currentFirstResponder;
         }
     }
 
-    return customer_resignFirstResponder_method (^BOOL (UIResponder *responder) {
-        return [responder Customer_resignFirstResponder];
-    }, self);
+    return [self Customer_resignFirstResponder];
 }
 
 - (FirstResponderModel *)keyBroad_FirstResponder_info
@@ -254,4 +195,3 @@ static __weak UIResponder *lj_currentFirstResponder;
 }
 
 @end
-

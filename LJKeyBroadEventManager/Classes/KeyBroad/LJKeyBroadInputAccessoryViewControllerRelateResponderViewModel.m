@@ -197,6 +197,14 @@
     return _canRunHidenBlock;
 }
 
+- (void)setResponderView:(UIView *)responderView {
+    _responderView = responderView;
+
+    if ([responderView isKindOfClass:UIView.class]) {
+        self.weakResponderView = responderView;
+    }
+}
+
 - (void)dealloc {
     [NSNotificationCenter removeNotificationMostBeforeName:UIKeyboardDidChangeFrameNotification anyKey:self.randStringID];
     [NSNotificationCenter removeNotificationMostBeforeName:UIKeyboardDidHideNotification anyKey:self.randStringID];

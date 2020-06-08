@@ -9,6 +9,7 @@
 #import "UIViewController+KeyBoradManager.h"
 #import <objc/runtime.h>
 #import "KeyBroadRandString.h"
+#import "LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel.h"
 @interface LJKeyBroadManager ()
 
 - (instancetype)initWithMaster_object_keyBroad:(UIViewController *)object;

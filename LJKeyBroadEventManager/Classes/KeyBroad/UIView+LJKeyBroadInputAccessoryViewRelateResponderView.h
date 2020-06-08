@@ -6,16 +6,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LJKeyBroadInputResponderViewEventControl.h"
 #import "LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel.h"
+#import "LJKeyBroadInputResponderViewEventControl.h"
 @interface UIView (LJKeyBroadInputAccessoryViewRelateResponderView)
 
-- (LJKeyBroadInputResponderViewEventControl *)keyBroadInputResponderViewEventControl_view;
+- (UIView *)keyBroadInputAccessoryViewRelateResponderView_view;
 
-- (LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *)KeyBroadInputAccessoryViewRelateResponderModel;
+- (void)setKeyBroadInputAccessoryViewRelateResponderView_view:(UIView *)view;
+
+- (LJKeyBroadInputAccessoryViewControllerRelateResponderViewModel *)KeyBroadInputAccessoryViewRelateResponderModel_view;
 
 
-- (void)customer_Responder_AccessoryView_relateInputView_value:(BOOL)value;
-- (BOOL)customer_Responder_AccessoryView_relateInputView_value;
+
+
+-(LJKeyBroadInputResponderViewEventControl*)keyBroadInputResponderViewEventControl_view;
 
 @end
+
+

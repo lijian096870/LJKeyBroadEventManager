@@ -1,7 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 source 'https://gitee.com/1358756992lijian/lijianPrivateSpecs.git'
 
- platform :ios, '8.0'
+# platform :ios, '8.0'
 
 target 'LJKeyBroadEventManager' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -9,8 +9,8 @@ target 'LJKeyBroadEventManager' do
 
 	pod 'LJKeyBroadEventManager', :path => '../'
 
-pod 'LJViewKit', '~>2.4.0'
-#pod 'MLeaksFinder'
+pod 'LJViewKit', '~>2.2.3'
+
 
   # Pods for LJKeyBroadEventManager
 

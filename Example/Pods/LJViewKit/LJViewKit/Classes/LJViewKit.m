@@ -9,79 +9,36 @@
 #import "UIView+LJView.h"
 #import "LJViewMethodExchangeUtil.h"
 #import "UIView+LJKVCView.h"
-#import "NSObject+CustomerDealloc.h"
-#import "LJViewFrameChangeNoRepeatModel.h"
-
-viewFrameChangeBlock getNoRepeatBlock(viewFrameChangeBlock block)
-{
-    LJViewFrameChangeNoRepeatModel *model = [[LJViewFrameChangeNoRepeatModel alloc]init];
-
-    return ^(UIView *view, CGRect oldFrame, CGRect newFrame) {
-               if (CGRectEqualToRect(oldFrame, newFrame)) {} else {
-                   if ([model.NewFrameValue isKindOfClass:NSValue.class] && [model.oldFrameValue isKindOfClass:NSValue.class]) {
-                       CGRect   aheadoldFrame = [model.oldFrameValue CGRectValue];
-                       CGRect   aheadnewFrame = [model.NewFrameValue CGRectValue];
-
-                       if (CGRectEqualToRect(aheadnewFrame, newFrame) && CGRectEqualToRect(aheadoldFrame, oldFrame)) {
-                           return;
-                       }
-                   }
-
-                   model.NewFrameValue = [NSValue valueWithCGRect:newFrame];
-                   model.oldFrameValue = [NSValue valueWithCGRect:oldFrame];
-
-                   if (block) {
-                       block(view, oldFrame, newFrame);
-                   }
-               }
-    };
-}
-
-viewSuperFrameChangeBlock getSuperNoRepeatBlock(viewSuperFrameChangeBlock block)
-{
-    LJViewFrameChangeNoRepeatModel *model = [[LJViewFrameChangeNoRepeatModel alloc]init];
-
-    return ^(UIView *view, UIView *superView, CGRect oldFrame, CGRect newFrame) {
-               if (CGRectEqualToRect(oldFrame, newFrame)) {} else {
-                   if ([model.NewFrameValue isKindOfClass:NSValue.class] && [model.oldFrameValue isKindOfClass:NSValue.class]) {
-                       CGRect   aheadoldFrame = [model.oldFrameValue CGRectValue];
-                       CGRect   aheadnewFrame = [model.NewFrameValue CGRectValue];
-
-                       if (CGRectEqualToRect(aheadnewFrame, newFrame) && CGRectEqualToRect(aheadoldFrame, oldFrame)) {
-                           return;
-                       }
-                   }
-
-                   model.NewFrameValue = [NSValue valueWithCGRect:newFrame];
-                   model.oldFrameValue = [NSValue valueWithCGRect:oldFrame];
-
-                   if (block) {
-                       block(view, superView, oldFrame, newFrame);
-                   }
-               }
-    };
-}
 
 void viewSetFrameChangeBlock(UIView *view, viewFrameChangeBlock block)
 {
     if ([view isKindOfClass:UIView.class]) {
-        [LJViewMethodExchangeUtil methodlayoutSubviewsChangeBlock_MethodExchange];
-        [view setFrameChangeBlock_kvcView:getNoRepeatBlock(block)];
+        [view setFrameChangeBlock_kvcView:block];
     }
 }
 
 void viewAddFrameChangeBlock(UIView *view, viewFrameChangeBlock block)
 {
     if ([view isKindOfClass:UIView.class] && block) {
-        [LJViewMethodExchangeUtil methodlayoutSubviewsChangeBlock_MethodExchange];
-        [view addFrameChangeBlock_kvcView:getNoRepeatBlock(block)];
+        [view addFrameChangeBlock_kvcView:block];
     }
 }
 
-void objectAddObjectDeallocBlock(NSObject *object, objectDeallocBlock block)
+void SetFrameWillChangeBlock(UIView *view, viewFrameChangeBlock block)
 {
-    if ([object isKindOfClass:NSObject.class] && block) {
-        [NSObject registerCustomerDeallocArrayObject:object block:block Key:@"LJViewKit"];
+    if ([view isKindOfClass:UIView.class] && block) {
+        [LJViewMethodExchangeUtil methodFrameChangeBlock_MethodExchang];
+        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
+        [model SetFrameWillChangeBlock:block];
+    }
+}
+
+void AddFrameWillChangeBlock(UIView *view, viewFrameChangeBlock block)
+{
+    if ([view isKindOfClass:UIView.class] && block) {
+        [LJViewMethodExchangeUtil methodFrameChangeBlock_MethodExchang];
+        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
+        [model AddFrameWillChangeBlock:block];
     }
 }
 
@@ -90,7 +47,7 @@ void SetFrameDidChangeBlock(UIView *view, viewFrameChangeBlock block)
     if ([view isKindOfClass:UIView.class] && block) {
         [LJViewMethodExchangeUtil methodFrameChangeBlock_MethodExchang];
         LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
-        [model SetFrameDidChangeBlock:getNoRepeatBlock(block)];
+        [model SetFrameDidChangeBlock:block];
     }
 }
 
@@ -99,16 +56,7 @@ void AddFrameDidChangeBlock(UIView *view, viewFrameChangeBlock block)
     if ([view isKindOfClass:UIView.class] && block) {
         [LJViewMethodExchangeUtil methodFrameChangeBlock_MethodExchang];
         LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
-        [model AddFrameDidChangeBlock:getNoRepeatBlock(block)];
-    }
-}
-
-void AddFrameDidChangeKeyBlock(UIView *view, NSString *key, viewFrameChangeBlock block)
-{
-    if ([view isKindOfClass:UIView.class] && block) {
-        [LJViewMethodExchangeUtil methodFrameChangeBlock_MethodExchang];
-        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
-        [model AddFrameDidChangeKeyBlock:getNoRepeatBlock(block) AndKey:key];
+        [model AddFrameDidChangeBlock:block];
     }
 }
 
@@ -220,12 +168,57 @@ void AddWindowWillMoveKeyBlock(UIView *view, NSString *key, viewWindowChangeBloc
     }
 }
 
+void AddFrameDidChangeKeyBlock(UIView *view, NSString *key, viewFrameChangeBlock block)
+{
+    if ([view isKindOfClass:UIView.class] && block) {
+        [LJViewMethodExchangeUtil methodFrameChangeBlock_MethodExchang];
+        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
+        [model AddFrameDidChangeKeyBlock:block AndKey:key];
+    }
+}
+
+void AddFrameWillChangeKeyBlock(UIView *view, NSString *key, viewFrameChangeBlock block)
+{
+    if ([view isKindOfClass:UIView.class] && block) {
+        [LJViewMethodExchangeUtil methodFrameChangeBlock_MethodExchang];
+        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
+        [model AddFrameWillChangeKeyBlock:block AndKey:key];
+    }
+}
+
+void SetSuperViewFrameWillChangeBlock(UIView *view, viewSuperFrameChangeBlock block)
+{
+    if ([view isKindOfClass:UIView.class] && block) {
+        [LJViewMethodExchangeUtil methodFrameChangeBlock_MethodExchang];
+        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
+        [model SetSuperViewFrameWillChangeBlock:block];
+    }
+}
+
+void AddSuperViewFrameWillChangeBlock(UIView *view, viewSuperFrameChangeBlock block)
+{
+    if ([view isKindOfClass:UIView.class] && block) {
+        [LJViewMethodExchangeUtil methodFrameChangeBlock_MethodExchang];
+        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
+        [model AddSuperViewFrameWillChangeBlock:block];
+    }
+}
+
+void AddSuperViewFrameWillChangeKeyBlock(UIView *view, NSString *key, viewSuperFrameChangeBlock block)
+{
+    if ([view isKindOfClass:UIView.class] && block) {
+        [LJViewMethodExchangeUtil methodFrameChangeBlock_MethodExchang];
+        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
+        [model AddSuperViewFrameWillChangeKeyBlock:block AndKey:key];
+    }
+}
+
 void SetSuperViewFrameDidChangeBlock(UIView *view, viewSuperFrameChangeBlock block)
 {
     if ([view isKindOfClass:UIView.class] && block) {
         [LJViewMethodExchangeUtil methodFrameChangeBlock_MethodExchang];
         LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
-        [model SetSuperViewFrameDidChangeBlock:getSuperNoRepeatBlock(block)];
+        [model SetSuperViewFrameDidChangeBlock:block];
     }
 }
 
@@ -234,7 +227,7 @@ void AddSuperViewFrameDidChangeBlock(UIView *view, viewSuperFrameChangeBlock blo
     if ([view isKindOfClass:UIView.class] && block) {
         [LJViewMethodExchangeUtil methodFrameChangeBlock_MethodExchang];
         LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
-        [model AddSuperViewFrameDidChangeBlock:getSuperNoRepeatBlock(block)];
+        [model AddSuperViewFrameDidChangeBlock:block];
     }
 }
 
@@ -243,115 +236,7 @@ void AddSuperViewFrameDidChangeKeyBlock(UIView *view, NSString *key, viewSuperFr
     if ([view isKindOfClass:UIView.class] && block) {
         [LJViewMethodExchangeUtil methodFrameChangeBlock_MethodExchang];
         LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
-        [model AddSuperViewFrameDidChangeKeyBlock:getSuperNoRepeatBlock(block) AndKey:key];
-    }
-}
-
-void SetViewWillAddSubViewBlock(UIView *view, viewBeAddSubView block)
-{
-    if ([view isKindOfClass:UIView.class] && block) {
-        [LJViewMethodExchangeUtil methodAddsubViewBlock_MethodExchang];
-        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
-        [model SetViewWillAddSubViewBlock:block];
-    }
-}
-
-void AddViewWillAddSubViewBlock(UIView *view, viewBeAddSubView block)
-{
-    if ([view isKindOfClass:UIView.class] && block) {
-        [LJViewMethodExchangeUtil methodAddsubViewBlock_MethodExchang];
-        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
-        [model AddViewWillAddSubViewBlock:block];
-    }
-}
-
-void AddViewWillAddSubViewKeyBlock(UIView *view, NSString *key, viewBeAddSubView block)
-{
-    if ([view isKindOfClass:UIView.class] && block) {
-        [LJViewMethodExchangeUtil methodAddsubViewBlock_MethodExchang];
-        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
-        [model AddViewWillAddSubViewKeyBlock:block AndKey:key];
-    }
-}
-
-void SetViewDidAddSubViewBlock(UIView *view, viewBeAddSubView block)
-{
-    if ([view isKindOfClass:UIView.class] && block) {
-        [LJViewMethodExchangeUtil methodAddsubViewBlock_MethodExchang];
-        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
-        [model SetViewDidAddSubViewBlock:block];
-    }
-}
-
-void AddViewDidAddSubViewBlock(UIView *view, viewBeAddSubView block)
-{
-    if ([view isKindOfClass:UIView.class] && block) {
-        [LJViewMethodExchangeUtil methodAddsubViewBlock_MethodExchang];
-        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
-        [model AddViewDidAddSubViewBlock:block];
-    }
-}
-
-void AddViewDidAddSubViewKeyBlock(UIView *view, NSString *key, viewBeAddSubView block)
-{
-    if ([view isKindOfClass:UIView.class] && block) {
-        [LJViewMethodExchangeUtil methodAddsubViewBlock_MethodExchang];
-        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
-        [model AddViewDidAddSubViewKeyBlock:block AndKey:key];
-    }
-}
-
-void SetViewWillRemoveBlock(UIView *view, viewRemoveView block)
-{
-    if ([view isKindOfClass:UIView.class] && block) {
-        [LJViewMethodExchangeUtil methodMoveChangeBlock_MethodExchange:view.class];
-        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
-        [model SetViewWillRemoveBlock:block];
-    }
-}
-
-void AddViewWillRemoveBlock(UIView *view, viewRemoveView block)
-{
-    if ([view isKindOfClass:UIView.class] && block) {
-        [LJViewMethodExchangeUtil methodMoveChangeBlock_MethodExchange:view.class];
-        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
-        [model AddViewWillRemoveBlock:block];
-    }
-}
-
-void AddViewWillRemoveKeyBlock(UIView *view, NSString *key, viewRemoveView block)
-{
-    if ([view isKindOfClass:UIView.class] && block) {
-        [LJViewMethodExchangeUtil methodMoveChangeBlock_MethodExchange:view.class];
-        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
-        [model AddViewWillRemoveKeyBlock:block AndKey:key];
-    }
-}
-
-void SetViewDidRemoveBlock(UIView *view, viewRemoveView block)
-{
-    if ([view isKindOfClass:UIView.class] && block) {
-        [LJViewMethodExchangeUtil methodMoveChangeBlock_MethodExchange:view.class];
-        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
-        [model SetViewDidRemoveBlock:block];
-    }
-}
-
-void AddViewDidRemoveBlock(UIView *view, viewRemoveView block)
-{
-    if ([view isKindOfClass:UIView.class] && block) {
-        [LJViewMethodExchangeUtil methodMoveChangeBlock_MethodExchange:view.class];
-        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
-        [model AddViewDidRemoveBlock:block];
-    }
-}
-
-void AddViewDidRemoveKeyBlock(UIView *view, NSString *key, viewRemoveView block)
-{
-    if ([view isKindOfClass:UIView.class] && block) {
-        [LJViewMethodExchangeUtil methodMoveChangeBlock_MethodExchange:view.class];
-        LJViewModel *model = [view viewFrameChangeMoveWindowChangeModel];
-        [model AddViewDidRemoveKeyBlock:block AndKey:key];
+        [model AddSuperViewFrameDidChangeKeyBlock:block AndKey:key];
     }
 }
 
@@ -373,7 +258,7 @@ void AddViewAddSubViewBlock(UIView *view, viewAddSubView block)
     }
 }
 
-void AddViewAddSubViewKeyBlock(UIView *view, NSString *key, viewAddSubView block)
+FOUNDATION_EXTERN void AddViewAddSubViewKeyBlock(UIView *view, NSString *key, viewAddSubView block)
 {
     if ([view isKindOfClass:UIView.class] && block) {
         [LJViewMethodExchangeUtil methodAddsubViewBlock_MethodExchang];

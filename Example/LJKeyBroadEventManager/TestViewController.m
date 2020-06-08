@@ -10,13 +10,10 @@
 #import "TestTableViewCell.h"
 #import "LJKeyBroadEventManager.h"
 #import "TestTwoViewController.h"
-
-#define random(r, g, b, a) [UIColor colorWithRed:(r) / 255.0 green:(g) / 255.0 blue:(b) / 255.0 alpha:(a) / 255.0]
-
-#define randomColor random(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
-
 @interface TestViewController () <UITableViewDelegate, UITableViewDataSource, LJKeyboardManagerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property(nonatomic, assign) CGFloat offsect;
 
 @end
 
@@ -25,15 +22,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    
+
+    
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
-        self.automaticallyAdjustsScrollViewInsets = NO;
+       self.automaticallyAdjustsScrollViewInsets = NO;
     }
-
+   
+    
+    
     self.navigationItem.hidesBackButton = false;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"next" style:UIBarButtonItemStylePlain target:self action:@selector(NextPage)];
-
+    
     registerKeyBroadResponder(self);
 
     self.tableView.delegate = self;
@@ -41,10 +43,11 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"TestTableViewCell" bundle:nil] forCellReuseIdentifier:NSStringFromClass(TestTableViewCell.class)];
 }
 
-- (void)NextPage {
+-(void)NextPage{
+    
     TestTwoViewController *page = [[TestTwoViewController alloc]init];
-
     [self.navigationController pushViewController:page animated:YES];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

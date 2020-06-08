@@ -8,19 +8,18 @@
 
 #import "AppDelegate.h"
 #import "TestViewController.h"
-#import <objc/runtime.h>
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
     
     self.window.rootViewController = [[UINavigationController alloc]initWithRootViewController:[[TestViewController alloc]init]];
-    
     
  
     return YES;

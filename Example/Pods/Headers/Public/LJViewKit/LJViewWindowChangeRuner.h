@@ -1,1 +1,0 @@
-../../../LJViewKit/LJViewKit/Classes/LJViewWindowChangeRuner.h
