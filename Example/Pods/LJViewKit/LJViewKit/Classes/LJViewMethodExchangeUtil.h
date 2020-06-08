@@ -6,16 +6,16 @@
 //  Copyright © 2018年 LJ. All rights reserved.
 //
 
-
 #import <UIKit/UIKit.h>
 
 @interface LJViewMethodExchangeUtil : NSObject
-
-+ (void)methodViewDelloc_MethodExchang;
 
 + (void)methodAddsubViewBlock_MethodExchang;
 
 + (void)methodFrameChangeBlock_MethodExchang;
 
 + (void)methodMoveChangeBlock_MethodExchange:(Class)calss;
+
++ (void)methodlayoutSubviewsChangeBlock_MethodExchange;
+
 @end

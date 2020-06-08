@@ -11,32 +11,6 @@
 
 @implementation LJViewSuperViewFrameChangeRuner
 
-+ (void)viewWillChange:(UIView *)view AndOldFrame:(CGRect)oldframe AndNewFrame:(CGRect)NewFrame {
-    [self viewWillChangeloop:view AndOldFrame:oldframe AndNewFrame:NewFrame andSuperView:view];
-}
-
-+ (void)viewWillChangeloop:(UIView *)view AndOldFrame:(CGRect)oldframe AndNewFrame:(CGRect)NewFrame andSuperView:(UIView *)superView {
-    LJViewModel *model = [view viewFrameChangeMoveWindowChangeModelMayBenil];
-
-    if ([model isKindOfClass:LJViewModel.class]) {
-        if (model.superWillChangeBlock) {
-            model.superWillChangeBlock(view, superView, oldframe, NewFrame);
-        }
-
-        for (viewSuperFrameChangeBlock Block in model._superWillChangeArray) {
-            if (Block) {
-                Block(view, superView, oldframe, NewFrame);
-            }
-        }
-    }
-
-    NSArray *array = [NSArray arrayWithArray:view.subviews];
-
-    for (UIView *subView in array) {
-        [self viewWillChangeloop:subView AndOldFrame:oldframe AndNewFrame:NewFrame andSuperView:superView];
-    }
-}
-
 + (void)viewDidChange:(UIView *)view AndOldFrame:(CGRect)oldframe AndNewFrame:(CGRect)NewFrame {
     [self viewDidChangeLoop:view AndOldFrame:oldframe AndNewFrame:NewFrame andSuperView:view];
 }
@@ -63,11 +37,83 @@
     }
 }
 
-+ (void)addSubView:(UIView *)view AndBeAddView:(UIView *)beAddView {
-    [self runSuperView:beAddView andArray:nil AndRootView:view];
++ (void)DidaddSuperView:(UIView *)view AndBeAddView:(UIView *)beAddView {
+    if ([beAddView isKindOfClass:UIView.class] && [view isKindOfClass:UIView.class]) {
+        LJViewModel *model = [beAddView viewFrameChangeMoveWindowChangeModelMayBenil];
+
+        if ([model isKindOfClass:LJViewModel.class]) {
+            if (model.DidaddSubViewBlock) {
+                model.DidaddSubViewBlock(beAddView, view);
+            }
+
+            for (viewBeAddSubView block in model._viewDidAddSubViewArray) {
+                if (block) {
+                    block(beAddView, view);
+                }
+            }
+        }
+    }
 }
 
-+ (void)runSuperView:(UIView *)view andArray:(NSArray *)array AndRootView:(UIView *)RootView {
++ (void)WilladdSuperView:(UIView *)view AndBeAddView:(UIView *)beAddView {
+    if ([beAddView isKindOfClass:UIView.class] && [view isKindOfClass:UIView.class]) {
+        LJViewModel *model = [beAddView viewFrameChangeMoveWindowChangeModelMayBenil];
+
+        if ([model isKindOfClass:LJViewModel.class]) {
+            if (model.WilladdSubViewBlock) {
+                model.WilladdSubViewBlock(beAddView, view);
+            }
+
+            for (viewBeAddSubView block in model._viewWillAddSubViewArray) {
+                if (block) {
+                    block(beAddView, view);
+                }
+            }
+        }
+    }
+}
+
++ (void)DidremovwSuperView:(UIView *)view AndBeRemoveView:(UIView *)beRemove {
+    if ([beRemove isKindOfClass:UIView.class] && [view isKindOfClass:UIView.class]) {
+        LJViewModel *model = [beRemove viewFrameChangeMoveWindowChangeModelMayBenil];
+
+        if ([model isKindOfClass:LJViewModel.class]) {
+            if (model.DidremoveViewBlock) {
+                model.DidremoveViewBlock(beRemove, view);
+            }
+
+            for (viewRemoveView block in model._viewDidRemoveViewArray) {
+                if (block) {
+                    block(beRemove, view);
+                }
+            }
+        }
+    }
+}
+
++ (void)WillremovwSuperView:(UIView *)view AndBeRemoveView:(UIView *)beRemove {
+    if ([beRemove isKindOfClass:UIView.class] && [view isKindOfClass:UIView.class]) {
+        LJViewModel *model = [beRemove viewFrameChangeMoveWindowChangeModelMayBenil];
+
+        if ([model isKindOfClass:LJViewModel.class]) {
+            if (model.WillremoveViewBlock) {
+                model.WillremoveViewBlock(beRemove, view);
+            }
+
+            for (viewRemoveView block in model._viewWillRemoveViewArray) {
+                if (block) {
+                    block(beRemove, view);
+                }
+            }
+        }
+    }
+}
+
++ (void)addSubView:(UIView *)view AndBeAddView:(UIView *)beAddView {
+    [self runSuperView:view andArray:nil AndbeAddView:beAddView];
+}
+
++ (void)runSuperView:(UIView *)view andArray:(NSArray *)array AndbeAddView:(UIView *)beAddView {
     NSArray *tempArray = array;
 
     if ([view isKindOfClass:UIView.class]) {
@@ -75,7 +121,7 @@
 
         if ([model isKindOfClass:LJViewModel.class]) {
             if ([tempArray isKindOfClass:NSArray.class] && (tempArray.count > 0)) {} else {
-                tempArray = [self subViewArray:RootView];
+                tempArray = [self subViewArray:beAddView];
             }
 
             for (UIView *addView in tempArray) {
@@ -93,7 +139,7 @@
             }
         }
 
-        [self runSuperView:view.superview andArray:tempArray AndRootView:RootView];
+        [self runSuperView:view.superview andArray:tempArray AndbeAddView:beAddView];
     }
 }
 
